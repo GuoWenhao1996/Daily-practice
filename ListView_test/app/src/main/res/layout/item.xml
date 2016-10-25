@@ -9,7 +9,7 @@
         android:id="@+id/img"
         android:layout_width="71dp"
         android:layout_height="71dp"
-        android:src="@drawable/Pig" />
+        android:src="@drawable/pig" />
 
     <LinearLayout
         android:layout_width="wrap_content"
