@@ -3,30 +3,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ccddee"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:weightSum="1">
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="71dp"
-        android:layout_height="71dp"
-        android:src="@drawable/pig" />
+        android:layout_height="110dp"
+        android:src="@drawable/pig"
+        android:layout_weight="0.48"
+        android:layout_width="110dp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="249dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="242dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="222"
+            android:text="姓名"
+            android:textSize="60px"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
             android:id="@+id/info"
             android:layout_width="match_parent"
-            android:layout_height="47dp"
-            android:text="11" />
+            android:layout_height="wrap_content"
+            android:textSize="50px"
+            android:text="631406010xxx" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:text="已到"
+                android:textColor="#00ff00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_yidao"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="迟到"
+                android:textColor="#ffff00"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_chidao"
+                android:layout_weight="1" />
+
+            <Button
+                android:text="旷课"
+                android:textColor="#ff0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_kuangke"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>
