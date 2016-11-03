@@ -33,36 +33,61 @@
             android:textSize="50px"
             android:text="631406010xxx" />
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            >
 
-            <Button
-                android:text="已到"
-                android:textColor="#00ff00"
+            <RadioButton
+                android:text="在勤"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button_yidao"
-                android:layout_weight="1" />
+                android:id="@+id/radioButton_zq"
+                android:layout_weight="1"
+                android:duplicateParentState="false"
+                android:focusable="false"
+                android:checked="true" />
 
-            <Button
+            <RadioButton
                 android:text="迟到"
-                android:textColor="#ffff00"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button_chidao"
-                android:layout_weight="1" />
+                android:id="@+id/radioButton_cd"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:checked="false" />
 
-            <Button
+            <RadioButton
+                android:text="早退"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton_zt"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:checked="false"
+                android:duplicateParentState="false" />
+
+            <RadioButton
                 android:text="旷课"
-                android:textColor="#ff0000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button_kuangke"
-                android:layout_weight="1" />
+                android:id="@+id/radioButton_kk"
+                android:layout_weight="1"
+                android:duplicateParentState="false"
+                android:focusable="false"
+                android:checked="false" />
 
-        </LinearLayout>
+            <RadioButton
+                android:text="病假"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton_bj"
+                android:layout_weight="1"
+                android:checked="false"
+                android:focusable="false"
+                android:duplicateParentState="false" />
+        </RadioGroup>
 
     </LinearLayout>
 </LinearLayout>
