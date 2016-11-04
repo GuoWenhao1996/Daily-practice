@@ -8,18 +8,18 @@
 
     <ImageView
         android:id="@+id/img"
-        android:layout_height="110dp"
+        android:layout_height="90dp"
         android:src="@drawable/pig"
-        android:layout_weight="0.48"
-        android:layout_width="110dp" />
+        android:layout_width="90dp" />
 
     <LinearLayout
         android:layout_width="249dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_weight="0.59">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="姓名"
@@ -27,7 +27,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <TextView
-            android:id="@+id/info"
+            android:id="@+id/stu_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="50px"
@@ -47,7 +47,7 @@
                 android:layout_weight="1"
                 android:duplicateParentState="false"
                 android:focusable="false"
-                android:checked="true" />
+                android:checked="false" />
 
             <RadioButton
                 android:text="迟到"

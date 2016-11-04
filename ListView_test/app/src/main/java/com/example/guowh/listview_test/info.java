@@ -5,40 +5,40 @@ package com.example.guowh.listview_test;
  */
 
 public class info {
-    private int id;
-    private String title;
-    private String detail;
-    private int avatar;
+    private String name;
+    private String stu_id;
+    private int state;
+    private int photo;
 
-    public void setId(int id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setStudent_id(String stu_id) {
+        this.stu_id = stu_id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getStudent_id() {
+        return stu_id;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setState(int state) {
+        this.state = state;
     }
 
-    public String getDetail() {
-        return detail;
+    public int getState() {
+        return state;
     }
 
-    public void setAvatar(int avatar) {
-        this.avatar = avatar;
+    public void setPhoto(int photo) {
+        this.photo = photo;
     }
 
-    public int getAvatar() {
-        return avatar;
+    public int getPhoto() {
+        return photo;
     }
 }
