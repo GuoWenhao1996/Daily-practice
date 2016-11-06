@@ -14,20 +14,42 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="wrap_content"
-        android:layout_height="515dp">
+        android:layout_height="470dp">
     </ListView>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content">
 
         <Button
-            android:text="保存"
+            android:text="上一页"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_save"
-            android:layout_weight="1" />
+            android:id="@+id/button_pre"
+            android:layout_weight="1" /><Button
+        android:text="下一页"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_next"
+        android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:text="添加学生"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_add"
+            android:layout_weight="1" /><Button
+        android:text="删除学生"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_delete"
+        android:layout_weight="1" />
     </LinearLayout>
 
 </LinearLayout>

@@ -14,30 +14,53 @@
 
     <LinearLayout
         android:layout_width="249dp"
-        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight="0.59">
+        android:layout_weight="0.59"
+        android:layout_height="93dp">
 
-        <TextView
-            android:id="@+id/name"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="姓名"
-            android:textSize="60px"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:layout_height="54dp">
 
-        <TextView
-            android:id="@+id/stu_id"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="50px"
-            android:text="631406010xxx" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="190dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="姓名"
+                    android:textSize="60px"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/stu_id"
+                    android:layout_height="wrap_content"
+                    android:textSize="50px"
+                    android:text="631406010xxx"
+                    android:layout_width="match_parent" />
+            </LinearLayout>
+
+            <TextView
+                android:text="点击\n保存"
+                android:textSize="60px"
+                android:gravity="center"
+                android:background="#d3d5de"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView"
+                android:layout_weight="1" />
+
+        </LinearLayout>
 
         <RadioGroup
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:orientation="horizontal"
-            >
+            android:id="@+id/radioGroup"
+            android:layout_height="39dp">
 
             <RadioButton
                 android:text="在勤"
