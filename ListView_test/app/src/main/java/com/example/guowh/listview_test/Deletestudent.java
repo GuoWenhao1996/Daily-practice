@@ -1,5 +1,6 @@
 package com.example.guowh.listview_test;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +14,8 @@ import android.widget.Toast;
  */
 
 public class Deletestudent extends AppCompatActivity {
-    String _id=null;
-    String _name=null;
+    String _id = null;
+    String _name = null;
     private SQLiteDatabase db;
     private MyDatabaseHelper helper;
 
@@ -24,27 +25,32 @@ public class Deletestudent extends AppCompatActivity {
         helper = new MyDatabaseHelper(Deletestudent.this);
         db = helper.getWritableDatabase();
         final Button b_shanchu = (Button) findViewById(R.id.button_shanchu);//获取添加按钮资源
-        final EditText XM=(EditText)findViewById(R.id.editText_xm);
-        final EditText XH=(EditText)findViewById(R.id.editText_xh);
+        final EditText XM = (EditText) findViewById(R.id.editText_xm);
+        final EditText XH = (EditText) findViewById(R.id.editText_xh);
         b_shanchu.setOnClickListener(new View.OnClickListener() {//创建监听
             @Override
             public void onClick(View view) {
-                _id=XH.getText().toString();
-                _name=XM.getText().toString();
+                _id = XH.getText().toString();
+                _name = XM.getText().toString();
                 //String sql="select name from stulisttb where id='"+_id+"'";
                 //db.execSQL(sql);
-                //if(_name.equals()) {
-                    try {
-                        String sql2="delete from stulisttb where id='"+_id+"'";
-                        db.execSQL(sql2);
+                Cursor c = db.query("stulisttb", new String[]{"name"}, "id=?", new String[]{_id}, null, null, null);
+                if (c.moveToNext()) {
+                    if (c.getString(c.getColumnIndex("name")).equals( _name)) {
+                        try {
+                            //db.delete("stulisttb","id=?",new String[]{_id});
+                            String sql2 = "delete from stulisttb where id='" + _id + "'";
+                            db.execSQL(sql2);
                             Toast.makeText(getApplicationContext(), _name + "删除成功", Toast.LENGTH_SHORT).show();
-                    } catch (Exception e) {
-                        Toast.makeText(getApplicationContext(), "数据库有误" + e.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                //}
-              //  else
-                //    Toast.makeText(getApplicationContext(), "姓名学号不匹配，请核对！", Toast.LENGTH_SHORT).show();
-           }
+                        } catch (Exception e) {
+                            Toast.makeText(getApplicationContext(), "数据库有误" + e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    } else
+                        Toast.makeText(getApplicationContext(), "删除失败！\n原因： 此学号与姓名不匹配，请核对！", Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(getApplicationContext(), "删除失败！\n原因： 此学号不存在，请核对！", Toast.LENGTH_SHORT).show();
+                c.close();
+            }
         });
     }
 

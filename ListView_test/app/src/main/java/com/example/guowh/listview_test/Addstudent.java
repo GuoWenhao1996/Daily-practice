@@ -35,13 +35,13 @@ public class Addstudent extends AppCompatActivity {
                 String sql="insert into stulisttb(id,name,state) values ('"+_id+"','"+_name+"',1);";
                 try {
                     db.execSQL(sql);
-                    Toast.makeText(getApplicationContext(), _name + "保存成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), _name + "保存成功！", Toast.LENGTH_SHORT).show();
                 }catch (android.database.sqlite.SQLiteConstraintException e){
                     XH.setSelectAllOnFocus(true);
-                    Toast.makeText(getApplicationContext(), "添加失败\n原因： 学号"+_id+"已存在", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "添加失败！\n原因： 学号"+_id+"已存在", Toast.LENGTH_SHORT).show();
                 }
                 catch (Exception e){
-                    Toast.makeText(getApplicationContext(), "数据库有误" + e.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "添加失败！\n原因： 数据库有误" , Toast.LENGTH_SHORT).show();
                 }
             }
         });
