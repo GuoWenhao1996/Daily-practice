@@ -241,7 +241,6 @@ public class MainActivity extends AppCompatActivity {
                 return itemViews[position];
             return convertView;
         }
-
     }
 
     private void setInfo() {
@@ -259,7 +258,23 @@ public class MainActivity extends AppCompatActivity {
             information.setName(name);
             information.setStudent_id(id);
             information.setState(state);
-            information.setPhoto(R.drawable.pig);
+            switch (id){
+                case "631406010102":information.setPhoto(R.drawable._631406010102);break;
+                case "631406010103":information.setPhoto(R.drawable._631406010103);break;
+                case "631406010104":information.setPhoto(R.drawable._631406010104);break;
+                case "631406010105":information.setPhoto(R.drawable._631406010105);break;
+                case "631406010106":information.setPhoto(R.drawable._631406010106);break;
+                case "631406010107":information.setPhoto(R.drawable._631406010107);break;
+                case "631406010108":information.setPhoto(R.drawable._631406010108);break;
+                case "631406010109":information.setPhoto(R.drawable._631406010109);break;
+                case "631406010110":information.setPhoto(R.drawable._631406010110);break;
+                case "631406010111":information.setPhoto(R.drawable._631406010111);break;
+                case "631406010112":information.setPhoto(R.drawable._631406010112);break;
+                case "631406010113":information.setPhoto(R.drawable._631406010113);break;
+                case "631406010114":information.setPhoto(R.drawable._631406010114);break;
+                case "631406010401":information.setPhoto(R.drawable._631406010401);break;
+                default:information.setPhoto(R.drawable.pig);break;
+            }
             mlistInfo.add(information);
             if (number == 5) {
                 c_Position = c.getPosition();

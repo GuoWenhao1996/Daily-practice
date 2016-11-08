@@ -3,7 +3,8 @@
     android:id="@+id/addstudent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#cfe2f4">
 
     <TextView
         android:id="@+id/textView2"
