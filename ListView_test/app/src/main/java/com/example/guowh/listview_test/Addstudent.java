@@ -67,7 +67,6 @@ public class Addstudent extends AppCompatActivity {
                 startActivityForResult(intent,1); //得到图片返回当前页
             }
         });
-
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
