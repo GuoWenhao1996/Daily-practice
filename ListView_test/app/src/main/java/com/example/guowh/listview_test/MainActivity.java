@@ -30,8 +30,10 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.widget.AdapterView.*;
+
 public class MainActivity extends AppCompatActivity {
-    public ListView lv;
+    private ListView lv;
     private List<info> mlistInfo = new ArrayList<info>();
     private SQLiteDatabase db;
     private MyDatabaseHelper helper;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private int number = 0;
     private int c_Position = -1;
     private boolean b = true;
-    public View[] itemViews;
+    private View[] itemViews;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -56,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         final Button b_next = (Button) findViewById(R.id.button_next);//获取下一页按钮资源
         final Button b_add = (Button) findViewById(R.id.button_add);//获取添加按钮资源
         final Button b_delete = (Button) findViewById(R.id.button_delete);//获取删除按钮资源
+        //final ImageView img_touxiang = (ImageView) findViewById(R.id.img);//获取img按钮资源
         lv = (ListView) this.findViewById(R.id.listView);
         setInfo();
         lv.setAdapter(new ListViewAdapter(mlistInfo));
@@ -76,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
                 lv.setAdapter(new ListViewAdapter(mlistInfo));
             }
         });
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        lv.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 info getObject = mlistInfo.get(position);
@@ -110,17 +114,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
         b_add.setOnClickListener(new View.OnClickListener() {//创建监听
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,Addstudent.class);
+                Intent intent = new Intent(MainActivity.this, Addstudent.class);
                 startActivity(intent);
             }
         });
         b_delete.setOnClickListener(new View.OnClickListener() {//创建监听
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,Deletestudent.class);
+                Intent intent = new Intent(MainActivity.this, Deletestudent.class);
                 startActivity(intent);
             }
         });
@@ -241,6 +246,7 @@ public class MainActivity extends AppCompatActivity {
                 return itemViews[position];
             return convertView;
         }
+
     }
 
     private void setInfo() {
@@ -258,22 +264,52 @@ public class MainActivity extends AppCompatActivity {
             information.setName(name);
             information.setStudent_id(id);
             information.setState(state);
-            switch (id){
-                case "631406010102":information.setPhoto(R.drawable._631406010102);break;
-                case "631406010103":information.setPhoto(R.drawable._631406010103);break;
-                case "631406010104":information.setPhoto(R.drawable._631406010104);break;
-                case "631406010105":information.setPhoto(R.drawable._631406010105);break;
-                case "631406010106":information.setPhoto(R.drawable._631406010106);break;
-                case "631406010107":information.setPhoto(R.drawable._631406010107);break;
-                case "631406010108":information.setPhoto(R.drawable._631406010108);break;
-                case "631406010109":information.setPhoto(R.drawable._631406010109);break;
-                case "631406010110":information.setPhoto(R.drawable._631406010110);break;
-                case "631406010111":information.setPhoto(R.drawable._631406010111);break;
-                case "631406010112":information.setPhoto(R.drawable._631406010112);break;
-                case "631406010113":information.setPhoto(R.drawable._631406010113);break;
-                case "631406010114":information.setPhoto(R.drawable._631406010114);break;
-                case "631406010401":information.setPhoto(R.drawable._631406010401);break;
-                default:information.setPhoto(R.drawable.pig);break;
+            switch (id) {
+                case "631406010102":
+                    information.setPhoto(R.drawable._631406010102);
+                    break;
+                case "631406010103":
+                    information.setPhoto(R.drawable._631406010103);
+                    break;
+                case "631406010104":
+                    information.setPhoto(R.drawable._631406010104);
+                    break;
+                case "631406010105":
+                    information.setPhoto(R.drawable._631406010105);
+                    break;
+                case "631406010106":
+                    information.setPhoto(R.drawable._631406010106);
+                    break;
+                case "631406010107":
+                    information.setPhoto(R.drawable._631406010107);
+                    break;
+                case "631406010108":
+                    information.setPhoto(R.drawable._631406010108);
+                    break;
+                case "631406010109":
+                    information.setPhoto(R.drawable._631406010109);
+                    break;
+                case "631406010110":
+                    information.setPhoto(R.drawable._631406010110);
+                    break;
+                case "631406010111":
+                    information.setPhoto(R.drawable._631406010111);
+                    break;
+                case "631406010112":
+                    information.setPhoto(R.drawable._631406010112);
+                    break;
+                case "631406010113":
+                    information.setPhoto(R.drawable._631406010113);
+                    break;
+                case "631406010114":
+                    information.setPhoto(R.drawable._631406010114);
+                    break;
+                case "631406010401":
+                    information.setPhoto(R.drawable._631406010401);
+                    break;
+                default:
+                    information.setPhoto(R.drawable.pig);
+                    break;
             }
             mlistInfo.add(information);
             if (number == 5) {
