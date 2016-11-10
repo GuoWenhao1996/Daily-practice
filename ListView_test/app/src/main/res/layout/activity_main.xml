@@ -44,7 +44,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_add"
-            android:layout_weight="1" /><Button
+            android:layout_weight="1" />
+
+        <Button
+            android:text="修改信息"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_alter"
+            android:layout_weight="1" />
+
+        <Button
         android:text="删除学生"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

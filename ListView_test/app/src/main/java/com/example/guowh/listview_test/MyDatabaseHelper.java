@@ -22,7 +22,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     @Override//首次创建数据库时使用
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table stulisttb(id text primary key,name text,state integer default(0));");
+        db.execSQL("create table stulisttb(id text primary key,name text,state integer default(0),photo blob);");
         sqlstr();
         for(int i=0;i<str.length;i++){
             db.execSQL(str[i]);

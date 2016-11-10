@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase db;
     private MyDatabaseHelper helper;
     private Cursor c;
+    private Cursor c1;
     private int number = 0;
     private int c_Position = -1;
     private boolean b = true;
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         final Button b_next = (Button) findViewById(R.id.button_next);//获取下一页按钮资源
         final Button b_add = (Button) findViewById(R.id.button_add);//获取添加按钮资源
         final Button b_delete = (Button) findViewById(R.id.button_delete);//获取删除按钮资源
+        final Button b_alter = (Button) findViewById(R.id.button_alter);//获取修改按钮资源
         //final ImageView img_touxiang = (ImageView) findViewById(R.id.img);//获取img按钮资源
         lv = (ListView) this.findViewById(R.id.listView);
         setInfo();
@@ -126,6 +130,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Deletestudent.class);
+                startActivity(intent);
+            }
+        });
+        b_alter.setOnClickListener(new View.OnClickListener() {//创建监听
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Alterstudents.class);
                 startActivity(intent);
             }
         });
@@ -236,7 +247,22 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
             ImageView image = (ImageView) itemView.findViewById(R.id.img);
-            image.setImageResource(imgId);
+            try {
+                c1 = db.query("stulisttb", null, "id=?", new String[]{stuID}, null, null, null);
+                c1.moveToNext();
+                if (c1.getBlob(3)!=null) {
+                    //Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_SHORT).show();
+                    ByteArrayInputStream baisTouXiang = new ByteArrayInputStream(c1.getBlob(3));
+                    //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_SHORT).show();
+                    image.setImageDrawable(Drawable.createFromStream(baisTouXiang, "zhaopian"));
+                    //Toast.makeText(getApplicationContext(), "3", Toast.LENGTH_SHORT).show();
+                } else {
+                    image.setImageResource(imgId);
+                }
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "错误" + e.toString(), Toast.LENGTH_SHORT).show();
+            }
+            c1.close();
             return itemView;
         }
 
@@ -264,53 +290,54 @@ public class MainActivity extends AppCompatActivity {
             information.setName(name);
             information.setStudent_id(id);
             information.setState(state);
-            switch (id) {
-                case "631406010102":
-                    information.setPhoto(R.drawable._631406010102);
-                    break;
-                case "631406010103":
-                    information.setPhoto(R.drawable._631406010103);
-                    break;
-                case "631406010104":
-                    information.setPhoto(R.drawable._631406010104);
-                    break;
-                case "631406010105":
-                    information.setPhoto(R.drawable._631406010105);
-                    break;
-                case "631406010106":
-                    information.setPhoto(R.drawable._631406010106);
-                    break;
-                case "631406010107":
-                    information.setPhoto(R.drawable._631406010107);
-                    break;
-                case "631406010108":
-                    information.setPhoto(R.drawable._631406010108);
-                    break;
-                case "631406010109":
-                    information.setPhoto(R.drawable._631406010109);
-                    break;
-                case "631406010110":
-                    information.setPhoto(R.drawable._631406010110);
-                    break;
-                case "631406010111":
-                    information.setPhoto(R.drawable._631406010111);
-                    break;
-                case "631406010112":
-                    information.setPhoto(R.drawable._631406010112);
-                    break;
-                case "631406010113":
-                    information.setPhoto(R.drawable._631406010113);
-                    break;
-                case "631406010114":
-                    information.setPhoto(R.drawable._631406010114);
-                    break;
-                case "631406010401":
-                    information.setPhoto(R.drawable._631406010401);
-                    break;
-                default:
-                    information.setPhoto(R.drawable.pig);
-                    break;
-            }
+            information.setPhoto(R.drawable.pig);
+//            switch (id) {
+//                case "631406010102":
+//                    information.setPhoto(R.drawable._631406010102);
+//                    break;
+//                case "631406010103":
+//                    information.setPhoto(R.drawable._631406010103);
+//                    break;
+//                case "631406010104":
+//                    information.setPhoto(R.drawable._631406010104);
+//                    break;
+//                case "631406010105":
+//                    information.setPhoto(R.drawable._631406010105);
+//                    break;
+//                case "631406010106":
+//                    information.setPhoto(R.drawable._631406010106);
+//                    break;
+//                case "631406010107":
+//                    information.setPhoto(R.drawable._631406010107);
+//                    break;
+//                case "631406010108":
+//                    information.setPhoto(R.drawable._631406010108);
+//                    break;
+//                case "631406010109":
+//                    information.setPhoto(R.drawable._631406010109);
+//                    break;
+//                case "631406010110":
+//                    information.setPhoto(R.drawable._631406010110);
+//                    break;
+//                case "631406010111":
+//                    information.setPhoto(R.drawable._631406010111);
+//                    break;
+//                case "631406010112":
+//                    information.setPhoto(R.drawable._631406010112);
+//                    break;
+//                case "631406010113":
+//                    information.setPhoto(R.drawable._631406010113);
+//                    break;
+//                case "631406010114":
+//                    information.setPhoto(R.drawable._631406010114);
+//                    break;
+//                case "631406010401":
+//                    information.setPhoto(R.drawable._631406010401);
+//                    break;
+//                default:
+//                    information.setPhoto(R.drawable.pig);
+//                    break;
+//            }
             mlistInfo.add(information);
             if (number == 5) {
                 c_Position = c.getPosition();

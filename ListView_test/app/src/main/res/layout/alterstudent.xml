@@ -12,13 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="\n添加学生"
+        android:text="\n修改信息"
         android:textSize="150px" />
 
     <ImageView
         app:srcCompat="@drawable/pig"
         android:layout_gravity="center"
-        android:id="@+id/imageView_add"
+        android:id="@+id/imageView_alter"
         android:layout_width="120dp"
         android:layout_height="160dp" />
 
@@ -76,9 +76,25 @@
 
     </LinearLayout>
 
-    <Button
-        android:text="添加"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_tianjia" />
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_width="match_parent">
+
+        <Button
+            android:text="查看原信息"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_look"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="提交修改"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_alter"
+            android:layout_weight="1" />
+    </LinearLayout>
+
 </LinearLayout>

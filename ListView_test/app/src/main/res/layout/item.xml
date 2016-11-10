@@ -13,7 +13,6 @@
 
     <ImageView
         android:id="@+id/img"
-        android:src="@drawable/pig"
         android:layout_height="90dp"
         android:layout_width="67.5dp" />
 
