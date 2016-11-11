@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ccddee"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="93dp"
+        android:layout_width="11.25dp"></LinearLayout>
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_height="90dp"
+        android:layout_width="67.5dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_height="93dp"
+        android:layout_width="11.25dp">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="249dp"
+        android:orientation="vertical"
+        android:layout_weight="0.59"
+        android:layout_height="93dp">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="54dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="190dp"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="姓名"
+                    android:textSize="60px"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/stu_id"
+                    android:layout_height="wrap_content"
+                    android:textSize="50px"
+                    android:text="631406010xxx"
+                    android:layout_width="match_parent" />
+            </LinearLayout>
+
+            <TextView
+                android:text="点击\n保存"
+                android:textSize="60px"
+                android:gravity="center"
+                android:background="#d3d5de"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/textView"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/radioGroup"
+            android:layout_height="39dp">
+
+            <RadioButton
+                android:text="在勤"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton_zq"
+                android:layout_weight="1"
+                android:duplicateParentState="false"
+                android:focusable="false"
+                android:checked="false" />
+
+            <RadioButton
+                android:text="迟到"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton_cd"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:checked="false" />
+
+            <RadioButton
+                android:text="早退"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton_zt"
+                android:layout_weight="1"
+                android:focusable="false"
+                android:checked="false"
+                android:duplicateParentState="false" />
+
+            <RadioButton
+                android:text="旷课"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton_kk"
+                android:layout_weight="1"
+                android:duplicateParentState="false"
+                android:focusable="false"
+                android:checked="false" />
+
+            <RadioButton
+                android:text="病假"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton_bj"
+                android:layout_weight="1"
+                android:checked="false"
+                android:focusable="false"
+                android:duplicateParentState="false" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+</LinearLayout>

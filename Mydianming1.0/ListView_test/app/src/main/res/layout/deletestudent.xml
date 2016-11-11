@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/deletestudent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e4d6d6">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="\n\n删除学生"
+        android:textSize="150px" />
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_width="329dp">
+
+        <TextView
+            android:id="@+id/textView_xh"
+            android:layout_height="wrap_content"
+            android:textSize="50px"
+            android:gravity="right"
+            android:text="学号"
+            android:layout_width="50dp"
+            android:layout_weight="0.34" />
+
+        <EditText
+            android:id="@+id/editText_xh"
+            android:layout_width="108dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:selectAllOnFocus="true"
+            android:text="请在此输入学号"
+            android:layout_weight="0.50" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_width="329dp">
+
+        <TextView
+            android:id="@+id/textView_xm"
+            android:layout_height="wrap_content"
+            android:textSize="50px"
+            android:gravity="right"
+            android:text="姓名"
+            android:layout_width="50dp"
+            android:layout_weight="0.34" />
+
+        <EditText
+            android:id="@+id/editText_xm"
+            android:layout_width="108dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:selectAllOnFocus="true"
+            android:text="请在此输入姓名"
+            android:layout_weight="0.50" />
+
+    </LinearLayout>
+
+    <Button
+        android:text="删除"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_shanchu" />
+</LinearLayout>
