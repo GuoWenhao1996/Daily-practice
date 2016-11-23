@@ -9,21 +9,25 @@ import android.widget.Toast;
 
 import java.util.Properties;
 
-import javax.mail.*;
+import javax.mail.Address;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+
 /**
- * Created by guowh on 2016/11/22.
+ * Created by guowh on 2016/11/23.
  */
 
 public class Send_Email extends AppCompatActivity {
-
     private String sendAddress = null;
     private String sendPassword = null;
     private String receiveAddress = null;
     private String subject = null;
     private String detail = null;
+    private EditText EditText_Detail;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -32,7 +36,7 @@ public class Send_Email extends AppCompatActivity {
         final Button Button_Send = (Button) findViewById(R.id.button_send);//获取登录按钮资源
         final EditText EditText_ReceiveAddress = (EditText) findViewById(R.id.editText_ReceiveAddress);
         final EditText EditText_Subject = (EditText) findViewById(R.id.editText_Subject);
-        final EditText EditText_Detail = (EditText) findViewById(R.id.editText_Detail);
+        EditText_Detail = (EditText) findViewById(R.id.editText_Detail);
 
         sendAddress = MainActivity.address;
         sendPassword = MainActivity.pwd;
@@ -40,39 +44,55 @@ public class Send_Email extends AppCompatActivity {
         Button_Send.setOnClickListener(new View.OnClickListener() {//创建监听
             @Override
             public void onClick(View view) {
-                try {
-                    EditText_ReceiveAddress.setText("1842297753@qq.com");
-                    EditText_Subject.setText("我的主题");
-                    EditText_Detail.setText("主要内容111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
 
-                    receiveAddress = EditText_ReceiveAddress.getText().toString();
-                    subject = EditText_Subject.getText().toString();
-                    detail = EditText_Detail.getText().toString();
+                EditText_ReceiveAddress.setText("1842297753@qq.com");
+                EditText_Subject.setText("我的主题");
+                EditText_Detail.setText("主要内容111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
+                Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_SHORT).show();
 
-                    Properties props = new Properties();
-                    props.setProperty("mail.smtp.auth", "true");
-                    props.setProperty("mail.transport.protocol", "smtp");
+                receiveAddress = EditText_ReceiveAddress.getText().toString();
+                subject = EditText_Subject.getText().toString();
+                detail = EditText_Detail.getText().toString();
+                Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_SHORT).show();
 
-                    Session session = Session.getInstance(props);
-                    session.setDebug(true);
+                SendMail(sendAddress, sendPassword, receiveAddress, subject, detail);
 
-                    Message msg = new MimeMessage(session);
-                    msg.setSubject(subject);
-                    msg.setText(detail);
-                    msg.setFrom(new InternetAddress(sendAddress));
 
-                    Transport transport = session.getTransport();
-                    transport.connect("smtp.163.com", 25, sendAddress, sendPassword);
-                    transport.sendMessage(msg, new Address[]{new InternetAddress(receiveAddress)});
-
-                    transport.close();
-
-                    Toast.makeText(getApplicationContext(), "发送成功！", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "发送失败！", Toast.LENGTH_SHORT).show();
-
-                }
             }
         });
+    }
+
+    private void SendMail(String sendAddress, String sendPassword, String receiveAddress, String subject, String detail) {
+        try {
+            Properties props = new Properties();
+            props.setProperty("mail.smtp.auth", "true");
+            props.setProperty("mail.transport.protocol", "smtp");
+            Toast.makeText(getApplicationContext(), "3", Toast.LENGTH_SHORT).show();
+
+            Session session = Session.getInstance(props);
+            session.setDebug(true);
+            Toast.makeText(getApplicationContext(), "4", Toast.LENGTH_SHORT).show();
+
+            Message msg = new MimeMessage(session);
+            msg.setSubject(subject);
+            msg.setText(detail);
+            msg.setFrom(new InternetAddress(sendAddress));
+            Toast.makeText(getApplicationContext(), "5", Toast.LENGTH_SHORT).show();
+
+            Transport transport = session.getTransport();
+            Toast.makeText(getApplicationContext(), "5-1", Toast.LENGTH_SHORT).show();
+            transport.connect("smtp.163.com", 25, sendAddress, sendPassword);
+            Toast.makeText(getApplicationContext(), "5-2", Toast.LENGTH_SHORT).show();
+            transport.sendMessage(msg, new Address[]{new InternetAddress(receiveAddress)});
+            Toast.makeText(getApplicationContext(), "6", Toast.LENGTH_SHORT).show();
+
+            transport.close();
+            Toast.makeText(getApplicationContext(), "7", Toast.LENGTH_SHORT).show();
+
+            Toast.makeText(getApplicationContext(), "发送成功！", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "发送失败！", Toast.LENGTH_SHORT).show();
+            EditText_Detail.setText(e.toString());
+        }
     }
 }

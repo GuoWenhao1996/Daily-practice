@@ -16,8 +16,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Send_Email"></activity>
-
-
     </application>
 
 </manifest>
