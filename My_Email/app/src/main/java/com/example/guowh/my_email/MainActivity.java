@@ -10,13 +10,18 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    protected static String address="";
+    protected static String pwd="";
+    private EditText EditText_address;
+    private EditText EditText_pwd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final Button Button_Login = (Button) findViewById(R.id.button_login);//获取登录按钮资源
-        final EditText EditText_address = (EditText) findViewById(R.id.editText_Address);
-        final EditText EditText_pwd = (EditText) findViewById(R.id.editText_Password);
+        EditText_address = (EditText) findViewById(R.id.editText_Address);
+        EditText_pwd = (EditText) findViewById(R.id.editText_Password);
+
 
         Button_Login.setOnClickListener(new View.OnClickListener() {//创建监听
             @Override
@@ -32,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean Loginin() {
         try {
+            address=EditText_address.getText().toString();
+            pwd=EditText_pwd.getText().toString();
             return true;
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "登录失败！", Toast.LENGTH_SHORT).show();
