@@ -1,6 +1,5 @@
 package com.example.guowh.my_email;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
