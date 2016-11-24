@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
             return false;
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "登录失败！", Toast.LENGTH_SHORT).show();
-            EditText_address.setText(e.toString());
             return false;
         }
     }
