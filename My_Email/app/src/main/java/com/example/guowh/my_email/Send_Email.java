@@ -1,6 +1,8 @@
 package com.example.guowh.my_email;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +30,9 @@ public class Send_Email extends AppCompatActivity {
     private String subject = null;
     private String detail = null;
     private EditText EditText_Detail;
+    private ProgressDialog dialog;
+    // 声明一个Handler对象
+    private static Handler handler = new Handler();
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -38,13 +43,17 @@ public class Send_Email extends AppCompatActivity {
         final EditText EditText_Subject = (EditText) findViewById(R.id.editText_Subject);
         EditText_Detail = (EditText) findViewById(R.id.editText_Detail);
 
+        dialog = new ProgressDialog(this);
+        dialog.setTitle("提示");
+        dialog.setMessage("正在发送，请稍后...");
+        dialog.setCancelable(false);
+
         sendAddress = MainActivity.address;
         sendPassword = MainActivity.pwd;
 
         Button_Send.setOnClickListener(new View.OnClickListener() {//创建监听
             @Override
             public void onClick(View view) {
-
                 EditText_ReceiveAddress.setText("1842297753@qq.com");
                 EditText_Subject.setText("我的主题");
                 EditText_Detail.setText("主要内容111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111");
@@ -54,10 +63,10 @@ public class Send_Email extends AppCompatActivity {
                 subject = EditText_Subject.getText().toString();
                 detail = EditText_Detail.getText().toString();
                 Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_SHORT).show();
-
-                SendMail(sendAddress, sendPassword, receiveAddress, subject, detail);
-
-
+                // 显示正在发送对话框
+                dialog.show();
+                // 开启一个子线程，用于发送邮件
+                new Thread(new MyThread()).start();
             }
         });
     }
@@ -90,9 +99,29 @@ public class Send_Email extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "7", Toast.LENGTH_SHORT).show();
 
             Toast.makeText(getApplicationContext(), "发送成功！", Toast.LENGTH_SHORT).show();
+            //隐藏对话框
+            dialog.dismiss();
         } catch (Exception e) {
             Toast.makeText(getApplicationContext(), "发送失败！", Toast.LENGTH_SHORT).show();
             EditText_Detail.setText(e.toString());
+            //隐藏对话框
+            dialog.dismiss();
+        }
+    }
+
+    public class MyThread implements Runnable {
+        @Override
+        public void run() {
+            try {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        SendMail(sendAddress, sendPassword, receiveAddress, subject, detail);
+                    }
+                },3000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
