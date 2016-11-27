@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SqlTest;
+//package SqlTest;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -24,8 +24,9 @@ public class DBHelper {
             String sDBUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=" + DBName;
             Class.forName(sDriverName);
             dbConn = DriverManager.getConnection(sDBUrl, sUser, sPwd);
-            System.out.println("è¿æ¥æ­£å¸¸å¼€å¯ï¼");
+            System.out.println("Á¬½ÓÕı³£¿ªÆô£¡");
         } catch (Exception ex) {
+            System.err.println("Á¬½Ó¿ªÆôÊ§°Ü£¡");
             System.err.println(ex.getMessage());
         }
         return dbConn;
@@ -38,10 +39,10 @@ public class DBHelper {
 
     protected void TestConn() {
         if (OpenConn("sa", "123qwe") == null) {
-            System.err.println("æ•°æ®åº“(" + DBName + "):æ— æ³•æ­£å¸¸è¿æ¥ï¼");
+            System.err.println("Êı¾İ¿â(" + DBName + "):ÎŞ·¨Õı³£Á¬½Ó£¡");
             System.exit(0);
         }
-        System.out.println("æ•°æ®åº“(" + DBName + ")å¯ä»¥æ­£å¸¸è¿æ¥ï¼");
+        System.out.println("Êı¾İ¿â(" + DBName + ")¿ÉÒÔÕı³£Á¬½Ó£¡");
         Close();
     }
 
@@ -49,7 +50,7 @@ public class DBHelper {
         try {
             dbConn.close();
             dbConn = null;
-            System.out.println("è¿æ¥æ­£å¸¸å…³é—­ï¼");
+            System.out.println("Á¬½ÓÕı³£¹Ø±Õ£¡");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }

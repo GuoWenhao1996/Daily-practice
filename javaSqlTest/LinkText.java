@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package SqlTest;
+//package SqlTest;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -28,38 +25,111 @@ public class LinkText {
         DBHelper help = new DBHelper();
         help.TestConn();
 
+        //²éÑ¯student±í
         try {
-            System.out.println("æŸ¥è¯¢studentè¡¨ä¸­å†…å®¹ï¼š");
+            System.out.println("\n²éÑ¯student±íÖĞÄÚÈİ£º");
             dbConn = help.GetConnection();
             dbState = dbConn.createStatement();
             sql = "select * from student";
             dbRs = dbState.executeQuery(sql);
             while (dbRs.next()) {
-                System.out.print("å­¦å·ï¼š" + dbRs.getString("sno"));
-                System.out.print("\tå§“åï¼š" + dbRs.getString("sname"));
-                System.out.print("\tå¹´é¾„ï¼š" + dbRs.getString("sage"));
-                System.out.println("\tæ€§åˆ«ï¼š" + dbRs.getString("ssex"));
+                System.out.print("Ñ§ºÅ£º" + dbRs.getString("sno"));
+                System.out.print("\tĞÕÃû£º" + dbRs.getString("sname"));
+                System.out.print("\tÄêÁä£º" + dbRs.getString("sage"));
+                System.out.println("\tĞÔ±ğ£º" + dbRs.getString("ssex"));
             }
+            dbRs.close();
+            dbState.close();
             help.Close();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
+
+        //²éÑ¯stulisttb±í
         try {
-            System.out.println("æŸ¥è¯¢stulisttbè¡¨ä¸­å†…å®¹ï¼š");
+            System.out.println("\n²éÑ¯stulisttb±íÖĞÄÚÈİ£º");
             dbConn = help.GetConnection();
             dbState = dbConn.createStatement();
             sql = "select * from stulisttb";
             dbRs = dbState.executeQuery(sql);
             while (dbRs.next()) {
-                System.out.print("å­¦å·ï¼š" + dbRs.getString(1));
-                System.out.print("\tå§“åï¼š" + dbRs.getString(2));
-                System.out.println("\tçŠ¶æ€ï¼š" + dbRs.getString(3));
+                System.out.print("Ñ§ºÅ£º" + dbRs.getString(1));
+                System.out.print("\tĞÕÃû£º" + dbRs.getString(2));
+                System.out.println("\t×´Ì¬£º" + dbRs.getString(3));
             }
+            dbRs.close();
+            dbState.close();
             help.Close();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-        System.out.println("ç¨‹åºæ­£å¸¸ç»“æŸï¼");
+
+        //É¾³ı²âÊÔ
+        try {
+            System.out.println("\nÉ¾³ıstulisttb±íÖĞÑ§ºÅÎª631406010109µÄÑ§Éú£º");
+            dbConn = help.GetConnection();
+            dbState = dbConn.createStatement();
+            String sql2 = "delete stulisttb where id='631406010109'";
+            dbState.executeUpdate(sql2);
+            sql = "select * from stulisttb";
+            dbRs = dbState.executeQuery(sql);
+            while (dbRs.next()) {
+                System.out.print("Ñ§ºÅ£º" + dbRs.getString(1));
+                System.out.print("\tĞÕÃû£º" + dbRs.getString(2));
+                System.out.println("\t×´Ì¬£º" + dbRs.getString(3));
+            }
+            dbRs.close();
+            dbState.close();
+            help.Close();
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        //²åÈë²âÊÔ
+        try {
+            System.out.println("\n²åÈëÑ§Éú£ºÑ§ºÅ£º631406010109"
+                    + "  ĞÕÃû£º¹ùÎÄºÆ"
+                    + "  ×´Ì¬£º11111"
+                    + "  µ½tulisttb±íÖĞ£º");
+            dbConn = help.GetConnection();
+            dbState = dbConn.createStatement();
+            String sql2 = "insert into stulisttb values('631406010109','¹ùÎÄºÆ',11111)";
+            dbState.executeUpdate(sql2);
+            sql = "select * from stulisttb";
+            dbRs = dbState.executeQuery(sql);
+            while (dbRs.next()) {
+                System.out.print("Ñ§ºÅ£º" + dbRs.getString(1));
+                System.out.print("\tĞÕÃû£º" + dbRs.getString(2));
+                System.out.println("\t×´Ì¬£º" + dbRs.getString(3));
+            }
+            dbRs.close();
+            dbState.close();
+            help.Close();
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        //ĞŞ¸Ä²âÊÔ
+        try {
+            System.out.println("\nĞŞ¸Ästulisttb±íÖĞÑ§ºÅÎª631406010109µÄÑ§ÉúµÄ×´Ì¬Îª1");
+            dbConn = help.GetConnection();
+            dbState = dbConn.createStatement();
+            String sql2 = "update stulisttb set state=1 where id='631406010109'";
+            dbState.executeUpdate(sql2);
+            sql = "select * from stulisttb";
+            dbRs = dbState.executeQuery(sql);
+            while (dbRs.next()) {
+                System.out.print("Ñ§ºÅ£º" + dbRs.getString(1));
+                System.out.print("\tĞÕÃû£º" + dbRs.getString(2));
+                System.out.println("\t×´Ì¬£º" + dbRs.getString(3));
+            }
+            dbRs.close();
+            dbState.close();
+            help.Close();
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        System.out.println("\n³ÌĞòÕı³£½áÊø£¡");
     }
 
 }
