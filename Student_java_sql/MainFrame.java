@@ -1,5 +1,7 @@
 
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +20,7 @@ import javax.swing.UIManager;
  * @author guowh
  */
 public class MainFrame extends JFrame {
+
     private JButton button_xsxxgl = new JButton("学生信息管理模块");
     private JButton button_kcgl = new JButton("课程管理模块");
     private JButton button_jxjhgl = new JButton("教学计划管理模块");
@@ -31,12 +34,34 @@ public class MainFrame extends JFrame {
 
     Panel_xsxxgl p_xsxxgl = new Panel_xsxxgl();
     Panel_kcgl p_kcgl = new Panel_kcgl();
+    Panel_jxjhgl p_jxjhgl = new Panel_jxjhgl();
+    Panel_xsxkgl p_xsxkgl = new Panel_xsxkgl();
+    Panel_xscjgl p_xscjgl = new Panel_xscjgl();
+    Panel_xsjcgl p_xsjcgl = new Panel_xsjcgl();
 
     public MainFrame() {
-        super("学生信息查询系统");
-        setSize(1100, 600);
-        setLocation(170, 90);
+        super("信息管理系统");
+        setSize(1150, 600);
+        setLocation(150, 90);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myLayout();
+        myEventListener();
+        setVisible(true);
+    }
+
+    private void myLayout() {
+        button_xsxxgl.setFont(new Font("Dialog", 0, 20));
+        button_kcgl.setFont(new Font("Dialog", 0, 20));
+        button_jxjhgl.setFont(new Font("Dialog", 0, 20));
+        button_xsxkgl.setFont(new Font("Dialog", 0, 20));
+        button_xscjgl.setFont(new Font("Dialog", 0, 20));
+        button_xsjcgl.setFont(new Font("Dialog", 0, 20));
+        button_xsxxgl.setBackground(Color.GRAY);
+        button_kcgl.setBackground(Color.GRAY);
+        button_jxjhgl.setBackground(Color.GRAY);
+        button_xsxkgl.setBackground(Color.GRAY);
+        button_xscjgl.setBackground(Color.GRAY);
+        button_xsjcgl.setBackground(Color.GRAY);
         panel_choose.add(button_xsxxgl);
         panel_choose.add(button_kcgl);
         panel_choose.add(button_jxjhgl);
@@ -47,34 +72,148 @@ public class MainFrame extends JFrame {
         this.setLayout(gird);
         add(panel_choose);
         add(panel_info);
-        myEventListener();
-        setVisible(true);
     }
 
     private void myEventListener() {
-        //全部开始事件监听
+        //学生信息管理
         button_xsxxgl.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //关闭当前button，打开其他5个button
                 button_xsxxgl.setEnabled(false);
                 button_kcgl.setEnabled(true);
+                button_jxjhgl.setEnabled(true);
+                button_xsxkgl.setEnabled(true);
+                button_xscjgl.setEnabled(true);
+                button_xsjcgl.setEnabled(true);
+                //隐藏其余5个panel
                 p_kcgl.p.setVisible(false);
+                p_jxjhgl.p.setVisible(false);
+                p_xsxkgl.p.setVisible(false);
+                p_xscjgl.p.setVisible(false);
+                p_xsjcgl.p.setVisible(false);
+                //添加学生信息管理Panel
                 p_xsxxgl = new Panel_xsxxgl();
                 panel_info.add(p_xsxxgl.p);
                 setVisible(true);
             }
         });
+        //课程管理
         button_kcgl.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                button_kcgl.setEnabled(false);
+                //关闭当前button，打开其他5个button
                 button_xsxxgl.setEnabled(true);
+                button_kcgl.setEnabled(false);
+                button_jxjhgl.setEnabled(true);
+                button_xsxkgl.setEnabled(true);
+                button_xscjgl.setEnabled(true);
+                button_xsjcgl.setEnabled(true);
+                //隐藏其余5个panel
                 p_xsxxgl.p.setVisible(false);
+                p_jxjhgl.p.setVisible(false);
+                p_xsxkgl.p.setVisible(false);
+                p_xscjgl.p.setVisible(false);
+                p_xsjcgl.p.setVisible(false);
+                //添加课程管理Panel
                 p_kcgl = new Panel_kcgl();
                 panel_info.add(p_kcgl.p);
                 setVisible(true);
             }
         });
+        //教学计划管理
+        button_jxjhgl.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //关闭当前button，打开其他5个button
+                button_xsxxgl.setEnabled(true);
+                button_kcgl.setEnabled(true);
+                button_jxjhgl.setEnabled(false);
+                button_xsxkgl.setEnabled(true);
+                button_xscjgl.setEnabled(true);
+                button_xsjcgl.setEnabled(true);
+                //隐藏其余5个panel
+                p_xsxxgl.p.setVisible(false);
+                p_kcgl.p.setVisible(false);
+                p_xsxkgl.p.setVisible(false);
+                p_xscjgl.p.setVisible(false);
+                p_xsjcgl.p.setVisible(false);
+                //添加教学计划管理Panel
+                p_jxjhgl = new Panel_jxjhgl();
+                panel_info.add(p_jxjhgl.p);
+                setVisible(true);
+            }
+        });
+        //学生选课管理
+        button_xsxkgl.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //关闭当前button，打开其他5个button
+                button_xsxxgl.setEnabled(true);
+                button_kcgl.setEnabled(true);
+                button_jxjhgl.setEnabled(true);
+                button_xsxkgl.setEnabled(false);
+                button_xscjgl.setEnabled(true);
+                button_xsjcgl.setEnabled(true);
+                //隐藏其余5个panel
+                p_xsxxgl.p.setVisible(false);
+                p_jxjhgl.p.setVisible(false);
+                p_kcgl.p.setVisible(false);
+                p_xscjgl.p.setVisible(false);
+                p_xsjcgl.p.setVisible(false);
+                //添加学生选课管理Panel
+                p_xsxkgl = new Panel_xsxkgl();
+                panel_info.add(p_xsxkgl.p);
+                setVisible(true);
+            }
+        });
+        //学生成绩管理
+        button_xscjgl.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //关闭当前button，打开其他5个button
+                button_xsxxgl.setEnabled(true);
+                button_kcgl.setEnabled(true);
+                button_jxjhgl.setEnabled(true);
+                button_xsxkgl.setEnabled(true);
+                button_xscjgl.setEnabled(false);
+                button_xsjcgl.setEnabled(true);
+                //隐藏其余5个panel
+                p_xsxxgl.p.setVisible(false);
+                p_jxjhgl.p.setVisible(false);
+                p_xsxkgl.p.setVisible(false);
+                p_kcgl.p.setVisible(false);
+                p_xsjcgl.p.setVisible(false);
+                //添加学生成绩管理Panel
+                p_xscjgl = new Panel_xscjgl();
+                panel_info.add(p_xscjgl.p);
+                setVisible(true);
+            }
+        });
+        //学生奖惩管理
+        button_xsjcgl.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //关闭当前button，打开其他5个button
+                button_xsxxgl.setEnabled(true);
+                button_kcgl.setEnabled(true);
+                button_jxjhgl.setEnabled(true);
+                button_xsxkgl.setEnabled(true);
+                button_xscjgl.setEnabled(true);
+                button_xsjcgl.setEnabled(false);
+                //隐藏其余5个panel
+                p_xsxxgl.p.setVisible(false);
+                p_jxjhgl.p.setVisible(false);
+                p_xsxkgl.p.setVisible(false);
+                p_xscjgl.p.setVisible(false);
+                p_kcgl.p.setVisible(false);
+                //添加课程管理Panel
+                p_xsjcgl = new Panel_xsjcgl();
+                panel_info.add(p_xsjcgl.p);
+                setVisible(true);
+            }
+        });
+
     }
 
     private static void setLookAndFeel() {
