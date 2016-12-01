@@ -1,12 +1,13 @@
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
@@ -27,7 +28,7 @@ public class MainFrame extends JFrame {
     private JButton button_xsxkgl = new JButton("学生选课管理模块");
     private JButton button_xscjgl = new JButton("学生成绩管理模块");
     private JButton button_xsjcgl = new JButton("学生奖惩管理模块");
-
+    private JLabel lable_huanying = new JLabel("欢迎使用此系统，点击上面某个模块开始！");
     FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
     private JPanel panel_choose = new JPanel(flow);
     private JPanel panel_info = new JPanel();
@@ -41,6 +42,8 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         super("信息管理系统");
+        DBHelper dbhelpr = new DBHelper();
+        //dbhelpr.TestConn();
         setSize(1150, 600);
         setLocation(150, 90);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,6 +53,7 @@ public class MainFrame extends JFrame {
     }
 
     private void myLayout() {
+        lable_huanying.setFont(new Font("Dialog", 0, 40));
         button_xsxxgl.setFont(new Font("Dialog", 0, 20));
         button_kcgl.setFont(new Font("Dialog", 0, 20));
         button_jxjhgl.setFont(new Font("Dialog", 0, 20));
@@ -68,10 +72,11 @@ public class MainFrame extends JFrame {
         panel_choose.add(button_xsxkgl);
         panel_choose.add(button_xscjgl);
         panel_choose.add(button_xsjcgl);
-        GridLayout gird = new GridLayout(2, 1);
-        this.setLayout(gird);
-        add(panel_choose);
-        add(panel_info);
+        panel_info.add(lable_huanying);
+        BorderLayout border = new BorderLayout();
+        this.setLayout(border);
+        add(panel_choose, BorderLayout.NORTH);
+        add(panel_info, BorderLayout.CENTER);
     }
 
     private void myEventListener() {
@@ -86,12 +91,13 @@ public class MainFrame extends JFrame {
                 button_xsxkgl.setEnabled(true);
                 button_xscjgl.setEnabled(true);
                 button_xsjcgl.setEnabled(true);
-                //隐藏其余5个panel
+                //隐藏其余5个panel以及欢迎页
                 p_kcgl.p.setVisible(false);
                 p_jxjhgl.p.setVisible(false);
                 p_xsxkgl.p.setVisible(false);
                 p_xscjgl.p.setVisible(false);
                 p_xsjcgl.p.setVisible(false);
+                lable_huanying.setVisible(false);
                 //添加学生信息管理Panel
                 p_xsxxgl = new Panel_xsxxgl();
                 panel_info.add(p_xsxxgl.p);
@@ -109,12 +115,13 @@ public class MainFrame extends JFrame {
                 button_xsxkgl.setEnabled(true);
                 button_xscjgl.setEnabled(true);
                 button_xsjcgl.setEnabled(true);
-                //隐藏其余5个panel
+                //隐藏其余5个panel以及欢迎页
                 p_xsxxgl.p.setVisible(false);
                 p_jxjhgl.p.setVisible(false);
                 p_xsxkgl.p.setVisible(false);
                 p_xscjgl.p.setVisible(false);
                 p_xsjcgl.p.setVisible(false);
+                lable_huanying.setVisible(false);
                 //添加课程管理Panel
                 p_kcgl = new Panel_kcgl();
                 panel_info.add(p_kcgl.p);
@@ -132,12 +139,13 @@ public class MainFrame extends JFrame {
                 button_xsxkgl.setEnabled(true);
                 button_xscjgl.setEnabled(true);
                 button_xsjcgl.setEnabled(true);
-                //隐藏其余5个panel
+                //隐藏其余5个panel以及欢迎页
                 p_xsxxgl.p.setVisible(false);
                 p_kcgl.p.setVisible(false);
                 p_xsxkgl.p.setVisible(false);
                 p_xscjgl.p.setVisible(false);
                 p_xsjcgl.p.setVisible(false);
+                lable_huanying.setVisible(false);
                 //添加教学计划管理Panel
                 p_jxjhgl = new Panel_jxjhgl();
                 panel_info.add(p_jxjhgl.p);
@@ -155,12 +163,13 @@ public class MainFrame extends JFrame {
                 button_xsxkgl.setEnabled(false);
                 button_xscjgl.setEnabled(true);
                 button_xsjcgl.setEnabled(true);
-                //隐藏其余5个panel
+                //隐藏其余5个panel以及欢迎页
                 p_xsxxgl.p.setVisible(false);
                 p_jxjhgl.p.setVisible(false);
                 p_kcgl.p.setVisible(false);
                 p_xscjgl.p.setVisible(false);
                 p_xsjcgl.p.setVisible(false);
+                lable_huanying.setVisible(false);
                 //添加学生选课管理Panel
                 p_xsxkgl = new Panel_xsxkgl();
                 panel_info.add(p_xsxkgl.p);
@@ -178,12 +187,13 @@ public class MainFrame extends JFrame {
                 button_xsxkgl.setEnabled(true);
                 button_xscjgl.setEnabled(false);
                 button_xsjcgl.setEnabled(true);
-                //隐藏其余5个panel
+                //隐藏其余5个panel以及欢迎页
                 p_xsxxgl.p.setVisible(false);
                 p_jxjhgl.p.setVisible(false);
                 p_xsxkgl.p.setVisible(false);
                 p_kcgl.p.setVisible(false);
                 p_xsjcgl.p.setVisible(false);
+                lable_huanying.setVisible(false);
                 //添加学生成绩管理Panel
                 p_xscjgl = new Panel_xscjgl();
                 panel_info.add(p_xscjgl.p);
@@ -201,12 +211,13 @@ public class MainFrame extends JFrame {
                 button_xsxkgl.setEnabled(true);
                 button_xscjgl.setEnabled(true);
                 button_xsjcgl.setEnabled(false);
-                //隐藏其余5个panel
+                //隐藏其余5个panel以及欢迎页
                 p_xsxxgl.p.setVisible(false);
                 p_jxjhgl.p.setVisible(false);
                 p_xsxkgl.p.setVisible(false);
                 p_xscjgl.p.setVisible(false);
                 p_kcgl.p.setVisible(false);
+                lable_huanying.setVisible(false);
                 //添加课程管理Panel
                 p_xsjcgl = new Panel_xsjcgl();
                 panel_info.add(p_xsjcgl.p);
