@@ -11,13 +11,14 @@ import javax.swing.JPanel;
  *
  * @author guowh
  */
-public class Panel_xsxxgl extends JPanel {
+public class Panel_kcgl extends JPanel {
 
     protected JPanel p=new JPanel();
 
-    private JButton b = new JButton("这里是学生信息管理模块！");
+    private JButton b = new JButton("这里是课程管理模块！");
 
-    protected Panel_xsxxgl() {
+    protected Panel_kcgl() {
+        
         p.add(b);
     }
 }

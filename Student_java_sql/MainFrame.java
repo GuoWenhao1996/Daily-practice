@@ -18,7 +18,6 @@ import javax.swing.UIManager;
  * @author guowh
  */
 public class MainFrame extends JFrame {
-
     private JButton button_xsxxgl = new JButton("学生信息管理模块");
     private JButton button_kcgl = new JButton("课程管理模块");
     private JButton button_jxjhgl = new JButton("教学计划管理模块");
@@ -29,6 +28,9 @@ public class MainFrame extends JFrame {
     FlowLayout flow = new FlowLayout(FlowLayout.CENTER);
     private JPanel panel_choose = new JPanel(flow);
     private JPanel panel_info = new JPanel();
+
+    Panel_xsxxgl p_xsxxgl = new Panel_xsxxgl();
+    Panel_kcgl p_kcgl = new Panel_kcgl();
 
     public MainFrame() {
         super("学生信息查询系统");
@@ -54,8 +56,22 @@ public class MainFrame extends JFrame {
         button_xsxxgl.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Panel_xsxxgl p_xsxxgl = new Panel_xsxxgl();
+                button_xsxxgl.setEnabled(false);
+                button_kcgl.setEnabled(true);
+                p_kcgl.p.setVisible(false);
+                p_xsxxgl = new Panel_xsxxgl();
                 panel_info.add(p_xsxxgl.p);
+                setVisible(true);
+            }
+        });
+        button_kcgl.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                button_kcgl.setEnabled(false);
+                button_xsxxgl.setEnabled(true);
+                p_xsxxgl.p.setVisible(false);
+                p_kcgl = new Panel_kcgl();
+                panel_info.add(p_kcgl.p);
                 setVisible(true);
             }
         });
