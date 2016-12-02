@@ -1,5 +1,6 @@
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
 /*
@@ -22,7 +24,7 @@ import javax.swing.table.TableColumn;
  */
 public class Panel_kcgl extends JPanel {
 
-    private JTable table = null;
+    private JTable table = new JTable();
     private JScrollPane scrollpane = null;
     private Vector rowData = new Vector();
     private Vector columName = new Vector();
@@ -42,10 +44,10 @@ public class Panel_kcgl extends JPanel {
         ResultSet dbRs = null;
         String sql = null;
         DBHelper dbhelpr = new DBHelper();
+        columName.add("开课学院");
         columName.add("课程代码");
         columName.add("课程名称");
         columName.add("学分");
-        columName.add("开课学院");
         //查询学生信息管理表
         try {
             dbConn = dbhelpr.GetConnection();
@@ -67,10 +69,18 @@ public class Panel_kcgl extends JPanel {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
+
+        table.setFont(new Font("Dialog", 0, 15));
+
         TableColumn column = null;
         column = table.getColumnModel().getColumn(0);
-        column.setPreferredWidth(100);        column = table.getColumnModel().getColumn(2);
+        column.setPreferredWidth(100);
+        column = table.getColumnModel().getColumn(2);
         column.setPreferredWidth(200);
+
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+        renderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+        table.setDefaultRenderer(Object.class, renderer);
 
         table.setPreferredScrollableViewportSize(new Dimension(700, 350));
         table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);

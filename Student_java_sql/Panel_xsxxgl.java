@@ -1,5 +1,6 @@
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -77,7 +78,12 @@ public class Panel_xsxxgl extends JPanel {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
+        
+        table.setFont(new Font("Dialog", 0, 15));
+
         TableColumn column = null;
+        column = table.getColumnModel().getColumn(0);
+        column.setPreferredWidth(100);
         column = table.getColumnModel().getColumn(7);
         column.setPreferredWidth(300);
 
