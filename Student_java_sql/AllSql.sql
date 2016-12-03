@@ -96,19 +96,20 @@ use Link_DB_Student_631406010109
 --insert into kc values('11','C000000006','嵌入式程序设计（WMARM）',2.5)
 --insert into kc values('11','C000000007','数据库及应用课程设计',2)
 --insert into kc values('13','C000000008','数学建模',2.5)
-select * from kc
-select xymc,kcdm,kcmc,xf from kc a,xy b where a.xydm=b.xydm
+----select * from kc
+----select xymc,kcdm,kcmc,xf from kc a,xy b where a.xydm=b.xydm
 
 ----向专业课程表插值
 --insert into zykc values('11','C000000001','11',1)
 --insert into zykc values('11','C000000002','11',1)
 --insert into zykc values('11','C000000003','11',1)
 --insert into zykc values('11','C000000004','11',1)
---insert into zykc values('11','C000000005','11',1)
---insert into zykc values('11','C000000006','11',1)
---insert into zykc values('11','C000000007','11',1)
---insert into zykc values('13','C000000008','11',1)
+--insert into zykc values('11','C000000005','11',2)
+--insert into zykc values('11','C000000006','11',2)
+--insert into zykc values('11','C000000007','11',2)
+--insert into zykc values('13','C000000008','11',2)
 ----select * from zykc
+----select xymc,c.kcdm,kcmc,xf from xy a,zy b,kc c,zykc d where d.kcdm=c.kcdm and a.xydm=d.xydm and b.zydm=d.zydm and zymc='计算机科学与技术' and xq=2
 
 ----向上课安排表插值
 --insert into skap values('11','C000000001','T000000001','周二上午3-4节&&周四上午1-2节','20406&&20406')

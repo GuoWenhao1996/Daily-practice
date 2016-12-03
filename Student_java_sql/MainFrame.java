@@ -21,7 +21,7 @@ import javax.swing.UIManager;
  * @author guowh
  */
 public class MainFrame extends JFrame {
-
+       protected static MainFrame mf = new MainFrame();
     private JButton button_xsxxgl = new JButton("学生信息管理模块");
     private JButton button_kcgl = new JButton("课程管理模块");
     private JButton button_jxjhgl = new JButton("教学计划管理模块");
@@ -227,6 +227,7 @@ public class MainFrame extends JFrame {
 
     }
 
+
     private static void setLookAndFeel() {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
@@ -237,6 +238,6 @@ public class MainFrame extends JFrame {
 
     public static void main(String[] args) {
         setLookAndFeel();
-        MainFrame mf = new MainFrame();
+        mf.setVisible(true);
     }
 }
