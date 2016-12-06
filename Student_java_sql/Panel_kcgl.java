@@ -1,15 +1,20 @@
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
@@ -29,30 +34,41 @@ public class Panel_kcgl extends JPanel {
     private Vector rowData = new Vector();
     private Vector columName = new Vector();
 
+    private JButton button_chaxun = new JButton("查询");
+    private JLabel lable_xy = new JLabel("开课学院");
+    private JTextField textfield_xy = new JTextField(10);
+
     protected JPanel p = new JPanel();
+    private JPanel p1 = new JPanel();
+    private JPanel p2 = new JPanel();
 
     protected Panel_kcgl() {
-        Information();
+        Information("select xymc,kcdm,kcmc,xf from kc a,xy b where a.xydm=b.xydm");
+        myEventListener();
         BoxLayout horizontal = new BoxLayout(p, BoxLayout.Y_AXIS);
         p.setLayout(horizontal);
-        p.add(scrollpane);
+        p1.add(lable_xy);
+        p1.add(textfield_xy);
+        p1.add(button_chaxun);
+        p2.add(scrollpane);
+        p.add(p1);
+        p.add(p2);
     }
 
-    private void Information() {
+    private void Information(String sql) {
         Connection dbConn = null;
         Statement dbState = null;
         ResultSet dbRs = null;
-        String sql = null;
         DBHelper dbhelpr = new DBHelper();
+        rowData.clear();
         columName.add("开课学院");
         columName.add("课程代码");
         columName.add("课程名称");
         columName.add("学分");
-        //查询学生信息管理表
+        //查询课程信息表
         try {
             dbConn = dbhelpr.GetConnection();
             dbState = dbConn.createStatement();
-            sql = "select xymc,kcdm,kcmc,xf from kc a,xy b where a.xydm=b.xydm";
             dbRs = dbState.executeQuery(sql);
             while (dbRs.next()) {
                 Vector vNext = new Vector();
@@ -85,5 +101,22 @@ public class Panel_kcgl extends JPanel {
         table.setPreferredScrollableViewportSize(new Dimension(700, 350));
         table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
         scrollpane = new JScrollPane(table);
+    }
+
+    private void myEventListener() {
+        //查询事件监听
+        button_chaxun.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (textfield_xy.getText().equals("") || textfield_xy.getText().equals("学院不能为空！")) {
+                    textfield_xy.setText("学院不能为空！");
+                    MainFrame.mf.repaint();
+                } else {
+                    String _XY = textfield_xy.getText();
+                    Information("select xymc,kcdm,kcmc,xf from kc a,xy b where a.xydm=b.xydm and xymc='" + _XY + "'");
+                    MainFrame.mf.repaint();
+                }
+            }
+        });
     }
 }

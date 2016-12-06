@@ -1,15 +1,20 @@
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.TableColumn;
 
 /*
@@ -28,21 +33,35 @@ public class Panel_xsxxgl extends JPanel {
     private Vector rowData = new Vector();
     private Vector columName = new Vector();
 
+    private JButton button_chaxun = new JButton("查询");
+    private JLabel lable_xh = new JLabel("学号");
+    private JTextField textfield_xh = new JTextField(10);
+
     protected JPanel p = new JPanel();
+    private JPanel p1 = new JPanel();
+    private JPanel p2 = new JPanel();
 
     protected Panel_xsxxgl() {
-        Information();
+        Information("select xh,xsxm,xb,bjmc,csrq,mzmc,zzmmmc,xsjl"
+                + " from xs a,mz b,zzmm c,bj d"
+                + " where a.mzdm=b.mzdm and a.zzmmdm=c.zzmmdm and a.bjdm=d.bjdm");
+        myEventListener();
         BoxLayout horizontal = new BoxLayout(p, BoxLayout.Y_AXIS);
         p.setLayout(horizontal);
-        p.add(scrollpane);
+        p1.add(lable_xh);
+        p1.add(textfield_xh);
+        p1.add(button_chaxun);
+        p2.add(scrollpane);
+        p.add(p1);
+        p.add(p2);
     }
 
-    private void Information() {
+    private void Information(String sql) {
         Connection dbConn = null;
         Statement dbState = null;
         ResultSet dbRs = null;
-        String sql = null;
         DBHelper dbhelpr = new DBHelper();
+        rowData.clear();
         columName.add("学号");
         columName.add("姓名");
         columName.add("性别");
@@ -55,9 +74,6 @@ public class Panel_xsxxgl extends JPanel {
         try {
             dbConn = dbhelpr.GetConnection();
             dbState = dbConn.createStatement();
-            sql = "select xh,xsxm,xb,bjmc,csrq,mzmc,zzmmmc,xsjl \n"
-                    + "	from xs a,mz b,zzmm c,bj d\n"
-                    + "	where a.mzdm=b.mzdm and a.zzmmdm=c.zzmmdm and a.bjdm=d.bjdm\n";
             dbRs = dbState.executeQuery(sql);
             while (dbRs.next()) {
                 Vector vNext = new Vector();
@@ -78,7 +94,7 @@ public class Panel_xsxxgl extends JPanel {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-        
+
         table.setFont(new Font("Dialog", 0, 15));
 
         TableColumn column = null;
@@ -90,5 +106,24 @@ public class Panel_xsxxgl extends JPanel {
         table.setPreferredScrollableViewportSize(new Dimension(1000, 350));
         table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
         scrollpane = new JScrollPane(table);
+    }
+
+    private void myEventListener() {
+        //查询事件监听
+        button_chaxun.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (textfield_xh.getText().equals("") || textfield_xh.getText().equals("学号不能为空！")) {
+                    textfield_xh.setText("学号不能为空！");
+                    MainFrame.mf.repaint();
+                } else {
+                    String _XH = textfield_xh.getText();
+                    Information("select xh,xsxm,xb,bjmc,csrq,mzmc,zzmmmc,xsjl"
+                            + " from xs a,mz b,zzmm c,bj d"
+                            + " where a.mzdm=b.mzdm and a.zzmmdm=c.zzmmdm and a.bjdm=d.bjdm and xh='" + _XH + "'");
+                    MainFrame.mf.repaint();
+                }
+            }
+        });
     }
 }

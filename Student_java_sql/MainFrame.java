@@ -44,8 +44,8 @@ public class MainFrame extends JFrame {
         super("信息管理系统");
         DBHelper dbhelpr = new DBHelper();
         //dbhelpr.TestConn();
-        setSize(1150, 600);
-        setLocation(150, 90);
+        setSize(1200, 600);
+        setLocation(100, 90);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myLayout();
         myEventListener();

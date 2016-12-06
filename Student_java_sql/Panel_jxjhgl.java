@@ -33,6 +33,7 @@ public class Panel_jxjhgl extends JPanel {
     private JScrollPane scrollpane = null;
     private Vector rowData = new Vector();
     private Vector columName = new Vector();
+
     private JButton button_chaxun = new JButton("查询");
     private JLabel lable_zy = new JLabel("专业");
     private JLabel lable_xq = new JLabel("     学期");
@@ -43,7 +44,8 @@ public class Panel_jxjhgl extends JPanel {
     private JPanel p2 = new JPanel();
 
     protected Panel_jxjhgl() {
-        Information();
+        Information("select zymc,xymc,c.kcdm,kcmc,xf from xy a,zy b,kc c,zykc d "
+                + "where d.kcdm=c.kcdm and a.xydm=d.xydm and b.zydm=d.zydm ");
         myEventListener();
         BoxLayout horizontal = new BoxLayout(p, BoxLayout.Y_AXIS);
         p.setLayout(horizontal);
@@ -57,26 +59,25 @@ public class Panel_jxjhgl extends JPanel {
         p.add(p2);
     }
 
-    private void Information() {
+    private void Information(String sql) {
         Connection dbConn = null;
         Statement dbState = null;
         ResultSet dbRs = null;
-        String sql = null;
         DBHelper dbhelpr = new DBHelper();
+        columName.add("专业名称");
         columName.add("开课学院");
         columName.add("课程代码");
         columName.add("课程名称");
         columName.add("学分");
-
-        //查询学生信息管理表
+        rowData.clear();
+        //查询专业课程管理表
         try {
             dbConn = dbhelpr.GetConnection();
             dbState = dbConn.createStatement();
-            sql = "select xymc,c.kcdm,kcmc,xf from xy a,zy b,kc c,zykc d "
-                    + "where d.kcdm=c.kcdm and a.xydm=d.xydm and b.zydm=d.zydm ";
             dbRs = dbState.executeQuery(sql);
             while (dbRs.next()) {
                 Vector vNext = new Vector();
+                vNext.add(dbRs.getString("zymc"));
                 vNext.add(dbRs.getString("xymc"));
                 vNext.add(dbRs.getString("kcdm"));
                 vNext.add(dbRs.getString("kcmc"));
@@ -96,14 +97,16 @@ public class Panel_jxjhgl extends JPanel {
         TableColumn column = null;
         column = table.getColumnModel().getColumn(0);
         column.setPreferredWidth(100);
-        column = table.getColumnModel().getColumn(2);
+        column = table.getColumnModel().getColumn(1);
+        column.setPreferredWidth(100);
+        column = table.getColumnModel().getColumn(3);
         column.setPreferredWidth(200);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
         table.setDefaultRenderer(Object.class, renderer);
 
-        table.setPreferredScrollableViewportSize(new Dimension(700, 350));
+        table.setPreferredScrollableViewportSize(new Dimension(800, 350));
         table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
         scrollpane = new JScrollPane(table);
     }
@@ -113,65 +116,18 @@ public class Panel_jxjhgl extends JPanel {
         button_chaxun.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (textfield_zy.getText().equals("")||textfield_zy.getText().equals("专业不能为空！")) {
+                if (textfield_zy.getText().equals("") || textfield_zy.getText().equals("专业不能为空！")) {
                     textfield_zy.setText("专业不能为空！");
                     MainFrame.mf.repaint();
-                } else if (textfield_xq.getText().equals("")) {
-                    textfield_xq.setText("0");
+                } else if (textfield_xq.getText().equals("") || textfield_xq.getText().equals("-1")) {
+                    textfield_xq.setText("-1");
                     MainFrame.mf.repaint();
                 } else {
-
                     String _ZY = textfield_zy.getText();
                     int _XQ = Integer.parseInt(textfield_xq.getText());
-                    Connection dbConn = null;
-                    Statement dbState = null;
-                    ResultSet dbRs = null;
-                    String sql = null;
-                    DBHelper dbhelpr = new DBHelper();
-                    rowData.clear();
-                    columName.add("开课学院");
-                    columName.add("课程代码");
-                    columName.add("课程名称");
-                    columName.add("学分");
-
-                    //查询学生信息管理表
-                    try {
-                        dbConn = dbhelpr.GetConnection();
-                        dbState = dbConn.createStatement();
-                        sql = "select xymc,c.kcdm,kcmc,xf from xy a,zy b,kc c,zykc d "
-                                + "where d.kcdm=c.kcdm and a.xydm=d.xydm and b.zydm=d.zydm "
-                                + "and zymc='" + _ZY + "' and xq=" + _XQ;
-                        dbRs = dbState.executeQuery(sql);
-                        while (dbRs.next()) {
-                            Vector vNext = new Vector();
-                            vNext.add(dbRs.getString("xymc"));
-                            vNext.add(dbRs.getString("kcdm"));
-                            vNext.add(dbRs.getString("kcmc"));
-                            vNext.add(dbRs.getString("xf"));
-                            rowData.add(vNext);
-                        }
-                        table = new JTable(rowData, columName);//数据加到表格中
-                        dbRs.close();
-                        dbState.close();
-                        dbhelpr.Close();
-                    } catch (SQLException ex) {
-                        System.err.println("点击了查询之后" + ex.getMessage());
-                    }
-
-                    table.setFont(new Font("Dialog", 0, 15));
-                    TableColumn column = null;
-                    column = table.getColumnModel().getColumn(0);
-                    column.setPreferredWidth(100);
-                    column = table.getColumnModel().getColumn(2);
-                    column.setPreferredWidth(200);
-
-                    DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
-                    renderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
-                    table.setDefaultRenderer(Object.class, renderer);
-
-                    table.setPreferredScrollableViewportSize(new Dimension(700, 350));
-                    table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
-                    scrollpane = new JScrollPane(table);
+                    Information("select zymc,xymc,c.kcdm,kcmc,xf from xy a,zy b,kc c,zykc d "
+                            + "where d.kcdm=c.kcdm and a.xydm=d.xydm and b.zydm=d.zydm "
+                            + "and zymc='" + _ZY + "' and xq=" + _XQ);
                     MainFrame.mf.repaint();
                 }
             }
