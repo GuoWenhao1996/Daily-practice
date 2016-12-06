@@ -10,7 +10,8 @@
  
 --使用Link_DB_Student_631406010109数据库
 use Link_DB_Student_631406010109
-
+----alter table xk alter column cj numeric(4, 1) null
+----alter table xk alter column bkcj numeric(4, 1) null
 ----向学校表插值
 --insert into xx values('001','重庆交通大学') 
 --insert into xx values('002','重庆大学') 
@@ -175,35 +176,35 @@ use Link_DB_Student_631406010109
 ----select jldm,b.xh,xsxm,jlsj,jlnr from jlgl a,xs b where a.xh=b.xh
 
 ----向选课表插值
---insert into xk values('11','C000000001','631406010109',null,null)
---insert into xk values('11','C000000002','631406010109',null,null)
---insert into xk values('11','C000000003','631406010109',null,null)
---insert into xk values('11','C000000004','631406010109',null,null)
---insert into xk values('11','C000000005','631406010109',null,null)
---insert into xk values('11','C000000006','631406010109',null,null)
---insert into xk values('11','C000000007','631406010109',null,null)
---insert into xk values('13','C000000008','631406010109',null,null)
---insert into xk values('11','C000000001','631406010102',null,null)
---insert into xk values('11','C000000002','631406010102',null,null)
---insert into xk values('11','C000000003','631406010102',null,null)
---insert into xk values('11','C000000005','631406010102',null,null)
---insert into xk values('11','C000000007','631406010102',null,null)
---insert into xk values('13','C000000008','631406010102',null,null)
---insert into xk values('11','C000000001','631406010124',null,null)
---insert into xk values('11','C000000002','631406010124',null,null)
---insert into xk values('11','C000000003','631406010124',null,null)
---insert into xk values('11','C000000006','631406010124',null,null)
---insert into xk values('11','C000000007','631406010124',null,null)
---insert into xk values('13','C000000008','631406010124',null,null)
---insert into xk values('11','C000000001','631406010401',null,null)
---insert into xk values('11','C000000002','631406010401',null,null)
---insert into xk values('11','C000000003','631406010401',null,null)
---insert into xk values('11','C000000004','631406010401',null,null)
---insert into xk values('11','C000000005','631406010401',null,null)
---insert into xk values('11','C000000006','631406010401',null,null)
---insert into xk values('11','C000000007','631406010401',null,null)
---insert into xk values('13','C000000008','631406010401',null,null)
-----select * from xk
-----select xsxm,kcmc,cj,bkcj from xk a,xs b,kc c where a.xh=b.xh and a.kcdm=c.kcdm
-----select xsxm,kcmc,cj,bkcj from xk a,xs b,kc c where a.xh=b.xh and a.kcdm=c.kcdm and b.xsxm='郭文浩'
-----select xsxm,kcmc,cj,bkcj from xk a,xs b,kc c where a.xh=b.xh and a.kcdm=c.kcdm and b.xsxm='刘翠芳'
+--insert into xk values('11','C000000001','631406010109',100,null)
+--insert into xk values('11','C000000002','631406010109',99,null)
+--insert into xk values('11','C000000003','631406010109',99,null)
+--insert into xk values('11','C000000004','631406010109',100,null)
+--insert into xk values('11','C000000005','631406010109',99,null)
+--insert into xk values('11','C000000006','631406010109',99,null)
+--insert into xk values('11','C000000007','631406010109',99,null)
+--insert into xk values('13','C000000008','631406010109',99,null)
+--insert into xk values('11','C000000001','631406010102',90,null)
+--insert into xk values('11','C000000002','631406010102',90,null)
+--insert into xk values('11','C000000003','631406010102',90,null)
+--insert into xk values('11','C000000005','631406010102',90,null)
+--insert into xk values('11','C000000007','631406010102',90,null)
+--insert into xk values('13','C000000008','631406010102',90,null)
+--insert into xk values('11','C000000001','631406010124',80,null)
+--insert into xk values('11','C000000002','631406010124',50,100)
+--insert into xk values('11','C000000003','631406010124',80,null)
+--insert into xk values('11','C000000006','631406010124',80,null)
+--insert into xk values('11','C000000007','631406010124',80,null)
+--insert into xk values('13','C000000008','631406010124',80,null)
+--insert into xk values('11','C000000001','631406010401',99,null)
+--insert into xk values('11','C000000002','631406010401',99,null)
+--insert into xk values('11','C000000003','631406010401',100,null)
+--insert into xk values('11','C000000004','631406010401',99,null)
+--insert into xk values('11','C000000005','631406010401',99,null)
+--insert into xk values('11','C000000006','631406010401',100,null)
+--insert into xk values('11','C000000007','631406010401',99,null)
+--insert into xk values('13','C000000008','631406010401',99,null)
+--select * from xk
+--select a.xh,xsxm,a.kcdm,kcmc,cj,bkcj from xk a,xs b,kc c where a.xh=b.xh and a.kcdm=c.kcdm
+--select a.xh,xsxm,a.kcdm,kcmc,cj,bkcj from xk a,xs b,kc c where a.xh=b.xh and a.kcdm=c.kcdm and b.xsxm='郭文浩'
+--select a.xh,xsxm,a.kcdm,kcmc,cj,bkcj from xk a,xs b,kc c where a.xh=b.xh and a.kcdm=c.kcdm and b.xsxm='刘翠芳'
