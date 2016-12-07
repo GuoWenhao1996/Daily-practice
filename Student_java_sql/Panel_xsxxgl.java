@@ -37,9 +37,14 @@ public class Panel_xsxxgl extends JPanel {
     private JLabel lable_xh = new JLabel("学号");
     private JTextField textfield_xh = new JTextField(10);
 
+    private JButton button_zengjia = new JButton("添加");
+    private JButton button_shanchu = new JButton("删除");
+    private JButton button_xiugai = new JButton("修改");
+
     protected JPanel p = new JPanel();
     private JPanel p1 = new JPanel();
     private JPanel p2 = new JPanel();
+    private JPanel p3 = new JPanel();
 
     protected Panel_xsxxgl() {
         Information("select xh,xsxm,xb,bjmc,csrq,mzmc,zzmmmc,xsjl"
@@ -52,8 +57,12 @@ public class Panel_xsxxgl extends JPanel {
         p1.add(textfield_xh);
         p1.add(button_chaxun);
         p2.add(scrollpane);
+        p3.add(button_zengjia);
+        p3.add(button_shanchu);
+        p3.add(button_xiugai);
         p.add(p1);
         p.add(p2);
+        p.add(p3);
     }
 
     private void Information(String sql) {
@@ -123,6 +132,33 @@ public class Panel_xsxxgl extends JPanel {
                             + " where a.mzdm=b.mzdm and a.zzmmdm=c.zzmmdm and a.bjdm=d.bjdm and xh='" + _XH + "'");
                     MainFrame.mf.repaint();
                 }
+            }
+        });
+        //增加事件监听
+        button_zengjia.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Add_Student as = new Add_Student();
+                as.setVisible(true);
+                MainFrame.mf.setVisible(false);
+            }
+        });
+        //删除事件监听
+        button_shanchu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Delete_Student ds = new Delete_Student();
+                ds.setVisible(true);
+                MainFrame.mf.setVisible(false);
+            }
+        });
+        //修改事件监听
+        button_xiugai.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Update_Student us = new Update_Student();
+                us.setVisible(true);
+                MainFrame.mf.setVisible(false);
             }
         });
     }
