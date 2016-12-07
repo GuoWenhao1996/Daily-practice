@@ -115,7 +115,8 @@ public class Panel_xsxkgl extends JPanel {
         TableColumn column = null;
 
         column = table.getColumnModel().getColumn(3);
-        column.setPreferredWidth(300);        column = table.getColumnModel().getColumn(4);
+        column.setPreferredWidth(300);
+        column = table.getColumnModel().getColumn(4);
         column.setPreferredWidth(20);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
