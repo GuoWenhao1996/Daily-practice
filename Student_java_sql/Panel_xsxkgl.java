@@ -53,9 +53,9 @@ public class Panel_xsxkgl extends JPanel {
     private JPanel p3 = new JPanel();
 
     protected Panel_xsxkgl() {
-        Information("select a.xh,xsxm,a.kcdm,kcmc "
-                + "from xk a,xs b,kc c "
-                + "where a.xh=b.xh and a.kcdm=c.kcdm");
+        Information("select a.xh,xsxm,a.kcdm,kcmc,xq "
+                + "from xk a,xs b,kc c,zykc d "
+                + "where a.xh=b.xh and a.kcdm=c.kcdm and d.kcdm=a.kcdm");
         myEventListener();
         BoxLayout horizontal = new BoxLayout(p, BoxLayout.Y_AXIS);
         p.setLayout(horizontal);
@@ -87,6 +87,7 @@ public class Panel_xsxkgl extends JPanel {
         columName.add("姓名");
         columName.add("课程号");
         columName.add("课程名");
+        columName.add("学期");
 
         //查询学生选课表
         try {
@@ -99,6 +100,7 @@ public class Panel_xsxkgl extends JPanel {
                 vNext.add(dbRs.getString("xsxm"));
                 vNext.add(dbRs.getString("kcdm"));
                 vNext.add(dbRs.getString("kcmc"));
+                vNext.add(dbRs.getString("xq"));
                 rowData.add(vNext);
             }
             table = new JTable(rowData, columName);//数据加到表格中
@@ -113,7 +115,8 @@ public class Panel_xsxkgl extends JPanel {
         TableColumn column = null;
 
         column = table.getColumnModel().getColumn(3);
-        column.setPreferredWidth(300);
+        column.setPreferredWidth(300);        column = table.getColumnModel().getColumn(4);
+        column.setPreferredWidth(20);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
@@ -137,9 +140,9 @@ public class Panel_xsxkgl extends JPanel {
                     MainFrame.mf.repaint();
                 } else {
                     String _XH = textfield_xh.getText();
-                    Information("select a.xh,xsxm,a.kcdm,kcmc "
-                            + "from xk a,xs b,kc c "
-                            + "where a.xh=b.xh and a.kcdm=c.kcdm and a.xh='" + _XH + "'");
+                    Information("select a.xh,xsxm,a.kcdm,kcmc,xq "
+                            + "from xk a,xs b,kc c,zykc d "
+                            + "where a.xh=b.xh and a.kcdm=c.kcdm and d.kcdm=a.kcdm and a.xh='" + _XH + "'");
                     MainFrame.mf.repaint();
                 }
             }
@@ -156,9 +159,9 @@ public class Panel_xsxkgl extends JPanel {
                     MainFrame.mf.repaint();
                 } else {
                     String _KCH = textfield_kch.getText();
-                    Information("select a.xh,xsxm,a.kcdm,kcmc "
-                            + "from xk a,xs b,kc c "
-                            + "where a.xh=b.xh and a.kcdm=c.kcdm and a.kcdm='" + _KCH + "'");
+                    Information("select a.xh,xsxm,a.kcdm,kcmc,xq "
+                            + "from xk a,xs b,kc c,zykc d "
+                            + "where a.xh=b.xh and a.kcdm=c.kcdm and d.kcdm=a.kcdm and a.kcdm='" + _KCH + "'");
                     MainFrame.mf.repaint();
                 }
             }
@@ -175,9 +178,9 @@ public class Panel_xsxkgl extends JPanel {
                     MainFrame.mf.repaint();
                 } else {
                     String _XM = textfield_xm.getText();
-                    Information("select a.xh,xsxm,a.kcdm,kcmc "
-                            + "from xk a,xs b,kc c "
-                            + "where a.xh=b.xh and a.kcdm=c.kcdm and xsxm='" + _XM + "'");
+                    Information("select a.xh,xsxm,a.kcdm,kcmc,xq "
+                            + "from xk a,xs b,kc c,zykc d "
+                            + "where a.xh=b.xh and a.kcdm=c.kcdm and d.kcdm=a.kcdm and xsxm='" + _XM + "'");
                     MainFrame.mf.repaint();
                 }
             }
@@ -194,9 +197,9 @@ public class Panel_xsxkgl extends JPanel {
                     MainFrame.mf.repaint();
                 } else {
                     String _KCM = textfield_kcm.getText();
-                    Information("select a.xh,xsxm,a.kcdm,kcmc "
-                            + "from xk a,xs b,kc c "
-                            + "where a.xh=b.xh and a.kcdm=c.kcdm and kcmc like'%" + _KCM + "%'");
+                    Information("select a.xh,xsxm,a.kcdm,kcmc,xq "
+                            + "from xk a,xs b,kc c,zykc d "
+                            + "where a.xh=b.xh and a.kcdm=c.kcdm and d.kcdm=a.kcdm and kcmc like'%" + _KCM + "%'");
                     MainFrame.mf.repaint();
                 }
             }

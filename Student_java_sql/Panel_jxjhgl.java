@@ -44,7 +44,7 @@ public class Panel_jxjhgl extends JPanel {
     private JPanel p2 = new JPanel();
 
     protected Panel_jxjhgl() {
-        Information("select zymc,xymc,c.kcdm,kcmc,xf from xy a,zy b,kc c,zykc d "
+        Information("select zymc,xymc,c.kcdm,kcmc,xf,xq from xy a,zy b,kc c,zykc d "
                 + "where d.kcdm=c.kcdm and a.xydm=d.xydm and b.zydm=d.zydm ");
         myEventListener();
         BoxLayout horizontal = new BoxLayout(p, BoxLayout.Y_AXIS);
@@ -69,6 +69,7 @@ public class Panel_jxjhgl extends JPanel {
         columName.add("课程代码");
         columName.add("课程名称");
         columName.add("学分");
+        columName.add("学期");
         rowData.clear();
         //查询专业课程管理表
         try {
@@ -82,6 +83,7 @@ public class Panel_jxjhgl extends JPanel {
                 vNext.add(dbRs.getString("kcdm"));
                 vNext.add(dbRs.getString("kcmc"));
                 vNext.add(dbRs.getString("xf"));
+                vNext.add(dbRs.getString("xq"));
                 rowData.add(vNext);
             }
             table = new JTable(rowData, columName);//数据加到表格中
@@ -98,9 +100,11 @@ public class Panel_jxjhgl extends JPanel {
         column = table.getColumnModel().getColumn(0);
         column.setPreferredWidth(100);
         column = table.getColumnModel().getColumn(1);
-        column.setPreferredWidth(100);
+        column.setPreferredWidth(130);
         column = table.getColumnModel().getColumn(3);
         column.setPreferredWidth(200);
+        column = table.getColumnModel().getColumn(5);
+        column.setPreferredWidth(20);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
@@ -125,7 +129,7 @@ public class Panel_jxjhgl extends JPanel {
                 } else {
                     String _ZY = textfield_zy.getText();
                     int _XQ = Integer.parseInt(textfield_xq.getText());
-                    Information("select zymc,xymc,c.kcdm,kcmc,xf from xy a,zy b,kc c,zykc d "
+                    Information("select zymc,xymc,c.kcdm,kcmc,xf,xq from xy a,zy b,kc c,zykc d "
                             + "where d.kcdm=c.kcdm and a.xydm=d.xydm and b.zydm=d.zydm "
                             + "and zymc='" + _ZY + "' and xq=" + _XQ);
                     MainFrame.mf.repaint();
