@@ -161,6 +161,7 @@ use Link_DB_Student_631406010109
 --insert into cfgl values('CF00000009','631406010401','2016-11-29','特别贴心处罚')
 ----select * from cfgl
 ----select cfdm,b.xh,xsxm,cfsj,cfnr from cfgl a,xs b where a.xh=b.xh
+----select b.xh,xsxm,jldm,jlnr,jlsj from jlgl a,xs b where a.xh=b.xh union select b.xh,xsxm,cfdm,cfnr,cfsj from cfgl a,xs b where a.xh=b.xh
 
 ----向奖励管理表插值
 --insert into jlgl values('JL00000001','631406010109','2016-11-10','程序设计大赛二等奖')

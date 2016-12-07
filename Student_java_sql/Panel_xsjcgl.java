@@ -51,9 +51,7 @@ public class Panel_xsjcgl extends JPanel {
     private JPanel p3 = new JPanel();
 
     protected Panel_xsjcgl() {
-        Information("select a.xh,xsxm,a.kcdm,kcmc,cj,bkcj "
-                + "from xk a,xs b,kc c "
-                + "where a.xh=b.xh and a.kcdm=c.kcdm");
+        Information("select b.xh,xsxm,jldm,jlnr,jlsj from jlgl a,xs b where a.xh=b.xh union select b.xh,xsxm,cfdm,cfnr,cfsj from cfgl a,xs b where a.xh=b.xh");
         myEventListener();
         BoxLayout horizontal = new BoxLayout(p, BoxLayout.Y_AXIS);
         p.setLayout(horizontal);
@@ -90,11 +88,11 @@ public class Panel_xsjcgl extends JPanel {
             dbRs = dbState.executeQuery(sql);
             while (dbRs.next()) {
                 Vector vNext = new Vector();
-                vNext.add(dbRs.getString("xh"));
-                vNext.add(dbRs.getString("xsxm"));
-                vNext.add(dbRs.getString("jldm"));
-                vNext.add(dbRs.getString("jlnr"));
-                vNext.add(dbRs.getString("jlsj"));
+                vNext.add(dbRs.getString(1));
+                vNext.add(dbRs.getString(2));
+                vNext.add(dbRs.getString(3));
+                vNext.add(dbRs.getString(4));
+                vNext.add(dbRs.getString(5));
                 rowData.add(vNext);
             }
             table = new JTable(rowData, columName);//数据加到表格中
@@ -107,13 +105,8 @@ public class Panel_xsjcgl extends JPanel {
         table.setFont(new Font("Dialog", 0, 15));
 
         TableColumn column = null;
-
-//        column = table.getColumnModel().getColumn(3);
-//        column.setPreferredWidth(300);
-//        column = table.getColumnModel().getColumn(4);
-//        column.setPreferredWidth(50);
-//        column = table.getColumnModel().getColumn(5);
-//        column.setPreferredWidth(50);
+        column = table.getColumnModel().getColumn(3);
+        column.setPreferredWidth(300);
 
         DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
         renderer.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
@@ -135,9 +128,7 @@ public class Panel_xsjcgl extends JPanel {
                     MainFrame.mf.repaint();
                 } else {
                     String _XH = textfield_xh.getText();
-                    Information("select a.xh,xsxm,a.kcdm,kcmc,cj,bkcj "
-                            + "from xk a,xs b,kc c "
-                            + "where a.xh=b.xh and a.kcdm=c.kcdm and a.xh='" + _XH + "'");
+                    Information("select b.xh,xsxm,jldm,jlnr,jlsj from jlgl a,xs b where a.xh=b.xh and a.xh='" + _XH + "'");
                     MainFrame.mf.repaint();
                 }
             }
@@ -147,14 +138,12 @@ public class Panel_xsjcgl extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 textfield_xm.setText("");
-                if (textfield_xh.getText().equals("") || textfield_xh.getText().equals("课程号不能为空！")) {
-                    textfield_xh.setText("课程号不能为空！");
+                if (textfield_xh.getText().equals("") || textfield_xh.getText().equals("学号不能为空！")) {
+                    textfield_xh.setText("学号不能为空！");
                     MainFrame.mf.repaint();
                 } else {
                     String _XH = textfield_xh.getText();
-                    Information("select a.xh,xsxm,a.kcdm,kcmc,cj,bkcj "
-                            + "from xk a,xs b,kc c "
-                            + "where a.xh=b.xh and a.kcdm=c.kcdm and a.kcdm='" + _KCH + "'");
+                    Information("select b.xh,xsxm,cfdm,cfnr,cfsj from cfgl a,xs b where a.xh=b.xh and b.xh='" + _XH + "'");
                     MainFrame.mf.repaint();
                 }
             }
@@ -169,9 +158,7 @@ public class Panel_xsjcgl extends JPanel {
                     MainFrame.mf.repaint();
                 } else {
                     String _XM = textfield_xm.getText();
-                    Information("select a.xh,xsxm,a.kcdm,kcmc,cj,bkcj "
-                            + "from xk a,xs b,kc c "
-                            + "where a.xh=b.xh and a.kcdm=c.kcdm and xsxm='" + _XM + "'");
+                    Information("select b.xh,xsxm,jldm,jlnr,jlsj from jlgl a,xs b where a.xh=b.xh and xsxm='" + _XM + "'");
                     MainFrame.mf.repaint();
                 }
             }
@@ -181,14 +168,12 @@ public class Panel_xsjcgl extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 textfield_xh.setText("");
-                if (textfield_xm.getText().equals("") || textfield_xm.getText().equals("课程名不能为空！")) {
-                    textfield_xm.setText("课程名不能为空！");
+                if (textfield_xm.getText().equals("") || textfield_xm.getText().equals("姓名不能为空！")) {
+                    textfield_xm.setText("姓名不能为空！");
                     MainFrame.mf.repaint();
                 } else {
                     String _XM = textfield_xm.getText();
-                    Information("select a.xh,xsxm,a.kcdm,kcmc,cj,bkcj "
-                            + "from xk a,xs b,kc c "
-                            + "where a.xh=b.xh and a.kcdm=c.kcdm and kcmc like'%" + _KCM + "%'");
+                    Information("select b.xh,xsxm,cfdm,cfnr,cfsj from cfgl a,xs b where a.xh=b.xh and xsxm ='" + _XM + "'");
                     MainFrame.mf.repaint();
                 }
             }
