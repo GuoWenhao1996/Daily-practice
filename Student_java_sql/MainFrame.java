@@ -21,7 +21,8 @@ import javax.swing.UIManager;
  * @author guowh
  */
 public class MainFrame extends JFrame {
-       protected static MainFrame mf = new MainFrame();
+
+    protected static MainFrame mf = new MainFrame();
     private JButton button_xsxxgl = new JButton("学生信息管理模块");
     private JButton button_kcgl = new JButton("课程管理模块");
     private JButton button_jxjhgl = new JButton("教学计划管理模块");
@@ -226,7 +227,6 @@ public class MainFrame extends JFrame {
         });
 
     }
-
 
     private static void setLookAndFeel() {
         try {
