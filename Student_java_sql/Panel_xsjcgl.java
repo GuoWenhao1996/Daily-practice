@@ -38,17 +38,21 @@ public class Panel_xsjcgl extends JPanel {
     private JLabel lable_xh = new JLabel("学号");
     private JTextField textfield_xh = new JTextField(10);
     private JButton button_chaxun_xh_cf = new JButton("惩罚情况查询");
-    
+
     private JButton button_chaxun_xm_jl = new JButton("奖励情况查询");
     private JLabel lable_xm = new JLabel("姓名");
     private JTextField textfield_xm = new JTextField(10);
     private JButton button_chaxun_xm_cf = new JButton("惩罚情况查询");
 
+    private JButton button_zengjia = new JButton("添加");
+    private JButton button_shanchu = new JButton("删除");
+    private JButton button_xiugai = new JButton("修改");
 
     protected JPanel p = new JPanel();
     private JPanel p1 = new JPanel();
     private JPanel p2 = new JPanel();
     private JPanel p3 = new JPanel();
+    private JPanel p4 = new JPanel();
 
     protected Panel_xsjcgl() {
         Information("select b.xh,xsxm,jldm,jlnr,jlsj from jlgl a,xs b where a.xh=b.xh union select b.xh,xsxm,cfdm,cfnr,cfsj from cfgl a,xs b where a.xh=b.xh");
@@ -64,9 +68,13 @@ public class Panel_xsjcgl extends JPanel {
         p2.add(button_chaxun_xm_jl);
         p2.add(button_chaxun_xm_cf);
         p3.add(scrollpane);
+        p4.add(button_zengjia);
+        p4.add(button_shanchu);
+        p4.add(button_xiugai);
         p.add(p1);
         p.add(p2);
         p.add(p3);
+        p.add(p4);
     }
 
     private void Information(String sql) {
@@ -176,6 +184,33 @@ public class Panel_xsjcgl extends JPanel {
                     Information("select b.xh,xsxm,cfdm,cfnr,cfsj from cfgl a,xs b where a.xh=b.xh and xsxm ='" + _XM + "'");
                     MainFrame.mf.repaint();
                 }
+            }
+        });
+        //增加事件监听
+        button_zengjia.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Add_xsjc ax = new Add_xsjc();
+                ax.setVisible(true);
+                MainFrame.mf.setVisible(false);
+            }
+        });
+        //删除事件监听
+        button_shanchu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Delete_xsjc dx = new Delete_xsjc();
+                dx.setVisible(true);
+                MainFrame.mf.setVisible(false);
+            }
+        });
+        //修改事件监听
+        button_xiugai.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Update_xsjc ux = new Update_xsjc();
+                ux.setVisible(true);
+                MainFrame.mf.setVisible(false);
             }
         });
     }

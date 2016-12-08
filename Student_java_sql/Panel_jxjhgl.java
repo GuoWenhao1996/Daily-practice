@@ -39,9 +39,15 @@ public class Panel_jxjhgl extends JPanel {
     private JLabel lable_xq = new JLabel("     学期");
     private JTextField textfield_zy = new JTextField(10);
     private JTextField textfield_xq = new JTextField(3);
+    
+    private JButton button_zengjia = new JButton("添加");
+    private JButton button_shanchu = new JButton("删除");
+    private JButton button_xiugai = new JButton("修改");
+
     protected JPanel p = new JPanel();
     private JPanel p1 = new JPanel();
     private JPanel p2 = new JPanel();
+    private JPanel p3 = new JPanel();
 
     protected Panel_jxjhgl() {
         Information("select zymc,xymc,c.kcdm,kcmc,xf,xq from xy a,zy b,kc c,zykc d "
@@ -55,8 +61,12 @@ public class Panel_jxjhgl extends JPanel {
         p1.add(textfield_xq);
         p1.add(button_chaxun);
         p2.add(scrollpane);
+        p3.add(button_zengjia);
+        p3.add(button_shanchu);
+        p3.add(button_xiugai);
         p.add(p1);
         p.add(p2);
+        p.add(p3);
     }
 
     private void Information(String sql) {
@@ -134,6 +144,33 @@ public class Panel_jxjhgl extends JPanel {
                             + "and zymc='" + _ZY + "' and xq=" + _XQ);
                     MainFrame.mf.repaint();
                 }
+            }
+        });
+         //增加事件监听
+        button_zengjia.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Add_jxjh aj = new Add_jxjh();
+                aj.setVisible(true);
+                MainFrame.mf.setVisible(false);
+            }
+        });
+        //删除事件监听
+        button_shanchu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Delete_jxjh dj = new Delete_jxjh();
+                dj.setVisible(true);
+                MainFrame.mf.setVisible(false);
+            }
+        });
+        //修改事件监听
+        button_xiugai.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Update_jxjh uj = new Update_jxjh();
+                uj.setVisible(true);
+                MainFrame.mf.setVisible(false);
             }
         });
     }

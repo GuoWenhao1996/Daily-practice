@@ -15,8 +15,8 @@ import javax.swing.JLabel;
  */
 public class Add_Student extends JFrame {
 
-    private JLabel aaa=new JLabel("这里要添加一个学生");
-    
+    private JLabel aaa = new JLabel("这里要添加一个学生，目前尚未开放");
+
     public Add_Student() {
         super("添加学生信息");
         setSize(1200, 500);

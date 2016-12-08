@@ -15,7 +15,7 @@ import javax.swing.JLabel;
  */
 public class Update_Student extends JFrame {
 
-    private JLabel aaa = new JLabel("这里要修改一个学生信息");
+    private JLabel aaa = new JLabel("这里要修改一个学生信息，目前尚未开放");
 
     public Update_Student() {
         super("修改学生信息");

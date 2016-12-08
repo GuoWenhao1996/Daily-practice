@@ -13,12 +13,12 @@ import javax.swing.JLabel;
  *
  * @author guowh
  */
-public class Delete_Student extends JFrame {
+public class Add_kc extends JFrame {
 
-    private JLabel aaa = new JLabel("这里要删除一个学生信息，目前尚未开放");
+    private JLabel aaa = new JLabel("这里要添加一个课程，目前尚未开放");
 
-    public Delete_Student() {
-        super("删除学生信息");
+    public Add_kc() {
+        super("添加课程信息");
         setSize(1200, 500);
         setLocation(130, 120);
         add(aaa);

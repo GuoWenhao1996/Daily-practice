@@ -47,10 +47,15 @@ public class Panel_xsxkgl extends JPanel {
     private JLabel lable_kcm = new JLabel("      课程名");
     private JTextField textfield_kcm = new JTextField(10);
 
+    private JButton button_zengjia = new JButton("添加");
+    private JButton button_shanchu = new JButton("删除");
+    private JButton button_xiugai = new JButton("修改");
+
     protected JPanel p = new JPanel();
     private JPanel p1 = new JPanel();
     private JPanel p2 = new JPanel();
     private JPanel p3 = new JPanel();
+    private JPanel p4 = new JPanel();
 
     protected Panel_xsxkgl() {
         Information("select a.xh,xsxm,a.kcdm,kcmc,xq "
@@ -72,9 +77,13 @@ public class Panel_xsxkgl extends JPanel {
         p2.add(textfield_kcm);
         p2.add(button_chaxun_kcm);
         p3.add(scrollpane);
+        p4.add(button_zengjia);
+        p4.add(button_shanchu);
+        p4.add(button_xiugai);
         p.add(p1);
         p.add(p2);
         p.add(p3);
+        p.add(p4);
     }
 
     private void Information(String sql) {
@@ -203,6 +212,33 @@ public class Panel_xsxkgl extends JPanel {
                             + "where a.xh=b.xh and a.kcdm=c.kcdm and d.kcdm=a.kcdm and kcmc like'%" + _KCM + "%'");
                     MainFrame.mf.repaint();
                 }
+            }
+        });
+         //增加事件监听
+        button_zengjia.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Add_xsxk ax = new Add_xsxk();
+                ax.setVisible(true);
+                MainFrame.mf.setVisible(false);
+            }
+        });
+        //删除事件监听
+        button_shanchu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Delete_xsxk dx = new Delete_xsxk();
+                dx.setVisible(true);
+                MainFrame.mf.setVisible(false);
+            }
+        });
+        //修改事件监听
+        button_xiugai.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Update_xsxk ux = new Update_xsxk();
+                ux.setVisible(true);
+                MainFrame.mf.setVisible(false);
             }
         });
     }
