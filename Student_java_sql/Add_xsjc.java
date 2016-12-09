@@ -11,6 +11,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -24,9 +25,8 @@ import javax.swing.JTextField;
  * @author guowh
  */
 public class Add_xsjc extends JFrame {
-    
-        Panel_xsjcgl p_xsjcgl = new Panel_xsjcgl();
 
+    Panel_xsjcgl p_xsjcgl = new Panel_xsjcgl();
 
     private JLabel lable_zhanwei_left = new JLabel("          ");
     private JLabel lable_zhanwei_right = new JLabel("          ");
@@ -148,24 +148,90 @@ public class Add_xsjc extends JFrame {
             dbState.executeUpdate(sql);
             dbState.close();
             dbhelpr.Close();
+            JOptionPane.showMessageDialog(null, "操作成功！", "提示", JOptionPane.INFORMATION_MESSAGE);
+            Get_jlh_cfh(textfield_jlh, "select jldm from jlgl");
+            Get_jlh_cfh(textfield_cfh, "select cfdm from cfgl");
+            textfield_xh_jl.setText("");
+            textfield_jlsj.setText("");
+            textfield_jlnr.setText("");
+            textfield_xh_cf.setText("");
+            textfield_cfsj.setText("");
+            textfield_cfnr.setText("");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
+            if (ex.getMessage().equals("从字符串转换日期和/或时间时，转换失败。")) {
+                JOptionPane.showMessageDialog(null, "操作失败！\n日期请输入yyyy-mm-dd格式", "提示", JOptionPane.ERROR_MESSAGE);
+            } else if (ex.getMessage().equals("INSERT 语句与 FOREIGN KEY 约束\"FK_JLGL_XSTOJL_XS\"冲突。该冲突发生于数据库\"Link_DB_Student_631406010109\"，表\"dbo.xs\", column 'xh'。")
+                    || ex.getMessage().equals("INSERT 语句与 FOREIGN KEY 约束\"FK_CFGL_XSTOCF_XS\"冲突。该冲突发生于数据库\"Link_DB_Student_631406010109\"，表\"dbo.xs\", column 'xh'。")) {
+                JOptionPane.showMessageDialog(null, "操作失败！\n该学号不存在，请核对！", "提示", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "操作失败！\n" + ex.getMessage(), "提示", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
     private void myWindowListener() {
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                MainFrame.mf.repaint();
                 MainFrame.mf.setVisible(true);
             }
         });
-        //增加事件监听
+        //奖励增加事件监听
         button_tijiao_jl.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Add_xsjc("insert into jlgl values('"+textfield_jlh.getText()+"','"+textfield_xh_jl.getText()+"','"+textfield_jlsj.getText()+"','"+textfield_jlnr.getText()+"')");
+                if (textfield_xh_jl.getText().toString().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "学号不能为空！", "提示", JOptionPane.ERROR_MESSAGE);
+                } else if (textfield_jlsj.getText().toString().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "时间不能为空！", "提示", JOptionPane.ERROR_MESSAGE);
+                } else if (textfield_jlnr.getText().toString().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "内容不能为空！", "提示", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    Add_xsjc("insert into jlgl values('" + textfield_jlh.getText() + "','" + textfield_xh_jl.getText() + "','" + textfield_jlsj.getText() + "','" + textfield_jlnr.getText() + "')");
+                }
             }
         });
+        //惩罚增加事件监听
+        button_tijiao_cf.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (textfield_xh_cf.getText().toString().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "学号不能为空！", "提示", JOptionPane.ERROR_MESSAGE);
+                } else if (textfield_cfsj.getText().toString().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "时间不能为空！", "提示", JOptionPane.ERROR_MESSAGE);
+                } else if (textfield_cfnr.getText().toString().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "内容不能为空！", "提示", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    Add_xsjc("insert into cfgl values('" + textfield_cfh.getText() + "','" + textfield_xh_cf.getText() + "','" + textfield_cfsj.getText() + "','" + textfield_cfnr.getText() + "')");
+                }
+            }
+        });
+        //关闭事件监听
+        button_guanbi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                MainFrame.mf.setVisible(true);
+            }
+        });
+        //清空事件监听
+        button_qingkong_jl.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            textfield_xh_jl.setText("");
+            textfield_jlsj.setText("");
+            textfield_jlnr.setText("");
+            }
+        });
+        //清空事件监听
+        button_qingkong_cf.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            textfield_xh_cf.setText("");
+            textfield_cfsj.setText("");
+            textfield_cfnr.setText("");
+            }
+        });
+                
     }
 }
