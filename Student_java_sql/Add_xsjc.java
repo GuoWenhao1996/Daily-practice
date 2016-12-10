@@ -68,6 +68,8 @@ public class Add_xsjc extends JFrame {
         setSize(600, 300);
         setLocation(430, 290);
         BoxLayout horizontal = new BoxLayout(p, BoxLayout.Y_AXIS);
+        setResizable(false);
+        setLocationRelativeTo(null);
         p.setLayout(horizontal);
 
         textfield_jlh.setEditable(false);
@@ -148,7 +150,7 @@ public class Add_xsjc extends JFrame {
             dbState.executeUpdate(sql);
             dbState.close();
             dbhelpr.Close();
-            JOptionPane.showMessageDialog(null, "操作成功！", "提示", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "添加成功！", "提示", JOptionPane.INFORMATION_MESSAGE);
             Get_jlh_cfh(textfield_jlh, "select jldm from jlgl");
             Get_jlh_cfh(textfield_cfh, "select cfdm from cfgl");
             textfield_xh_jl.setText("");
@@ -218,20 +220,20 @@ public class Add_xsjc extends JFrame {
         button_qingkong_jl.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            textfield_xh_jl.setText("");
-            textfield_jlsj.setText("");
-            textfield_jlnr.setText("");
+                textfield_xh_jl.setText("");
+                textfield_jlsj.setText("");
+                textfield_jlnr.setText("");
             }
         });
         //清空事件监听
         button_qingkong_cf.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            textfield_xh_cf.setText("");
-            textfield_cfsj.setText("");
-            textfield_cfnr.setText("");
+                textfield_xh_cf.setText("");
+                textfield_cfsj.setText("");
+                textfield_cfnr.setText("");
             }
         });
-                
+
     }
 }

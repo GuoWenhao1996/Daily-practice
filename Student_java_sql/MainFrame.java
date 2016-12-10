@@ -46,8 +46,8 @@ public class MainFrame extends JFrame {
         DBHelper dbhelpr = new DBHelper();
         //dbhelpr.TestConn();
         setSize(1200, 600);
-        setLocation(100, 90);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         myLayout();
         myEventListener();
         setVisible(true);
