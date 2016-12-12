@@ -123,7 +123,7 @@ public class Delete_xsjc extends JFrame {
         myWindowListener();
     }
 
-    private void Delate_xsjc(String sql) {
+    private void Delete_xsjc(String sql) {
         Connection dbConn = null;
         Statement dbState = null;
         DBHelper dbhelpr = new DBHelper();
@@ -232,7 +232,7 @@ public class Delete_xsjc extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (textfield_jlh.getText().toString().equals(NUMBER)) {
-                    Delate_xsjc("delete jlgl where jldm='" + NUMBER + "'");
+                    Delete_xsjc("delete jlgl where jldm='" + NUMBER + "'");
                 } else {
                     JOptionPane.showMessageDialog(null, "奖励号已改变，请重新查询！", "提示", JOptionPane.ERROR_MESSAGE);
                     button_shanchu_jl.setEnabled(false);
@@ -244,7 +244,7 @@ public class Delete_xsjc extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (textfield_cfh.getText().toString().equals(NUMBER)) {
-                    Delate_xsjc("delete cfgl where cfdm='" + NUMBER + "'");
+                    Delete_xsjc("delete cfgl where cfdm='" + NUMBER + "'");
                 } else {
                     JOptionPane.showMessageDialog(null, "惩罚号已改变，请重新查询！", "提示", JOptionPane.ERROR_MESSAGE);
                     button_shanchu_cf.setEnabled(false);
