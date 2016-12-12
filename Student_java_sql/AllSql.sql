@@ -175,6 +175,9 @@ use Link_DB_Student_631406010109
 --insert into jlgl values('JL00000009','631406010401','2016-11-29','議議議議蔣')
 ----select * from jlgl
 ----select jldm,b.xh,xsxm,jlsj,jlnr from jlgl a,xs b where a.xh=b.xh
+----update jlgl set xh='' where jldm=''
+----update jlgl set jlsj='' where jldm=''
+----update jlgl set jlnr='' where jldm=''
 
 ----砃恁諺桶脣硉
 --insert into xk values('11','C000000001','631406010109',100,null)
