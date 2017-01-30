@@ -13,7 +13,7 @@ public class DBHelper {
 	public Connection OpenConn(String sUser, String sPwd) {
 		try {
 			String sDriverName = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-			String sDBUrl = "jdbc:sqlserver://127.0.0.1:1433;DatabaseName=" + DBName;
+			String sDBUrl = "jdbc:sqlserver://139.199.171.155:1433;DatabaseName=" + DBName;
 			Class.forName(sDriverName);
 			dbConn = DriverManager.getConnection(sDBUrl, sUser, sPwd);
 			System.out.println("连接正常开启！");
