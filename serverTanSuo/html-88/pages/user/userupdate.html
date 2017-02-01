@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--引入外部CSS  注意相对路径-->
+    <!--使用min版-->
+    <link rel="stylesheet" href="../../dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/edit.css"/>
+
+</head>
+<body>
+<header>
+    <ul class="nav nav-tabs">
+        <!--javascript:void(0)让超链接失效-->
+        <li class="active"><a href="javascript:history.go(-1);">用户管理</a></li>
+    </ul>
+</header>
+<section>
+    <form id="form1" name="form1" method="post" action="userlist.html">
+        <dl>
+            <dt>添加用户信息</dt>
+            <dd><input type="text" id="userName" name="userName"
+                       placeholder="请输入用户名!" required autofocus
+                       class="form-control input-sm" value="Tom"/></dd>
+            <dd><input type="password" id="passwordA" name="password"
+                       placeholder="请输入密码!" required
+                       class="form-control input-sm" value="123456"/></dd>
+            <dd><input type="password" id="passwordB" name="password"
+                       placeholder="请输入确认密码!" required
+                       class="form-control input-sm" value="123456"/></dd>
+            <dd>
+                <input type="radio" name="gender" value="男" checked/>男
+                <input type="radio" name="gender" value="女"  class="input-radio"/>女
+            </dd>
+            <dd>
+                <select id="posit" name="posit"class="form-control input-sm">
+                    <option value="0">请选择职位</option>
+                    <option value="1">总经理</option>
+                    <option value="2">部门经理</option>
+                    <option value="3">财务主管</option>
+                    <option value="4" selected>普通员工</option>
+                </select>
+            </dd>
+            <dd>
+                <input type="date" id="workDate" name="workDate"
+                       placeholder="请选择入职时间" required
+                       class="form-control input-sm" value="2016-07-08"/>
+            </dd>
+            <dd class="btn-container">
+                <input type="submit" value="确 定" class="btn btn-primary btn-sm"/>
+                <input type="reset" value="重 置" class="btn btn-danger btn-sm"/>
+            </dd>
+        </dl>
+    </form>
+</section>
+</body>
+</html>

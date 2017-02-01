@@ -1,0 +1,63 @@
+@charset "UTF-8";
+body {
+    font-size: 12px;
+}
+
+header {
+    position: relative;
+    width: 100%;
+    min-width: 600px;
+    background-color: rgba(186, 230, 244, 0.76); /*背景颜色*/
+}
+
+header ul li {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+header ul li a {
+    cursor: pointer !important;
+}
+
+section {
+    position: relative;
+    width: 500px;
+    top: 40px;
+    margin: 0px auto;
+    border: solid 1px #c0c0c0;
+    border-radius: 10px;
+}
+
+section dl {
+    margin: 20px 0px;
+}
+
+section dl dt {
+    width: 460px;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: solid 1px lightgray;
+    font-size: 16px;
+    text-indent: 10px;
+    letter-spacing: 3px;
+}
+
+section dl dd {
+    width: 300px;
+    margin: 20px 50px;
+}
+
+.input-radio {
+    margin-left: 30px !important;
+}.input-checkbox {
+     margin-left: 30px !important;
+ }
+
+.btn-container {
+    text-align: center;
+}
+
+.btn-container input {
+    margin: 10px 20px 0px;
+}

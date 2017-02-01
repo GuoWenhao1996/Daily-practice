@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>(登录)OA办公自动化管理系统</title>
+    <style>
+        body{
+            font-family: "微软雅黑";
+            font-size: 12px;
+        }
+        #container {
+            position: fixed;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px; /*上右下左*/
+            background-color: cornflowerblue;
+        }
+
+        #container #login {
+            position: relative;
+            width: 500px;
+            /*height: 300px;*/
+            margin: 200px auto 0px; /*上 左右 下*/
+            background-color: rgba(255, 255, 255, 0.3);
+            /*background-color: #9dd324;*/
+            border-radius: 10px;
+            /*opacity: 0.3;*/
+        }
+        #container #login form dl{
+            padding: 20px 0px;/*上下  左右*/
+        }
+        #container #login form dl dt{
+            /*左边间距*/
+            /*margin: 0px;*/
+            /*padding: 0px;*/
+            font-size: 16px;
+            text-align: center;
+            line-height: 40px;
+            letter-spacing: 3px;
+        }
+        #container #login form dl dd{
+            margin: 15px 0px;
+            text-align: center;
+        }
+        #container #login form dl dd input{
+            border-radius: 5px;
+            border: solid 1px lightgray;
+        }
+        .input{
+            width: 300px;
+            height: 30px;
+            padding-left: 5px;
+        }
+        .btn{
+            width: 80px;
+            height: 30px;
+            margin: 10px 20px 0px;
+            color: white;
+            cursor: pointer;
+        }
+        .btn:hover{
+            box-shadow: #000000 0px 0px 10px;
+        }
+        .btn-submit{
+            background-color: cornflowerblue;
+        }
+        .btn-reset{
+            background-color: firebrick;
+        }
+    </style>
+</head>
+<body>
+<!--/*这是HTML4写法*/-->
+<!--<div id="header"></div>-->
+<!--<div id="pageBody">-->
+<!--<div id="sideLeft"></div>-->
+<!--<div id="main"></div>-->
+<!--</div>-->
+<!--<div id="footer"></div>-->
+<div id="container">
+    <div id="login">
+        <!--定义列表-->
+        <form id="form1" method="post" action="index.html">
+            <dl>
+                <dt>办公自动化系统</dt>
+                <dd><input type="text" id="userName" name="userName"
+                           placeholder="请输入用户名" required autofocus
+                           class="input"/></dd>
+                <dd><input type="password" id="password" name="password"
+                           placeholder="请输入密码" required
+                           class="input"/></dd>
+                <dd></dd>
+                <dd>
+                    <input type="submit" value="登 录" class="btn btn-submit"/>
+                    <input type="reset" value="重 置" class="btn btn-reset"/>
+                </dd>
+            </dl>
+        </form>
+    </div>
+</div>
+</body>
+</html>
