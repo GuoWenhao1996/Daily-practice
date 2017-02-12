@@ -1,3 +1,21 @@
+2017-2-12 10:44:34
+520端口开启成功哈哈哈
+server {
+        listen       520;
+        server_name  localhost;
+
+        location / {
+            root   html;
+            index  index.html index.htm;
+        }
+
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+    }
+
+
 2017-1-31 14:53:26
 主页改到88
 80端口被占用
