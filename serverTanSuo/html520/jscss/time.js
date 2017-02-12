@@ -1,4 +1,4 @@
-function showTime() { 
+﻿function showTime() { 
 	var currentDate = new Date(); 
 	var startDate = new Date(2016, 10, 25);
 	var date3 = currentDate-startDate;
@@ -14,7 +14,7 @@ function showTime() {
 	if (seconds < 10) 
 	seconds = "0" + seconds; 
 	var currentTimeString = "Sweatie~:<br>"
-		+ "I have been in love with you for:<br> "
+		+ "We have been together for:<br> "
 		+ "&nbsp&nbsp&nbsp&nbsp&nbsp"
 		+ "<c style=\"color: #CCFF99; text-shadow:2px 3px 3px #222; font-family:Microsoft YaHei; font-size:24px\" >" + days +" </c>day " 
 		+ "<c style=\"color: #CCFF99; text-shadow:2px 3px 3px #222; font-family:Microsoft YaHei; font-size:24px\" >" + hours+" </c>hour "
