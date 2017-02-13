@@ -26,7 +26,8 @@ body {
 	
 #myContent{
 	position:absolute;
-	left:80px;
+	text-align:center;
+	left:90px;
 	top:130px;
 	overflow:hidden;
 	text-shadow: 2px 3px 3px #000; 
