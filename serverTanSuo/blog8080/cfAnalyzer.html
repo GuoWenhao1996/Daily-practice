@@ -22,7 +22,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="split.html">split()</a></li>
         <li><a href="win_r.html">win+r</a></li>
-        <li><a href="monitor.html">monitor</a></li>
+        <li><a href="cfAnalyzer.html">词法分析器</a></li>
         <li><a href="elements.html">Elements</a></li>
     </ul>
 </nav>
@@ -37,34 +37,60 @@
             <h1>词法分析器</h1>
             <p class="info">2017-3-14 21:58:14 by <a href="index.html">郭某某</a></p>
         </header>
-        <p>在java.lang包中有String.split()方法,返回是一个数组.我在应用中用到一些,给大家总结一下,仅供大家参考:<br>
-            1、如果用“.”作为分隔的话,必须是如下写法,String.split("\\."),这样才能正确的分隔开,不能用String.split(".");<br>
-            2、如果用“|”作为分隔的话,必须是如下写法,String.split("\\|"),这样才能正确的分隔开,不能用String.split("|");“.”和“|”都是转义字符,必须得加"\\";<br>
-            3、如果在一个字符串中有多个分隔符,可以用“|”作为连字符,比如,“acount=? and uu =? or n=?”,把三个都分隔出来,可以用String.split("and|or");<br>
-            使用String.split方法分隔字符串时,分隔符如果用到一些特殊字符,可能会得不到我们预期的结果。 </p>
-        <p>我们看jdk doc中说明<br>
-            public String[] split(String regex)<br>
-            Splits this string around matches of the given regular expression.<br> 
-            参数regex是一个 regular-expression的匹配模式而不是一个简单的String,他对一些特殊的字符可能会出现你预想不到的结果,比如测试下面的代码用竖线 | 分隔字符串,你将得不到预期的结果。<br>
-			<textarea rows="5" cols="20" readonly="readonly">
-    String[] aa = "aaa|bbb|ccc".split("|");
-    //String[] aa = "aaa|bbb|ccc".split("\\|"); 这样才能得到正确的结果
-    for (int i = 0 ; i <aa.length ; i++ ){
-        System.out.println(aa[i]);
-    }</textarea></p>
-        <p>用竖 * 分隔字符串运行将抛出java.util.regex.PatternSyntaxException异常,用加号 + 也是如此。<br>
-						<textarea rows="5" cols="20" readonly="readonly">
-    String[] aa = "aaa*bbb*ccc".split("*");
-    //String[] aa = "aaa|bbb|ccc".split("\\*"); 这样才能得到正确的结果
-    for (int i = 0 ; i <aa.length ; i++ ) {
-        System.out.println(aa[i]);
-    }</textarea></p>
-        <p>显然, + * 不是有效的模式匹配规则表达式,用"\\*" "\\+"转义后即可得到正确的结果。<br>
-            "|" 分隔串时虽然能够执行,但是却不是预期的目的,"\\|"转义后即可得到正确的结果。<br>
-            还有如果想在串中使用"\"字符,则也需要转义.首先要表达"aaaa\bbbb"这个串就应该用"aaaa\\bbbb",如果要分隔就应该这样才能得到正确结果。<br>
-					<textarea rows="1" cols="20" readonly="readonly">
-            String[] aa = "aaa\\bbb\\bccc".split("\\\\");</textarea></p>
-        <p>以上内容参考<a target="_blank" href="http://www.cnblogs.com/mingforyou/archive/2013/09/03/3299569.html">残星</a>鸣谢！
+        <p><strong>※第一讲：词法分析的任务※</strong><br>
+            源程序->前端->中间表示<br>
+            中间表示->后端->目标机<br>
+            前端->源程序 词法分析器 记号流 语法分析器 抽象语法树 语义分析器 中间表示<br>
+            词法分析器任务：<br>
+            读入程序员写的程序，然后对字符流切分，转化为记号流。<br>
+            字符流到记号流<br>
+            字符流：和被编译的语言相关（ASCII,Unicode）<br>
+            ASCII:C<br>
+            Unicode:Java<br>
+            记号流：编译器内部定义的数据结构，编码所识别出的词法单元。<br>
+            关键字 字符流 回车符\n \r\n ASCII码是10 输入流 结束 EOF<br>
+            字母 单词 引号给整体一起<br>
+            记号 IDENT<br>
+            ·1数据结构定义<br>
+            enum kind { IF,LPAREN,ID,INTLIT, ...};<br>
+            struct token{<br>
+            enum kind k;<br>
+            char *lexeme;<br>
+            }<br>
+            ·2算法实现<br>
+            下一讲中讲
+        </p>
+        <p><strong>※第二讲：词法分析器的手工构造※</strong><br>
+            源程序->词法分析器->记号流->语法分析器->抽象语法树->语义分析器->中间表示<br>
+            词法分析器的任务：将字符流变成记号流<br>
+            词法分析器的实现方法，目前两种实现方案：<br>
+            1、手工编码实现法<br>
+            是目前比较流行的实现方法，但相对复杂容易出错<br>
+            目前成功例子：GCC、LLVM、......<br>
+            2、词法分析器的生成器<br>
+            可快速原型、代码量较少，但较难控制细节不便于优化<br>
+        <div class="image fit">
+            <img src="images/byyl1.png" alt=""/><br>
+            <img src="images/byyl2.png" alt=""/>
+        </div>
+            标识图<br>
+            a-zA-Z<br>
+            a-zA-Z0-9<br>
+            标识符与关键字<br>
+            从词法分析器的角度看，关键字是标识符的一部分<br>
+            以C语言为例：<br>
+            标识符：以字母或下划线开头，后面跟零个或多个字母、下划线、或数字<br>
+            关键字：if,while,else,...<br>
+            关键字表<br>
+            将关键字构建关键字哈希表H<br>
+            对所有的标识符和关键字，先统一按标识符的转移图进行识别<br>
+            识别完成后，进一步查看表H看是否是关键字<br>
+            哈希表H作用：完美哈希<br>
+            可以再O(1)时间内完成<br>
+        </p>
+        <p><strong>※第三讲：正则表达式※</strong></p>
+        <p><strong>※第四讲：有限状态自动机※</strong></p>
+        <p>以上内容学习自<a target="_blank" href="http://mooc.study.163.com/learn/USTC-1000002001?tid=2001332001#/learn/announce">网易云课堂</a>鸣谢！
         </p>
     </div>
 </section>
