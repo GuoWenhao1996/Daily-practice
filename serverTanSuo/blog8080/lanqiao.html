@@ -38,16 +38,393 @@
             <p class="info">2017-3-20 21:33:55 by <a href="index.html">郭某某</a></p>
         </header>
         <p><strong>※任务1 -> 算年龄※</strong><br>
-            未补充<br>
+            题目：
+            <textarea rows="10" cols="20" readonly="readonly">
+标题：算年龄
+
+英国数学家德摩根出生于19世纪初叶（即18xx年）。
+他年少时便很有才华。一次有人问他的年龄，他回答说：
+“到了x的平方那年，我刚好是x岁”。
+
+请你计算一下，德摩根到底出生在哪一年。
+题中的年龄指的是周岁。
+
+请填写表示他出生年份的四位数字，不要填写任何多余内容。</textarea>
+            <br>实现代码：<br>
+            <textarea rows="14" cols="20" readonly="readonly">
+public class Main {
+	public static void main(String[] args) {
+		int age = 0;
+		for (int i = 40; i < 50; i++) {
+			if (i * i / 100 == 18) {
+				age = i;
+				break;
+			}
+		}
+		System.out.println(age * age - age);
+	}
+}
+------------------------------------------------------------------------------------------------------------------------
+执行结果：1806</textarea>
+            <br>参考答案：<br>
+            <textarea rows="1" cols="20" readonly="readonly">
+1806</textarea>
         </p>
         <p><strong>※任务2 -> 猜算式※</strong><br>
-            未补充<br>
+            题目：
+            <textarea rows="30" cols="20" readonly="readonly">
+题目：猜算式
+
+你一定还记得小学学习过的乘法计算过程，比如：
+
+   273
+x   15
+------
+  1365
+  273
+------
+  4095
+
+请你观察如下的乘法算式
+
+    ***
+x   ***
+--------
+    ***
+   ***
+  ***
+--------
+  *****
+
+星号代表某位数字，注意这些星号中，
+0~9中的每个数字都恰好用了2次。
+(如因字体而产生对齐问题，请参看图p1.jpg)
+
+请写出这个式子最终计算的结果，就是那个5位数是多少？
+
+注意：只需要填写一个整数，不要填写任何多余的内容。比如说明文字。</textarea>
+        <div class="image fit">
+            <img src="images/lqb1.jpg" alt=""/>
+        </div>
+        <br>实现代码：<br>
+            <textarea rows="60" cols="20" readonly="readonly">
+import java.util.Arrays;
+
+public class Main {
+	public static void main(String[] args) {
+		int[] array = new int[20];
+		boolean keneng = false;
+		for (int i = 100; i < 999; i++) {
+			for (int j = 100; j < 999; j++) {
+				keneng = true;
+				int num = i * j;
+				if (num > 99999)
+					break;
+				array[0] = i / 100;
+				array[1] = i % 100 / 10;
+				array[2] = i % 10;
+
+				array[3] = j / 100;
+				array[4] = j % 100 / 10;
+				array[5] = j % 10;
+
+				int num1 = i * array[5];
+				if (num1 > 999)
+					continue;
+				int num2 = i * array[4];
+				if (num2 > 999)
+					continue;
+				int num3 = i * array[3];
+				if (num3 > 999)
+					continue;
+				array[6] = num / 10000;
+				array[7] = num % 10000 / 1000;
+				array[8] = num % 1000 / 100;
+				array[9] = num % 100 / 10;
+				array[10] = num % 10;
+
+				array[11] = num1 / 100;
+				array[12] = num1 % 100 / 10;
+				array[13] = num1 % 10;
+				array[14] = num2 / 100;
+				array[15] = num2 % 100 / 10;
+				array[16] = num2 % 10;
+				array[17] = num3 / 100;
+				array[18] = num3 % 100 / 10;
+				array[19] = num3 % 10;
+				Arrays.sort(array);
+				for (int k = 2; k < 20; k++) {
+					if (array[k] == array[k - 1] && array[k] == array[k - 2]) {
+						keneng = false;
+						break;
+					}
+				}
+				if (keneng) {
+					System.out.println(num);
+				}
+			}
+		}
+	}
+}
+------------------------------------------------------------------------------------------------------------------------
+执行结果：40096</textarea>
+        <br>参考答案：<br>
+            <textarea rows="33" cols="20" readonly="readonly">
+40096
+
+#include <bits/stdc++.h>
+using namespace std;
+int n;
+int a[6];
+int pd(){
+	int p[20]={0};
+	for(int i=0;i<6;i++){
+		int k=0;
+		while(a[i]){
+			p[a[i]%10]++;
+			if(p[a[i]%10]>2)return 0;
+			a[i]/=10;
+			k++;
+		}
+		if(k<3) return 0;
+	}
+	return 1;
+}
+int main()
+{
+	for(int i=100;i<=999;i++)
+		for(int j=100;j<=999;j++){
+			a[0]=(j%10)*i;a[1]=(j/10%10)*i;  //a保存每一个状态的信息
+			a[2]=(j/100)*i;a[3]=i*j;
+			a[4]=i;a[5]=j;
+			if(pd()){  //判断是否满足条件
+				cout<<i*j<<" ";
+			}
+		}
+	return 0;
+}</textarea>
         </p>
         <p><strong>※任务3 -> 排列序数※</strong><br>
-            未补充<br>
+            题目：
+            <textarea rows="22" cols="20" readonly="readonly">
+标题： 排列序数
+
+X星系的某次考古活动发现了史前智能痕迹。
+这是一些用来计数的符号，经过分析它的计数规律如下：
+（为了表示方便，我们把这些奇怪的符号用a~q代替）
+
+abcdefghijklmnopq 表示0
+abcdefghijklmnoqp 表示1
+abcdefghijklmnpoq 表示2
+abcdefghijklmnpqo 表示3
+abcdefghijklmnqop 表示4
+abcdefghijklmnqpo 表示5
+abcdefghijklmonpq 表示6
+abcdefghijklmonqp 表示7
+.....
+
+在一处石头上刻的符号是：
+bckfqlajhemgiodnp
+
+请你计算出它表示的数字是多少？
+
+请提交该整数，不要填写任何多余的内容，比如说明或注释。</textarea>
+            <br>实现代码：<br>
+            <textarea rows="31" cols="20" readonly="readonly">
+public class Main {
+	static String ss = "abcdefghijklmnopq";
+	static char s[] = ss.toCharArray();
+	static long[] fc = new long[18];
+	static int[] flag = new int[115];
+
+	static int f(int b) {
+		int sum = 0;
+		for (int i = 'a'; i < b; i++) {
+			if (flag[i] == 0)
+				sum++;
+		}
+		flag[b] = 1;
+		return sum;
+	}
+
+	public static void main(String[] args) {
+		String pp = "bckfqlajhemgiodnp";
+		char[] p = pp.toCharArray();
+		fc[1] = 1;
+		for (int i = 2; i < 18; i++) // 求阶乘
+			fc[i] = fc[i - 1] * i;
+		long sum = 0;
+		for (int i = 0; i < s.length - 1; i++) { // 求每一位对应的值
+			sum += fc[s.length - 1 - i] * (f(p[i]));
+		}
+		System.out.println(sum);
+	}
+}
+------------------------------------------------------------------------------------------------------------------------
+执行结果：22952601027516</textarea>
+            <br>参考答案：<br>
+            <textarea rows="28" cols="20" readonly="readonly">
+22952601027516
+
+#include <bits/stdc++.h>
+using namespace std;
+char s[]="abcdefghijklmnopq";
+long long fc[18];
+int flag[105];
+int f(int b){
+	int sum=0;
+	for(int i='a';i<b;i++)
+		if(flag[i]==0)sum++;
+	flag[b]=1;
+	return sum;
+}
+int main()
+{
+	char p[]="bckfqlajhemgiodnp";
+	fc[1]=1;
+	for(long long i=2;i<18;i++)  //求阶层
+		fc[i]=fc[i-1]*i;
+	int len=strlen(s);
+	long long sum=0;
+	for(int i=0;i<len-1;i++){   //求每一位对应的值
+		sum+=fc[len-1-i]*(f(p[i]));
+	}
+	cout<<sum<<endl;
+	return 0;
+} </textarea>
         </p>
         <p><strong>※任务4 -> 字符串比较※</strong><br>
-            未补充<br>
+            题目：
+            <textarea rows="82" cols="20" readonly="readonly">
+标题：字符串比较
+
+我们需要一个新的字符串比较函数compare(s1, s2).
+对这个函数要求是：
+1. 它返回一个整数，表示比较的结果。
+2. 结果为正值，则前一个串大，为负值，后一个串大，否则，相同。
+3. 结果的绝对值表示：在第几个字母处发现了两个串不等。
+
+下面是代码实现。对题面的数据，结果为：
+-3
+2
+5
+
+仔细阅读源程序，填写划线位置缺少的代码。
+
+-------------------------------------------------
+Java语言代码：
+
+static int compare(String s1, String s2)
+{
+	if(s1==null && s2==null) return 0;
+	if(s1==null) return -1;
+	if(s2==null) return 1;
+
+	if(s1.isEmpty() && s2.isEmpty()) return 0;
+	if(s1.isEmpty()) return -1;
+	if(s2.isEmpty()) return 1;
+
+	char x = s1.charAt(0);
+	char y = s2.charAt(0);
+
+	if(x<y) return -1;
+	if(x>y) return 1;
+
+	int t = compare(s1.substring(1),s2.substring(1));
+	if(t==0) return 0;
+
+	return ____________________ ; //填空位置
+}
+
+public static void main(String[] args)
+{
+	System.out.println(compare("abc", "abk"));
+	System.out.println(compare("abc", "a"));
+	System.out.println(compare("abcde", "abcda"));
+}
+
+---------------------------
+C/C++ 语言代码：
+int compare(const char* s1, const char* s2)
+{
+	if(s1==NULL && s2==NULL) return 0;
+	if(s1==NULL) return -1;
+	if(s2==NULL) return 1;
+
+	if(*s1 == 0 && *s2== 0) return 0;
+	if(*s1 == 0) return -1;
+	if(*s2 == 0) return 1;
+
+	if(*s1<*s2) return -1;
+	if(*s1>*s2) return 1;
+
+	int t = compare(s1+1,s2+1);
+	if(t==0) return 0;
+
+	return __________________________; //填空位置
+}
+
+
+int main()
+{
+	printf("%d\n", compare("abc","abk"));
+	printf("%d\n", compare("abc","a"));
+	printf("%d\n", compare("abcde","abcda"));
+	return 0;
+}
+
+注意：
+只提交划线部分缺少的代码，不要包含已经存在的代码或符号。
+也不要画蛇添足地写出任何注释或说明性文字。
+
+注意选择你所使用的语言。</textarea>
+            <br>实现代码：<br>
+            <textarea rows="42" cols="20" readonly="readonly">
+public class Main {
+	static int compare(String s1, String s2) {
+		if (s1 == null && s2 == null)
+			return 0;
+		if (s1 == null)
+			return -1;
+		if (s2 == null)
+			return 1;
+
+		if (s1.isEmpty() && s2.isEmpty())
+			return 0;
+		if (s1.isEmpty())
+			return -1;
+		if (s2.isEmpty())
+			return 1;
+
+		char x = s1.charAt(0);
+		char y = s2.charAt(0);
+
+		if (x < y)
+			return -1;
+		if (x > y)
+			return 1;
+
+		int t = compare(s1.substring(1), s2.substring(1));
+		if (t == 0)
+			return 0;
+
+		return t > 0 ? ++t : --t; // 填空位置
+	}
+
+	public static void main(String[] args) {
+		System.out.println(compare("abc", "abk"));
+		System.out.println(compare("abc", "a"));
+		System.out.println(compare("abcde", "abcda"));
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------
+执行结果：-3
+          2
+          5</textarea>
+            <br>参考答案：<br>
+            <textarea rows="1" cols="20" readonly="readonly">
+t>0?t+1:t-1</textarea>
         </p>
         <p><strong>※任务5 -> 还款计算※</strong><br>
             未补充<br>
