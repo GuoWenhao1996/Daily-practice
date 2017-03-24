@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>split()</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+    <a href="index.html" class="logo"><strong>gwhcool</strong></a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cfAnalyzer.html">词法分析器Part1</a></li>
+        <li><a href="cfAnalyzer2.html">词法分析器Part2</a></li>
+        <li><a href="elements.html">Elements</a></li>
+    </ul>
+</nav>
+
+<!-- Main -->
+<section id="main">
+    <div class="inner">
+        <div class="image fit">
+            <img src="images/pic11.jpg" alt=""/>
+        </div>
+        <header>
+            <h1>词法分析器Part2</h1>
+            <p class="info">2017-3-24 15:52:34 by <a href="index.html">郭某某</a></p>
+        </header>
+        <p><strong>※第一讲：RE转换成NFA：Thompson算法※</strong><br>
+            RE->NFA->DFA->词法分析器代码<br>
+            ·····1········2·········3···························<br>
+            1.Thompson算法<br>
+            2.子集构造算法<br>
+            3.Hopcroft最小化算法<br>
+            声明式的规范（如：RE正则表达式）<br>
+            Thompson算法：<br>
+            数学归纳法<br>
+            直接构造：<br>
+                e->""<br>
+                e->c<br>
+            递归构造：<br>
+                e->e1e2<br>
+                e->e1|e2<br>
+                e->e1*<br>
+        <div class="image fit">
+            <img src="images/byyl8.png" alt=""/><br>
+            <img src="images/byyl9.png" alt=""/>
+        </div>
+        a(b|c)*<br>
+        先括号<br>
+        再闭包<br>
+        再连接<br>
+        再选择
+        <div class="image fit">
+            <img src="images/byyl10.png" alt=""/>
+        </div>
+        </p>
+        <p><strong>※第二讲：NFA转换成DFA：子集构造算法※</strong><br>
+
+        </p>
+        <p><strong>※第三讲：DFA的最小化：Hopcroft最小化算法※</strong>
+
+        </p>
+        <p><strong>※第四讲：从DFA生成分析算法※</strong>
+
+        </p>
+        <p>以上内容学习自<a target="_blank"
+                     href="http://mooc.study.163.com/learn/USTC-1000002001?tid=2001332001#/learn/announce">网易云课堂</a>鸣谢！
+        </p>
+    </div>
+</section>
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="https://github.com/GuoWenhao1996" class="icon fa-github"><span class="label">Github</span></a></li>
+    </ul>
+    <div class="copyright">Copyright &copy; 2016.Company name All rights reserved.<a target="_blank"
+                                                                                     href="http://sc.chinaz.com/moban/">
+        &#x7F51;&#x9875;&#x6A21;&#x677F;</a></div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
