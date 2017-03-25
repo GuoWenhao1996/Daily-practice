@@ -46,12 +46,12 @@
             Thompson算法：<br>
             数学归纳法<br>
             直接构造：<br>
-                e->""<br>
-                e->c<br>
+            e->""<br>
+            e->c<br>
             递归构造：<br>
-                e->e1e2<br>
-                e->e1|e2<br>
-                e->e1*<br>
+            e->e1e2<br>
+            e->e1|e2<br>
+            e->e1*<br>
         <div class="image fit">
             <img src="images/byyl8.png" alt=""/><br>
             <img src="images/byyl9.png" alt=""/>
@@ -66,7 +66,45 @@
         </div>
         </p>
         <p><strong>※第二讲：NFA转换成DFA：子集构造算法※</strong><br>
-
+            RE->NFA->DFA->词法分析器代码
+            这一讲主要讨论子集构造算法 NFA->DFA
+            大量的数学公式、数据结构、算法
+            算法思想：
+            a(b|c)*
+        <div class="image fit">
+            <img src="images/byyl11.png" alt=""/>
+        </div>
+        讨论：
+        不动点算法
+        ·算法为什么能够运行终止？
+        答：若干集合组合，
+        Q={{...},{...},{...},{...},...}
+        Q总会被填满，上限为2^N
+        时间复杂度
+        最坏情况O(2^N)
+        但在实际中不经常发生，因为并不是每个子集都会出现在Q中。
+        举例：
+        <div class="image fit">
+            <img src="images/byyl12.png" alt=""/>
+        </div>
+        闭包计算：深度优先
+        算法(基于深度优先)：
+        <div class="image fit">
+            <img src="images/byyl13.png" alt=""/>
+        </div>
+        算法(基于宽度优先)：
+        <div class="image fit">
+            <img src="images/byyl14.png" alt=""/>
+        </div>
+        具体示例：
+        <div class="image fit">
+            <img src="images/byyl15.png" alt=""/>
+        </div>
+        子集构造算法：不停构造集合，每个集合都是确定自动机的一个状态
+        子集构造算法会产生工作表，因此也叫工作表算法。
+        <div class="image fit">
+            <img src="images/byyl16.png" alt=""/>
+        </div>
         </p>
         <p><strong>※第三讲：DFA的最小化：Hopcroft最小化算法※</strong>
 
