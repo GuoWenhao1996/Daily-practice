@@ -130,7 +130,35 @@
         </div>
         </p>
         <p><strong>※第四讲：从DFA生成分析算法※</strong>
-
+            RE->NFA->DFA->词法分析器代码<br>
+            这一讲主要讨论从DFA生成分析算法<br>
+            生成数据结构<br>
+            概念上讲，DFA是一个有向图<br>
+            实际上，有不同的DFA的代码表示：<br>
+            转移表（类似于邻接矩阵）<br>
+            哈希表<br>
+            跳转表<br>
+            。。。<br>
+            取决于在实际实现中，对时间空间的权衡<br>
+        <h4>&转移表&</h4>
+        <div class="image fit">
+            <img src="images/byyl21.png" alt=""/>
+        </div>
+        驱动代码
+        <div class="image fit">
+            <img src="images/byyl22.png" alt=""/>
+        </div>
+        最长匹配（尽可能往 前读）
+        <div class="image fit">
+            <img src="images/byyl23.png" alt=""/>
+        </div>
+        <h4>&跳转表&</h4>
+        <div class="image fit">
+            <img src="images/byyl24.png" alt=""/>
+        </div>
+        转移表：占内存<br>
+        跳转表：效率高<br>
+        按实际场景需求确定
         </p>
         <p>以上内容学习自<a target="_blank"
                      href="http://mooc.study.163.com/learn/USTC-1000002001?tid=2001332001#/learn/announce">网易云课堂</a>鸣谢！
