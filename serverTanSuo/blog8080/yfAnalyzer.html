@@ -38,16 +38,96 @@
             <h1>语法分析器Part1</h1>
             <p class="info">2017-3-31 17:10:04 by <a href="index.html">郭某某</a></p>
         </header>
-        <p><strong>※第一讲：-----※</strong>
+        <p><strong>※第一讲：语法分析器的任务※</strong><br>
+            语法分析器是前端比较核心的某块，负责语法部分，产生核心数据结构<br>
+            生成抽象语法树<br>
+            记号流->语法分析器（根据语法规则）->语法树
+        <div class="image fit">
+            <img src="images/byyl25.png" alt=""/>
+        </div>
+        例子：语法错误反馈
+        <div class="image fit">
+            <img src="images/byyl26.png" alt=""/>
+        </div>
+        例子：语法树的构建（大概结构）
+        <div class="image fit">
+            <img src="images/byyl27.png" alt=""/>
+        </div>
+        本章学习路线<br>
+        数学理论：上下文无关文法（CFG）<br>
+        -描述语言与法规则的教学工具<br>
+        自顶向下分析：<br>
+        -※递归下降分析算法（预测分析算法）<br>
+        -※LL分析算法<br>
+        自底向上分析：<br>
+        -LR分析算法<br>
+        </p>
+        <p><strong>※第二讲：上下文无关文法和推导※</strong><br>
+            记号流->语法分析器（根据语法规则）->语法树<br>
+            那么语法规则是什么？<br>
+            上下文无关文法历史背景<br>
+            乔姆斯基文法体系<br>
+            <img src="images/byyl28.png" alt=""/><br>
+            3-正则文法-词法<br>
+            2-上下文无关文法-语言语法<br>
+            1-上下文有关文法-没有广泛应用<br>
+            0-任意文法-没有广泛应用
+        <div class="image fit">
+            <img src="images/byyl29.png" alt=""/>
+        </div>
+        示例：<br>
+        自然语言中的句子的典型结构：<br>
+        主语-谓语-宾语<br>
+        名词-动词-名词<br>
+        名词：{羊、老虎、草、水}<br>
+        动词：{吃、喝}<br>
+        句子（规则）：羊吃草、老虎喝水<br>
+        规则：造句规则、逻辑规则<br>
+        <br>
+        形式化<br>
+        S->N V N<br>
+        N->s|t|g|w<br>
+        V->e|d<br>
+        非终结符：{S,N,V}<br>
+        终结符：{s,t,g,w,e,d}<br>
+        开始负号：S<br>
+        <br>
+        上下文无关文法G是一个四元组：G=(T,N,P,S)<br>
+        T:终结符集合<br>
+        N:非终结符集合<br>
+        P:一组产生式规则集合<br>
+        注：每条规则的形式:X->B1 B2 ... Bn 其中X∈N,Bi∈(T U N)<br>
+        S:唯一的开始符号（非终结符）S∈N<br>
+        <br>
+        上下文无关文法的例子1
+        <div class="image fit">
+            <img src="images/byyl30.png" alt=""/>
+        </div>
+        上下文无关文法的例子2
+        <div class="image fit">
+            <img src="images/byyl31.png" alt=""/>
+        </div>
+        推导：<br>
+        给定文法G，从G的开始符号S开始，用产生式的右部替换左侧的非终结符；<br>
+        此过程不断重复，直到不出现非终结符为止；<br>
+        最终的串称为句子。<br>
+        S->N V N->N d N->N d g->t d g<br>
+        <br>
+        最左推导<br>
+        每次总是选择最左侧的符号进行替换<br>
+        S->N V N->t V N->t d N->t d g<br>
+        <br>
+        最右推导<br>
+        每次总是选择最右侧的符号进行替换<br>
+        S->N V N->N V g->N d g->t d g
+        </p>
+        <p><strong>※第三讲：分析树和二义性文法※</strong>
 
         </p>
-        <p><strong>※第二讲：-----※</strong>
+        <p><strong>※第四讲：自顶向下分析※</strong>
 
         </p>
-        <p><strong>※第三讲：-----※</strong>
-
-        </p>
-        <p><strong>※第四讲：-----※</strong>
+        <p><strong>※第五讲：递归下降分析算法※</strong>
 
         </p>
         <p>以上内容学习自<a target="_blank"
