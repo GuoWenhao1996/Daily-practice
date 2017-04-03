@@ -122,7 +122,31 @@
         S->N V N->N V g->N d g->t d g
         </p>
         <p><strong>※第三讲：分析树和二义性文法※</strong>
+        <div class="image fit">
+            <img src="images/byyl32.png" alt=""/>
+        </div>
+        分析树<br>
+        #推导可以表达成树状结构<br>
+        ##和推导所用的顺序无关（最左、最有、其他）<br>
+        #特点：<br>
+        ##树中的每个内部节点代表非终结符<br>
+        ##每个叶子结点代表终结符<br>
+        ##每一步推导代表如何从双亲节点生成他的直接孩子结点<br>
 
+        表达式的例子
+        <div class="image fit">
+            <img src="images/byyl33.png" alt=""/>
+        </div>
+        分析树
+        <div class="image fit">
+            <img src="images/byyl34.png" alt=""/>
+        </div>
+        二义性文法<br>
+        #给定文法G，如果存在句子s，他有两颗不同的分析树，那么称G是二义性文法<br>
+        #从编译器角度，二义性文法存在问题：<br>
+        ##同一个程序会员不同的含义<br>
+        ##因此程序运行结果不是唯一的<br>
+        #解决方案：文法的重写
         </p>
         <p><strong>※第四讲：自顶向下分析※</strong>
 
