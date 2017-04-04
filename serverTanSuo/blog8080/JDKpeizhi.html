@@ -43,16 +43,22 @@
         <p>
         <h3>1、创建JAVA_HOME</h3>
         ①、右键我的电脑->属性(或者：控制面板->系统和安全->系统)->高级系统设置->高级->环境变量<br>
-        <img src="images/JDKPZ1.png" alt=""/><br>
+        <div class="image fit">
+            <img src="images/JDKPZ1.png" alt=""/><br>
+        </div>
         ②、在系统变量下新建一个环境变量：<br>
         变量名为：【JAVA_HOME】<br>
         变量值为：【你的安装路径】，如：【C:\Java\jdk1.8.0_65】。<br>
-        <img src="images/JDKPZ2.png" alt=""/><br>
+        <div class="image fit">
+            <img src="images/JDKPZ2.png" alt=""/><br>
+        </div>
         </p>
         <p>
         <h3>2、修改环境变量Path</h3>
         一般情况下Path是存在的，只需在原先的path变量值后添加【;%JAVA_HOME%\bin;】，注意分号，以及全角半角。<br>
-        <img src="images/JDKPZ3.png" alt=""/><br>
+        <div class="image fit">
+            <img src="images/JDKPZ3.png" alt=""/><br>
+        </div>
         </p>
         <p>
         <h3>3、创建环境变量CLASSPATH</h3>
@@ -60,13 +66,17 @@
         如果环境变量CLASSPATH不存在，就自己新建一个环境变量：<br>
         变量名为：【CLASSPATH】<br>
         变量值为：【.;%JAVA_HOME%\lib\tools.jar】<br>
-        <img src="images/JDKPZ4.png" alt=""/><br>
+        <div class="image fit">
+            <img src="images/JDKPZ4.png" alt=""/><br>
+        </div>
         </p>
         <h3>测试</h3>
         打开DOS窗口，输入【java -version】，如果出现类似于下图信息，则说明配置成功；如果不是，那就仔细检查，重新配置。<br>
-        <img src="images/JDKPZ5.png" alt=""/><br>
+        <div class="image fit">
+            <img src="images/JDKPZ5.png" alt=""/><br>
+        </div>
         </p>
-        <p>以上内容参考<a target="_blank" href="#">教材</a>鸣谢！
+        <p>以上内容参考<a target="_blank" href="http://www.ptpress.com.cn/Book.aspx?id=17393">Java语言程序设计[人民邮电出版社]</a>鸣谢！
         </p>
     </div>
 </section>
