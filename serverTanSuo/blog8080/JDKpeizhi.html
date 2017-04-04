@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>JDK配置</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+    <a href="index.html" class="logo"><strong>gwhcool</strong></a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="win_r.html">win+r</a></li>
+        <li><a href="XXNet_AppID.html">XX-Net AppID</a></li>
+        <li><a href="JDKpeizhi.html">windows下配置JDK</a></li>
+        <li><a href="elements.html">Elements</a></li>
+    </ul>
+</nav>
+
+<!-- Main -->
+<section id="main">
+    <div class="inner">
+        <div class="image fit">
+            <img src="images/pic11.jpg" alt=""/>
+        </div>
+        <header>
+            <h1>windows下配置JDK</h1>
+            <p class="info">2017-4-4 14:47:51 by <a href="index.html">郭某某</a></p>
+        </header>
+        <p>
+        <h3>配置前提</h3>
+        机器上已经安装上了JDK和JRE，并且知道JDK的完整安装路径。如：C:\Java\jdk1.8.0_65</p>
+        <p>
+        <h3>1、创建JAVA_HOME</h3>
+        ①、右键我的电脑->属性(或者：控制面板->系统和安全->系统)->高级系统设置->高级->环境变量<br>
+        <img src="images/JDKPZ1.png" alt=""/><br>
+        ②、在系统变量下新建一个环境变量：<br>
+        变量名为：【JAVA_HOME】<br>
+        变量值为：【你的安装路径】，如：【C:\Java\jdk1.8.0_65】。<br>
+        <img src="images/JDKPZ2.png" alt=""/><br>
+        </p>
+        <p>
+        <h3>2、修改环境变量Path</h3>
+        一般情况下Path是存在的，只需在原先的path变量值后添加【;%JAVA_HOME%\bin;】，注意分号，以及全角半角。<br>
+        <img src="images/JDKPZ3.png" alt=""/><br>
+        </p>
+        <p>
+        <h3>3、创建环境变量CLASSPATH</h3>
+        一般情况下CLASSPATH不存在，要自己创建，但是如果是存在的，直接在变量值后添加【.;%JAVA_HOME%\lib\tools.jar】就好。<br>
+        如果环境变量CLASSPATH不存在，就自己新建一个环境变量：<br>
+        变量名为：【CLASSPATH】<br>
+        变量值为：【.;%JAVA_HOME%\lib\tools.jar】<br>
+        <img src="images/JDKPZ4.png" alt=""/><br>
+        </p>
+        <h3>测试</h3>
+        打开DOS窗口，输入【java -version】，如果出现类似于下图信息，则说明配置成功；如果不是，那就仔细检查，重新配置。<br>
+        <img src="images/JDKPZ5.png" alt=""/><br>
+        </p>
+        <p>以上内容参考<a target="_blank" href="#">教材</a>鸣谢！
+        </p>
+    </div>
+</section>
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="https://github.com/GuoWenhao1996" class="icon fa-github"><span class="label">Github</span></a></li>
+    </ul>
+    <div class="copyright">Copyright &copy; 2016.Company name All rights reserved.<a target="_blank"
+                                                                                     href="http://sc.chinaz.com/moban/">
+        &#x7F51;&#x9875;&#x6A21;&#x677F;</a></div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
