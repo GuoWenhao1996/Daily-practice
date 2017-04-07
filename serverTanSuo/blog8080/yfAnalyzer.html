@@ -146,13 +146,85 @@
         #从编译器角度，二义性文法存在问题：<br>
         ##同一个程序会员不同的含义<br>
         ##因此程序运行结果不是唯一的<br>
-        #解决方案：文法的重写
+        #解决方案：文法的重写<br>
+        表达式文法重写的例子1：<br>
+        <div class="image fit">
+            <img src="images/byyl35.png" alt=""/>
+        </div>
+        表达式文法重写的例子2：<br>
+        <div class="image fit">
+            <img src="images/byyl36.png" alt=""/>
+        </div>
         </p>
         <p><strong>※第四讲：自顶向下分析※</strong>
-
+            记号流->语法分析器（根据语法规则）->语法树<br>
+            这一节主要讨论语法分析器内部如何实现<br>
+            自顶向下分析的算法思想<br>
+            #语法分析：给定文法G和句子s，回答s是否能够从G推导出来？<br>
+            #基本算法思想：从G的开始符号出发，随意推导出某个句子t，比较t和s<br>
+            ##若t==s，则回答“是”<br>
+            ##若t!=s，则？不能果断的回答否，需要回溯，不断判断<br>
+            #因为这是从开始符号出发推出句子，因此称为自顶向下分析<br>
+            ##对应于语法分析树自顶向下的构造顺序<br>
+            <br>
+            示例：<br>
+        <div class="image fit">
+            <img src="images/byyl37.png" alt=""/>
+        </div>
+        <br>
+        算法(伪代码)：<br>
+        <div class="image fit">
+            <img src="images/byyl38.png" alt=""/>
+        </div>
+        <br>
+        算法讨论：<br>
+        #算法需要用到回溯<br>
+        ##给分析效率带来问题<br>
+        #而就这部分而言（就所有部分），编译器必须搞笑<br>
+        ##编译上千万行的内核等程序<br>
+        #因此，实际上我们需要线性时间的算法<br>
+        ##避免回溯<br>
+        ##引出递归下降分析算法和LL(1)分析算法<br>
+        <br>
+        递归下降分析算法和LL(1)分析算法核心思想示例<br>
+        用前看符号避免回溯<br>
+        <div class="image fit">
+            <img src="images/byyl39.png" alt=""/>
+        </div>
         </p>
         <p><strong>※第五讲：递归下降分析算法※</strong>
-
+            递归下降分析算法是自顶向下算法的一个例子<br>
+            #也成为预测分析<br>
+            ##分析高效（线性时间）<br>
+            ##容易实现（方便手工编码）<br>
+            ##错误定位和诊断信息准确<br>
+            ##被很多开源和商业编译器所采用<br>
+            ###GCC4.0,LLVM,...<br>
+            #算法基本思想<br>
+            ##每个非终结符构造一个分析函数<br>
+            ##用前看符号指导产生式规则的选择<br>
+            <br>
+            示例：<br>
+        <div class="image fit">
+            <img src="images/byyl40.png" alt=""/>
+        </div>
+        <br>
+        算法代码：<br>
+        <div class="image fit">
+            <img src="images/byyl41.png" alt=""/>
+        </div>
+        <br>
+        一般算法框架：<br>
+        <div class="image fit">
+            <img src="images/byyl42.png" alt=""/>
+        </div>
+        <br>
+        对算数表达式的递归下降分析<br>
+        <div class="image fit">
+            <img src="images/byyl43.png" alt=""/>
+        </div>
+        对算数表达式的递归下降算法<br>
+        <img src="images/byyl44.png" alt=""/>
         </p>
         <p>以上内容学习自<a target="_blank"
                      href="http://mooc.study.163.com/learn/USTC-1000002001?tid=2001332001#/learn/announce">网易云课堂</a>鸣谢！
