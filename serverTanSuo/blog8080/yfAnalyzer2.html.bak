@@ -36,7 +36,7 @@
         </div>
         <header>
             <h1>语法分析器Part2</h1>
-            <p class="info">2017-4-8 21:13:24 by <a href="index.html">郭某某</a></p>
+            <p class="info">2017-3-31 17:10:13 by <a href="index.html">郭某某</a></p>
         </header>
         <p><strong>※第一讲：LL(1)分析算法※</strong>
             记号流->语法分析器（语言的语法规则）->语法树<br>
