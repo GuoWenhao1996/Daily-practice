@@ -39,6 +39,39 @@
             <p class="info">2017-3-31 17:10:13 by <a href="index.html">郭某某</a></p>
         </header>
         <p><strong>※第一讲：LL(1)分析算法※</strong>
+            记号流->语法分析器（语言的语法规则）->语法树<br>
+            记号流在需要时调用<br>
+            语法分析器回答（Y/N-ERROR）<br>
+            自动生成技术：声明式规范（上下文无关文法）->工具->语法分析器<br>
+            减轻程序员工作，因为语法分析器这个工作量太庞大<br>
+            目前流行的工具：ANTLR[LL(1)]、YACC、bison、CVP<br>
+        <div class="image fit">
+            <img src="images/byyl45.png" alt=""/>
+        </div>
+        <br>
+        LL(1)分析算法<br>
+        #从左(L)向右读入程序，最左(L)推导，采用一个(1)前看符号（判断）<br>
+        ##分析高效（线性时间）<br>
+        ##错误定位和诊断信息准确<br>
+        ##有很多开源或商业的生成工具<br>
+        ###ANTLR,...<br>
+        #算法基本思想<br>
+        ##表驱动的分析算法<br>
+        <br>
+        表驱动的LL分析器架构<br>
+        <div class="image fit">
+            <img src="images/byyl46.png" alt=""/>
+        </div>
+        <br>
+        回顾自顶向下分析算法<br>
+        <div class="image fit">
+            <img src="images/byyl47.png" alt=""/>
+        </div>
+        <br>
+        LL(1)分析表<br>
+        <div class="image fit">
+            <img src="images/byyl48.png" alt=""/>
+        </div>
 
         </p>
         <p><strong>※第二讲：LL(1)分析的冲突处理※</strong>
