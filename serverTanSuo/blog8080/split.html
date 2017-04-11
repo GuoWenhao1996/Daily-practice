@@ -50,15 +50,15 @@
     String[] aa = "aaa|bbb|ccc".split("|");
     //String[] aa = "aaa|bbb|ccc".split("\\|"); 这样才能得到正确的结果
     for (int i = 0 ; i <aa.length ; i++ ){
-        System.out.println(aa[i]);
-    }</textarea></p>
+                                  System.out.println(aa[i]);
+                                  }</textarea></p>
         <p>用竖 * 分隔字符串运行将抛出java.util.regex.PatternSyntaxException异常,用加号 + 也是如此。<br>
 						<textarea rows="5" cols="20" readonly="readonly">
     String[] aa = "aaa*bbb*ccc".split("*");
     //String[] aa = "aaa|bbb|ccc".split("\\*"); 这样才能得到正确的结果
     for (int i = 0 ; i <aa.length ; i++ ) {
-        System.out.println(aa[i]);
-    }</textarea></p>
+                                  System.out.println(aa[i]);
+                                  }</textarea></p>
         <p>显然, + * 不是有效的模式匹配规则表达式,用"\\*" "\\+"转义后即可得到正确的结果。<br>
             "|" 分隔串时虽然能够执行,但是却不是预期的目的,"\\|"转义后即可得到正确的结果。<br>
             还有如果想在串中使用"\"字符,则也需要转义.首先要表达"aaaa\bbbb"这个串就应该用"aaaa\\bbbb",如果要分隔就应该这样才能得到正确结果。<br>
@@ -76,9 +76,10 @@
         <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
         <li><a href="https://github.com/GuoWenhao1996" class="icon fa-github"><span class="label">Github</span></a></li>
     </ul>
-    <div class="copyright">Copyright &copy; 2016.Company name All rights reserved.<a target="_blank"
-                                                                                     href="http://sc.chinaz.com/moban/">
-        &#x7F51;&#x9875;&#x6A21;&#x677F;</a></div>
+    <div class="copyright">Template reference from <a target="_blank" href="http://sc.chinaz.com/moban/">ChinaZ</a>
+        extremely grateful!<br>
+        Copyright &copy; 2017.<a target="_blank" href="http://gwhcool.cn:8080">gwhcool</a> All rights reserved.
+    </div>
 </footer>
 
 <!-- Scripts -->
