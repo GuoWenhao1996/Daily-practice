@@ -86,37 +86,237 @@
                     ===============================================<br>
                     下午：<br>
                     ===============================================<br>
-
-
-
-
-
-                    ===============================================<br>
-                    晚上：<br>
-                    ===============================================<br>
-
-
-
-
-
-
-
-
-
-                    ===============================================<br>
-                    下节课内容：<br>
-                    ===============================================<br>
-
-
-
-
-
-                    ===============================================<br>
-                    任务：<br>
-                    ===============================================<br>
+                    上班是件很愉快的事，只要肯做，轻松加愉快<br>
+                    <br>
+                    今天讲java基础<br>
+                    漏洞就是写代码的人基础不扎实，让别人有空子可钻<br>
+                    <br>
+                    数据库<br>
+                    数据查询语言DQL<br>
+                    数据操纵语言DML<br>
+                    数据定义语言DDL<br>
+                    数据控制语言DCL<br>
+                    点击<a href="http://blog.csdn.net/tomatofly/article/details/5949070">这里</a>查看详细内容<br>
+                    <br>
+                    观察者模式：<br>
+                    例子1：<br>
+                    淘宝-打开网址-访问淘宝<br>
+                    假如淘宝里有10个商品->添加了一个->变成了11个<br>
+                    那么如何让用户及时发现商品变成了11个（不能关闭页面重新打开）<br>
+                    例子2：<br>
+                    直播->关注主播->主播如何及时发现谁关注了他？<br>
+                    <br>
+                    自己要多悟悟<br>
+                    <br>
+                    线程、进程：<br>
+                    时间太快被遗忘<br>
+                    没有绝对同时、也没有绝对不同时<br>
+                    <br>
+                    -------------------正文------------------------<br>
+                    <br><br><br><br><br>
                 <pre class="prettyprint lang-cs">代码示例：
-
+		/**
+		 * 输出
+		 */
+		System.out.println("111");
+		int a = 1;
+		int A = 1;
+		int 0a = 1;
                 </pre>
+                <pre class="prettyprint lang-cs">代码示例：
+		/**
+		 * 声明变量 与 强制转换
+		 */
+		// // 声明变量 数据类型 变量名 = 实例变量
+		int a = 1;
+		// byte b = a;
+		// error:Type mismatch: cannot convert from int to byte
+		// 强制转换 数据类型 变量名 = (强制转换的类型)实例变量
+		byte b = (byte) a;
+		int a = 1;
+		long l = a;
+		double d = a;
+		char A = 'A';
+		char A1 = '\'';
+		System.out.println(A);
+		System.out.println(A1);
+		System.out.println("\'A\'");
+                </pre>
+                <pre class="prettyprint lang-cs">代码示例：
+		/**
+		 * a++ ++a
+		 */
+		int a = 1;
+		// ++a;
+		// a++;
+		// int b = a++;
+		int b = 10;
+		System.out.println(a);
+		System.out.println(b);
+		System.out.println((a++ * --b) / --b + a);
+                </pre>
+                <pre class="prettyprint lang-cs">代码示例：
+		/**
+		 * 三目运算符
+		 */
+		int a = 5 > 2 ? 1 : 2;
+		System.out.println(a);
+		System.out.println(!true);
+                </pre>
+                <pre class="prettyprint lang-cs">代码示例：
+		/**
+		 * 位移运算符（提高除法效率）
+		 */
+		System.out.println(3 << 2);
+		System.out.println(3 >> 1);
+		System.out.println(3 >>> 1);
+		System.out.println(-3 >> 1);
+		System.out.println(-3 >>> 1);
+                </pre>
+                <pre class="prettyprint lang-cs">代码示例：
+        /**
+		 * switch 用法
+		 */
+		int num = 2;
+		// long num=2;
+		// error:Cannot switch on a value of type long. Only convertible int
+		// values, strings or enum variables are permitted
+		switch (num) {
+		case 1:
+			System.out.println(1);
+			break;
+		case 2:
+			System.out.println(2);
+			break;
+		case 3:
+			System.out.println(3);
+			break;
+		default:
+			System.out.println("default");
+			break;
+		}
+                </pre>
+                <pre class="prettyprint lang-cs">代码示例：
+		/**
+		 * continue break 区别
+		 */
+		for (int i = 0; i < 10; i++) {
+			if (i == 3) {
+				continue;// 结束当前本次循环，后面的代码不会执行
+				// 在同一个代码块中，更不允许写代码
+				// System.out.println(111);
+				// error:Unreachable code
+			}
+			System.out.println(i);
+			if (i == 5) {
+				break;// 立即结束当前循环操作
+			}
+		}
+                </pre>
+                <pre class="prettyprint lang-cs">代码示例：
+		/**
+		 * 循环嵌套
+		 */
+		for (int i = 0; i < 10; i++) {
+			System.out.println(i);
+			for (int j = 0; j < 5; j++) {
+				if (i < j) {
+					for (int j2 = 0; j2 < 20; j2++) {
+						break;
+					}
+				}
+				System.out.println("j=" + j);
+				continue;
+			}
+		}
+                </pre>
+                <pre class="prettyprint lang-cs">代码示例：
+		/**
+		 * 交换 a b
+		 */
+		int a = 1;
+		int b = 5;
+		// a = 5;
+		// b = 1;
+		// int temp = a;
+		// a = b;
+		// b = temp;
+		a = a - b;
+		b = a + b;
+		a = b - a;
+		System.out.println(a);
+		System.out.println(b);
+                </pre>
+                <pre class="prettyprint lang-cs">代码示例：
+		/**
+		 * 三值求最大值 最小值
+		 */
+		int a = 10;
+		int b = 20;
+		int c = 30;
+		int max = c > (a > b ? a : b) ? c : (a > b ? a : b);
+		int min = c < (a < b ? a : b) ? c : (a < b ? a : b);
+		System.out.println(max);
+		System.out.println(min);
+                </pre>
+                <pre class="prettyprint lang-cs">代码示例：
+		/**
+		 * 求出1!+2!+3!+...+10!
+		 */
+		int sum = 0;
+		int temp = 1;
+		for (int i = 1; i < 11; i++) {
+			temp = temp * i;
+			sum = sum + temp;
+		}
+		System.out.println(sum);
+                </pre>
+                <pre class="prettyprint lang-cs">代码示例：
+/**
+		 * 100元买100只鸡--公鸡9元2只--母鸡3元1只--小鸡1元5只--每种至少1只--求出有多少种组合
+		 */
+		// 总钱数 总只数
+		double money = 100;
+		int count = 100;
+		// 公鸡 母鸡 小鸡的单价
+		double moneyGJ = 9.0 / 2;
+		double moneyMJ = 3.0;
+		double moneyXJ = 1.0 / 5;
+		// 组合数
+		int sum = 0;
+		// i表示公鸡的数量 j表示母鸡的数量 k表示小鸡的数量
+		for (int i = 1; i < money / moneyGJ; i++) {
+			for (int j = 1; j < money / moneyMJ; j++) {
+				for (int k = 1; k < money / moneyXJ; k++) {
+					double temp = i * moneyGJ + j * moneyMJ + k * moneyXJ;
+					if (i + j + k == count && temp == money) {
+						System.out.println(i + " " + j + " " + k);
+						sum++;
+						break;
+					}
+					if (i + j + k > count || temp > money)
+						break;
+				}
+			}
+		}
+		System.out.println(sum);
+                </pre>
+
+
+                ===============================================<br>
+                晚上：<br>
+                ===============================================<br>
+
+
+                ===============================================<br>
+                下节课内容：<br>
+                ===============================================<br>
+
+
+                ===============================================<br>
+                任务：<br>
+                ===============================================<br>
+
                 </p>
             </article>
             <div class="relates">
