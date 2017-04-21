@@ -746,8 +746,99 @@
                 任务：<br>
                 ===============================================<br>
                 1.随意定义一个数组，将数组中不为0的数字赋给新的数组 int a[] = new int[]{1,0,4,5,0,2,5} 去掉不为0的数据 赋值给新的数组<br>
-                <br>
+                <pre class="prettyprint lang-cs">代码示例：
+		/**
+		 * 随意定义一个数组，将数组中不为0的数字赋给新的数组
+		 *
+		 * int a[] = new int[]{1,0,4,5,0,2,5} 去掉不为0的数据 赋值给新的数组
+		 *
+		 */
+		int a[] = new int[] { 1, 0, 4, 5, 0, 2, 5 };
+		// 计算新数组长度
+		int count = 0;
+		for (int i : a) {
+			if (i != 0)
+				count++;
+		}
+		// 定义并初始化新数组
+		int b[] = new int[count];
+		// 新数组索引
+		int index = 0;
+		// 新数组赋值
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] != 0)
+				b[index++] = a[i];
+		}
+		// 输出新数组
+		for (int i : b) {
+			System.out.print(i + " ");
+		}
+                </pre>
                 2.面向对象设计题： 商家可以根据不同的季节进行打折 如果是春季 商品价格加价50% 如果是夏季 商品价格减少50%<br>
+                <pre class="prettyprint lang-cs">Produce类：
+        /**
+         * 定义一个商品类，商品在不同的季节有不同的价格
+         *
+         * @author guowh
+         *
+         */
+        public class Produce {
+            // 商品价格
+            private double price;
+
+            public double getPrice() {
+                return price;
+            }
+
+            public void setPrice(double price) {
+                this.price = price;
+            }
+
+            /**
+             * 改变商品价格，如果是春季 商品价格加价50% 如果是夏季 商品价格减少50%
+             *
+             * @param ch表示季节
+             *            c=春 x=夏 q=秋 d=冬
+             */
+            public void changePrice(char ch) {
+                switch (ch) {
+                case 'c':
+                    price = price * 1.5;
+                    break;
+                case 'x':
+                    price = price * 0.5;
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+                </pre>
+                <pre class="prettyprint lang-cs">main方法：
+		/**
+		 * 面向对象设计题： 商家可以根据不同的季节进行打折
+		 *                 如果是春季 商品价格加价50% 如果是夏季 商品价格减少50%
+		 */
+		// 创建4个价格为100的商品
+		Produce p1 = new Produce();
+		p1.setPrice(100);
+		Produce p2 = new Produce();
+		p2.setPrice(100);
+		Produce p3 = new Produce();
+		p3.setPrice(100);
+		Produce p4 = new Produce();
+		p4.setPrice(100);
+		// 修改4个商品所在季节的价格 c=春 x=夏 q=秋 d=冬
+		p1.changePrice('c');
+		p2.changePrice('x');
+		p3.changePrice('q');
+		p4.changePrice('d');
+		// 输出 4个商品的价格
+		System.out.println(p1.getPrice());
+		System.out.println(p2.getPrice());
+		System.out.println(p3.getPrice());
+		System.out.println(p4.getPrice());
+                </pre>
                 </p>
             </article>
             <div class="relates">
