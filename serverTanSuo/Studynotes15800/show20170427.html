@@ -65,7 +65,7 @@
     <div class="content-wrap">
         <div class="content">
             <header class="article-header">
-                <h1 class="article-title"><a href="#" title="java培训学习路线">第3日：xxxxxxxxxxxxxxxxxxx</a></h1>
+                <h1 class="article-title"><a href="#" title="java培训学习路线">第3日：属性-方法-重载-递归-内部类-静态代码块</a></h1>
                 <div class="article-meta"> <span class="item article-meta-time">
 	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2017-04-27"><i
               class="glyphicon glyphicon-time"></i> 2017-04-27
@@ -73,34 +73,325 @@
 	  </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title=""
                     data-original-title="来源：酬勤学习笔记"><i class="glyphicon glyphicon-globe"></i> 酬勤学习笔记</span> <span
                         class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title=""
-                        data-original-title="第3日：xxxxxxxxxxxxxxxxxxx"><i class="glyphicon glyphicon-list"></i> <a
+                        data-original-title="第3日：属性-方法-重载-递归-内部类-静态代码块"><i class="glyphicon glyphicon-list"></i> <a
                         href="#"
-                        title="第3日：xxxxxxxxxxxxxxxxxxx">第3日：xxxxxxxxxxxxxxxxxxx</a></span>
+                        title="第3日：属性-方法-重载-递归-内部类-静态代码块">第3日：属性-方法-重载-递归-内部类-静态代码块</a></span>
                     <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title=""
-                          data-original-title="浏览量：89"><i class="glyphicon glyphicon-eye-open"></i> 89</span></div>
+                          data-original-title="浏览量：127"><i class="glyphicon glyphicon-eye-open"></i> 127</span></div>
             </header>
             <article class="article-content">
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
                     时间：2017-4-27 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：语音大楼206<br>
+                    2017年4月27日<br>
                     ===============================================<br>
                     下午：<br>
                     ===============================================<br>
+                    来这的目的是什么？四个月后拿到满意的offer<br>
+                    算法 数据结构 设计模式哪个重要？<br>
+                    写得多就懂了<br>
+                    设计思想：在能不能不动文件的情况下对源代码复用<br>
+                    浪子回头金不换 哈哈哈哈<br>
+                    <br>
+                    题目：面向对象设计题： 商家可以根据不同的季节进行打折 如果是春季 商品价格加价50% 如果是夏季 商品价格减少50%<br>
+                    上节课我的答案里的问题：<br>
+                    1、价格不能在自己的类里修改,商品不能自己修改自己的价格。<br>
+                    2、促销手段只能季节，只能完成当前任务，后面没法延续。<br>
+                    <br>
+                    解决方案：<br>
+                    1、分离。需要增加一个商家，然后商家来修改商品价格。<br>
+                    2、策略模式。<br>
+                    <br>
+                    ----------------今日内容-----------------------<br>
+                    private是一种习惯，每个属性讲道理都是不允许被外部访问的<br>
+                    <br>
+                    对象当中的方法：<br>
+                    <br>
+                    方法是属于类的一部分<br>
+                    <br>
+                    方法定义规则： 访问权限 返回值（无返回值 void） 方法名（命名规范） （）（形式参数类型 形参名<--多个以逗号隔开 -->）{<br>
+                    <br>
+                    //具体的业务逻辑<br>
+                    }<br>
+                    <br>
+                    方法名 尽量的采用驼峰命名法 getStudentById<br>
+                    <pre class="prettyprint lang-cs">代码示例：
+public class Test1 {
+	// 属性 成员变量
+	int a;
 
+	// 方法1 无返回值
+	public void speak() {
 
-                    ===============================================<br>
-                    晚上：<br>
-                    ===============================================<br>
+	}
 
+	// 方法2 有返回值
+	public int sum(int arg1, int arg2) {
+		int arg3 = arg1 + arg2;
+		return arg3;
 
-                    ===============================================<br>
-                    下节课内容：<br>
-                    ===============================================<br>
+	}
 
-                    ===============================================<br>
-                    任务：<br>
-                    ===============================================<br>
+	// 方法3 形参使用 ... 可以传入多个参数
+	public void sum1(int... args) {
+		for (int i = 0; i < args.length; i++) {
+			System.out.println(args[i]);
+		}
+	}
 
+	public static void main(String[] args) {
+		new Test1().sum1(1, 2, 3);
+	}
+}               </pre>
+                什么是<a href="http://www.cnblogs.com/sparkbj/p/6015690.html">业务主键</a>？<br>
+                业务主键（自然主键）：在数据库表中把具有业务逻辑含义的字段作为主键，称为“自然主键(Natural Key)”。<br>
+                逻辑主键（代理主键）：在数据库表中采用一个与当前表中逻辑信息无关的字段作为其主键，称为“代理主键”。<br>
+                复合主键（联合主键）：通过两个或者多个字段的组合作为主键。<br>
+                <br>
+                需求分析清楚后再写业务逻辑，少走弯路。<br>
+                <br>
+                开发中无论做什么事情都要有返回值，反馈一下到底做了没有，做了什么。<br>
+                <br>
+                值传递和引用传递：<br>
+                值传递：当数据做为基础类型和String 在进行传递的时候，其本身的值是不会发生变化的。形参在这里只是接受这个值一份拷贝而已<br>
+                    <pre class="prettyprint lang-cs">代码示例：
+public class Person {
+	public int changAge(int age) {
+		age++;
+		return age;
+	}
+}
+public class Test {
+	public static void main(String[] args) {
+		Person p = new Person();
+		int age = 15; // 局部变量
+		p.changAge(age);
+		System.out.println(age);
+	}
+}
+                    </pre>
+                引用传递： 当数据作为自定义对象在进行传递，整个对象不会进行拷贝，直接由形参所接受，如果有方法操作了这个对象，理所应当的对象就会发生变化<br>
+                    <pre class="prettyprint lang-cs">代码示例：
+public class People {
+	public int age;
+
+	public int changeAge(People p) {
+		int age = p.age++;
+		return age;
+	}
+}
+                    </pre>
+                注意：2个形参数接受的类型<br>
+                <br>
+                方法重载：方法重载是指在一个类中定义多个同名的方法，但要求每个方法具有不同的参数的类型或参数的个数。<br>
+                一.方法名一定要相同。<br>
+                二.方法的参数必须不同，包括参数的类型或个数，以此区分不同的方法体。<br>
+                1.如果参数个数不同，就不管它的参数类型了！<br>
+                2.如果参数个数相同，那么参数的类型必须不同。<br>
+                直白的说 就是方法的重载 着重关注与形式参数 方法名必须一致<br>
+
+                    <pre class="prettyprint lang-cs">代码示例：
+	/**
+	 * 更改年龄 通过年龄
+	 *
+	 * @param age
+	 *            年龄
+	 * @return
+	 */
+	public int changeAge(int age) {
+		age++;
+		return age;
+	}
+
+	/**
+	 * 更改年龄 通过年龄 和 名字
+	 *
+	 * @param age
+	 *            年龄
+	 * @param name
+	 *            名字
+	 */
+	public void changeAge(int age, String name) {
+		// 业务逻辑代码
+	}
+                    </pre>
+                静态方法 static（工具类，方便自己调用，节约空间）：<br>
+                    <pre class="prettyprint lang-cs">代码示例：
+	// 静态方法
+	public static void Abc() {
+
+	}
+	Person.Abc();
+                    </pre>
+                静态方法调用 直接通过类名.静态方法名调用<br>
+                <br>
+                静态变量 常驻内存<br>
+                成员变量 工作区域<br>
+                    <pre class="prettyprint lang-cs">代码示例：
+	// static 修饰属性
+	public static int a = 10;
+	public int b = 10;
+
+	public void a() {
+		a++;
+	}
+
+	public void b() {
+		b++;
+	}
+	public static void main(String[] args) {
+		Student s = new Student();
+		s.a();
+		s.b();
+		System.out.println(s.a);
+		System.out.println(s.b);
+		Student s1 = new Student();
+		s1.a();
+		s1.b();
+		System.out.println(s1.a);
+		System.out.println(s1.b);
+	}
+                    </pre>
+                互相调用：<br>
+                普通的方法 是属于对象的<br>
+                静态的方法 是属于类的<br>
+                <br>
+                普通方法之间可以互相调用,同样也可以直接调用静态方法<br>
+                静态方法之间可以互相调用，但是如果需要调用普通方法，就必需要实例化对象，在使用点语法调用<br>
+                <br>
+                ===============================================<br>
+                晚上：<br>
+                ===============================================<br>
+                递归：一个方法不断地重复一个行为（自己的行为）<br>
+                直白的说就是自身调用自身<br>
+                要在合适的时候添加终止条件<br>
+                实际开发中尽量避免递归<br>
+                要考虑在什么时候使用<br>
+                    <pre class="prettyprint lang-cs">代码示例：
+	// 递归形式
+	public static void digui() {
+		digui();
+	}
+                    </pre>
+                使用:尽量避免无限自身调用，<br>
+                如果我要停止递归无限调用自己本事 需要给一个临界条件（中止信号）<br>
+                    <pre class="prettyprint lang-cs">代码示例：
+	// 求单个阶乘
+	public static void noUseDigui(int arg) {
+		int arg1 = 1;
+		for (int i = 1; i <= arg; i++) {
+			arg1 = arg1 * i;
+		}
+		System.out.println(arg1);
+	}
+
+	// 求单个阶乘
+	public static int UseDigui(int arg) {
+		if (arg == 1) {
+			return 1;
+		}
+		return UseDigui(arg - 1) * arg;
+	}
+
+	public static void main(String[] args) {
+		Test3.noUseDigui(5);
+		System.out.println(Test3.UseDigui(5));
+	}
+                    </pre>
+                ----------------------------------------------<br>
+                分析下使用了递归：<br>
+                F（4）*5<br>
+                F（3）*4<br>
+                F（2）*3 1*2*3<br>
+                F（1）*2<br>
+                1<br>
+                F2 = 1*2 ----------------> 1*2*3*4*5<br>
+                递回<br>
+                <br>
+                树形菜单<br>
+                <br>
+                this 关键字 表明是指向当前的对象<br>
+                构造方法的意义就是创建对象<br>
+                Person p = new Person();<br>
+                内部区调用了模板中的构造方法<br>
+                    <pre class="prettyprint lang-cs">代码示例：
+    //构造方法     一个空的构造方法
+    //如果没有构造方法   java中帮我默认生成  公开的且无参的构造方法
+	public Person(){
+		  System.out.println(111);
+	}
+                    </pre>
+                注意： 构造方法是可以私有化的<br>
+                好处：<br>
+                1. 使用构造方法简化代码<br>
+                2. 方便在生成对象的时候初始一些属性<br>
+
+                java 四种访问权限<br>
+
+                public ,package(default),protected,private<br>
+                同一类中： Yes Yes YES YES<br>
+                同一个包中： Yes Yes YES NO<br>
+                子类中： Yes NO YES NO<br>
+                全局范围中： Yes NO NO NO<br>
+
+                <br>
+                GC垃圾回收机制<br>
+                提前做好的准备就是机制<br>
+                垃圾就是内存中不用的东西<br>
+
+                <br>
+                内部类<br>
+                内部类本来是封闭的但是可以看到外面的东西<br>
+                1.内部的类是可以方便的访问到外部类的属性<br>
+                2.但是内部类破坏类一个完整的结构的<br>
+                    <pre class="prettyprint lang-cs">代码示例：
+public class OutClass {
+	private int a = 1;
+
+	// 内部类
+	class intClass {
+		public void abc() {
+			System.out.println(a);
+		}
+	}
+
+	public static void main(String[] args) {
+		// 需要实例化内部类的时候，首先实例化外部类
+		OutClass out = new OutClass();
+		// 实例化内部类
+		OutClass.intClass in = out.new intClass();
+	}
+}
+                    </pre>
+                普通代码块·静态代码块·非静态代码块<br>
+                    <pre class="prettyprint lang-cs">代码示例：
+public class Person {
+	// 静态代码块
+	static {
+		System.out.println("aaaa");
+	}
+	// 非静态代码块
+	{
+		System.out.println("bbbb");
+	}
+	// 普通代码块
+	public Person() {
+		System.out.println("cccc");
+	}
+}                    </pre>
+                执行顺序：<br>
+                静态代码块》 非静态代码块 》普通代码块<br>
+                静态代码块 只在内存执行一次<br>
+                <br>
+                ===============================================<br>
+                下节课内容：<br>
+                ===============================================<br>
+                继承<br>
+                <br>
+                ===============================================<br>
+                任务：<br>
+                ===============================================<br>
+                无<br>
                 </p>
             </article>
             <div class="relates">
@@ -110,7 +401,7 @@
                 <ul>
                     <li><a href="show20170413.html" title="">java初级学习-第1日：java培训学习路线+java基础+eclipse</a></li>
                     <li><a href="show20170420.html" title="">java初级学习-第2日：java数据类型+循环+数组</a></li>
-                    <li><a href="#" title="">java初级学习-第x日：xxxxxxxxxxxxxxxxxxxxx</a></li>
+                    <li><a href="show20170427.html" title="">java初级学习-第3日：属性-方法-重载-递归-内部类-静态代码块</a></li>
                     <li><a href="#" title="">java初级学习-第x日：xxxxxxxxxxxxxxxxxxxxx</a></li>
                 </ul>
             </div>
