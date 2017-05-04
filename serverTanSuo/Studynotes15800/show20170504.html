@@ -65,7 +65,7 @@
     <div class="content-wrap">
         <div class="content">
             <header class="article-header">
-                <h1 class="article-title"><a href="#" title="java培训学习路线">第4日：xxxxxxxxxxxxxxx</a></h1>
+                <h1 class="article-title"><a href="#" title="java培训学习路线">第4日：String+API+继承</a></h1>
                 <div class="article-meta"> <span class="item article-meta-time">
 	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2017-05-04"><i
               class="glyphicon glyphicon-time"></i> 2017-05-04
@@ -73,9 +73,9 @@
 	  </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title=""
                     data-original-title="来源：酬勤学习笔记"><i class="glyphicon glyphicon-globe"></i> 酬勤学习笔记</span> <span
                         class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title=""
-                        data-original-title="第4日：xxxxxxxxxxxxxxx"><i class="glyphicon glyphicon-list"></i> <a
+                        data-original-title="第4日：String+API+继承"><i class="glyphicon glyphicon-list"></i> <a
                         href="#"
-                        title="第4日：xxxxxxxxxxxxxxx">第4日：xxxxxxxxxxxxxxx</a></span>
+                        title="第4日：String+API+继承">第4日：String+API+继承</a></span>
                     <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title=""
                           data-original-title="浏览量：127"><i class="glyphicon glyphicon-eye-open"></i> 127</span></div>
             </header>
@@ -83,25 +83,273 @@
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
                 时间：2017-05-04 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：语音大楼206<br>
-                ===============================================<br>
-                下午：<br>
-                ===============================================<br>
-                <br>
-                ===============================================<br>
-                晚上：<br>
-                ===============================================<br>
+                    ===============================================<br>
+                    下午：<br>
+                    ===============================================<br>
+                    给自己的定位。<br>
+                    努力卖命，少走弯路不代表不走弯路。<br>
+                    ---------------主要内容------------------------<br>
+                    String  字符串    特性   通过查找api   ，如何使用api  怎么学习<br>
+                    继承 特性： 方法的重写  override   super关键字<br>
+                    final关键字 的使用<br>
+                    抽象类 abstract class 和 接口   interface<br>
+                    -----------------string-------------------------<br>
+                    String类   自定义对象  引用类型   字符串<br>
+                    1.声明定义<br>
                 <pre class="prettyprint lang-cs">代码示例：
+		/*
+		 * 两种声明方式
+		 */
+		String s = "ssss";
+		String s1 = new String("ssssssssssssssssss");
+		System.out.println(s);
+		System.out.println(s1);
                 </pre>
+                    注意 ：在使用字符串的时候 会涉及到拼接 这个是使用 +<br>
+                    对象之间的比较  ==   和  equals<br>
+                    ==  是比较对象在内存的地址是否是一致<br>
+                    不使用new关键字来声明字符串，字符串放在内存字符串串池<br>
+                    如果再次声明，那么它会直接到串池去寻找<br>
+                    字符串的特性：字符串一旦声明，就无法随意改变字符串的内容，只会生成新的数据（新的地址）<br>
+                <pre class="prettyprint lang-cs">代码示例：
+		/*
+		 * == 用来比较数据在内存中的地址是否一致
+		 *
+		 * string池（所有用""生成的字符串） 优先从串池中拿对象
+		 */
+		String s = "a";
+		String s1 = new String("a");
+		String s2 = new String("a");
+		String s3 = "a";
+		String s4 = "ab";
+		String s5 = s + "b";
+		System.out.println(s == s1); // false
+		System.out.println(s1 == s2);// false
+		System.out.println(s2 == s3);// false
+		System.out.println(s == s3); // true
+		System.out.println(s == s4); // false
+		System.out.println(s4 == s5);// false
+
+                </pre>
+                    -----------------equals()和==-------------------<br>
+                    == 比较的是内存中的地址<br>
+                    在比较自定义对象 ，如果使用 equals方法，必需要重写equals方法（判断里面属性是否一样）<br>
+                    建议也同时重写hashcode方法<br>
+                <pre class="prettyprint lang-cs">代码示例：
+		/*
+		 * equals() 与 ==
+		 *
+		 * 前者比较内容，后者比较地址
+		 */
+public class Student {
+	private String sname;
+	private int sage;
+
+	public int getSage() {
+		return sage;
+	}
+
+	public void setSage(int sage) {
+		this.sage = sage;
+	}
+
+	public String getSname() {
+		return sname;
+	}
+
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+
+	public Student(String sname, int sage) {
+		this.sname = sname;
+		this.sage = sage;
+	}
+
+	/**
+	 * 两个的对象相等
+	 *
+	 * @param s
+	 *            传入的对象
+	 * @return 相等true 不相等false
+	 */
+	public boolean equals(Student s) {
+		return this.sname == s.getSname() && this.sage == s.getSage();
+	}
+
+	// error:The method equals(Student) of type Student must override or
+	// implement a supertype method
+	// @Override
+	// public boolean equals(Student s) {
+	// return this.sname == s.getSname() && this.sage == s.getSage();
+	// }
+
+	/**
+	 * 给编号
+	 */
+	@Override
+	public int hashCode() {
+		return 1;
+	}
+
+}
+
+		String s1 = new String("a");
+		String s2 = new String("a");
+		System.out.println(s1 == s2);
+		System.out.println(s1.equals(s2));
+
+		Student st1 = new Student("gwh", 20);
+		Student st2 = new Student("gwh", 20);
+		Student st3 = new Student("gwh", 21);
+		System.out.println(st1 == st2);
+		System.out.println(st1.equals(st2));
+		System.out.println(st1.equals(st3));
+                </pre>
+                    ------------------研究API----------------------<br>
+                    String 类   位于java.lang包下面<br>
+                    charAt  通过指定的索引查找对应索引的值<br>
+                    length()  获取数组的长度<br>
+                    indexof()   返回指定字符串在当前的字符串中首次出现的索引位置<br>
+                    valueOf   可以把数据编程字符串类型<br>
+                    substring  截取字符串<br>
+                    split     以什么格式进行分割字符串<br>
+                    <a href="http://www.oracle.com/technetwork/java/api-141528.html">参考这里</a>参考这里<br>
+                <pre class="prettyprint lang-cs">代码示例：
+		/*
+		 * API
+		 */
+		String s = "abc";
+		// charAt();
+		char c = s.charAt(1);
+		System.out.println(c);
+		// 自己写
+		String s1 = "";
+		for (int i = s.length() - 1; i >= 0; i--) {
+			s1 += s.charAt(i);
+		}
+		System.out.println(s1.trim());
+		// 调用
+		StringBuffer s2 = new StringBuffer(s);
+		System.out.println(s2.reverse());
+		s2.append("d");
+		System.out.println(s2);
+
+
+
+		/*
+		 * StringBuffer 效率高
+		 */
+		String s = "abc";
+		String ss = "d";
+		String sss = s + ss;
+		System.out.println(s == sss);// fasle
+
+		StringBuffer s1 = new StringBuffer(s);
+		StringBuffer s2 = s1.append("d");
+		System.out.println(s1 == s2);// true
+
+                </pre>
+                    ===============================================<br>
+                    晚上：<br>
+                    ===============================================<br>
+                    继承 基于构造方法<br>
+                    --------------------继承-----------------------<br>
+                    继承  ：   extends<br>
+                    public class Student extends  Person {<br>
                 <br>
-                ===============================================<br>
-                下节课内容：<br>
-                ===============================================<br>
-                继承<br>
+                    }<br>
+                    继承只能是单继承：  父类只有一个   但是子类是可以有多个<br>
+                    继承： 子类继承父类     拿到了父类 属性  和  方法      私有的方法  私有的属性    子类没有办法使用<br>
+                    -----------------方法的重写--------------------<br>
+                    方法的重写  override<br>
+                    是建立在有继承的关系之上 才会涉及到方法的重写<br>
+                    子类重写父类的方法：<br>
+                    特性：<br>
+                    1. 子类在重写父类的方法的时候，包括方法名，返回值，形参列表   必需是完全一致的<br>
+                    2. 子类所抛出的异常不能超过父类所抛出的异常<br>
+                    3. 子类方法的访问级别不能低于父类访问级别<br>
+                    --------------------继承-----------------------<br>
+                    super  的关键字     指向的是父类的对象<br>
+                    通过使用super关键字：<br>
+                    衍生出 在构造方法中调用构造方法时候，只能写在当前构造方法的第一行，并且只能调用一次。 规矩   this（）  super（）<br>
+                <pre class="prettyprint lang-cs">代码示例：
+public class People {
+
+      private  String pname;
+
+
+	  public String getPname() {
+		return pname;
+	}
+	public  People(){
+
+	  }
+	  public  People(String name){
+		  this.pname  = name;
+	  }
+
+
+}
+
+
+public class Teacher extends People{
+
+      public  Teacher(String name){
+    	  super(name);
+      }
+
+
+}
+
+
+public class Test {
+		public static void main(String[] args) {
+			 Teacher  t = new Teacher("xxx");
+			 System.out.println(t.getPname());
+		}
+}                </pre>
+                    -----------------final的关键字-----------------<br>
+                    final的关键字   finally    最终的<br>
+                    定义： 使用 final的关键字  声明的类 是不能被继承的<br>
+                    使用 final的关键字  声明的方法  是不能被子类重写的
+                    使用 final的关键字  修饰的变量  是无法被修改的  还必须要初始化<br>
+                <pre class="prettyprint lang-cs">代码示例：
+      private  String pname;
+
+      public  final int   age  = 15 ;
+
+      public  static  final  int   age1  =  15;
+
+	  public String getPname() {
+		return pname;
+	}
+
+	  public final  void  speak(){
+		  int  i  = People.age1;
+
+	  }</pre>
+                    -------------------抽象类----------------------<br>
+                    抽象类  abstract  class    ：  进一步进行了升华   进一步的抽象<br>
+                    person<br>
+                    student  teacher   dog       --------   Animal<br>
+                    抽象类：<br>
+                    1. 只要包含抽象方法的 一定是抽象类<br>
+                    2. 修饰抽象类和抽象方法必然使用abstract关键字<br>
+                    3. 定义抽象方法，必然没有具体的实现。<br>
+                    4. 子类如果继承父类，子类必须要重写父类的抽象方法<br>
+                    5. 抽象类无法被实例化 ，但是可以做为引用数据类型<br>
+                    注意： 抽象类同样可以有具体实现的方法<br>
                 <br>
-                ===============================================<br>
-                任务：<br>
-                ===============================================<br>
-                无<br>
+                    ===============================================<br>
+                    下节课内容：<br>
+                    ===============================================<br>
+                    无<br>
+                <br>
+                    ===============================================<br>
+                    任务：<br>
+                    ===============================================<br>
+                    无<br>
                 </p>
             </article>
             <div class="relates">
@@ -112,7 +360,7 @@
                     <li><a href="show20170413.html" title="">java初级学习-第1日：java培训学习路线+java基础+eclipse</a></li>
                     <li><a href="show20170420.html" title="">java初级学习-第2日：java数据类型+循环+数组</a></li>
                     <li><a href="show20170427.html" title="">java初级学习-第3日：属性-方法-重载-递归-内部类-静态代码块</a></li>
-                    <li><a href="show20170504.html" title="">java初级学习-第4日：xxxxxxxxxxxxxxx</a></li>
+                    <li><a href="show20170504.html" title="">java初级学习-第4日：String+API+继承</a></li>
                     <li><a href="#" title="">java初级学习-第x日：xxxxxxxxxxxxxxxxxxxxx</a></li>
                 </ul>
             </div>
