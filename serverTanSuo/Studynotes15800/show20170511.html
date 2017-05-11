@@ -86,21 +86,191 @@
                     ===============================================<br>
                     下午：<br>
                     ===============================================<br>
-
-                    ===============================================<br>
-                    晚上：<br>
-                    ===============================================<br>
+                    做事 多劳多得 踏实 认真做事<br>
+                    考虑问题要全面<br>
+                    分享不要有所保留<br>
+                    <br>
+                    <a href="http://baike.baidu.com/link?url=iaFB6iHpbAdnACoEPGacecTcJZDKywDgl5VWub5JgzEHE-Xn5mmfRBJ0mtmrJjR3jMqKrjhOFWeEhZmRkh_Cvy7u0PcYCOdcVROGQ59UTeeUsv2P4R6OZMKFBu7hL-0iyHdyj6Ph7X38nnZipRvqZ_">全栈</a><br>
+                    <br>
+                    <a href="http://blog.chinaunix.net/uid-21411227-id-1826898.html">同步 异步</a><br>
+                    <br>
+                    Java有意思的三个方面：线程 通信 反射
+                    <br>
+                    -------------------接口------------------------<br>
+                    接口:面向接口编程 一旦接口的标准 ，我就必需按照接口去实现功能<br>
+                    接口 : 一种特殊的抽象类,里面定义常量 实际全局最终的常量 和 抽象 方法组成 接口的关键是interface<br>
+                    1.一个类可以实现多个接口 使用的关键字 是implements<br>
+                    2.一个类继承某个类还可以实现多个接口<br>
+                    3.接口 没有办法 去实例化 可以做为引用数据类型<br>
+                    4.接口与接口可以实现继承，并且可以多继承。<br>
+                    -------------------多态------------------------<br>
+                    多态 一个物体拥有多种形态<br>
+                    满足多态：<br>
+                    1.满足于继承或者是实现接口<br>
+                    2.子类重写父类的方法<br>
+                    3.父类的引用 指向 子类对象<br>
+                    --------------对象类型转换---------------------<br>
+                    前提：满足于继承或者实现某个接口<br>
+                    1. 向上转型 有子类转换父类<br>
+                    父类引用指向的子类对象<br>
+                    2. 向下转型 父类对象强制转换为子类对象 （尽量去避免）<br>
+                    不安全，可能会产生类型转换异常。<br>
+                    注意 ： 编译的看的是左边； 运行时看的是右边<br>
+                    -----------------object类----------------------<br>
+                    Object类 ：每个类都使用 Object 作为超类<br>
+                    equals 方法 比较对象是否相等<br>
+                    通过getClass（） 可以返回运行时的类<br>
+                    有wait 和 notify 等待 唤醒 涉及线程 详细说明<br>
+                    toString（） 返回此对象字符串表现形式<br>
+                    ----------------instanceof---------------------<br>
                     <pre class="prettyprint lang-cs">代码示例：
-                    </pre>
+		Animal a = new Dog();
+		Animal b = new Cat();
+		// 判断当前运行对象是否属于某一个类型
+		System.out.println(a instanceof Cat);// fasle
+		System.out.println(a instanceof Dog);// true</pre>
 
-                    ===============================================<br>
-                    下节课内容：<br>
-                    ===============================================<br>
-                    无<br>
-                    ===============================================<br>
-                    任务：<br>
-                    ===============================================<br>
-                    无<br>
+                -------------------练习------------------------<br>
+                <pre class="prettyprint lang-cs">练习题：
+class A {
+	public String show(D obj) {
+		return ("A and D");
+	}
+
+	public String show(A obj) {
+		return ("A and A");
+	}
+}
+
+class B extends A {
+	public String show(B obj) {
+		return ("B and B");
+	}
+
+	public String show(A obj) {
+		return ("B and A");
+	}
+}
+
+class C extends B {
+}
+
+class D extends B {
+}
+
+public class FzJcDt {
+	public static void main(String[] args) {
+		A a1 = new A();
+		A a2 = new B();
+		B b1 = new B();
+		C c1 = new C();
+		D d1 = new D();
+
+		System.out.println(a1.show(b1));// A and A T
+		System.out.println(a1.show(c1));// A and A T
+		System.out.println(a1.show(d1));// A and D T
+		System.out.println(a2.show(b1));// B and B F (B and A)
+		System.out.println(a2.show(c1));// B and B F (B and A)
+		System.out.println(a2.show(d1));// B and B F (A and D)
+		System.out.println(b1.show(b1));// B and B T
+		System.out.println(b1.show(c1));// B and B T
+		System.out.println(b1.show(d1));// B and B F (A and D)
+	}
+}</pre>
+                <a href="http://www.cnblogs.com/qinqinmeiren/archive/2011/07/15/2151687.html">详情解析</a><br>
+                ===============================================<br>
+                晚上：<br>
+                ===============================================<br>
+                装饰模式 代理模式<br>
+                考虑问题的角度<br>
+                <br>
+                你写的项目里哪些用了线程，哪些用了事务<br>
+                写了才会有想法<br>
+                1、基础部分<br>
+                2、框架底层，设计思想<br>
+                <br>
+                ----------------匿名内部类---------------------<br>
+                匿名内部类：安卓里面用得比较多<br>
+                满足条件：  1.满足继承或者接口的前提下，才可以使用到匿名内部类<br>
+                    <pre class="prettyprint lang-cs">代码示例：
+ 	//匿名内部类     （没有类名）
+
+	Show1  s1  =new Show1() {
+
+		@Override
+		public void show() {
+			// TODO Auto-generated method stub
+			System.out.println("111");
+		}
+	};
+	s1.show();</pre>
+                ------------------包装类-----------------------<br>
+                包装类用来对基础类型进行一层封装：<br>
+                java 8种基础数据类型 ，都有对应类 进行了处理<br>
+                int   Integer   可以String 和 int  类型转换<br>
+                char  Character<br>
+                short  Short<br>
+                long  Long<br>
+                float  Float<br>
+                double  Double<br>
+                boolean  Boolean<br>
+                byte   Byte<br>
+                通过包装类 ： 数据不匹配标准异常<br>
+                Format   格式化     12-13-2015    2015年12月13日<br>
+                <br>
+                自动装箱 拆箱<br>
+                //自动装箱<br>
+                Integer   i  =  1;<br>
+                //自动拆箱<br>
+                int i1   = new Integer(1);<br>
+                ---------------单例设计模式--------------------<br>
+                单例 模式： 保证仅且只有唯一的一个实例    singleton<br>
+                1.保证构造方法私有化<br>
+                2.如何在本类去实例化自己<br>
+
+                    <pre class="prettyprint lang-cs">饿汉式：
+public class Singleton {
+    //2 创建一个私有的静态无法被修改的成员变量
+	private static final Singleton  singleton  = new Singleton();
+	//1.构造方法私有化
+	private  Singleton(){
+
+	}
+	//3 提供一个静态方法来获取唯一的实例
+	public  static   Singleton  getInstance(){
+		return    singleton;
+	}
+
+}</pre>
+
+                    <pre class="prettyprint lang-cs">懒汉式：
+public class Singleton1 {
+
+	private  static  Singleton1  singleton1;
+
+	private  Singleton1(){
+
+	}
+
+	public synchronized static   Singleton1  getInstance(){
+		  if(singleton1==null){
+			  singleton1 = new Singleton1();
+		  }
+		  return   singleton1;
+	}
+}</pre>
+                总结：<br>
+                保证当前只有一个线程调用这个方法<br>
+                解决理论上会出现的同时调用这个方法，然后就不能保证单实例了<br>
+                理论上的并发，数据的持久性唯一性<br>
+                ===============================================<br>
+                下节课内容：<br>
+                ===============================================<br>
+                无<br><br>
+                ===============================================<br>
+                任务：<br>
+                ===============================================<br>
+                无<br><br>
                 </p>
             </article>
             <div class="relates">
