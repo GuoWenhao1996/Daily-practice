@@ -27,7 +27,7 @@
     <script>window.location.href = 'upgrade-browser.html';</script>
     <![endif]-->
 </head>
-<body class="user-select single">
+<body class="user-select single" onload="getNowFormatDate()">
 <header class="header">
     <nav class="navbar navbar-default" id="navbar">
         <div class="container">
@@ -379,10 +379,9 @@ public class Test {
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane contact active" id="notice">
                         <h2>日志总数:
-                            2篇
-                        </h2>
+                            <span id="articlecount">allarticle</span> 篇</h2>
                         <h2>网站运行:
-                            <span id="sitetime">9天 </span></h2>
+                            <span id="sitetime">alldate</span> 天</h2>
                     </div>
                     <div role="tabpanel" class="tab-pane contact" id="contact">
                         <h2>QQ:
