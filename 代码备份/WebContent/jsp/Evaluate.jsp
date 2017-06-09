@@ -43,7 +43,7 @@
 				<h1 class="page-header">评价</h1>
 				<ol class="breadcrumb">
 					<li><a href="#">主页</a></li>
-					<li><a href="#">评价</a></li>
+					<li><a href="/UniversityOfShaft/listAssess.do">评价</a></li>
 					<!--<li class="active">数据</li>-->
 				</ol>
 
@@ -56,7 +56,7 @@
 							<div class="card-content">
 								<div class="col">
 									<ul class="tabs">
-										<li class="tab col s3"><a class="active" href="#test1">教师寄语</a></li>
+										<li class="tab col s3"><a href="#test1">教师寄语</a></li>
 										<li class="tab col s3"><a href="#test2">同学印象</a></li>
 										<li class="tab col s3 "><a href="#test3">自我评价</a></li>
 										<li class="tab col s3"><a href="#test4">参与评价</a></li>
@@ -81,7 +81,7 @@
 														class="title">${as0.getA_PersonNo()}</span>
 														<p>
 															${as0.getA_DataTime()} <br> <b>${as0.getA_Context()}</b>
-														</p> <i class="material-icons secondary-content">多媒体技术</i></li>
+														</p> <i class="material-icons secondary-content">${as0.getA_Relationship()}</i></li>
 												</c:forEach>
 											</ul>
 										</div>
@@ -99,10 +99,10 @@
 												<c:forEach var="as0" items="${aS}" varStatus="vs">
 													<li class="collection-item avatar"><i
 														class="material-icons circle green">perm_identity</i> <span
-														class="title">${as0.getA_PersonNo()}</span> 计科一班
+														class="title">${as0.getA_PersonNo()}</span> 
 														<p>
 															${as0.getA_DataTime()} <br> <b>${as0.getA_Context()}</b>
-														</p> <i class="material-icons secondary-content">室友</i></li>
+														</p> <i class="material-icons secondary-content">${as0.getA_Relationship()}</i></li>
 												</c:forEach>
 											</ul>
 										</div>
@@ -125,12 +125,12 @@
 
 										</div>
 										<div class="card-content" id="alterSelfAss">
-											<form action="/UniversityOfShaft/UpdateSelfAssess.do"
-												method="post">
+											<form id="selfAssForm" method="post">
 												<!--内容-->
 												<div id="write03">
 													<div>
-														<textarea id="selfAssess" name="selfAssess" placeholder="这里写对自己的评价！"></textarea>
+														<textarea id="selfAssess" name="selfAssess"
+															placeholder="这里写对自己的评价！"></textarea>
 													</div>
 												</div>
 												<!--提交-->
@@ -159,7 +159,9 @@
 															<th>学号</th>
 															<th>姓名</th>
 															<th>班级</th>
-															<th>操作</th>
+															<th>老师对ta的评价</th>
+															<th>同学对ta的评价</th>
+															<th></th>
 														</tr>
 													</thead>
 													<tbody>
@@ -168,7 +170,9 @@
 																<td>${sAA[vs.index][0]}</td>
 																<td>${sAA[vs.index][1]}</td>
 																<td>${sAA[vs.index][2]}</td>
-																<td><a href="#">评价</a></td>
+																<td><a href="#">查看</a></td>
+																<td><a href="#">查看</a></td>
+																<td><a href="#">评价ta</a></td>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -240,8 +244,19 @@
 
 		/* 判断是否为空 */
 		function isNull() {
-			if (document.getElementById("selfAssess").value == "")
-				confirm("自我评价为空？");
+			if (document.getElementById("selfAssess").value.trim().length==0) {
+				var flag = confirm("当前自我评价为空，是否保存？");
+				if (flag) {
+					document.getElementById('selfAssForm').action = "/UniversityOfShaft/UpdateSelfAssess.do#test3";
+					alert("自我评价修改为空！");
+				} else {
+					document.getElementById('selfAssForm').action = "/UniversityOfShaft/listAssess.do#test3";
+					alert("未提交");
+				}
+			} else {
+				alert("自我评价修改成功！");
+				document.getElementById('selfAssForm').action = "/UniversityOfShaft/UpdateSelfAssess.do#test3";
+			}
 		}
 	</script>
 

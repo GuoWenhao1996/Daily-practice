@@ -331,7 +331,7 @@
 		<!-- /. NAV SIDE  -->
 
 		<iframe src="${path}jsp/PersonalData.jsp" id="mainFrame"
-			name="mainFrame" width="100%" scrolling="no" frameborder="no"></iframe>
+			name="mainFrame" width="100%" frameborder="no"></iframe>
 		<!-- /. PAGE WRAPPER  -->
 	</div>
 	<!-- /. WRAPPER  -->

@@ -16,7 +16,7 @@ import util.DBUtil;
  * 评价dao层，完成数据库交互任务
  * 
  * @author guowenhao
- * @version 2.0
+ * @version 3.0
  */
 public class AssessDao {
 
@@ -159,15 +159,15 @@ public class AssessDao {
 	 * @throws Exception
 	 *             运行错误
 	 */
-	public String[][] selectAllStuAss() throws Exception {
+	public String[][] selectAllStuAss(String sno) throws Exception {
 		// 获取数据库连接
 		Connection connection = DBUtil.getConnection();
 
 		// 构建sql语句
 		StringBuilder sql1 = new StringBuilder();
-		sql1.append(" select Stu_SNo, Stu_Name,  Stu_ClassName from t_stuinfo order by Stu_SNo ");
+		sql1.append(" select Stu_SNo, Stu_Name,  Stu_ClassName from t_stuinfo where Stu_SNo != "+sno+" order by Stu_SNo ");
 		StringBuilder sql2 = new StringBuilder();
-		sql2.append(" select Count(Stu_SNo) from t_stuinfo ");
+		sql2.append(" select Count(Stu_SNo)-1 from t_stuinfo ");
 
 		// 构建游标2并执行,构建学生数组
 		PreparedStatement ps2 = connection.prepareStatement(sql2.toString());
@@ -207,7 +207,7 @@ public class AssessDao {
 
 		// 构建sql语句
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select TeaAss_ID, Stu_SNo, UT_Name,  TeaAss_Time, TeaAss_Context ")
+		sql.append(" select TeaAss_ID, Stu_SNo, UT_Name,  TeaAss_Time, TeaAss_Context, TeaAss_relationship ")
 				.append(" from t_tassess ta, t_teaclogin tl ").append(" where Stu_SNo=? and ta.UT_No=tl.UT_No ")
 				.append(" order by TeaAss_Time desc");
 		// 为sql传入参数
@@ -239,7 +239,7 @@ public class AssessDao {
 
 		// 构建sql语句
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select StuAss_Id, tsa.Stu_SNo, Stu_Name, StuAss_DataTime, StuAss_Context ")
+		sql.append(" select StuAss_Id, tsa.Stu_SNo, Stu_Name, StuAss_DataTime, StuAss_Context, StuAss_relationship ")
 				.append(" from t_stuassess tsa, t_stuinfo tsi ")
 				.append(" where tsa.Stu_SNo=? and tsa.StuAss_SNo=tsi.Stu_SNo ")
 				.append(" order by StuAss_DataTime desc");
@@ -273,6 +273,7 @@ public class AssessDao {
 		ae.setA_PersonNo(rs.getString(3));
 		ae.setA_DataTime(rs.getString(4));
 		ae.setA_Context(rs.getString(5));
+		ae.setA_Relationship(rs.getString(6));
 		return ae;
 	}
 

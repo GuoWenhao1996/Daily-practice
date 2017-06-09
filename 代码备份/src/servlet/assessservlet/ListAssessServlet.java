@@ -48,7 +48,7 @@ public class ListAssessServlet extends HttpServlet {
 			req.setAttribute("sA", selfAss);
 
 			// 学生列表
-			String[][] stuArrayAss = assDao.selectAllStuAss();
+			String[][] stuArrayAss = assDao.selectAllStuAss(sno);
 			req.setAttribute("sAA", stuArrayAss);
 
 			req.getRequestDispatcher("/jsp/Evaluate.jsp").forward(req, res);
