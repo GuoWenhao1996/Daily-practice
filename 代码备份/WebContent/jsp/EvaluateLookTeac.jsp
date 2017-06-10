@@ -57,42 +57,36 @@
 								<div class="clearBoth">
 									<br />
 								</div>
-
-
 								<div id="test4" class="col s12">
 									<div class="card">
 										<div class="card-action">
 											<h4>
-												<b>请查找你想评价的学生</b>
+												<b>以下是他人对该同学的评价</b>
 											</h4>
+										<a href="/UniversityOfShaft/listAssessTeac.do"
+													class="btn btn-primary dropdown-toggle"><i
+													class="material-icons left" >replay</i>返回</a>
 										</div>
 										<div class="card-content">
 											<div class="table-responsive">
-												<table
+												<table 
 													class="table table-striped table-bordered table-hover"
-													id="dataTables-TeacherEvaluate">
+													id="dataTables-TeacherEvaluate-1">
 													<thead>
 														<tr>
-															<th>学号</th>
+															<th>时间</th>
+															<th>评价</th>
 															<th>姓名</th>
-															<th>班级</th>
-															<th>老师对ta的评价</th>
-															<th>同学对ta的评价</th>
 															<th></th>
 														</tr>
 													</thead>
 													<tbody>
 														<c:forEach var="as0" items="${sAA}" varStatus="vs">
 															<tr class="odd gradeX">
-																<td width="20%">${sAA[vs.index][0]}</td>
-																<td width="15%">${sAA[vs.index][1]}</td>
-																<td width="15%">${sAA[vs.index][2]}</td>
-																<td width="20%"><a name="${vs.index+1}"
-																	onclick="hideOrShowTableTeac(this)" href="#">查看</a></td>
-																<td width="20%"><a name="${vs.index+1}"
-																	onclick="hideOrShowTableStu(this)" href="#">查看</a></td>
-																<td width="10%"><a name="${vs.index+1}"
-																	onclick="addAss(this)" href="#test4">评价ta</a></td>
+																<td width="15%">${sAA[vs.index][0]}</td>
+																<td width="40%">${sAA[vs.index][1]}</td>
+																<td width="10%">${sAA[vs.index][2]}</td>
+																<td width="15%">${sAA[vs.index][3]}</td>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -147,57 +141,11 @@
 	<script src="${path}assets/js/dataTables/dataTables.bootstrap.js"></script>
 	<script>
 		$(document).ready(function() {
-			$('#dataTables-TeacherEvaluate').dataTable();
+			$('#dataTables-TeacherEvaluate-1').dataTable();
 		});
 	</script>
 	<!-- Custom Js -->
 	<script src="${path}assets/js/custom-scripts.js"></script>
-
-	<script>
-		/* 显示教师表格 */
-		function hideOrShowTableTeac(row) {
-			var obj = document.getElementById("dataTables-TeacherEvaluate");
-			var stuNo = obj.rows[row.name].cells[0].innerHTML;
-			window.location.href = "/UniversityOfShaft/listAssessT2STeac.do?SNo="
-					+ stuNo;
-		}
-		/* 显示学生表格 */
-		function hideOrShowTableStu(row) {
-			var obj = document.getElementById("dataTables-TeacherEvaluate");
-			var stuNo = obj.rows[row.name].cells[0].innerHTML;
-			window.location.href = "/UniversityOfShaft/listAssessS2STeac.do?SNo="
-					+ stuNo;
-		}
-
-		/* 添加评价信息  */
-		function addAss(row) {
-			var obj = document.getElementById("dataTables-TeacherEvaluate");
-			var stuName = obj.rows[row.name].cells[1].innerHTML;
-			var stuNo = obj.rows[row.name].cells[0].innerHTML;
-			var assess = prompt("请输入您对【" + stuName + "】的评价:", "");
-			if (assess != null) {
-				while (assess.trim().length == 0) {
-					assess = prompt("检测到输入的评价为空，请重新输入~", "");
-				}
-				var relationship = prompt("请输入您是【" + stuName + "】哪一门课的老师？:",
-						"例如：多媒体技术");
-				if (relationship != null) {
-					while (relationship.trim().length == 0) {
-						relationship = prompt("检测到您输入的关系为空，请重新输入~", "");
-					}
-					alert("您对【" + stuName + "】的评价提交成功！");
-					window.location.href = "/UniversityOfShaft/AddTeacAssess.do?SNo="
-							+ encodeURI(encodeURI(stuNo))
-							+ "&&ass="
-							+ encodeURI(encodeURI(assess))
-							+ "&&rel="
-							+ encodeURI(encodeURI(relationship));
-				} else {
-				}
-			} else {
-			}
-		}
-	</script>
 
 </body>
 

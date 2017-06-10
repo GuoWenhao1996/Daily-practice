@@ -167,13 +167,15 @@
 													<tbody>
 														<c:forEach var="as0" items="${sAA}" varStatus="vs">
 															<tr class="odd gradeX">
-																<td>${sAA[vs.index][0]}</td>
-																<td>${sAA[vs.index][1]}</td>
-																<td>${sAA[vs.index][2]}</td>
-																<td><a href="#">查看</a></td>
-																<td><a href="#">查看</a></td>
-																<td><a href="#test4" name="${vs.index+1}"
-																	onclick="addAss(this)">评价ta</a></td>
+																<td width="20%">${sAA[vs.index][0]}</td>
+																<td width="15%">${sAA[vs.index][1]}</td>
+																<td width="15%">${sAA[vs.index][2]}</td>
+																<td width="20%"><a name="${vs.index+1}"
+																	onclick="hideOrShowTableTeac(this)" href="#">查看</a></td>
+																<td width="20%"><a name="${vs.index+1}"
+																	onclick="hideOrShowTableStu(this)" href="#">查看</a></td>
+																<td width="10%"><a name="${vs.index+1}"
+																	onclick="addAss(this)" href="#test4">评价ta</a></td>
 															</tr>
 														</c:forEach>
 													</tbody>
@@ -241,6 +243,21 @@
 				document.getElementById("alterSelfAss").style.display = "none";
 			else
 				document.getElementById("alterSelfAss").style.display = "";
+		}
+
+		/* 显示教师表格 */
+		function hideOrShowTableTeac(row) {
+			var obj = document.getElementById("dataTables-TeacherEvaluate");
+			var stuNo = obj.rows[row.name].cells[0].innerHTML;
+			window.location.href = "/UniversityOfShaft/listAssessT2S.do?SNo="
+					+ stuNo;
+		}
+		/* 显示学生表格 */
+		function hideOrShowTableStu(row) {
+			var obj = document.getElementById("dataTables-TeacherEvaluate");
+			var stuNo = obj.rows[row.name].cells[0].innerHTML;
+			window.location.href = "/UniversityOfShaft/listAssessS2S.do?SNo="
+					+ stuNo;
 		}
 
 		/* 判断是否为空 */

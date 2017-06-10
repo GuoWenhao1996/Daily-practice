@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.AssessDao;
-import util.DBUtil;
 
 /**
  * 2017-6-7 11:19:40
@@ -19,8 +18,8 @@ import util.DBUtil;
  * @author guowenhao
  * @version 2.0
  */
-@WebServlet("/listAssessTeac.do")
-public class ListAssessTeacServlet extends HttpServlet {
+@WebServlet("/listAssessT2STeac.do")
+public class ListTeac2StuServletTeac extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -28,12 +27,13 @@ public class ListAssessTeacServlet extends HttpServlet {
 		try {
 			req.setCharacterEncoding("UTF-8");
 			AssessDao assDao = new AssessDao();
-			String tno = DBUtil.getCookieno(req);
-			// 学生列表
-			String[][] stuArrayAss = assDao.selectAllStuAssTeac(tno);
+			String sno =req.getParameter("SNo");
+
+			// 教师评价列表
+			String[][] stuArrayAss = assDao.selectAllAssT2S(sno);
 			req.setAttribute("sAA", stuArrayAss);
 
-			req.getRequestDispatcher("/jsp/EvaluateTeac.jsp").forward(req, res);
+			req.getRequestDispatcher("/jsp/EvaluateLookTeac.jsp").forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

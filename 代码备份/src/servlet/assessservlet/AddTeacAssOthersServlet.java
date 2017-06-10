@@ -48,9 +48,9 @@ public class AddTeacAssOthersServlet extends HttpServlet {
 			assDao.insertTeacAss(ae);
 
 			// 学生列表
-			String[][] stuArrayAss = assDao.selectAllStuAss(tno);
+			String[][] stuArrayAss = assDao.selectAllStuAssTeac(tno);
 			req.setAttribute("sAA", stuArrayAss);
-			req.getRequestDispatcher("/jsp/Evaluate.jsp").forward(req, res);
+			req.getRequestDispatcher("/jsp/EvaluateTeac.jsp").forward(req, res);
 
 		} catch (Exception e) {
 			e.printStackTrace();
