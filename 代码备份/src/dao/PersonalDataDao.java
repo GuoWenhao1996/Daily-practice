@@ -57,8 +57,8 @@ public class PersonalDataDao {
 					.append(" (Stu_SNo,Stu_Name,Stu_ClassName,Stu_Sex,Stu_Id,Stu_Nation,Stu_Bir,Stu_Tel,Stu_Home,Stu_From,Stu_Photo,Stu_Assess) ")
 					.append(" values ").append(" (?,?,?,?,?,?,?,?,?,?,?,?) ");
 			PreparedStatement ps = connection.prepareStatement(sql.toString());
-			for (int i = 0; i < pe.length; i++) {
-				ps.setString(1, pe[i].getStu_SNo());
+			for (int i = 1; i < pe.length; i++) {
+				ps.setString(1, pe[i].getStu_SNo());				
 				ps.setString(2, pe[i].getStu_Name());
 				ps.setString(3, pe[i].getStu_ClassName());
 				ps.setString(4, String.valueOf(pe[i].getStu_Sex()));

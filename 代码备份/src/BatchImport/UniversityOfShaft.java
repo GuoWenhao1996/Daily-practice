@@ -34,17 +34,15 @@ public class UniversityOfShaft {
 			pe[i].setStu_Photo(data[i][7]);
 			pe[i].setStu_Home(data[i][11]);
 			pe[i].setStu_Assess(data[i][13]);
-			pe[i].setStu_Bir("");
-			pe[i].setStu_From("");
-			pe[i].setStu_Photo("");
-//			System.out.println(pe[i].toString());
-		}
+			pe[i].setStu_Bir(null);
+			pe[i].setStu_From(null);
+			pe[i].setStu_Photo(null);
+			System.out.println(pe[i].toString());
+		}		
+//		System.out.println(pe[0].getStu_SNo());
 		PersonalDataDao pedao=new PersonalDataDao();
 		pedao.insert(pe);
-		
 //		String []title={"name","id","sex","class" };
 //		excelimport.create("D:/信息/测试.xls", title);
-
 	}
-
 }

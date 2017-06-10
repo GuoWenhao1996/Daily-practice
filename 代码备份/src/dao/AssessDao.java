@@ -34,8 +34,8 @@ public class AssessDao {
 
 		// 构建sql语句
 		StringBuilder sql = new StringBuilder();
-		sql.append(" insert into t_tassess ").append(" (TeaAss_ID,Stu_SNo,UT_No,TeaAss_Time,TeaAss_Context) ")
-				.append(" values ").append(" (?,?,?,?,?) ");
+		sql.append(" insert into t_tassess ").append(" (TeaAss_ID,Stu_SNo,UT_No,TeaAss_Time,TeaAss_Context,TeaAss_relationship) ")
+				.append(" values ").append(" (?,?,?,?,?,?) ");
 		// 为sql传入参数
 		PreparedStatement ps = connection.prepareStatement(sql.toString());
 		ps.setString(1, ae.getA_Id());
@@ -43,6 +43,7 @@ public class AssessDao {
 		ps.setString(3, ae.getA_PersonNo());
 		ps.setString(4, ae.getA_DataTime());
 		ps.setString(5, ae.getA_Context());
+		ps.setString(6, ae.getA_Relationship());
 		// 执行sql
 		ps.executeUpdate();
 	}
@@ -62,8 +63,8 @@ public class AssessDao {
 		// 构建sql语句
 		StringBuilder sql = new StringBuilder();
 		sql.append(" insert into t_stuassess ")
-				.append(" (StuAss_Id,Stu_SNo,StuAss_SNo,StuAss_DataTime,StuAss_Context) ").append(" values ")
-				.append(" (?,?,?,?,?) ");
+				.append(" (StuAss_Id,Stu_SNo,StuAss_SNo,StuAss_DataTime,StuAss_Context,StuAss_relationship) ").append(" values ")
+				.append(" (?,?,?,?,?,?) ");
 		// 为sql传入参数
 		PreparedStatement ps = connection.prepareStatement(sql.toString());
 		ps.setString(1, ae.getA_Id());
@@ -71,6 +72,7 @@ public class AssessDao {
 		ps.setString(3, ae.getA_PersonNo());
 		ps.setString(4, ae.getA_DataTime());
 		ps.setString(5, ae.getA_Context());
+		ps.setString(6, ae.getA_Relationship());
 		// 执行sql
 		ps.executeUpdate();
 	}
@@ -271,7 +273,7 @@ public class AssessDao {
 		ae.setA_Id(rs.getString(1));
 		ae.setStu_SNo(rs.getString(2));
 		ae.setA_PersonNo(rs.getString(3));
-		ae.setA_DataTime(rs.getString(4));
+		ae.setA_DataTime(rs.getString(4).substring(0, 19));
 		ae.setA_Context(rs.getString(5));
 		ae.setA_Relationship(rs.getString(6));
 		return ae;
