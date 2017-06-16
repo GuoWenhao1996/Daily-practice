@@ -83,9 +83,9 @@
 													<tbody>
 														<c:forEach var="as0" items="${sAA}" varStatus="vs">
 															<tr class="odd gradeX">
-																<td width="15%">${sAA[vs.index][0]}</td>
-																<td width="40%">${sAA[vs.index][1]}</td>
-																<td width="10%">${sAA[vs.index][2]}</td>
+																<td width="20%">${sAA[vs.index][0]}</td>
+																<td width="50%">${sAA[vs.index][1]}</td>
+																<td width="15%">${sAA[vs.index][2]}</td>
 																<td width="15%">${sAA[vs.index][3]}</td>
 															</tr>
 														</c:forEach>

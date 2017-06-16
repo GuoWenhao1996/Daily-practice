@@ -1,5 +1,5 @@
 ﻿<%@page pageEncoding="utf-8"%>
-<%@page import="util.DBUtil" %>
+<%@page import="util.DBUtil"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -63,33 +63,47 @@
 		}
 		e.className = "active-menu waves-effect waves-dark";
 	}
+	function passwordtitle(tit, e) {
+		document.title = tit;
+		var leader = document.getElementsByName("lead");
+		for (i = 0; i < leader.length; i++) {
+			if (leader[i].className == "active-menu waves-effect waves-dark") {
+				leader[i].className = "waves-effect waves-dark";
+			}
+		}
+		e.className = "waves-effect waves-dark";
+	}
+	
 </script>
 </head>
 
 <body>
 	<div id="wrapper">
-	
 		<%
-			String name = "as";
-			boolean has = false;
-			String username=request.getParameter("username");
-			if(!username.equals(null)){
-				has=true;
-				name=username;				
-			}
-			Cookie Cookies[] = request.getCookies();
-			if (Cookies != null) {
-				for (int n = 0; n < Cookies.length; n++) {
-					Cookie newCookie = Cookies[n];
-					if (newCookie.getName().equals("cookieNo")) {
-						has = true;
-						name = newCookie.getValue();
-						name = java.net.URLDecoder.decode(name, "UTF-8");
+			try {
+				String name = "as";
+				boolean has = false;
+				String username = request.getParameter("username");
+				if (!username.equals(null)) {
+					has = true;
+					name = username;
+				}
+				Cookie Cookies[] = request.getCookies();
+				if (Cookies != null) {
+					for (int n = 0; n < Cookies.length; n++) {
+						Cookie newCookie = Cookies[n];
+						if (newCookie.getName().equals("cookieNo")) {
+							has = true;
+							name = newCookie.getValue();
+							name = java.net.URLDecoder.decode(name, "UTF-8");
+						}
 					}
 				}
-			}
-			System.out.println(has);
-			if (!has) {
+				System.out.println(has);
+				if (!has) {
+					response.sendRedirect("/UniversityOfShaft/jsp/Login.jsp");
+				}
+			} catch (Exception e) {
 				response.sendRedirect("/UniversityOfShaft/jsp/Login.jsp");
 			}
 		%>
@@ -127,10 +141,11 @@
 		</nav>
 		<!-- Dropdown Structure -->
 		<ul id="dropdown1" class="dropdown-content">
-			<li><a href="#"><i class="fa fa-user fa-fw"></i> 个人资料 </a></li>
-			<li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置 </a></li>
-			<li><a href="${path}jsp/Login.jsp"><i class="fa fa-sign-out fa-fw"></i>
-					注销 </a></li>
+			<li><a href="${path}jsp/updatePwd.jsp" name="lead"
+				target="mainFrame" onclick="javascript:passwordtitle('修改密码',this)"><i
+					class="fa fa-gear fa-fw"></i> 修改密码 </a></li>
+			<li><a href="${path}jsp/Login.jsp"><i
+					class="fa fa-sign-out fa-fw"></i> 注销 </a></li>
 		</ul>
 		<ul id="dropdown2" class="dropdown-content w250">
 			<li><a href="#">
@@ -279,14 +294,14 @@
 				<ul class="nav" id="main-menu">
 
 					<li><a class="active-menu waves-effect waves-dark" name="lead"
-						href="PersonalData.jsp" target="mainFrame"
+						href="/UniversityOfShaft/loadpersonaldata.do" target="mainFrame"
 						onclick="javascript:changetitle('个人资料',this)"><i
 							class="fa fa-dashboard"></i> 个人资料</a></li>
-					<li><a id="qw" href="ScoreQuery.jsp"
+					<li><a id="qw" href="/UniversityOfShaft/Queryallscore.do"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('成绩查询',this)"><i
 							class="fa fa-desktop"></i> 成绩查询</a></li>
-					<li><a href="ScoreAnalysis.jsp"
+					<li><a href="/UniversityOfShaft/Analysisscore.do?term=1"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('成绩分析',this)"><i
 							class="fa fa-bar-chart-o"></i> 成绩分析</a></li>
@@ -295,34 +310,14 @@
 						onclick="javascript:changetitle('日志',this)"><i
 							class="fa fa-qrcode"></i> 日志</a></li>
 
-					<li><a href="RewardsAndPunishment.jsp"
+					<li><a href="/UniversityOfShaft/liststudenterewandpun.do"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('奖惩',this)"><i
 							class="fa fa-table"></i> 奖惩</a></li>
-					<li><a href="/UniversityOfShaft/listAssess.do" class="waves-effect waves-dark"
-						name="lead" target="mainFrame"
+					<li><a href="/UniversityOfShaft/listAssess.do"
+						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('评价',this)"><i
-							class="fa fa-edit"></i> 评价</a></li>
-
-
-					<li><a href="#" class="waves-effect waves-dark"><i
-							class="fa fa-sitemap"></i> 多级下拉菜单<span class="fa arrow"></span></a>
-						<ul class="nav nav-second-level">
-							<li><a href="#">二级链接</a></li>
-							<li><a href="#">二级链接</a></li>
-							<li><a href="#" class="waves-effect waves-dark">二级链接<span
-									class="fa arrow"></span></a>
-								<ul class="nav nav-third-level">
-									<li><a href="#">三级链接</a></li>
-									<li><a href="#">三级链接</a></li>
-									<li><a href="#">三级链接</a></li>
-
-								</ul></li>
-						</ul></li>
-					<li><a href="empty.jsp" class="waves-effect waves-dark"
-						name="lead" target="mainFrame"
-						onclick="javascript:changetitle('空白页',this)"><i
-							class="fa fa-fw fa-file"></i> 空白页 </a></li>
+							class="fa fa-edit"></i> 评价系统</a></li>
 				</ul>
 
 			</div>
@@ -330,7 +325,7 @@
 		</nav>
 		<!-- /. NAV SIDE  -->
 
-		<iframe src="${path}jsp/PersonalData.jsp" id="mainFrame"
+		<iframe src="/UniversityOfShaft/loadpersonaldata.do" id="mainFrame"
 			name="mainFrame" width="100%" frameborder="no"></iframe>
 		<!-- /. PAGE WRAPPER  -->
 	</div>

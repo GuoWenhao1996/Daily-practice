@@ -187,11 +187,11 @@
 					}
 					alert("您对【" + stuName + "】的评价提交成功！");
 					window.location.href = "/UniversityOfShaft/AddTeacAssess.do?SNo="
-							+ encodeURI(encodeURI(stuNo))
+							+ stuNo
 							+ "&&ass="
-							+ encodeURI(encodeURI(assess))
+							+ assess
 							+ "&&rel="
-							+ encodeURI(encodeURI(relationship));
+							+ relationship;
 				} else {
 				}
 			} else {

@@ -62,13 +62,14 @@ $(function(){
 <div id="tab">
   <ul class="tab_menu">
     <li class="selected">学生登录</li>
-    <li>导师登录</li>
+    <li>教师登录</li>
   </ul>
   <div class="tab_box">
     <!-- 学生登录开始 -->
     <div>
       <div class="stu_error_box"></div>
       <form   action="/UniversityOfShaft/StuLogin.do" method="post" class="stu_login_error">
+               <h3>${message}</h3>
         <div id="username">
           <label>学&nbsp;&nbsp;&nbsp;号：</label>
           <input type="text" id="stu_username_hide" name="username" placeholder="输入学号" nullmsg="学号不能为空！" datatype="s6-18" errormsg="学号范围在6~18个字符之间！" sucmsg="学号验证通过！" class="input"/>
@@ -88,7 +89,7 @@ $(function(){
       </form>
     </div>
     <!-- 学生登录结束-->
-    <!-- 导师登录开始-->
+    <!-- 教师登录开始-->
     <div class="hide">
       <div class="tea_error_box"></div>
       <form action="/UniversityOfShaft/TeaLogin.do" method="post" class="tea_login_error">
@@ -110,7 +111,7 @@ $(function(){
         </div>
       </form>
     </div>
-    <!-- 导师登录结束-->
+    <!-- 教师登录结束-->
   </div>
 </div>
 <div class="screenbg">

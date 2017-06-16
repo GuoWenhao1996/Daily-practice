@@ -59,32 +59,45 @@
 		}
 		e.className = "active-menu waves-effect waves-dark";
 	}
+	function passwordtitle(tit, e) {
+		document.title = tit;
+		var leader = document.getElementsByName("lead");
+		for (i = 0; i < leader.length; i++) {
+			if (leader[i].className == "active-menu waves-effect waves-dark") {
+				leader[i].className = "waves-effect waves-dark";
+			}
+		}
+		e.className = "waves-effect waves-dark";
+	}
 </script>
 </head>
-
 <body>
 	<div id="wrapper">
-		<%
-			String name = "as";
-			boolean has = false;
-			String username = request.getParameter("username");
-			if (!username.equals(null)) {
-				has = true;
-				name = username;
-			}
-			Cookie Cookies[] = request.getCookies();
-			if (Cookies != null) {
-				for (int n = 0; n < Cookies.length; n++) {
-					Cookie newCookie = Cookies[n];
-					if (newCookie.getName().equals("cookieNo")) {
-						has = true;
-						name = newCookie.getValue();
-						name = java.net.URLDecoder.decode(name, "UTF-8");
+				<%
+			try {
+				String name = "as";
+				boolean has = false;
+				String username = request.getParameter("username");
+				if (!username.equals(null)) {
+					has = true;
+					name = username;
+				}
+				Cookie Cookies[] = request.getCookies();
+				if (Cookies != null) {
+					for (int n = 0; n < Cookies.length; n++) {
+						Cookie newCookie = Cookies[n];
+						if (newCookie.getName().equals("cookieNo")) {
+							has = true;
+							name = newCookie.getValue();
+							name = java.net.URLDecoder.decode(name, "UTF-8");
+						}
 					}
 				}
-			}
-			System.out.println(has);
-			if (!has) {
+				System.out.println(has);
+				if (!has) {
+					response.sendRedirect("/UniversityOfShaft/jsp/Login.jsp");
+				}
+			} catch (Exception e) {
 				response.sendRedirect("/UniversityOfShaft/jsp/Login.jsp");
 			}
 		%>
@@ -122,8 +135,9 @@
 		</nav>
 		<!-- Dropdown Structure -->
 		<ul id="dropdown1" class="dropdown-content">
-			<li><a href="#"><i class="fa fa-user fa-fw"></i> 个人资料 </a></li>
-			<li><a href="#"><i class="fa fa-gear fa-fw"></i> 设置 </a></li>
+		<li><a href="${path}jsp/updatePwd.jsp" name="lead"
+				target="mainFrame" onclick="javascript:passwordtitle('修改密码',this)"><i
+					class="fa fa-gear fa-fw"></i> 修改密码 </a></li>
 			<li><a href="${path}jsp/Login.jsp"><i class="fa fa-sign-out fa-fw"></i>
 					注销 </a></li>
 		</ul>
@@ -276,28 +290,24 @@
 					<li><a class="active-menu waves-effect waves-dark" name="lead"
 						href="${path}jsp/thome.html" target="mainFrame"
 						onclick="javascript:changetitle('欢迎页',this)"><i
-							class="fa fa-dashboard"></i>欢迎页</a></li>
-					<li><a href="${path}jsp/thome.html"
+							class="fa fa-dashboard"></i> 欢迎页</a></li>
+					<li><a href="/UniversityOfShaft/listofclass.do"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('学生成绩',this)"><i
-							class="fa fa-desktop"></i>学生成绩</a></li>
-					<li><a href="thome.html" class="waves-effect waves-dark"
-						name="lead" target="mainFrame"
-						onclick="javascript:changetitle('成绩分析',this)"><i
-							class="fa fa-bar-chart-o"></i>成绩分析</a></li>
-					<li><a href="tStudentDiary.html"
+							class="fa fa-desktop"></i> 学生成绩</a></li>
+					<li><a href="/UniversityOfShaft/tlistclass.do"
 						class="waves-effect waves-dark" name="lead" target="mainFrame"
 						onclick="javascript:changetitle('学生日志',this)"><i
-							class="fa fa-qrcode"></i>学生日志</a></li>
+							class="fa fa-qrcode"></i> 学生日志</a></li>
 
-					<li><a href="thome.html" class="waves-effect waves-dark"
+					<li><a href="/UniversityOfShaft/listtearewandpun.do" class="waves-effect waves-dark"
 						name="lead" target="mainFrame"
 						onclick="javascript:changetitle('学生奖惩',this)"><i
-							class="fa fa-table"></i>学生奖惩</a></li>
+							class="fa fa-table"></i> 学生奖惩</a></li>
 					<li><a href="/UniversityOfShaft/listAssessTeac.do" class="waves-effect waves-dark"
 						name="lead" target="mainFrame"
 						onclick="javascript:changetitle('评价',this)"><i
-							class="fa fa-edit"></i>评价</a></li>
+							class="fa fa-edit"></i> 评价系统</a></li>
 
 				</ul>
 

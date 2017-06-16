@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.DiaryDao;
 import entity.DiaryEntity;
 import util.DBUtil;
+import util.ThisSystemException;
 
 @WebServlet("/diarylist.do")
 public class ListServlet extends HttpServlet {
@@ -41,8 +42,12 @@ public class ListServlet extends HttpServlet {
 			}*/
 			req.setAttribute("ow", "0"); //说明用户提交了新的日志，需要刷新列表
 			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (ThisSystemException e){
+			req.setAttribute("message", "操作失败！");
+			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
+		} catch (Exception e){
+			req.setAttribute("message", "系统繁忙，请稍候再试!");
+			req.getRequestDispatcher("/jsp/Journal.jsp").forward(req, res);
 		}
 	}
 }
