@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chinasofti.dao.StudentDao">
+
+	<resultMap type="Student" id="studentmap">
+		<id column="t_id" property="id" />
+		<result column="t_name" property="name" />
+		<result column="t_password" property="password" />
+		<result column="t_classid" property="clazz.id" />
+	</resultMap>
+
+	<insert id="addStudent" parameterType="Student">
+		insert into
+		t_student(t_name,t_password,t_classid) values(#{name}, #{password},#{clazz.id})
+	</insert>
+
+	<select id="getStudetList" parameterType="Student" resultMap="studentmap">
+		select * from t_student
+		<where>
+			<if test="name != null and name != ''">
+				and t_name like #{name}
+			</if>
+			<if	test="clazz != null and clazz.id != null and clazz.id != 0">
+				and t_classid = #{clazz.id}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteStudent" parameterType="Student">
+		delete from t_student
+		where t_id=#{id}
+	</delete>
+
+	<select id="getStudent" parameterType="Student" resultMap="studentmap">
+		select * from t_student where t_id=#{id}
+	</select>
+
+	<update id="updateStudent" parameterType="Student">
+		update t_student set t_name =#{name},t_password=#{password},t_classid=#{clazz.id} where t_id=#{id}
+	</update>
+
+</mapper>
