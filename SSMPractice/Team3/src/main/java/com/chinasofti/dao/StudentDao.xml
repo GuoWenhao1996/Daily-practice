@@ -11,7 +11,8 @@
 
 	<insert id="addStudent" parameterType="Student">
 		insert into
-		t_student(t_name,t_password,t_classid) values(#{name}, #{password},#{clazz.id})
+		t_student(t_name,t_password,t_classid) values(#{name},
+		#{password},#{clazz.id})
 	</insert>
 
 	<select id="getStudetList" parameterType="Student" resultMap="studentmap">
@@ -20,7 +21,20 @@
 			<if test="name != null and name != ''">
 				and t_name like #{name}
 			</if>
-			<if	test="clazz != null and clazz.id != null and clazz.id != 0">
+			<if test="clazz != null and clazz.id != null and clazz.id != 0">
+				and t_classid = #{clazz.id}
+			</if>
+		</where>
+		limit #{start} , #{length}
+	</select>
+
+	<select id="getCount" parameterType="Student" resultType="Long">
+		select count(*) from t_student
+		<where>
+			<if test="name != null and name != ''">
+				and t_name like #{name}
+			</if>
+			<if test="clazz != null and clazz.id != null and clazz.id != 0">
 				and t_classid = #{clazz.id}
 			</if>
 		</where>
@@ -36,7 +50,9 @@
 	</select>
 
 	<update id="updateStudent" parameterType="Student">
-		update t_student set t_name =#{name},t_password=#{password},t_classid=#{clazz.id} where t_id=#{id}
+		update t_student set
+		t_name =#{name},t_password=#{password},t_classid=#{clazz.id} where
+		t_id=#{id}
 	</update>
 
 </mapper>

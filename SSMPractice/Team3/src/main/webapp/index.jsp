@@ -7,6 +7,7 @@
 	session.setAttribute("basePath", basePath);
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="pg" uri="http://jsptags.com/tags/navigation/pager"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,7 +25,7 @@
 		<input type="" placeholder="请输入姓名" name="name">
 		班级
 		<select name="clazz.id">
-			<option value="">---------------</option>
+			<option value="0">---------------</option>
 			<c:forEach items="${clazzes}" var="c">
 				<option value="${c.id}">${c.name}</option> 
 			</c:forEach>
@@ -49,5 +50,11 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<pg:pager items="${total}" maxIndexPages="3" maxPageItems="2" url="${basePath}student/list.do" scope="request">
+		<pg:param name="name" value="${studentnamequery}"/>
+		<pg:param name="clazz.id" value="${studentclazzidquery}"/>
+		<jsp:include page="res/pager_tag.jsp"></jsp:include>
+	</pg:pager>
+	
 </body>
 </html>

@@ -28,10 +28,11 @@ public class StudentDaoTest {
 	@Test
 	public void testGetStudentList() {
 		Student student=new Student();
-		student.setName("%翠%");
-		Clazz clazz=new Clazz();
-		clazz.setId(3);
-		student.setClazz(clazz);
+//		student.setName("%%");
+//		Clazz clazz=new Clazz();
+//		clazz.setId(1);
+//		student.setClazz(clazz);
+		student.setStart(4);
 		List<Student> students = studentDao.getStudetList(student);
 		for (Student s : students) {
 			System.out.println(s.getName());

@@ -1,6 +1,8 @@
 package com.chinasofti.entity;
 
-public class Clazz {
+import com.chinasofti.util.BaseBean;
+
+public class Clazz extends BaseBean{
 	private Integer id;
 	private String name;
 

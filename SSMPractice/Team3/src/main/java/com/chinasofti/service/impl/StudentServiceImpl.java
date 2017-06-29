@@ -24,13 +24,13 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	public List<Student> getStudentList(Student student) {
-		if(student.getName()!=null&& !student.getName().equals("")){
-			student.setName("%"+student.getName()+"%");
+		if (student.getName() != null && !student.getName().equals("")) {
+			student.setName("%" + student.getName() + "%");
 		}
-		List<Student> students=studentDao.getStudetList(student);
-		for(Student s:students){
-			Integer id=s.getClazz().getId();
-			Clazz clazz=clazzDao.getClazzByid(id);
+		List<Student> students = studentDao.getStudetList(student);
+		for (Student s : students) {
+			Integer id = s.getClazz().getId();
+			Clazz clazz = clazzDao.getClazzByid(id);
 			s.setClazz(clazz);
 		}
 		return students;
@@ -46,6 +46,13 @@ public class StudentServiceImpl implements StudentService {
 
 	public void updateStudent(Student student) {
 		studentDao.updateStudent(student);
+	}
+
+	public Long getCount(Student student) {
+		if (student.getName() != null && !student.getName().equals("")) {
+			student.setName("%" + student.getName() + "%");
+		}
+		return studentDao.getCount(student);
 	}
 
 }

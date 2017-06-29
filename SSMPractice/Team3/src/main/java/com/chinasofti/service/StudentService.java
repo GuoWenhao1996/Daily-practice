@@ -8,6 +8,9 @@ public interface StudentService {
 	public void addStudent(Student student);
 
 	public List<Student> getStudentList(Student student);
+	
+	public Long getCount(Student student);
+
 
 	public void deleteStudent(Student student);
 

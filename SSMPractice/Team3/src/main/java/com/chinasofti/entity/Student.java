@@ -1,6 +1,8 @@
 package com.chinasofti.entity;
 
-public class Student {
+import com.chinasofti.util.BaseBean;
+
+public class Student extends BaseBean {
 	private int id;
 	private String name;
 	private String password;

@@ -9,6 +9,8 @@ public interface StudentDao {
 	
 	public List<Student> getStudetList(Student student);
 	
+	public Long getCount(Student student);
+	
 	public void deleteStudent(Student student);
 	
 	public Student getStudent(Student student);
