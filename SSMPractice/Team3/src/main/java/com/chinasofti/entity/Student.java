@@ -7,6 +7,16 @@ public class Student extends BaseBean {
 	private String name;
 	private String password;
 	private Clazz clazz;
+	private String url;
+	
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
 
 	public Clazz getClazz() {
 		return clazz;

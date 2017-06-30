@@ -7,12 +7,13 @@
 		<result column="t_name" property="name" />
 		<result column="t_password" property="password" />
 		<result column="t_classid" property="clazz.id" />
+		<result column="t_url" property="url" />
 	</resultMap>
 
 	<insert id="addStudent" parameterType="Student">
 		insert into
-		t_student(t_name,t_password,t_classid) values(#{name},
-		#{password},#{clazz.id})
+		t_student(t_name,t_password,t_classid,t_url) values(#{name},
+		#{password},#{clazz.id},#{url})
 	</insert>
 
 	<select id="getStudetList" parameterType="Student" resultMap="studentmap">
@@ -59,7 +60,7 @@
 
 	<update id="updateStudent" parameterType="Student">
 		update t_student set
-		t_name =#{name},t_password=#{password},t_classid=#{clazz.id} where
+		t_name =#{name},t_password=#{password},t_classid=#{clazz.id},t_url=#{url} where
 		t_id=#{id}
 	</update>
 

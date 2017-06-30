@@ -22,12 +22,11 @@
 		<a href="${basePath}student/list.do">学生信息</a>
 	</h3>
 	<form action="${basePath}student/list.do" method="post">
-		<input type="" placeholder="请输入姓名" name="name">
-		班级
-		<select name="clazz.id">
+		<input type="" placeholder="请输入姓名" name="name"> 班级 <select
+			name="clazz.id">
 			<option value="0">---------------</option>
 			<c:forEach items="${clazzes}" var="c">
-				<option value="${c.id}">${c.name}</option> 
+				<option value="${c.id}">${c.name}</option>
 			</c:forEach>
 		</select>
 		<button type="submit">查询</button>
@@ -43,18 +42,20 @@
 		<c:forEach items="${students}" var="s">
 			<tr>
 				<td>${s.id}</td>
-				<td>${s.name}</td>
+				<td><img src="${s.url}" style="width: 100px; height: 150px">${s.name}</td>
 				<td>${s.password}</td>
 				<td>${s.clazz.name}</td>
-				<td><a href="${basePath}student/loadupdate.do?id=${s.id}">修改</a> <a href="${basePath}student/delete.do?id=${s.id}">删除</a></td>
+				<td><a href="${basePath}student/loadupdate.do?id=${s.id}">修改</a>
+					<a href="${basePath}student/delete.do?id=${s.id}">删除</a></td>
 			</tr>
 		</c:forEach>
 	</table>
-	<pg:pager items="${total}" maxIndexPages="3" maxPageItems="2" url="${basePath}student/list.do" scope="request">
-		<pg:param name="name" value="${studentnamequery}"/>
-		<pg:param name="clazz.id" value="${studentclazzidquery}"/>
+	<pg:pager items="${total}" maxIndexPages="3" maxPageItems="2"
+		url="${basePath}student/list.do" scope="request">
+		<pg:param name="name" value="${studentnamequery}" />
+		<pg:param name="clazz.id" value="${studentclazzidquery}" />
 		<jsp:include page="res/pager_tag.jsp"></jsp:include>
 	</pg:pager>
-	
+
 </body>
 </html>

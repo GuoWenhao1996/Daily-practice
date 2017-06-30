@@ -15,7 +15,7 @@
 </head>
 <body>
 	<h3>增加学生</h3>
-	<form action="${basePath}student/add.do" method="post">
+	<form id="student_add_form" action="${basePath}student/add.do" method="post">
 		姓名：<input type="text" name="name" id="name"><span id="nameerr" style="color: red"></span><br> 
 		密码：<input type="password" name="password"><br>
 		班级：
@@ -24,9 +24,13 @@
 				<option value="${c.id}">${c.name}</option>
 			</c:forEach>
 		</select><br>
+		头像:<input type="file" name="file" onchange="uploadImg()"><br>
+		<input type="hidden" name="url" id="imgurl">
+		预览：<img id="pre" style="border:1px solid red;width:100px;height:150px;object-fit:contain"></img><br>
 		<button type="submit">添加</button>
 	</form>
 	<script type="text/javascript" src="${basePath}res/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${basePath}res/js/jquery.form.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$("#name").blur(function() {
@@ -38,6 +42,20 @@
 				},"json")
 			});
 		})
+		
+		function uploadImg() {
+			var options={
+					url:"${basePath}student/upload.do?time="+Math.random(),
+					dataType:"json",
+					type:"post",
+					success:function(str){
+						console.log(str);
+						$("#pre").attr("src",str);
+						$("#imgurl").val(str);
+					}
+			};
+			$("#student_add_form").ajaxSubmit(options);
+		}
 	</script>
 </body>
 </html>
