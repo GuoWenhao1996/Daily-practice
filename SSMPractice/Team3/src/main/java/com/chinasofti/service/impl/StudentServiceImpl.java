@@ -55,4 +55,12 @@ public class StudentServiceImpl implements StudentService {
 		return studentDao.getCount(student);
 	}
 
+	public boolean validate(Student student) {
+		Student pstudent = studentDao.getStudent(student);
+		if (pstudent == null) {
+			return true;
+		}
+		return false;
+	}
+
 }

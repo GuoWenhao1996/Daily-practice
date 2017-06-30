@@ -16,7 +16,7 @@
 <body>
 	<h3>增加学生</h3>
 	<form action="${basePath}student/add.do" method="post">
-		姓名：<input type="text" name="name"><br> 
+		姓名：<input type="text" name="name" id="name"><span id="nameerr" style="color: red"></span><br> 
 		密码：<input type="password" name="password"><br>
 		班级：
 		<select name="clazz.id">
@@ -26,5 +26,18 @@
 		</select><br>
 		<button type="submit">添加</button>
 	</form>
+	<script type="text/javascript" src="${basePath}res/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$("#name").blur(function() {
+				//console.log("blur");
+				$.post("${basePath}student/validate.do",{name:$(this).val()},function(data){
+					//$("#nameerr").html(data);
+					console.log(data);
+					$("#nameerr").html(data.content);
+				},"json")
+			});
+		})
+	</script>
 </body>
 </html>

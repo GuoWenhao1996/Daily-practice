@@ -17,5 +17,7 @@ public interface StudentService {
 	public Student getStudent(Student student);
 
 	public void updateStudent(Student student);
+	
+	public boolean validate(Student student);
 
 }

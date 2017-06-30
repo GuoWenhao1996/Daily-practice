@@ -3,6 +3,7 @@ package com.chinasofti.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chinasofti.entity.Clazz;
+import com.chinasofti.entity.Message;
 import com.chinasofti.entity.Student;
 import com.chinasofti.service.ClazzService;
 import com.chinasofti.service.StudentService;
@@ -96,5 +99,21 @@ public class StudentController extends BaseController {
 		List<Clazz> clazzes = clazzService.getClazzList();
 		model.addAttribute("clazzes", clazzes);
 		return "student_add";
+	}
+	
+	@RequestMapping("validate.do")
+	public @ResponseBody Message validate(Student student) {
+		boolean flag=studentService.validate(student);
+		if(flag){
+			Message message=new Message();
+			message.setContent("账号可用！");
+			message.setData(new Date());
+			return message;
+		}else{
+			Message message=new Message();
+			message.setContent("账号已存在！");
+			message.setData(new Date());
+			return message;
+		}
 	}
 }
