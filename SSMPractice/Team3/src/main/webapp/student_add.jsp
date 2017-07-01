@@ -12,6 +12,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>增加学生</title>
+<script type="text/javascript" src="${basePath}res/ckeditor/ckeditor.js"></script>
 </head>
 <body>
 	<h3>增加学生</h3>
@@ -27,6 +28,7 @@
 		头像:<input type="file" name="file" onchange="uploadImg()"><br>
 		<input type="hidden" name="url" id="imgurl">
 		预览：<img id="pre" style="border:1px solid red;width:100px;height:150px;object-fit:contain"></img><br>
+		详情：<textarea rows="" cols="" name="desc" class="ckeditor"></textarea>
 		<button type="submit">添加</button>
 	</form>
 	<script type="text/javascript" src="${basePath}res/js/jquery.min.js"></script>

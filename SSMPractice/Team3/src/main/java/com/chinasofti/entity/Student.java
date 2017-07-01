@@ -8,6 +8,8 @@ public class Student extends BaseBean {
 	private String password;
 	private Clazz clazz;
 	private String url;
+	private String desc;
+	
 	
 
 	public String getUrl() {
@@ -48,6 +50,14 @@ public class Student extends BaseBean {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
 	}
 
 }

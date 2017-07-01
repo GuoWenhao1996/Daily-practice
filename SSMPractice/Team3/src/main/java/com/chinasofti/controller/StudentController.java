@@ -1,9 +1,7 @@
 package com.chinasofti.controller;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -12,6 +10,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +27,8 @@ import com.chinasofti.service.ClazzService;
 import com.chinasofti.service.StudentService;
 import com.chinasofti.util.BaseController;
 import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientHandlerException;
+import com.sun.jersey.api.client.UniformInterfaceException;
 import com.sun.jersey.api.client.WebResource;
 
 @Controller
@@ -141,11 +142,34 @@ public class StudentController extends BaseController {
 		// // fos.close();
 		// file.transferTo(new File(url));
 		// Thread.sleep(5000);
-		
-		Client client =new Client();
-		WebResource resource=client.resource(httpurl);
-		resource.put(String.class,file.getBytes());
-		
+
+		Client client = new Client();
+		WebResource resource = client.resource(httpurl);
+		resource.put(String.class, file.getBytes());
+
 		return httpurl;
+	}
+
+	@RequestMapping("uploadfile.do")
+	public void uploadFile(@RequestParam(required = false) MultipartFile upload, HttpServletRequest request,
+			HttpServletResponse response) throws UniformInterfaceException, ClientHandlerException, IOException {
+		String fileName = String.valueOf(new Date().getTime());
+		fileName += new Random().nextLong();
+		String url = "/upload/" + fileName + ".jpg";
+		String httpurl = "http://localhost:9123/Team3_fileserver" + url;
+		Client client = new Client();
+		WebResource resource = client.resource(httpurl);
+		resource.put(String.class, upload.getBytes());
+
+		// 响应
+		PrintWriter out = response.getWriter();
+		// 获取路径
+		// String basePath =
+		// request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort();
+
+		String callback = request.getParameter("CKEditorFuncNum");
+
+		out.print("<script>window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + httpurl + "') </script>");
+
 	}
 }
