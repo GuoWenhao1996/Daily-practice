@@ -50,7 +50,7 @@
             <ul>
                 <li>
                     <div class="cun">
-                        <a href="${basePath }frontend/user_orderlist.jsp" target="mainframe">我的订单</a>
+                        <a href="${basePath}order/oneuserlist.do" target="mainframe">我的订单</a>
                     </div>
                 </li>
                 <li class="kefu">

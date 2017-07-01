@@ -74,4 +74,15 @@ public class GoodsServiceImpl implements GoodsService {
 		}
 		return goodsDao.getCount(goods);
 	}
+	/**
+	 * 根据商品id查询商品的具体信息记录
+	 */
+	public List<Goods> getGoodsByid(Goods goods) {
+		List<Goods>  good =goodsDao.getGoodsByid(goods);
+		return good;
+	}
+	public Goods getGoodsById(String goodId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -18,4 +18,9 @@
 		select * from t_shoppingcart where t_ID = #{user.id}
 	</select>
 	
+	<!-- 删除购物车商品 -->
+	<delete id="deleteShoppingCartGoods" parameterType="ShoppingCart">
+		delete from t_shoppingcart where t_ID = #{user.id} and t_Gnumber = #{goods.gnumber}
+	</delete>
+	
 </mapper>

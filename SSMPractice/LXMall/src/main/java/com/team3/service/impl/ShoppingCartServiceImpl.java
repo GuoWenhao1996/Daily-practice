@@ -25,6 +25,16 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	@Autowired
 	private GoodsDao goodsDao;
 	
+	/**
+	 * 向购物车添加商品
+	 */
+	public void addShoppingCartGoogs(ShoppingCart shoppingCart) {
+		shoppingCartDao.addShoppingCartGoogs(shoppingCart);
+	}
+	
+	/**
+	 * 根据用户id查询出购物车的商品
+	 */
 	public List<ShoppingCart> getShoppingCartGoods(String userId) {
 		List<ShoppingCart> shoppingCarts = shoppingCartDao.getShoppingCartGoods(userId);
 		//对应的商品id查询出商品
@@ -34,6 +44,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 			sc.setGoods(goods);
 		}
 		return shoppingCarts;
+	}
+
+	/**
+	 * 删除购物车商品
+	 */
+	public void deleteShoppingCartGoods(ShoppingCart shoppingCart) {
+		shoppingCartDao.deleteShoppingCartGoods(shoppingCart);
 	}
 	
 }

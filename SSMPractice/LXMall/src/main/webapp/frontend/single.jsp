@@ -6,6 +6,8 @@
 			+ path + "/";
 	session.setAttribute("basePath",basePath);
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="pg" uri="http://jsptags.com/tags/navigation/pager" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +47,9 @@
 
 </head>
 <body>
+
 <div class="container">
+ <c:forEach items= "${goods}" var="g">
     <div class=" single_top">
         <div class="single_grid">
             <div class="grid images_3_of_2">
@@ -65,14 +69,16 @@
                 </ul>
                 <div class="clearfix"></div>
             </div>
+       
             <div class="desc1 span_3_of_2">
-                    <h4>刘二橙子</h4>
+             
+                    <h4>${g.gname }</h4>
                 <div class="cart-b">
-                    <div class="left-n ">RMB：29.99</div>
+                    <div class="left-n ">RMB：${g.gprice }</div>
                     <a class="now-get get-cart-in" href="#">加入购入车</a>
                     <div class="clearfix"></div>
                 </div>
-                <h6>销量:500&nbsp;&nbsp;&nbsp;&nbsp;库存: 100</h6>
+                <h6>销量:${g.gvolume}&nbsp;&nbsp;&nbsp;&nbsp;库存: ${g.gstock}</h6>
                 <p>商品介绍</p>
                 <div class="share">
                     <h5>商品分享 :</h5>
@@ -83,31 +89,10 @@
                         <li><a href="#"><img src="frontend/images/gpluse.png" title="Google+"></a></li>
                     </ul>
                 </div>
+          
             </div>
             <div class="clearfix"></div>
         </div>
-        <ul id="flexiselDemo1">
-            <li><img src="frontend/images/pingguo.jpg"/>
-                <div class="grid-flex"><a href="#">商品名称</a>
-                    <p>RMB：850</p></div>
-            </li>
-            <li><img src="images/ningmeng.jpg"/>
-                <div class="grid-flex"><a href="#">商品名称</a>
-                    <p>RMB：850</p></div>
-            </li>
-            <li><img src="images/chengzi.jpg"/>
-                <div class="grid-flex"><a href="#">商品名称</a>
-                    <p>RMB：850</p></div>
-            </li>
-            <li><img src="images/mihoutao.jpg"/>
-                <div class="grid-flex"><a href="#">商品名称</a>
-                    <p>RMB：850</p></div>
-            </li>
-            <li><img src="images/boluo.jpg"/>
-                <div class="grid-flex"><a href="#">商品名称</a>
-                    <p>RMB：850</p></div>
-            </li>
-        </ul>
         <script type="text/javascript">
             $(window).load(function () {
                 $("#flexiselDemo1").flexisel({
@@ -136,53 +121,49 @@
             });
         </script>
         <script type="text/javascript" src="${basePath }frontend/js/jquery.flexisel.js"></script>
-
         <div class="toogle">
             <h3 class="m_3">产品详情</h3>
-            <p class="m_text">这是产品的非常详细的介绍！</p>
+            <p class="m_text"> ${g.gdetail}</p>
         </div>
     </div>
 
-    <div class="sub-cate">
-        <div class=" top-nav rsidebar span_1_of_left">
-            <h3 class="cate">类别</h3>
-            <ul class="menu">
-                <li class="item1"><a href="#">生鲜水果<img class="arrow-img" src="images/arrow1.png" alt=""/>
-                </a>
-                    <ul class="cute">
-                        <li class="subitem1"><a href="product.html">新鲜蔬菜 </a></li>
-                        <li class="subitem2"><a href="product.html">新鲜水果</a></li>
-                        <li class="subitem3"><a href="product.html">新鲜水产 </a></li>
-                        <li class="subitem4"><a href="product.html">肉类 </a></li>
-                    </ul>
-                </li>
-                <li class="item2"><a href="#">零&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食<img class="arrow-img"
-                                                                                         src="images/arrow1.png"
-                                                                                         alt=""/></a>
-                    <ul class="cute">
-                        <li class="subitem1"><a href="product.html">进口食品 </a></li>
-                        <li class="subitem2"><a href="product.html">休闲零食</a></li>
-
-                    </ul>
-                </li>
-                <li class="item3"><a href="#">茶&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;酒<img class="arrow-img"
-                                                                                         src="images/arrow1.png"
-                                                                                         alt=""/> </a>
-                    <ul class="cute">
-                        <li class="subitem1"><a href="product.html">酒类 </a></li>
-                        <li class="subitem2"><a href="product.html">茶叶 </a></li>
-                        <li class="subitem3"><a href="product.html">乳品冲饮</a></li>
-                    </ul>
-                </li>
-
-                <ul class="kid-menu ">
-
-                    <li class="menu-kid-left"><a href="contact.html">联系我们</a></li>
+  <div class="sub-cate"  >
+    <div class=" top-nav rsidebar span_1_of_left">
+        <h3 class="cate">类别</h3>
+        <ul class="menu">
+            <li class="item1"><a  href="${basePath }goods/list.do">生鲜水果<img class="arrow-img" src="images/arrow1.png" alt=""/>
+            </a>
+                <ul class="cute">
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=${g.gsort}">新鲜蔬菜 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=${g.gsort}">新鲜水果</a></li>
+                    <li class="subitem3"><a href="${basePath }goods/list.do?gsort=${g.gsort}">新鲜水产 </a></li>
+                    <li class="subitem4"><a href="${basePath }goods/list.do?gsort=${g.gsort}">肉类 </a></li>
                 </ul>
+            </li>
+            <li class="item2" ><a href="${basePath }goods/list.do?gsort=${g.gsort}">零&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食<img class="arrow-img"
+                                                                                     src="images/arrow1.png"
+                                                                                     alt=""/></a>
+                <ul class="cute">
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=${g.gsort}">进口食品 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=${g.gsort}">休闲零食</a></li>
 
+                </ul>
+            </li>
+            <li class="item3"><a href="${basePath }goods/list.do?gsort='茶叶'">茶&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;酒<img class="arrow-img"
+                                                                                     src="images/arrow1.png"
+                                                                                     alt=""/> </a>
+                <ul class="cute">
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort='酒类'">酒类 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort='茶叶'">茶叶 </a></li>
+                    <li class="subitem3"><a href="${basePath }goods/list.do?gsort=${g.gsort}">乳品冲饮</a></li>
+                </ul>
+            </li>
+
+            <ul class="kid-menu ">
+                <li class="menu-kid-left"><a href="${basePath }frontend/contact.jsp">联系我们</a></li>
             </ul>
-        </div>
-        <!--initiate accordion-->
+        </ul>
+    </div>
         <script type="${basePath }frontend/text/javascript">
             $(function () {
                 var menu_ul = $('.menu > li > ul'),
@@ -202,17 +183,10 @@
 
             });
         </script>
-        <div class=" chain-grid menu-chain">
-            <a href="single.html"><img class="img-responsive chain" src="images/chengzi.jpg" alt=" "/></a>
-            <div class="grid-chain-bottom chain-watch">
-                <span class="actual dolor-left-grid">30元</span>
-                <span class="reducedfrom">50元</span>
-                <h6><a href="single.html">刘二橙子</a></h6>
-            </div>
-        </div>
-        <a class="view-all all-product" href="product.html">查看所有商品<span> </span></a>
+        <a class="view-all all-product" href="${basePath }goods/list.do">查看所有商品<span> </span></a>
     </div>
     <div class="clearfix"></div>
+       </c:forEach>
 </div>
 
 </body>

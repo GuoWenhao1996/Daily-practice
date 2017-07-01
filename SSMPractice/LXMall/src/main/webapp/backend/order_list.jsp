@@ -103,7 +103,7 @@
 				</c:forEach>
 			</table>
 			<aside class="paging"> 
-				<pg:pager items="${total}" maxIndexPages="3" maxPageItems="5" url="${basePath}order/list.do" scope="request">
+				<pg:pager items="${total}" maxIndexPages="3" maxPageItems="10" url="${basePath}order/list.do" scope="request">
  					<pg:param name="orderStatus" value="${orderStatusquery}" />
  					<pg:param name="orderId" value="${orderIdquery}" />
 					<pg:param name="user.id" value="${useridquery}" />

@@ -17,6 +17,20 @@ public interface GoodsService {
 	  */
 	public List<Goods> getGoodsList(Goods goods);
 	
+    /**
+	 * 根据商品id查询单个记录
+	 * @param goodsId
+	 * @return
+	 */
+    public List<Goods> getGoodsByid(Goods goods);
+	
+	/**
+	 * 根据商品id查询单个记录，返回string 类型的
+	 * @param goodsId
+	 * @return
+	 */
+	public Goods getGoodsById(String goodId);
+	
 	/**
 	 * 删除商品信息
 	 * @param goods
@@ -46,5 +60,6 @@ public interface GoodsService {
      * @return
      */
     public boolean validate(Goods goods);
+
 	 
 }

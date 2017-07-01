@@ -24,7 +24,6 @@ public class TestGoodsDao {
 		@Test
 		public void testGetStudentList(){
 			Goods good=new Goods();
-//			good.setGname("");
 			List<Goods> goods =goodsDao.getGoodsList(good);
 			 for(Goods s: goods){ 
 				 System.out.println(s.getGname()); 
@@ -34,8 +33,14 @@ public class TestGoodsDao {
 				 System.out.println(s.getGsort()); 
 				 System.out.println(s.getGstatus()); 
 				 System.out.println(s.getGvolume()); 
-				
-			 }
-			 }
+			 }	 
+		}
+		/**
+		 * 测试获取单个学生的信息,测试成功
+		 */
+		@Test
+		public  void testgetGoodsById(){
+			Goods goods=new Goods();
+		}
 
 }

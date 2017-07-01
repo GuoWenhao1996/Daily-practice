@@ -23,6 +23,5 @@ public class BaseController {
 		}else {
 			start = 0;
 		}
-		System.out.println("str="+str);
 	}
 }

@@ -12,19 +12,22 @@
 		<result column="t_Gstatus" property="gstatus" />
 		<result column="t_sort" property="gsort" />
 	</resultMap>
+	<!-- 用户根据商品名称或者类型查询商品 信息-->
 	<select id="getGoodsList" parameterType="Goods" resultMap="goodsmap">
 	 select * from t_goods 
 		 <where>
 		 	<if test="gname != null and gname != ''">
 		 		and t_Gname like #{gname}
 		 	</if>
-		 	<if test="gnumber != null and gnumber != '' ">
-		 	  and t_Gnumber = #{gnumber}
+		 	<if test="gname != null and gname != ''">
+		 		and t_sort like #{gsort}
 		 	</if>
 		 </where>
 		 limit  #{start},#{length}   
 	</select>
- <select id="getCount" parameterType="Goods" resultType="Long">
+	
+	<!-- 根据商品名称或者商品id查询商品的数量 -->
+ 	<select id="getCount" parameterType="Goods" resultType="Long">
 	 select  count(*) from t_goods 
 		 <where>
 		 	<if test="gname != null and gname != ''">
@@ -33,12 +36,18 @@
 		 	<if test="gnumber != null and gnumber != '' ">
 		 	  and t_Gnumber = #{gnumber}
 		 	</if>
+		 	<if test="gnumber != null and gnumber != '' ">
+		 	  and t_sort  like  #{gsort}
+		 	</if>
 		 </where>
 	 </select>
-	
-	<!-- 根据商品id查询记录 -->
-	<select id="getGoodsById" parameterType="String" resultMap="goodsmap">
-		select * from t_goods where t_Gnumber = #{gnumber}
+	 
+	 <!-- 根据id或者商品名称查询单个商品的信息 -->
+	 <select id="getGoodsByid" parameterType="Goods" resultMap="goodsmap">
+	    select * from t_goods  where t_Gnumber =#{gnumber}
 	</select>
-	
+	 <!-- 更新商品信息 -->
+	<update id="updateGoods" parameterType="Goods"  >
+	  update t_student set  t_name = #{name},t_password = #{password},t_classid = #{clazz.id},t_url=#{url} where t_id=#{id}
+	 </update>
 </mapper>

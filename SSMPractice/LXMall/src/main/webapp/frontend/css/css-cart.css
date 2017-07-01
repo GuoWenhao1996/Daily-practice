@@ -626,6 +626,19 @@ a {
     background: #FFFFFF;
 }
 
+.shade_update {
+    width: 800px;
+    border-radius: 10px;
+    height: 500px;
+    position: fixed;
+    z-index: 101;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -400px;
+    background: #FFFFFF;
+}
+
 .shade_content_div {
     margin: 0px auto;
     text-align: center;

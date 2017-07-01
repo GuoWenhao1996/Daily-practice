@@ -64,16 +64,13 @@
 		$('#jian').click(function() {
 			$('input[name=num]').val(parseInt($('input[name=num]').val()) - 1);
 		})
-		$('.Caddress .add_mi')
-				.click(
-						function() {
-							$(this)
-									.css('background',
-											'url("${basePath }frontend/images/mail_1.jpg") no-repeat')
-									.siblings('.add_mi')
-									.css('background',
-											'url("${basePath }frontend/images/mail.jpg") no-repeat')
-						})
+		$('.Caddress .add_mi').click(
+				function() {
+					$(this).css('background',
+							'url("${basePath }frontend/images/mail_1.jpg") no-repeat').siblings(
+							'.add_mi').css('background',
+							'url("${basePath }frontend/images/mail.jpg") no-repeat')
+				})
 	})
 	var x = Array();
 
@@ -115,7 +112,8 @@
 					- parseFloat(out_add).toFixed(2);
 			console.log(parseFloat(reduce).toFixed(2));
 			out_momey.text(parseFloat(reduce).toFixed(2))
-			$(r).parent().parent().remove();
+			$(r).parent().parent().remove(); 
+			window.location.href = "${basePath }shoppingcart/deleteshoppingcartgoods.do?User.id=11&goods.gnumber="+r.name;
 		}
 	}
 
@@ -145,7 +143,6 @@
 		}
 	}
 
-	/* 确认结算 */
 	function shade_settlement() {
 		var sub = confirm("确认结算？");
 		if (sub) {
@@ -161,25 +158,29 @@
 </head>
 
 <body>
-	<form action="" method="post">
+
 	<!-- 地址栏 -->
 	<div class="Caddress">
 		<div class="open_new">
 			<button class="open_btn" onclick="javascript:onclick_open();">使用新地址</button>
 		</div>
 		<c:forEach items="${consigeneelist }" var="cl">
-		<div class="add_mi">
-			<p style="border-bottom: 1px dashed #ccc; line-height: 28px;">${cl.cname }</p>
-			<p style="border-bottom: 1px dashed #ccc; line-height: 28px;">${cl.ctelephone }</p>
-			<p style="border-bottom: 1px dashed #ccc; line-height: 28px;">${cl.address }</p>
-			<br>
-			<p>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a name="${cl.cnumber}" href="javascript:void(0)" onclick="javascript:onclick_open();">修改</a>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="${basePath }shoppingcart/deleteconsigenee.do?cnumber=${cl.cnumber}">删除</a>
-			</p>
-		</div>
+		
+			<div class="add_mi">
+				<p style="border-bottom: 1px dashed #ccc; line-height: 28px;">${cl.cname }</p>
+				<p style="border-bottom: 1px dashed #ccc; line-height: 28px;">${cl.ctelephone }</p>
+				<p style="border-bottom: 1px dashed #ccc; line-height: 28px;">${cl.address }</p>
+				<br>
+				<p>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a name="${cl.cnumber}" href="javascript:void(0)"
+						onclick="javascript:onclick_open();">修改</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a
+						href="${basePath }shoppingcart/deleteconsigenee.do?cnumber=${cl.cnumber}">删除</a>
+				</p>
+			</div>
+		
 		</c:forEach>
 	</div>
 
@@ -191,7 +192,7 @@
 				<tr>
 					<th>商品图片</th>
 					<th>商品名称</th>
-					<th>商品类别</th>
+					<th>商品属性</th>
 					<th>商品价格</th>
 					<th>商品数量</th>
 					<th>商品操作</th>
@@ -212,20 +213,20 @@
 						<td>
 							<button class="btn_reduce"
 								onclick="javascript:onclick_reduce(this);">-</button> <input
-							class="momey_input" type="" name="" id="" value="${scg.number }"
+							class="momey_input" name="" id="" value="${scg.number }"
 							disabled="disabled" />
 							<button class="btn_add"
 								onclick="javascript:onclick_btnAdd(this);">+</button>
 						</td>
 						<td>
-							<button class="btn_r" onclick="javascript:onclick_remove(this);">删除</button>
+							<button class="btn_r" name="${scg.goods.gnumber }" onclick="javascript:onclick_remove(this);">删除</button>
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
 			<div class="" style="width: 100%; text-align: right; margin-top: 2%;">
 				<div class="div_outMumey" style="float: left;">
-					总价：<span name="" class="out_momey">11</span>
+					总价：<span class="out_momey">11</span>
 				</div>
 				<button class="btn_closing" onclick="shade_settlement()">结算</button>
 			</div>
@@ -241,12 +242,6 @@
 			<div class="col-xs-12 shade_title">新增收货地址</div>
 			<div class="col-xs-12 shade_from">
 				<form action="${basePath }shoppingcart/addconsigenee.do" method="post">
-					
-					<!-- <div class="col-xs-12">
-						<span class="span_style" id="">邮政编号</span> <input
-							class="input_style" type="" name="" id="number_this" value=""
-							placeholder="&nbsp;&nbsp;请输入您的邮政编号" />
-					</div> -->
 					<div class="col-xs-12">
 						<span class="span_style" class="span_sty" id="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
 						<input class="input_style" type="" name="cname" id="name_" value=""
@@ -257,67 +252,21 @@
 							class="input_style" type="" name="ctelephone" id="phone" value=""
 							placeholder="&nbsp;&nbsp;请输入您的手机号码" />
 					</div>
-					<!-- <div class="col-xs-12">
-						<span class="span_style" id="">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区</span>
-						<input class="input_style" type="" name="" id="region" value=""
-							placeholder="&nbsp;&nbsp;请输入您的所在地区" />
-					</div> -->
 					<div class="col-xs-12">
 						<span class="span_style" id="">收货地址</span> <input
 							class="input_style" type="" name="address" id="address" value=""
 							placeholder="&nbsp;&nbsp;请输入您的详细地址" />
 					</div>
-					
 					<div class="col-xs-12">
 						<input class="btn_remove" type="button" id=""
-							onclick="javascript:onclick_close();" value="取消" />
-						<input type="submit" class="sub_set" id="sub_setID" value="提交" />
+							onclick="javascript:onclick_close();" value="取消" /> <input
+							type="submit" class="sub_set" id="sub_setID" value="提交" />
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 	
-	<!--修改地址-->
-	<div class="shade_content">
-		<div class="col-xs-12 shade_colse">
-			<button onclick="javascript:onclick_close();">x</button>
-		</div>
-		<div class="nav shade_content_div">
-			<div class="col-xs-12 shade_title">修改收货地址</div>
-			<div class="col-xs-12 shade_from">
-				<form action="" method="post">
-					<div class="col-xs-12">
-						<span class="span_style" class="span_sty" id="">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</span>
-						<input class="input_style" type="" name="cname" id="name_" value="${getconsigenee.cname }"
-							placeholder="&nbsp;&nbsp;请输入您的姓名" />
-					</div>
-					<div class="col-xs-12">
-						<span class="span_style" id="">手机号码</span> <input
-							class="input_style" type="" name="ctelephone" id="phone" value="${getconsigenee.ctelephone }"
-							placeholder="&nbsp;&nbsp;请输入您的手机号码" />
-					</div>
-					<!-- <div class="col-xs-12">
-						<span class="span_style" id="">地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;区</span>
-						<input class="input_style" type="" name="" id="region" value=""
-							placeholder="&nbsp;&nbsp;请输入您的所在地区" />
-					</div> -->
-					<div class="col-xs-12">
-						<span class="span_style" id="">收货地址</span> <input
-							class="input_style" type="" name="address" id="address" value="${getconsigenee.address }"
-							placeholder="&nbsp;&nbsp;请输入您的详细地址" />
-					</div>
-					
-					<div class="col-xs-12">
-						<input class="btn_remove" type="button" id=""
-							onclick="javascript:onclick_close();" value="取消" />
-						<input type="submit" class="sub_set" id="sub_setID" value="提交" />
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	</form>
 </body>
 
 </html>

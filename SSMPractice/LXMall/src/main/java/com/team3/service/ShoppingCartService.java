@@ -10,10 +10,22 @@ import com.team3.po.ShoppingCart;
  *
  */
 public interface ShoppingCartService {
+	
+	/**
+	 * 向购物车添加商品
+	 * @param shoppingCart
+	 */
+	public void addShoppingCartGoogs(ShoppingCart shoppingCart);
+	
+	/**
+	 * 删除购物车商品
+	 * @param shoppingCart
+	 */
+	public void deleteShoppingCartGoods(ShoppingCart shoppingCart);
+	
 	/**
 	 * 根据用户的id查询出购物车中所有的商品
 	 * @param shoppingCart
-	 * @return
 	 */
 	public List<ShoppingCart> getShoppingCartGoods(String userId);
 }

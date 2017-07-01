@@ -18,6 +18,12 @@ public interface ShoppingCartDao {
 	public void addShoppingCartGoogs(ShoppingCart shoppingCart);
 	
 	/**
+	 * 删除购物车商品
+	 * @param shoppingCart
+	 */
+	public void deleteShoppingCartGoods(ShoppingCart shoppingCart);
+	
+	/**
 	 * 根据用户id查询出购物车所有商品
 	 * @param shoppingCart
 	 * @return
