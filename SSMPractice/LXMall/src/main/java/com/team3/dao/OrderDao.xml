@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team3.dao.OrderDao">
+
+	<resultMap type="Order" id="ordermap">
+		<id column="t_Onumber" property="orderId" />
+		<result column="t_ID" property="user.id" />
+		<result column="t_Cnumber" property="consigenee.cnumber" />
+		<result column="t_Otime" property="orderTime" />
+		<result column="t_Ostatus" property="orderStatus" />
+		<result column="t_OtatolPrice" property="orderMoney" />
+	</resultMap>
+
+	<!-- 根据条件查询所有订单 -->
+	<select id="getOrderList" parameterType="Order" resultMap="ordermap">
+		select * from t_order
+		<where>
+			<if test="orderId != null and orderId != ''">
+				and t_Onumber = #{orderId}
+			</if>
+			<if test="user != null and user.id != null and user.id != ''">
+				and t_ID = #{user.id}
+			</if>
+			<if test="orderStatus != null and orderStatus != ''">
+				and t_Ostatus = #{orderStatus}
+			</if>
+		</where>
+		order by t_Otime desc
+		limit #{start} , #{length}
+	</select>
+
+	<!-- 增加订单 -->
+	<insert id="addOrder" parameterType="Order">
+		insert into
+		t_order(t_Onumber,t_ID,t_Cnumber,t_Otime,t_Ostatus,t_OtatolPrice)
+		values(#{orderId},#{user.id},#{consigenee.cnumber},#{orderTime},#{orderStatus},#{orderMoney})
+	</insert>
+
+	<!-- 根据条件查询订单数量 -->
+	<select id="getCount" parameterType="Order" resultType="Long">
+		select count(*) from t_order
+		<where>
+			<if test="orderId != null and orderId != ''">
+				and t_Onumber = #{orderId}
+			</if>
+			<if test="user != null and user.id != null and user.id != ''">
+				and t_ID = #{user.id}
+			</if>
+			<if test="orderStatus != null and orderStatus != ''">
+				and t_Ostatus = #{orderStatus}
+			</if>
+		</where>
+	</select>
+
+</mapper>

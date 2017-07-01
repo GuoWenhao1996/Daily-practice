@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team3.dao.AdminDao">
+
+<resultMap type="Admin" id="adminmap">
+		<id column="t_account" property="account"/> <!-- 主键属性 -->
+		<result column="t_Apassword" property="apassword"/> <!-- 非主键属性 -->
+</resultMap>
+
+<select id="getAdmin" parameterType="Admin" resultMap="adminmap">
+        select * from t_admin where t_account=#{account}
+</select>
+
+</mapper>

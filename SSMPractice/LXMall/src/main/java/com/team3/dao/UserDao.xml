@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team3.dao.UserDao">
+
+<resultMap type="User" id="usermap">	
+		<id column="t_id" property="id"/> <!-- 主键属性 -->
+		<result column="t_password" property="password"/> <!-- 非主键属性 -->
+		<result column="t_Nickname" property="nickname"/> <!-- 非主键属性 -->
+		<result column="t_status" property="status"/> <!-- 非主键属性 -->
+		<result column="t_sex" property="sex"/> <!-- 非主键属性 -->
+		<result column="t_mail" property="mail"/> <!-- 非主键属性 -->
+		<result column="t_utelphone" property="utelephone"/> <!-- 非主键属性 -->
+</resultMap>
+
+<select id="addUser" parameterType="User" >
+        insert into t_user(t_ID, t_password, t_Nickname, t_status, t_sex, t_mail, t_utelphone) values(#{id}, #{password}, #{nickname}, #{status}, #{sex}, #{mail}, #{utelephone})
+</select>
+
+<select id="getUser" parameterType="User" resultMap="usermap">
+        select * from t_user where t_id=#{id}
+</select>
+
+</mapper>

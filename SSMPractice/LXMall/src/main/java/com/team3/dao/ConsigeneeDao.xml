@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team3.dao.ConsigeneeDao">
+
+	<resultMap type="Consigenee" id="consigeneemap">
+		<id column="t_Cnumber" property="cnumber"/> <!-- 主键属性 -->
+		<result column="t_ID" property="user.id"/> <!-- 非主键属性 -->
+		<result column="t_address" property="address"/> 
+		<result column="t_Cname" property="cname"/> 
+		<result column="t_Ctelphone" property="ctelephone"/> 
+	</resultMap>
+	
+	<!-- 添加收货地址 -->
+	<insert id="addConsigenee" parameterType="Consigenee">
+		insert into t_consignee(t_Cnumber, t_ID, t_address, t_Cname, t_Ctelphone) values(#{cnumber}, #{user.id}, #{address}, #{cname}, #{ctelephone})
+	</insert>
+	
+	<!-- 根据用户id查询到对应的所有的收获地址 -->
+	<select id="getConsigeneeList" parameterType="Consigenee" resultMap="consigeneemap">
+		select * from t_consignee where t_ID = #{user.id}
+	</select>
+	
+	<!-- 根据对应的收货地址的id查询到该收货信息 -->
+	<select id="getConsigeneeById" parameterType="Consigenee" resultMap="consigeneemap">
+		select * from t_consignee where t_Cnumber = #{cnumber}
+	</select>
+	
+	<!-- 删除收获地址 -->
+	<delete id="deleteConsigenee" parameterType="Consigenee">
+		delete from t_consignee where t_Cnumber = #{cnumber}
+	</delete>
+	
+</mapper>

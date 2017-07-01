@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team3.dao.GoodsDao">
+	<resultMap type="Goods" id="goodsmap">
+		<id column="t_Gnumber" property="gnumber" />
+	    <result column="t_account" property="admin" /> 
+		<result column="t_Gname" property="gname" />
+		<result column="t_Gstock" property="gstock" />
+		<result column="t_Gvolume" property="gvolume" />
+		<result column="t_Gdetail" property="gdetail" />
+		<result column="t_Gprice" property="gprice" />
+		<result column="t_Gstatus" property="gstatus" />
+		<result column="t_sort" property="gsort" />
+	</resultMap>
+	<select id="getGoodsList" parameterType="Goods" resultMap="goodsmap">
+	 select * from t_goods 
+		 <where>
+		 	<if test="gname != null and gname != ''">
+		 		and t_Gname like #{gname}
+		 	</if>
+		 	<if test="gnumber != null and gnumber != '' ">
+		 	  and t_Gnumber = #{gnumber}
+		 	</if>
+		 </where>
+		 limit  #{start},#{length}   
+	</select>
+ <select id="getCount" parameterType="Goods" resultType="Long">
+	 select  count(*) from t_goods 
+		 <where>
+		 	<if test="gname != null and gname != ''">
+		 		and t_Gname like #{gname}
+		 	</if>
+		 	<if test="gnumber != null and gnumber != '' ">
+		 	  and t_Gnumber = #{gnumber}
+		 	</if>
+		 </where>
+	 </select>
+	
+	<!-- 根据商品id查询记录 -->
+	<select id="getGoodsById" parameterType="String" resultMap="goodsmap">
+		select * from t_goods where t_Gnumber = #{gnumber}
+	</select>
+	
+</mapper>
