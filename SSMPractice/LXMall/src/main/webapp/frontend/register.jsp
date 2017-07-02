@@ -25,19 +25,19 @@
     <script src="${basePath }frontend/js/jquery.min.js"></script>
    <script type="text/javascript">
     $(function() {
-    	$("#id").bind("input propertychange",function(){
+    	$("#id").blur("input propertychange",function(){
     		if($("#id").val()==""){
     			$('#message').html("账号不能为空");
     			$('#submit').attr('disabled',"true");
     		}else
     			$('#message').html("");
     	});
-		$("#id").bind("input propertychange",function () {
+		$("#id").blur(function () {
 			$.post("${basePath}user/validate.do",{id:$(this).val()},function(data){
-				$('#message').html(data);
 				if(data=="该账号已存在"){
 					$('#submit').attr('disabled',"true");
 				}
+				$('#message').html(data);
 			},"json")
 		});
 		$("#password2").bind("input propertychange",function(){

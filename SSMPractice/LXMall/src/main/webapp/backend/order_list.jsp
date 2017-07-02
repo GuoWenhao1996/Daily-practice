@@ -76,28 +76,28 @@
 				type="submit" value="查询" class="group_btn" /> </section>
 			<table class="table">
 				<tr>
-					<th>订单编号</th>
-					<th>用户账号</th>
-					<th>收件人</th>
-					<th>联系电话</th>
-					<th>收件人地址</th>
-					<th>下单日期</th>
-					<th>订单状态</th>
-					<th>订单总额</th>
-					<th>操作</th>
+					<th width="30%">订单编号</th>
+					<th width="12%">用户账号</th>
+					<th width="10%">收件人</th>
+					<th width="12%">联系电话</th>
+					<th width="10%">收件人地址</th>
+					<th width="10%">下单日期</th>
+					<th width="8%">订单状态</th>
+					<th width="10%">订单总额</th>
+					<th width="8%">操作</th>
 				</tr>
 				<c:forEach items="${orders}" var="o">
 					<tr>
-						<th>${o.orderId}</th>
-						<th>${o.user.id}</th>
-						<th>${o.consigenee.cname}</th>
-						<th>${o.consigenee.ctelephone}</th>
-						<th>${o.consigenee.address}</th>
-						<th>${o.orderTime}</th>
-						<th>${o.orderStatus}</th>
-						<th>${o.orderMoney}</th>
-						<td class="center"><a href="#" title="查看订单" class="link_icon"
-							target="_blank">&#118;</a> <a href="#" title="修改订单"
+						<th style="overflow:hidden"><a href="${basePath}pregoods/list.do?orderId=${o.orderId}">${o.orderId}</a></th>
+						<th style="overflow:hidden">${o.user.id}</th>
+						<th style="overflow:hidden">${o.consigenee.cname}</th>
+						<th style="overflow:hidden">${o.consigenee.ctelephone}</th>
+						<th style="overflow:hidden">${o.consigenee.address}</th>
+						<th style="overflow:hidden">${o.orderTime}</th>
+						<th style="overflow:hidden">${o.orderStatus}</th>
+						<th style="overflow:hidden">${o.orderMoney}</th>
+						<td style="overflow:hidden" class="center"><a href="${basePath}pregoods/list.do?orderId=${o.orderId}" title="查看订单" class="link_icon"
+							>&#118;</a> <a href="${basePath}pregoods/list.do?orderId=${o.orderId}" title="修改订单"
 							class="link_icon">&#101;</a></td>
 					</tr>
 				</c:forEach>

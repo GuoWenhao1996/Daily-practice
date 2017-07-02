@@ -44,6 +44,7 @@ public class ThisSystemUtil {
 
 	/**
 	 * 自定义字符串转化为整数
+	 * 
 	 * @param s
 	 * @param defaultValue
 	 * @return
@@ -59,6 +60,7 @@ public class ThisSystemUtil {
 
 	/**
 	 * 字符串转化为时间
+	 * 
 	 * @param s
 	 * @return
 	 */
@@ -75,6 +77,7 @@ public class ThisSystemUtil {
 
 	/**
 	 * MD5加密
+	 * 
 	 * @param password
 	 * @return
 	 */
@@ -113,5 +116,27 @@ public class ThisSystemUtil {
 		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String time = format.format(date);
 		return time;
+	}
+
+	public static String orderStatus(String str) {
+		// 订单状态 0、待付款 1、配货中 2、已出货 3、已签收 4、待评价 5、已完成 9、已取消
+		switch (Integer.parseInt(str)) {
+		case 0:
+			return "待付款";
+		case 1:
+			return "配货中";
+		case 2:
+			return "已出货";
+		case 3:
+			return "已签收";
+		case 4:
+			return "待评价";
+		case 5:
+			return "已完成";
+		case 9:
+			return "已取消";
+		default:
+			return "";
+		}
 	}
 }

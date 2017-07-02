@@ -68,18 +68,18 @@
             <li class="item1"><a  >生鲜水果<img class="arrow-img" src="images/arrow1.png" alt=""/>
             </a>
                 <ul class="cute">
-                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort='蔬菜'">新鲜蔬菜 </a></li>
-                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort='水果'">新鲜水果</a></li>
-                    <li class="subitem3"><a href="${basePath }goods/list.do?gsort='水产'">新鲜水产 </a></li>
-                    <li class="subitem4"><a href="${basePath }goods/list.do?gsort='肉类'">肉类 </a></li>
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=蔬菜">新鲜蔬菜 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=水果">新鲜水果</a></li>
+                    <li class="subitem3"><a href="${basePath }goods/list.do?gsort=水产">新鲜水产 </a></li>
+                    <li class="subitem4"><a href="${basePath }goods/list.do?gsort=肉类">肉类 </a></li>
                 </ul>
             </li>
-            <li class="item2" ><a href="${basePath }goods/list.do?gsort='零食'">零&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食<img class="arrow-img"
+            <li class="item2" ><a href="${basePath }goods/list.do?gsort=零食">零&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食<img class="arrow-img"
                                                                                      src="images/arrow1.png"
                                                                                      alt=""/></a>
                 <ul class="cute">
-                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort='进口食品 '">进口食品 </a></li>
-                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort='休闲零食'">休闲零食</a></li>
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=食品">食品 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=零食">零食</a></li>
 
                 </ul>
             </li>
@@ -87,9 +87,9 @@
                                                                                      src="images/arrow1.png"
                                                                                      alt=""/></a> 
                 <ul class="cute">
-                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort='酒类'">酒类 </a></li>
-                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort='茶叶'">茶叶 </a></li>
-                    <li class="subitem3"><a href="${basePath }goods/list.do?gsort='乳品冲饮'">乳品冲饮</a></li>
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=酒类">酒类 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=茶叶">茶叶 </a></li>
+                    <li class="subitem3"><a href="${basePath }goods/list.do?gsort=乳品冲饮">乳品冲饮</a></li>
                 </ul>
             </li>
 

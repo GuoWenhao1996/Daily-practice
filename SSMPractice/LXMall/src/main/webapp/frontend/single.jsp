@@ -43,7 +43,18 @@
             });
 
         });
-    </script>
+
+	$(function() { //$("#name")表示找到id为name的控件
+		$("#isadd").click(function() {
+			//加入购物车
+			//发送AJAX请求
+			$.post("${basePath }shoppingcart/isaddshoppingcartgoods.do", {gnumber:$("#gnumber").val()}, function (data) {
+				alert(data.content);
+			}, "json")
+		}); //失去焦点的时候
+	})
+	
+</script>
 
 </head>
 <body>
@@ -55,16 +66,16 @@
             <div class="grid images_3_of_2">
                 <ul id="etalage">
                     <li>
-                        <img class="etalage_thumb_image" src="images/c3.jpg" class="img-responsive"/>
-                        <img class="etalage_source_image" src="images/c3.jpg" class="img-responsive" title=""/>
+                        <img class="etalage_thumb_image" src="${basePath }frontend/images/c3.jpg" class="img-responsive"/>
+                        <img class="etalage_source_image" src="${basePath }frontend/images/c3.jpg" class="img-responsive" title=""/>
                     </li>
                     <li>
-                        <img class="etalage_thumb_image" src="images/c2.jpg" class="img-responsive"/>
-                        <img class="etalage_source_image" src="images/c2.jpg" class="img-responsive"/>
+                        <img class="etalage_thumb_image" src="${basePath }frontend/images/c2.jpg" class="img-responsive"/>
+                        <img class="etalage_source_image" src="${basePath }frontend/images/c2.jpg" class="img-responsive"/>
                     </li>
                     <li>
-                        <img class="etalage_thumb_image" src="images/c1.jpg" class="img-responsive"/>
-                        <img class="etalage_source_image" src="images/c1.jpg" class="img-responsive"/>
+                        <img class="etalage_thumb_image" src="${basePath }frontend/images/c1.jpg" class="img-responsive"/>
+                        <img class="etalage_source_image" src="${basePath }frontend/images/c1.jpg" class="img-responsive"/>
                     </li>
                 </ul>
                 <div class="clearfix"></div>
@@ -72,10 +83,11 @@
        
             <div class="desc1 span_3_of_2">
              
+             	<input type="hidden" id="gnumber" name="gnumber" value="${g.gnumber }">
                     <h4>${g.gname }</h4>
                 <div class="cart-b">
                     <div class="left-n ">RMB：${g.gprice }</div>
-                    <a class="now-get get-cart-in" href="#">加入购入车</a>
+                    <a class="now-get get-cart-in" name="isadd" id="isadd" href="javascript:void(0)">加入购入车</a>
                     <div class="clearfix"></div>
                 </div>
                 <h6>销量:${g.gvolume}&nbsp;&nbsp;&nbsp;&nbsp;库存: ${g.gstock}</h6>
@@ -140,22 +152,22 @@
                     <li class="subitem4"><a href="${basePath }goods/list.do?gsort=${g.gsort}">肉类 </a></li>
                 </ul>
             </li>
-            <li class="item2" ><a href="${basePath }goods/list.do?gsort=${g.gsort}">零&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食<img class="arrow-img"
+            <li class="item2" ><a href="${basePath }goods/list.do?gsort=零食">零&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食<img class="arrow-img"
                                                                                      src="images/arrow1.png"
                                                                                      alt=""/></a>
                 <ul class="cute">
-                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=${g.gsort}">进口食品 </a></li>
-                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=${g.gsort}">休闲零食</a></li>
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=食品">进口食品 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=零食">休闲零食</a></li>
 
                 </ul>
             </li>
-            <li class="item3"><a href="${basePath }goods/list.do?gsort='茶叶'">茶&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;酒<img class="arrow-img"
+            <li class="item3"><a href="${basePath }goods/list.do?gsort=茶叶">茶&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;酒<img class="arrow-img"
                                                                                      src="images/arrow1.png"
                                                                                      alt=""/> </a>
                 <ul class="cute">
-                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort='酒类'">酒类 </a></li>
-                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort='茶叶'">茶叶 </a></li>
-                    <li class="subitem3"><a href="${basePath }goods/list.do?gsort=${g.gsort}">乳品冲饮</a></li>
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=酒类">酒类 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=茶叶">茶叶 </a></li>
+                    <li class="subitem3"><a href="${basePath }goods/list.do?gsort=乳品冲饮">乳品冲饮</a></li>
                 </ul>
             </li>
 

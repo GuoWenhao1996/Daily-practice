@@ -2,6 +2,8 @@ package com.team3.service.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,20 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	}
 	
 	/**
+	 * 点击添加到购物车按钮
+	 */
+	public boolean isAddShoppingCartGoogs(String userId, Goods goods) {
+		List<ShoppingCart> shoppingCarts = shoppingCartDao.getShoppingCartGoods(userId);
+		//对应的商品id查询出商品
+		for(ShoppingCart sc : shoppingCarts) {
+			if(goods.getGnumber().equals(sc.getGoods().getGnumber())) {
+				return false;  //说明存在购物车中，不可以添加
+			}
+		}
+		return true;
+	}
+	
+	/**
 	 * 根据用户id查询出购物车的商品
 	 */
 	public List<ShoppingCart> getShoppingCartGoods(String userId) {
@@ -51,6 +67,17 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 	 */
 	public void deleteShoppingCartGoods(ShoppingCart shoppingCart) {
 		shoppingCartDao.deleteShoppingCartGoods(shoppingCart);
+	}
+
+	public List<ShoppingCart> showUserGoods(String userId) {
+		List<ShoppingCart> shoppingCarts = shoppingCartDao.getShoppingCartGoods(userId);
+		//对应的商品id查询出商品
+		for(ShoppingCart sc : shoppingCarts) {
+			String goodsid = sc.getGoods().getGnumber();
+			Goods goods = goodsDao.getGoodsById(goodsid);
+			sc.setGoods(goods);
+		}
+		return shoppingCarts;
 	}
 	
 }

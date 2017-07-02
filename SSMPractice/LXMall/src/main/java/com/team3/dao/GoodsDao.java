@@ -8,7 +8,13 @@ import com.team3.po.Goods;
  * @author 刘宇内
  *
  */
-public interface GoodsDao {
+public interface GoodsDao  {
+	
+	/**
+	 * 添加商品
+	 * @param goods
+	 */
+	public void addGoods(Goods goods);
 	
 	/**
 	 * 根据条件查询所有满足条件的商品信息 
@@ -29,9 +35,25 @@ public interface GoodsDao {
 	 */
 	public List<Goods> getGoodsByid(Goods goods);
 	/**
-	 * 根据商品id查询精确地商品记录 该方法还未实现
+	 * 根据商品id查询精确地商品记录 
 	 * @param goods
 	 * @return
 	 */
 	public Goods getGoodsById(String goodsId);
+	/**
+	 * 根据id修改商品信息
+	 * @param goods
+ 	 */
+	public void updateGoods(Goods goods);
+	/**
+	 * 根据商品的ID删除商品的记录
+	 * @param goods
+	 */
+	public void deleteGoods(Goods goods);
+	/**
+	 * 添加商品信息
+	 * @param goods
+	 */
+	public void AddGoods(Goods goods);
+	  
 }

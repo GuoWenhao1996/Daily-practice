@@ -6,6 +6,7 @@
 			+ path + "/";
 	session.setAttribute("basePath",basePath);
 %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,6 +29,20 @@
             setIframeHeight(document.getElementById('mainframe'));
         };
     </script>
+    
+    <script>
+    	/* $(function() { //$("#name")表示找到id为name的控件
+			$("#mycart").mouseenter(function() {
+				//加入购物车
+				//发送AJAX请求
+				alert("1111111111");
+				$.post("${basePath }shoppingcart/showusergoods.do", {id:$("#getuserid").val()}, function (data) {
+					alert(data.content);
+				}, "json")
+			}); //失去焦点的时候
+		}) */
+    </script>
+    
 </head>
 <body>
 
@@ -42,7 +57,7 @@
             </li>
         </ul>
         <div id="hello">
-					<span>您好，欢迎来到&nbsp;&nbsp;乐鲜Mall商城！
+					<span>您好! <input id="getuserid" name="getuserid" type="hidden" value="11"> 欢迎来到&nbsp;&nbsp;乐鲜Mall商城！
 			<a href="${basePath }frontend/login.jsp" target="mainframe">[登陆]</a>&nbsp;<a href="${basePath }frontend/register.jsp" target="mainframe">[免费注册]</a>
 			</span>
         </div>
@@ -144,7 +159,7 @@
     <div class="myjd">
         <div class="mytu">
         </div>
-        <a href="${basePath }frontend/user_center.jsp" target="mainframe">我的商城</a>
+        <a href="${basePath }user/getpersondata.do" target="mainframe">我的商城</a>
         <div class="jiantou">
         </div>
         <div class="myjdhide">
@@ -185,9 +200,9 @@
     <div class="gouwuche">
         <div class="chetu">
         </div>
-        <a href="${basePath }shoppingcart/usercartlist.do" target="mainframe">去购物车结算</a>
-        <div class="jianleft">
-        </div>
+        	<a id="mycart" name="mycart" href="${basePath }shoppingcart/usercartlist.do" target="mainframe">去购物车结算</a>
+        	<div class="jianleft">
+        	</div>
         <div class="num">
             <div class="numright">
             </div>
@@ -198,7 +213,9 @@
         <div class="hideche">
             <div class="kongche">
             </div>
-            <span>购物车中还没有商品，赶紧选购吧！</span>
+            <c:forEach items="shoppingcartgoods" var="sg">
+            	<%-- <span>${sg.goods.gname }&nbsp;&nbsp;${sg.goods.gprice }&nbsp;&nbsp;${sg.number }</span> --%>
+            </c:forEach>
         </div>
     </div>
     <div class="jubao">

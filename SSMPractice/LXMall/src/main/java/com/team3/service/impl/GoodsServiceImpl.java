@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.team3.dao.AdminDao;
 import com.team3.dao.GoodsDao;
 import com.team3.po.Goods;
 import com.team3.service.GoodsService;
@@ -21,6 +22,11 @@ public class GoodsServiceImpl implements GoodsService {
 	 */
 	@Autowired
 	private GoodsDao goodsDao;
+	/**
+	 * 管理员对象实体
+	 */
+	@Autowired
+	private AdminDao adminDao;
     /**
      * 获取所有商品的信息
      */
@@ -37,12 +43,12 @@ public class GoodsServiceImpl implements GoodsService {
 //			}
 			return  good;
 	}
+	
 	/**
-     * 删除对应商品信息
+     * 根据id删除对应商品信息
      */
 	public void deleteGoods(Goods goods) {
-		// TODO Auto-generated method stub
-		
+       goodsDao.deleteGoods(goods);	
 	}
       /**
        * 根据查询出满足条件的商品信息
@@ -52,11 +58,10 @@ public class GoodsServiceImpl implements GoodsService {
 		return null;
 	}
      /**
-      * 更新商品信息 
+      * 更新修改商品信息 
       */
 	public void updateGoods(Goods goods) {
-		// TODO Auto-generated method stub
-		
+		goodsDao.updateGoods(goods);
 	}
       /**
        * 判断商品名是否唯一
@@ -78,11 +83,17 @@ public class GoodsServiceImpl implements GoodsService {
 	 * 根据商品id查询商品的具体信息记录
 	 */
 	public List<Goods> getGoodsByid(Goods goods) {
-		List<Goods>  good =goodsDao.getGoodsByid(goods);
-		return good;
+
+		return goodsDao.getGoodsByid(goods);
 	}
-	public Goods getGoodsById(String goodId) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public Goods getGoodsById(String goodsId) {
+		return goodsDao.getGoodsById(goodsId);
+	}
+      /**
+       * 添加商品信息
+       */
+	public void AddGoods(Goods goods) {
+		goodsDao.AddGoods(goods);
 	}
 }

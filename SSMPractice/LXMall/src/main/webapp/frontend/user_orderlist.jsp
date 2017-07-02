@@ -167,19 +167,19 @@
 						<table border="0" cellspacing="0" cellpadding="0">
 							<tbody>
 								<tr style="border-bottom: 1px solid #000">
-									<th class="olist1">订单号</th>
-									<th class="olist5">下单时间</th>
-									<th class="olist4">订单总额</th>
-									<th class="olist4">订单状态</th>
-									<th class="olist5">操作</th>
+									<th  width="40%" class="olist1">订单号</th>
+									<th  width="15%" class="olist4">下单日期</th>
+									<th  width="20%" class="olist4">订单总额</th>
+									<th  width="10%" class="olist4">订单状态</th>
+									<th  width="15%" class="olist4">操作</th>
 								</tr>
 								<c:forEach items="${orders}" var="o">
 									<tr>
-										<td><a href="#">${o.orderId}</a></td>
+										<td><a href="${basePath}pregoods/oneuserlist.do?orderId=${o.orderId}">${o.orderId}</a></td>
 										<td>${o.orderTime}</td>
 										<td>${o.orderMoney}</td>
 										<td><font class="jdqbsys_m">${o.orderStatus}</font></td>
-										<td><a href="#">查看</a></td>
+										<td><a href="${basePath}pregoods/oneuserlist.do?orderId=${o.orderId}">查看</a> <a href="#">修改</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

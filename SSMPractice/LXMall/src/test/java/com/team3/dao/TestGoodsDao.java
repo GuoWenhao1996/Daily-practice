@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.team3.po.Admin;
 import com.team3.po.Goods;
 
 
@@ -17,6 +18,8 @@ public class TestGoodsDao {
 
 		@Autowired
 		private GoodsDao goodsDao;
+		@Autowired
+		private AdminDao adminDao;
 		
 		/**
 		 * 测试无条件获取商品列表记录方法
@@ -41,6 +44,50 @@ public class TestGoodsDao {
 		@Test
 		public  void testgetGoodsById(){
 			Goods goods=new Goods();
+			goodsDao.getGoodsByid(goods);			
 		}
-
+		/**
+		 * 测试更新学生信息
+		 */
+		@Test
+		public void testupdateGoods(){
+			Goods goods=new Goods();
+			 goods.setGnumber("120");
+			 goods.setGname("莫水果");
+			 goods.setGdetail("莫水果");
+			 goods.setGprice(100.8);
+			 goods.setGstock(20000);
+			 goods.setGstatus("待上架");
+			 goods.setGsort("莫哥类型");
+			goodsDao.updateGoods(goods);
+			
+		}
+		/**
+		 * 根据商品的id删除商品的信息
+		 */
+		@Test
+		public void Testdeletegoods(){
+			 Goods goods=new Goods();
+			 goods.setGnumber("2");
+			 goodsDao.deleteGoods(goods);
+			 
+		}
+		/**
+		 * 测试商品信息添加的方法
+		 */
+		@Test
+		public void testAddGoods(){
+			Goods goods=new Goods();
+			Admin admin=new Admin();
+			 goods.setGnumber("6666");
+			 goods.setGname("新疆水果");
+			 goods.setGdetail("莫比比在新疆的产业");
+			 goods.setGprice(100.8);
+			 goods.setGstock(20000);
+			 goods.setGstatus("待上架");
+			 goods.setGsort("逼哥类型");
+			 admin.setAccount("1");
+			 goods.setAdmin(admin);
+			 goodsDao.AddGoods(goods);
+		} 
 }

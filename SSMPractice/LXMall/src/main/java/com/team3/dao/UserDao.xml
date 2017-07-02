@@ -20,4 +20,12 @@
         select * from t_user where t_id=#{id}
 </select>
 
+<select id="updateUser" parameterType="User" resultMap="usermap">
+        update t_user set t_Nickname=#{nickname},t_mail=#{mail},t_utelphone=#{utelephone} where t_ID=#{id}
+</select>
+
+<select id="updatePassword" parameterType="User">
+        update t_user set t_password=#{password} where t_id=#{id}
+</select>
+
 </mapper>

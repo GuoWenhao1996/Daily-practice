@@ -25,8 +25,8 @@ public class Goods extends BaseBean {
 	//商品类别
 	private String gsort;
 	//管理员实体
-//	private Admin admin;
-	private String admin;
+	private Admin admin;
+
 	
 	public String getGnumber() {
 		return gnumber;
@@ -34,22 +34,15 @@ public class Goods extends BaseBean {
 	public void setGnumber(String gnumber) {
 		this.gnumber = gnumber;
 	}
-//	public Admin getAdmin() {
-//		return admin;
-//	}
-//	public void setAdmin(Admin admin) {
-//		this.admin = admin;
-//	}
+	public Admin getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
 	
 	public String getGname() {
 		return gname;
-	}
-
-	public String getAdmin() {
-		return admin;
-	}
-	public void setAdmin(String admin) {
-		this.admin = admin;
 	}
 	public void setGname(String gname) {
 		this.gname = gname;

@@ -123,14 +123,13 @@
                 </div>
                 <!--right-->
                 <div class="zp_nrm_r">
-                <form action="" method="post">
-                    <p><em>账号：</em><i>9527222</i></p>
-                    <p><em>昵称：</em><input type="text" value="赵大宝" name="nickname"></p>
-                    <p><em>状态：</em><input type="text" value="赵大宝" name="status"></p>
-                    <p><em>邮箱：</em><input type="text" value="赵大宝" name="mail"></p>
-                    <p><em>电话：</em><input type="text" value="赵大宝" name="telephone"></p>
-                    <a href="#" class="public_m3">保存修改</a>
-                    <input type="submit" value="保存修改">
+                <form action="${basePath }user/updateuser.do" method="post">
+                    <p><em>账号：</em><i>${user.id}</i></p>
+                    <p><em>昵称：</em><input type="text" name="nickname" value="${user.nickname }"></p>
+                    <p><em>状态：</em><i>${user.status }</i></p>
+                    <p><em>邮箱：</em><input type="text" name="mail" value="${user.mail }"></p>
+                    <p><em>电话：</em><input type="text" name="utelephone" value="${user.utelephone}"></p>
+                    <input type="submit" align="center" value="保存修改" class="public_m3">
                 </form>
                 </div>
             </div>

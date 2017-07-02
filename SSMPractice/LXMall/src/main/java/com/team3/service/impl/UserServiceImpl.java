@@ -25,5 +25,16 @@ public class UserServiceImpl implements UserService{
 	public User getUser(User user) {
 		return userDao.getUser(user);
 	}
+	
+	public User updateUser(User user){
+		return userDao.updateUser(user);
+	}
+
+	public void updatePassword(User user) {
+		userDao.updatePassword(user);
+		
+	}
+
+
 
 }

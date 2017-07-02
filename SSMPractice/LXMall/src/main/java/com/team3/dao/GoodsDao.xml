@@ -3,7 +3,7 @@
 <mapper namespace="com.team3.dao.GoodsDao">
 	<resultMap type="Goods" id="goodsmap">
 		<id column="t_Gnumber" property="gnumber" />
-	    <result column="t_account" property="admin" /> 
+		<result column="t_account" property="admin.account" />
 		<result column="t_Gname" property="gname" />
 		<result column="t_Gstock" property="gstock" />
 		<result column="t_Gvolume" property="gvolume" />
@@ -12,42 +12,67 @@
 		<result column="t_Gstatus" property="gstatus" />
 		<result column="t_sort" property="gsort" />
 	</resultMap>
-	<!-- 用户根据商品名称或者类型查询商品 信息-->
+	
+	<!-- 根据商品名称或者类型查询商品 信息 -->
 	<select id="getGoodsList" parameterType="Goods" resultMap="goodsmap">
-	 select * from t_goods 
-		 <where>
-		 	<if test="gname != null and gname != ''">
-		 		and t_Gname like #{gname}
-		 	</if>
-		 	<if test="gname != null and gname != ''">
-		 		and t_sort like #{gsort}
-		 	</if>
-		 </where>
-		 limit  #{start},#{length}   
+		select * from t_goods
+		<where>
+			<if test="gnumber != null and gnumber != ''">
+				and t_Gnumber =#{gnumber}
+			</if>
+			<if test="gname != null and gname != ''">
+				and t_Gname like #{gname}
+			</if>
+			<if test="gsort != null and gsort != ''">
+				and t_sort like #{gsort}
+			</if>
+			
+		</where>
+		limit #{start}, #{length}
 	</select>
 	
-	<!-- 根据商品名称或者商品id查询商品的数量 -->
- 	<select id="getCount" parameterType="Goods" resultType="Long">
-	 select  count(*) from t_goods 
-		 <where>
-		 	<if test="gname != null and gname != ''">
-		 		and t_Gname like #{gname}
-		 	</if>
-		 	<if test="gnumber != null and gnumber != '' ">
-		 	  and t_Gnumber = #{gnumber}
-		 	</if>
-		 	<if test="gnumber != null and gnumber != '' ">
-		 	  and t_sort  like  #{gsort}
-		 	</if>
-		 </where>
-	 </select>
-	 
-	 <!-- 根据id或者商品名称查询单个商品的信息 -->
-	 <select id="getGoodsByid" parameterType="Goods" resultMap="goodsmap">
-	    select * from t_goods  where t_Gnumber =#{gnumber}
+	<!-- 根据商品名称或者商品id查询商品的数量 --> 
+	<select id="getCount" parameterType="Goods" resultType="Long">
+		select count(*) from t_goods
+		<where>
+			<if test="gname != null and gname != ''">
+				and t_Gname like #{gname}
+			</if>
+			<if test="gnumber != null and gnumber != '' ">
+				and t_Gnumber = #{gnumber}
+			</if>
+			<if test="gsort != null and gsort != '' ">
+				and t_sort like #{gsort}
+			</if>
+		</where>
 	</select>
+	
+	<!-- 根据id或者商品名称查询单个商品的信息 -->
+	 <select id="getGoodsById" parameterType="Goods" resultMap="goodsmap">
+	    select * from t_goods where t_Gnumber = #{gnumber}
+	</select>
+	
 	 <!-- 更新商品信息 -->
 	<update id="updateGoods" parameterType="Goods"  >
-	  update t_student set  t_name = #{name},t_password = #{password},t_classid = #{clazz.id},t_url=#{url} where t_id=#{id}
+	  update t_goods set  t_Gname=#{gname},t_Gstock=#{gstock},t_Gvolume=#{gvolume},
+	  t_Gdetail=#{gdetail},t_Gprice=#{gprice},t_Gstatus=#{gstatus},t_sort=#{gsort}
+	  where t_Gnumber=#{gnumber}
 	 </update>
+	 
+	<!-- 根据id或者商品名称查询单个商品的信息 -->
+	<select id="getGoodsByid" parameterType="Goods" resultMap="goodsmap">
+		select * from t_goods where t_Gnumber =#{gnumber}
+	</select>
+	
+	<!-- 删除商品信息 -->
+	<delete id="deleteGoods" parameterType="Goods">
+	     delete from t_goods where t_Gnumber=#{gnumber}
+	</delete>
+	
+	<!-- 添加商品信息 -->
+	<insert id="AddGoods" parameterType="Goods" >
+	insert into t_goods 
+	(t_Gnumber,t_Gname,t_Gstock,t_Gvolume,t_Gdetail,t_account,t_Gprice,t_Gstatus,t_sort) values
+	(#{gnumber},#{gname},#{gstock},#{gvolume},#{gdetail},#{admin.account},#{gprice},#{gstatus},#{gsort})
+	</insert>
 </mapper>

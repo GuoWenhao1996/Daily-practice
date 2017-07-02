@@ -71,6 +71,4 @@ public class Order extends BaseBean {
 	public void setOrderMoney(String orderMoney) {
 		this.orderMoney = orderMoney;
 	}
-	
-	
 }

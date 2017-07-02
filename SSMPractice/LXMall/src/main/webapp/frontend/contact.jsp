@@ -62,18 +62,18 @@
                 <li class="item1"><a href="#">生鲜水果<img class="arrow-img" src="images/arrow1.png" alt=""/>
                 </a>
                     <ul class="cute">
-                        <li class="subitem1"><a href="${basePath }frontend/product.jsp">新鲜蔬菜 </a></li>
-                        <li class="subitem2"><a href="${basePath }frontend/product.jsp">新鲜水果</a></li>
-                        <li class="subitem3"><a href="${basePath }frontend/product.jsp">新鲜水产 </a></li>
-                        <li class="subitem4"><a href="${basePath }frontend/product.jsp">肉类 </a></li>
+                        <li class="subitem1"><a href="${basePath }goods/list.do?gsort=蔬菜">新鲜蔬菜 </a></li>
+                        <li class="subitem2"><a href="${basePath }goods/list.do?gsort=水果">新鲜水果</a></li>
+                        <li class="subitem3"><a href="${basePath }goods/list.do?gsort=水产">新鲜水产 </a></li>
+                        <li class="subitem4"><a href="${basePath }goods/list.do?gsort=肉类">肉类 </a></li>
                     </ul>
                 </li>
                 <li class="item2"><a href="#">零&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食<img class="arrow-img"
                                                                                          src="images/arrow1.png"
                                                                                          alt=""/></a>
                     <ul class="cute">
-                        <li class="subitem1"><a href="product.html">进口食品 </a></li>
-                        <li class="subitem2"><a href="product.html">休闲零食</a></li>
+                        <li class="subitem1"><a href="${basePath }goods/list.do?gsort=进口食品">进口食品 </a></li>
+                        <li class="subitem2"><a href="${basePath }goods/list.do?gsort=休闲零食">休闲零食</a></li>
 
                     </ul>
                 </li>
@@ -81,9 +81,9 @@
                                                                                          src="images/arrow1.png"
                                                                                          alt=""/> </a>
                     <ul class="cute">
-                        <li class="subitem1"><a href="${basePath }product.jsp">酒类 </a></li>
-                        <li class="subitem2"><a href="${basePath }product.jsp">茶叶 </a></li>
-                        <li class="subitem3"><a href="${basePath }product.jsp">乳品冲饮</a></li>
+                        <li class="subitem1"><a href="${basePath }goods/list.do?gsort=酒类">酒类 </a></li>
+                        <li class="subitem2"><a href="${basePath }goods/list.do?gsort=茶类">茶类 </a></li>
+                        <li class="subitem3"><a href="${basePath }goods/list.do?gsort=乳品冲饮">乳品冲饮</a></li>
                     </ul>
                 </li>
 

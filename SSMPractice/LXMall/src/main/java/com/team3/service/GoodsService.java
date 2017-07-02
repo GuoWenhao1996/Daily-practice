@@ -16,7 +16,6 @@ public interface GoodsService {
 	  * @return
 	  */
 	public List<Goods> getGoodsList(Goods goods);
-	
     /**
 	 * 根据商品id查询单个记录
 	 * @param goodsId
@@ -36,7 +35,6 @@ public interface GoodsService {
 	 * @param goods
 	 */
     public void deleteGoods( Goods goods);
-    
     /**
      * 根据条件查询单个出商品总数信息，用于修改商品信息（价格，描述等内容）
      * @param goods
@@ -55,11 +53,10 @@ public interface GoodsService {
      */
     public void updateGoods( Goods goods);
     /**
-     * 验证商品名唯一性的方法
+     * 添加商品信息
      * @param goods
-     * @return
      */
-    public boolean validate(Goods goods);
+    public void AddGoods(Goods goods);
 
 	 
 }

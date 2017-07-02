@@ -10,6 +10,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<base href="<%=basePath%>">
     <meta charset="utf-8"/>
     <title>乐鲜Mall后台丨首页</title>
     <meta name="author" content="DeathGhost"/>
@@ -73,16 +74,14 @@
             <dl>
                 <dt>商品管理</dt>
                 <!--当前链接则添加class:active-->
-                <dd><a href="${basePath}backend/product_list.jsp" name="lead" target="mainframe" onclick="javascript:changeClass(this)">商品列表</a></dd>
-                <dd><a href="${basePath}backend/product_detail.jsp" name="lead" target="mainframe" onclick="javascript:changeClass(this)">商品详情</a></dd>
-                <dd><a href="${basePath}backend/recycle_bin.jsp" name="lead" target="mainframe" onclick="javascript:changeClass(this)">商品回收站</a></dd>
+                <dd><a href="${basePath }goods/Adminlist.do" name="lead" target="mainframe" onclick="javascript:changeClass(this)">商品列表</a></dd>
+                <dd><a href="${basePath}backend/product_add.jsp" name="lead" target="mainframe" onclick="javascript:changeClass(this)">添加商品</a></dd>
             </dl>
         </li>
         <li>
             <dl>
                 <dt>订单信息</dt>
-                <dd><a href="${basePath}order/list.do" name="lead" target="mainframe" onclick="javascript:changeClass(this)">订单列表</a></dd>
-                <dd><a href="${basePath}backend/order_detail.jsp" name="lead" target="mainframe" onclick="javascript:changeClass(this)">订单详情</a></dd>
+                <dd><a href="${basePath}order/list.do" name="lead" target="mainframe" onclick="javascript:changeClass(this)">订单管理</a></dd>
             </dl>
         </li>
         <li>

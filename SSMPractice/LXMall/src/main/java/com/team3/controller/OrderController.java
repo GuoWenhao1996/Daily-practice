@@ -1,8 +1,6 @@
 package com.team3.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +14,7 @@ import com.team3.po.Order;
 import com.team3.po.User;
 import com.team3.service.OrderService;
 import com.team3.service.gutil.BaseController;
+import com.team3.util.ToolUtil;
 
 /**
  * 2017-7-1 10:02:38<br>
@@ -59,7 +58,7 @@ public class OrderController extends BaseController {
 	}
 
 	@RequestMapping("oneuserlist.do")
-	public String oneuserlist(Order order, Model model, HttpServletRequest request) {
+	public String oneuserlist(Order order, Model model, HttpServletRequest request) throws UnsupportedEncodingException {
 
 		if (order.getOrderStatus() != null && !order.getOrderStatus().equals("")) {
 			model.addAttribute("orderStatusquery", order.getOrderStatus());
@@ -76,7 +75,7 @@ public class OrderController extends BaseController {
 		order.setLength(10);
 		
 		User user=new User();
-		user.setId("u001");
+		user.setId(ToolUtil.getCookieno(request));
 		order.setUser(user);
 		
 		List<Order> orders = orderService.getOrderList(order);
@@ -88,10 +87,11 @@ public class OrderController extends BaseController {
 		return "frontend/user_orderlist";
 	}
 
-	
 	@RequestMapping("add.do")
 	public String add(Order order, Model model, HttpServletRequest request) throws UnsupportedEncodingException {
 		orderService.addOrder(order);
 		return list(new Order(), model, request);
 	}
+	
+	
 }

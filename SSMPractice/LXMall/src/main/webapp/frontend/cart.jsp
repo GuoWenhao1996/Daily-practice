@@ -11,7 +11,7 @@
 <html lang="en">
 <head>
 <base href="<%=basePath%>">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>乐鲜Mall商城 | 购物车</title>
 <link rel="stylesheet" type="text/css"
 	href="${basePath }frontend/css/style-cart.css">
@@ -66,10 +66,16 @@
 		})
 		$('.Caddress .add_mi').click(
 				function() {
+					
 					$(this).css('background',
 							'url("${basePath }frontend/images/mail_1.jpg") no-repeat').siblings(
 							'.add_mi').css('background',
-							'url("${basePath }frontend/images/mail.jpg") no-repeat')
+							'url("${basePath }frontend/images/mail.jpg") no-repeat');
+					//预存选定的收货地址编号
+					//发送AJAX请求
+					$.post("", {gnumber:$("#gnumber").val()}, function (data) {
+						alert(data.content);
+					}, "json");
 				})
 	})
 	var x = Array();
@@ -112,8 +118,8 @@
 					- parseFloat(out_add).toFixed(2);
 			console.log(parseFloat(reduce).toFixed(2));
 			out_momey.text(parseFloat(reduce).toFixed(2))
-			$(r).parent().parent().remove(); 
-			window.location.href = "${basePath }shoppingcart/deleteshoppingcartgoods.do?User.id=11&goods.gnumber="+r.name;
+			$(r).parent().parent().remove();
+			window.location.href = "${basePath }shoppingcart/deleteshoppingcartgoods.do?goods.gnumber="+r.name;
 		}
 	}
 
@@ -165,8 +171,9 @@
 			<button class="open_btn" onclick="javascript:onclick_open();">使用新地址</button>
 		</div>
 		<c:forEach items="${consigeneelist }" var="cl">
-		
+
 			<div class="add_mi">
+				<input type="hidden"  value="${cl.cnumber}">
 				<p style="border-bottom: 1px dashed #ccc; line-height: 28px;">${cl.cname }</p>
 				<p style="border-bottom: 1px dashed #ccc; line-height: 28px;">${cl.ctelephone }</p>
 				<p style="border-bottom: 1px dashed #ccc; line-height: 28px;">${cl.address }</p>
@@ -180,12 +187,13 @@
 						href="${basePath }shoppingcart/deleteconsigenee.do?cnumber=${cl.cnumber}">删除</a>
 				</p>
 			</div>
-		
+
 		</c:forEach>
 	</div>
 
 	<!--订单栏-->
 	<div class="shopping_content">
+		<form action="">
 		<div class="shopping_table">
 			<table border="1" bordercolor="#cccccc" cellspacing="0"
 				cellpadding="0" style="width: 100%; text-align: center;">
@@ -200,9 +208,8 @@
 				<c:forEach items="${shoppingcartgoods }" var="scg">
 					<tr style="height: 50px">
 						<td><a><img src="images/2f1.jpg" /></a></td>
-						<td>
-							<input type="hidden" name="" value="${scg.goods.gnumber }"/>
-							<span>${scg.goods.gname }</span>
+						<td><input type="hidden" name="gnumberlist"
+							value="${scg.goods.gnumber }" /> <span>${scg.goods.gname }</span>
 						</td>
 						<td>
 							<div class="">
@@ -211,15 +218,16 @@
 						</td>
 						<td><span class="span_momey">${scg.goods.gprice }</span></td>
 						<td>
-							<button class="btn_reduce"
+							<button class="btn_reduce" type="button"
 								onclick="javascript:onclick_reduce(this);">-</button> <input
 							class="momey_input" name="" id="" value="${scg.number }"
 							disabled="disabled" />
-							<button class="btn_add"
+							<button class="btn_add" type="button"
 								onclick="javascript:onclick_btnAdd(this);">+</button>
 						</td>
 						<td>
-							<button class="btn_r" name="${scg.goods.gnumber }" onclick="javascript:onclick_remove(this);">删除</button>
+							<button class="btn_r" name="${scg.goods.gnumber }"
+								onclick="javascript:onclick_remove(this);">删除</button>
 						</td>
 					</tr>
 				</c:forEach>
@@ -231,6 +239,7 @@
 				<button class="btn_closing" onclick="shade_settlement()">结算</button>
 			</div>
 		</div>
+		</form>
 	</div>
 
 	<!--新增地址-->
@@ -258,15 +267,13 @@
 							placeholder="&nbsp;&nbsp;请输入您的详细地址" />
 					</div>
 					<div class="col-xs-12">
-						<input class="btn_remove" type="button" id=""
-							onclick="javascript:onclick_close();" value="取消" /> <input
-							type="submit" class="sub_set" id="sub_setID" value="提交" />
+						<input class="btn_remove" type="button" id="" onclick="javascript:onclick_close();" value="取消" />
+						<input type="submit" class="sub_set" id="sub_setID" value="提交" />
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-	
 </body>
 
 </html>

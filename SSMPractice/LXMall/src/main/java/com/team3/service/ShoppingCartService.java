@@ -2,6 +2,7 @@ package com.team3.service;
 
 import java.util.List;
 
+import com.team3.po.Goods;
 import com.team3.po.ShoppingCart;
 
 /**
@@ -28,4 +29,18 @@ public interface ShoppingCartService {
 	 * @param shoppingCart
 	 */
 	public List<ShoppingCart> getShoppingCartGoods(String userId);
+	
+	/**
+	 * 判断是否加入购物车
+	 * @param shoppingCart
+	 * @return
+	 */
+	public boolean isAddShoppingCartGoogs(String userId, Goods goods);
+	
+	/**
+	 * 鼠标经过购物车显示商品
+	 * @param userId
+	 * @return
+	 */
+	public List<ShoppingCart> showUserGoods(String userId);
 }

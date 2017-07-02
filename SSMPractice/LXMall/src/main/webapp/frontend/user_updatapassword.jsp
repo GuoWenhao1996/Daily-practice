@@ -45,16 +45,7 @@
     <!--script-->
 </head>
 <body>
-<script>
-    window.onload = function () {
-        $(".aside").css({display: "none"})
-        $(".important").mouseenter(function () {
-            $(".aside").css({display: "block"})
-        }).mouseleave(function () {
-            $(".aside").css({display: "none"})
-        })
-    }
-</script>
+
 <!--当前位置-->
 <div class="now_positionm">
     <span>当前位置：</span><a href="${basePath }frontend/index.jsp">首页></a><a href="#">个人账户</a>
@@ -128,19 +119,16 @@
                 </ul>
             </div>
             <div class="public_m4">
-                <p>
+            <form action="user/updatapassword.do" method="post">
+            <h3 color="red" id="message">${message }</h3>
                     <em>原密码：</em>
-                    <input type="text" style=" height:23px; border:1px solid #eaeaea; width:140px">
-                </p>
-                <p>
+                    <input type="password" name="password1" style=" border:1px solid #eaeaea; height:25px;width:240px">
                     <em>新的密码：</em>
-                    <input type="text" style=" height:23px; border:1px solid #eaeaea; width:140px">
-                </p>
-                <p>
+                    <input type="password" name="password2" style=" border:1px solid #eaeaea; height:25px;width:240px">
                     <em>确认密码：</em>
-                    <input type="text" style=" height:23px; border:1px solid #eaeaea; width:140px">
-                </p>
-                <a href="#" class="public_m3">确认修改</a>
+                    <input type="password" name="password" style=" height:23px; border:1px solid #eaeaea; width:240px">
+                    <input type="submit" class="public_m3" value="确认修改">
+            </form>
             </div>
         </div>
     </div>

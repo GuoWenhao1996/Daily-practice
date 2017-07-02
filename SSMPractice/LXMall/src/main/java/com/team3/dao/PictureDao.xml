@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.team3.dao.PictureDao">
+
+	<resultMap type="Picture" id="picturemap">
+		<id column="t_Pnumber" property="pnumber"/> <!-- 主键属性 -->
+		<result column="t_Gnumber" property="goods.gnumber"/> <!-- 非主键属性 -->
+	</resultMap>
+	
+	<insert id="addPicture" parameterType="Picture">
+		insert into t_picture(t_Gnumber, t_Pnumber) values (#{goods.gnumber}, #{pnumber})
+	</insert>
+	
+</mapper>
