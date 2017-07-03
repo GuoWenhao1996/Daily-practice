@@ -31,17 +31,19 @@ public class GoodsServiceImpl implements GoodsService {
      * 获取所有商品的信息
      */
 	public List<Goods> getGoodsList(Goods goods) {
-			if (goods.getGname() != null && !goods.getGname().equals("")) {
+			if (goods.getGname() != null && !goods.getGname().equals(" ")) {
 				goods.setGname("%" + goods.getGname() + "%");
 			}
-			List<Goods>  good =goodsDao.getGoodsList(goods);
+			if (goods.getGsort() != null && !goods.getGsort().equals(" ")) {
+				goods.setGsort("%" + goods.getGsort() + "%");
+			}
 //			 根据商品编号为每天一个商品goods添加图片
 //			for (Goods g : goods) {
 //				int id = g.getClazz().getId();
 //				Goods clazz = clazzDao.getClazzById(id);
 //				s.setClazz(clazz);
 //			}
-			return  good;
+			return  goodsDao.getGoodsList(goods);
 	}
 	
 	/**

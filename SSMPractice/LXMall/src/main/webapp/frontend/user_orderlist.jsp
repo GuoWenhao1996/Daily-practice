@@ -171,7 +171,7 @@
 									<th  width="15%" class="olist4">下单日期</th>
 									<th  width="20%" class="olist4">订单总额</th>
 									<th  width="10%" class="olist4">订单状态</th>
-									<th  width="15%" class="olist4">操作</th>
+									<th  width="15%" class="olist4"></th>
 								</tr>
 								<c:forEach items="${orders}" var="o">
 									<tr>
@@ -179,7 +179,7 @@
 										<td>${o.orderTime}</td>
 										<td>${o.orderMoney}</td>
 										<td><font class="jdqbsys_m">${o.orderStatus}</font></td>
-										<td><a href="${basePath}pregoods/oneuserlist.do?orderId=${o.orderId}">查看</a> <a href="#">修改</a></td>
+										<td><a href="${basePath}pregoods/oneuserlist.do?orderId=${o.orderId}">详情</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

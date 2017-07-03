@@ -25,6 +25,12 @@ public interface ShoppingCartService {
 	public void deleteShoppingCartGoods(ShoppingCart shoppingCart);
 	
 	/**
+	 * 清空购物车
+	 * @param shoppingCart
+	 */
+	public void deleteAllShoppingCartGoods(ShoppingCart shoppingCart);
+	
+	/**
 	 * 根据用户的id查询出购物车中所有的商品
 	 * @param shoppingCart
 	 */

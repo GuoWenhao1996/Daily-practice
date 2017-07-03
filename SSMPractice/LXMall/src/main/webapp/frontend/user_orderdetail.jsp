@@ -52,12 +52,14 @@
 	
 	
 	
+	
 	 addEventListener("load", function () {
         setTimeout(hideURLbar, 0);
     }, false);
     function hideURLbar() {
         window.scrollTo(0, 1);
     } 
+
 
 
 
@@ -137,13 +139,14 @@
 				</span>
 			</div>
 			<script type="text/javascript">
-				$(function() {//第一步都得写这个
-					$(".centers_listm_one_in").click(
-							function() {
-								$(this).next(".gjszmdm").slideToggle()
-										.siblings("gjszmdm").slideUp()
-							});
-				})
+				$(
+						function() {//第一步都得写这个
+							$(".centers_listm_one_in").click(
+									function() {
+										$(this).next(".gjszmdm").slideToggle()
+												.siblings("gjszmdm").slideUp()
+									});
+						})
 			</script>
 		</div>
 		<!--right-->
@@ -165,7 +168,7 @@
 							<td>下单时间：${theOrder.orderTime}</td>
 						</tr>
 						<tr>
-							<td>订单状态：<a>${theOrder.orderStatus}</a></td>
+							<td>订单状态：<label id="label_status">${theOrder.orderStatus}</label></td>
 							<td colspan="3">订单总额： <mark>${theOrder.orderMoney} 元</mark>
 							</td>
 						</tr>
@@ -188,21 +191,41 @@
 								<td class="center">${p.goods.gnumber}</td>
 								<td class="center"><strong class="rmb_icon">${p.buyprice}</strong></td>
 								<td class="center"><strong>${p.buynumber}</strong></td>
-								<td class="center"><strong class="rmb_icon"><fmt:formatNumber type="number" value="${Float.parseFloat(p.buyprice)*p.buynumber}" pattern="0" maxFractionDigits="2"/></strong></td>
+								<td class="center"><strong class="rmb_icon"><fmt:formatNumber
+											type="number"
+											value="${Float.parseFloat(p.buyprice)*p.buynumber}"
+											pattern="0" maxFractionDigits="2" /></strong></td>
 								<td class="center">${p.goods.gsort}</td>
 							</tr>
 						</c:forEach>
 					</table>
 					<aside class="mtb" style="text-align: right;">
-						<label>用户操作：</label> 
-						<input type="button" value="取消订单"
-							class="group_btn" /> 
-						<a href="${basePath}order/oneuserlist.do" >返回</a>
+						<label id="yhcz">用户操作：</label> 
+						<a id="qx_qq" onclick="quxiao()" style="color: red">取消订单</a>
+						<a id="qx_cz" href = "${basePath}order/oneuserupdate.do?orderId=${theOrder.orderId}&orderStatus=9" class="public_m3" style="display: none">取消订单</a>
+						<a href="${basePath}order/oneuserlist.do">返回</a>
+					</aside>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<script type="text/javascript">
+		function quxiao() {
+			var status = document.getElementById("label_status").innerHTML;
+			if (status == "配货中" || status == "待付款") {
+				var choose = confirm("确认取消？取消订单后不可恢复");
+				if (choose == true) {
+					alert("订单取消权限已开放，请慎重！");
+					document.getElementById("qx_cz").style.display = "";
+					document.getElementById("qx_qq").style.display = "none";
+					document.getElementById("yhcz").style.display = "none";
+				} else {
+				}
+			} else {
+				alert("对不起，【"+status+"】状态下您不可取消此订单，请您谅解。");
+			}
+		}
+	</script>
 </body>
 </html>
 

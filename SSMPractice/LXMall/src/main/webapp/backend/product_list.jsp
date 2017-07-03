@@ -20,10 +20,12 @@
   
 </head>
 <body>
- <form action="${basePath }goods/Adminlist.do" method="post">
+ 
+<section class="rt_wrap content mCustomScrollbar">
+    <form action="${basePath }goods/Adminlist.do" method="post">
 				<input  type="text"  placeholder=" 请输入商品名称" name="gname" >
-             <select  name="gsort"  >
-                <option value=" ">商品类型</option>
+                <select  name="gsort"  >
+                <option value="">商品类型</option>
                 <option value="水果">新鲜水果</option>
                 <option value="乳品冲饮" >乳品冲饮</option>
                 <option value="酒类" >酒类</option>
@@ -32,15 +34,12 @@
            </select>
            <button type="submit">查询</button>
   </form>
-<section class="rt_wrap content mCustomScrollbar">
     <div class="rt_content">
         <div class="page_title">
             <h2 class="fl">商品列表</h2>
-             
-            <a href="${basePath }backend/product_add.jsp" class="fr top_rt_btn add_icon">添加商品</a>
+            <a href="${basePath }backend/product_add.jsp"  class="fr top_rt_btn" >添加商品</a>
         </div>
         <section class="mtb">
-          
         <table class="table">
             <tr>
                 <th>缩略图</th>
@@ -49,6 +48,7 @@
                 <th>单价</th>
                 <th>产品类型</th>
                 <th>库存</th>
+                <th>产品状态</th>
                 <th>操作</th>
             </tr>
             <c:forEach items= "${goods}" var="g">
@@ -59,9 +59,10 @@
                 <td class="center"><strong class="rmb_icon">${g.gprice}</strong></td>
                 <td class="center">${g.gsort}</td>
                 <td class="center">${g.gstock}</td>
+                <td class="center">${g.gstatus}</td>
                 <td class="center">
                     <a href="${basePath }goods/loadupdate.do?gnumber=${g.gnumber}" title="编辑" class="link_icon">&#101;</a>
-                    <a href="${basePath }goods/delete.do?gnumberr=${g.gnumber }" title="删除" class="link_icon">&#100;</a>
+                    <a href="${basePath }goods/delete.do?gnumber=${g.gnumber }" title="删除" class="link_icon">&#100;</a>
                 </td>
             </tr>
            </c:forEach>

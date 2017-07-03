@@ -51,7 +51,7 @@
 			$.post("${basePath }shoppingcart/isaddshoppingcartgoods.do", {gnumber:$("#gnumber").val()}, function (data) {
 				alert(data.content);
 			}, "json")
-		}); //失去焦点的时候
+		}); //点击的时候
 	})
 	
 </script>

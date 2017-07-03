@@ -29,6 +29,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * 注册用户
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping("register.do")
 	public String register(User user) {
 		user.setSex("男");
@@ -38,6 +43,13 @@ public class UserController {
 		return "frontend/login";
 	}
 
+	/**
+	 * 用户登录
+	 * @param user
+	 * @param model
+	 * @param res
+	 * @return
+	 */
 	@RequestMapping("login.do")
 	public String login(User user, Model model,HttpServletResponse res) {
 		User us = userService.getUser(user);
@@ -56,6 +68,11 @@ public class UserController {
 		}
 	}
 
+	/**
+	 * 用来判断用户名是否存在
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping("validate.do")
 	public @ResponseBody String validate(User user) {
 		if (user.getId().equals(null)) {
@@ -70,6 +87,13 @@ public class UserController {
 		}
 	}
 
+	/**
+	 * 获得符合条件的用户信息
+	 * @param model
+	 * @param request
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping("getpersondata.do")
 	public String getpersondata(Model model,HttpServletRequest request) throws UnsupportedEncodingException {
 		User user = new User();
@@ -80,6 +104,14 @@ public class UserController {
 		return "frontend/user_center";
 	}
 
+	/**
+	 * 更改符合条件的用户信息
+	 * @param user
+	 * @param model
+	 * @param request
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping("updateuser.do")
 	public String updateuser(User user, Model model,HttpServletRequest request) throws UnsupportedEncodingException {
 		user.setId(ToolUtil.getCookieno(request));
@@ -88,6 +120,13 @@ public class UserController {
 		return "frontend/user_center";
 	}
 
+	/**
+	 * 更改指定学生的密码
+	 * @param req
+	 * @param model
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping("updatapassword.do")
 	public String updatapassword(HttpServletRequest req, Model model) throws UnsupportedEncodingException {
 		String password1 = req.getParameter("password1");

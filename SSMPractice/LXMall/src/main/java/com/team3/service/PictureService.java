@@ -1,16 +1,14 @@
-package com.team3.dao;
+package com.team3.service;
 
 import com.team3.po.Goods;
 import com.team3.po.Picture;
 
 /**
- *
- * 购物车数据信息访问接口
+ * 图片信息的核心管理业务接口
  * @author 莫天金
  *
  */
-public interface PictureDao {
-	
+public interface PictureService {
 	/**
 	 * 根据商品的id添加相应图片
 	 * @param picture

@@ -22,6 +22,7 @@
 
 <script type="text/javascript">
 	$(function() {
+		
 		var region = $("#region");
 		var address = $("#address");
 		var number_this = $("#number_this");
@@ -66,16 +67,16 @@
 		})
 		$('.Caddress .add_mi').click(
 				function() {
-					
+					$("#totalMoney").removeAttr("disabled");
 					$(this).css('background',
 							'url("${basePath }frontend/images/mail_1.jpg") no-repeat').siblings(
 							'.add_mi').css('background',
 							'url("${basePath }frontend/images/mail.jpg") no-repeat');
 					//预存选定的收货地址编号
 					//发送AJAX请求
-					$.post("", {gnumber:$("#gnumber").val()}, function (data) {
+					$.post("${basePath }order/csavenumber.do", {cnumber:$(this).attr("id")}, function (data) {
 						alert(data.content);
-					}, "json");
+					}, "json"); 
 				})
 	})
 	var x = Array();
@@ -132,6 +133,7 @@
 		var btn_momey = parseFloat($(a).parent().prev().children().html());
 		var out_momey_float = parseFloat(out_momey.html()) + btn_momey;
 		out_momey.text(out_momey_float.toFixed(2));
+		
 	}
 
 	function onclick_reduce(b) {
@@ -149,21 +151,38 @@
 		}
 	}
 
-	function shade_settlement() {
-		var sub = confirm("确认结算？");
-		if (sub) {
-			//myform0.target = "";
-			//myform0.action="/UniversityOfShaft/diaryadd.do";
-			//myform0.submit();
-			alert("结算成功！")
-		} else {
-			alert("结算失败！")
+	/* 选中之前的地址 */
+	function SelectAddress() {
+		if("${selectaddress}"!=null&&"${selectaddress}"!="") {
+			document.getElementById("${selectaddress}").click();
 		}
 	}
+	
 </script>
+
+<script>
+    	$(function() { //$("#name")表示找到id为name的控件
+			$("#totalMoney").mouseenter(function() {
+				//把总价给隐藏的input
+				//发送AJAX请求
+				$("#myordermoney").attr("value", $("#spanmoney").html());
+				//验证是否点了收货地址
+				//发送AJAX请求
+				$.post("${basePath }order/isselect.do", {gnumber:$("#gnumber").attr("id")}, function (data) {
+					if(data=="0") {
+						alert("请先选择收货地址！");
+					} else if(data=="00") {
+						alert("您还没有购买任何商品！");
+						$("#totalMoney").attr("disabled", "disabled");
+					}
+				}, "json"); //鼠标经过的时候
+			});
+		})
+    </script>
+
 </head>
 
-<body>
+<body onload="SelectAddress()">
 
 	<!-- 地址栏 -->
 	<div class="Caddress">
@@ -172,8 +191,7 @@
 		</div>
 		<c:forEach items="${consigeneelist }" var="cl">
 
-			<div class="add_mi">
-				<input type="hidden"  value="${cl.cnumber}">
+			<div id="${cl.cnumber}" class="add_mi">
 				<p style="border-bottom: 1px dashed #ccc; line-height: 28px;">${cl.cname }</p>
 				<p style="border-bottom: 1px dashed #ccc; line-height: 28px;">${cl.ctelephone }</p>
 				<p style="border-bottom: 1px dashed #ccc; line-height: 28px;">${cl.address }</p>
@@ -193,7 +211,7 @@
 
 	<!--订单栏-->
 	<div class="shopping_content">
-		<form action="">
+		<form action="${basePath }order/add.do" method="post">
 		<div class="shopping_table">
 			<table border="1" bordercolor="#cccccc" cellspacing="0"
 				cellpadding="0" style="width: 100%; text-align: center;">
@@ -208,8 +226,13 @@
 				<c:forEach items="${shoppingcartgoods }" var="scg">
 					<tr style="height: 50px">
 						<td><a><img src="images/2f1.jpg" /></a></td>
-						<td><input type="hidden" name="gnumberlist"
-							value="${scg.goods.gnumber }" /> <span>${scg.goods.gname }</span>
+						<td>
+						    <!-- 商品编号 -->
+							<input id="gnumber" type="hidden" name="gnumber" value="${scg.goods.gnumber }" />
+							<!-- 购买时候的单价 -->
+							<input type="hidden" name="gprice" value="${scg.goods.gprice }" />
+							
+						<span>${scg.goods.gname }</span>
 						</td>
 						<td>
 							<div class="">
@@ -218,12 +241,9 @@
 						</td>
 						<td><span class="span_momey">${scg.goods.gprice }</span></td>
 						<td>
-							<button class="btn_reduce" type="button"
-								onclick="javascript:onclick_reduce(this);">-</button> <input
-							class="momey_input" name="" id="" value="${scg.number }"
-							disabled="disabled" />
-							<button class="btn_add" type="button"
-								onclick="javascript:onclick_btnAdd(this);">+</button>
+							<button class="btn_reduce" type="button" onclick="javascript:onclick_reduce(this);">-</button>
+								<input class="momey_input" readonly="readonly" name="number" id="number" value="${scg.number }"/>
+							<button class="btn_add" type="button" onclick="javascript:onclick_btnAdd(this);">+</button>
 						</td>
 						<td>
 							<button class="btn_r" name="${scg.goods.gnumber }"
@@ -234,9 +254,10 @@
 			</table>
 			<div class="" style="width: 100%; text-align: right; margin-top: 2%;">
 				<div class="div_outMumey" style="float: left;">
-					总价：<span class="out_momey">11</span>
+					总价：<span id="spanmoney" class="out_momey">11</span>
+					<input id="myordermoney" type="hidden" name="orderMoney" value="">
 				</div>
-				<button class="btn_closing" onclick="shade_settlement()">结算</button>
+				<button id="totalMoney" class="btn_closing" type="submit">结算</button>
 			</div>
 		</div>
 		</form>

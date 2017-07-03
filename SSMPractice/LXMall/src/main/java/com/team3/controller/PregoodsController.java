@@ -39,7 +39,7 @@ public class PregoodsController extends BaseController {
 			Order theOrder = pregoodses.get(0).getOrder();
 			model.addAttribute("theOrder", theOrder);
 			for(Pregoods p:pregoodses){
-				p.setBuyid("http://127.0.0.1:8080/LXMall/backend/upload/1498981792881-6253039614702548576.jpg");//将订单号拿来存储照片地址
+				p.setBuyid("http://127.0.0.1:8080/LXMall/backend/upload/1499058892742-7067871712363847920.jpg");//将订单号拿来存储照片地址
 			}
 		}else{
 			Order theOrder = new Order();
@@ -59,7 +59,7 @@ public class PregoodsController extends BaseController {
 			Order theOrder = pregoodses.get(0).getOrder();
 			model.addAttribute("theOrder", theOrder);
 			for(Pregoods p:pregoodses){
-				p.setBuyid("http://127.0.0.1:8080/LXMall/backend/upload/1498981792881-6253039614702548576.jpg");//将订单号拿来存储照片地址
+				p.setBuyid("http://127.0.0.1:8080/LXMall/backend/upload/1499058892742-7067871712363847920.jpg");//将订单号拿来存储照片地址
 			}
 		}else{
 			Order theOrder = new Order();
@@ -70,9 +70,4 @@ public class PregoodsController extends BaseController {
 		return "frontend/user_orderdetail";
 	}
 	
-	@RequestMapping("add.do")
-	public String add(Pregoods pregoods, Model model, HttpServletRequest request) throws UnsupportedEncodingException {
-		pregoodsService.addPregoods(pregoods);
-		return list(new Order(), model, request);
-	}
 }

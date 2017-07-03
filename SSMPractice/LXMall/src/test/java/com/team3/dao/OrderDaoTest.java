@@ -56,19 +56,27 @@ public class OrderDaoTest {
 			order.setConsigenee(consigenee);
 			order.setOrderTime(ThisSystemUtil.getSystemTime());
 			order.setOrderStatus("1");
-			order.setOrderMoney(i+"00");
+			order.setOrderMoney(i + "00");
 			orderDao.addOrder(order);
 			System.out.println(i + ":添加成功！");
 		}
 	}
-	
+
 	@Test
-	public void testGetCount(){
+	public void testGetCount() {
 		User user = new User();
 		user.setId("U001");
 		Order order = new Order();
 		order.setUser(user);
-		long l=orderDao.getCount(order);
+		long l = orderDao.getCount(order);
 		System.out.println(l);
+	}
+
+	@Test
+	public void testUpdateOrderStatus() {
+		Order order = new Order();
+		order.setOrderId("dd001");
+		order.setOrderStatus("1");
+		orderDao.updateOrderStatus(order);
 	}
 }

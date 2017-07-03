@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.team3.dao.ConsigeneeDao;
 import com.team3.dao.OrderDao;
 import com.team3.po.Consigenee;
+import com.team3.po.Goods;
 import com.team3.po.Order;
 import com.team3.service.OrderService;
 import com.team3.util.ThisSystemUtil;
@@ -37,7 +38,11 @@ public class OrderServiceImpl implements OrderService {
 		for (Order o : orders) {
 			
 			Consigenee consigenee = consigeneeDao.getConsigeneeById(o.getConsigenee());
-			consigenee.setAddress(consigenee.getAddress().substring(0, 6) + "...");
+			if(consigenee.getAddress().length()<6){
+				
+			}else{
+				consigenee.setAddress(consigenee.getAddress().substring(0, 6) + "...");
+			}
 			o.setConsigenee(consigenee);
 			
 			o.setOrderStatus(ThisSystemUtil.orderStatus(o.getOrderStatus()));
@@ -52,6 +57,10 @@ public class OrderServiceImpl implements OrderService {
 
 	public Long getCount(Order order) {
 		return orderDao.getCount(order);
+	}
+
+	public void updateOrderStatus(Order order) {
+		orderDao.updateOrderStatus(order);
 	}
 
 }

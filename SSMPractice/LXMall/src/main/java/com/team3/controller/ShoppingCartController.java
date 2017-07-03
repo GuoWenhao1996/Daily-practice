@@ -176,6 +176,8 @@ public class ShoppingCartController {
 			// 收获地址信息
 			List<Consigenee> consigeneelist = consigeneeService.getConsigeneeList(ToolUtil.getCookieno(request));
 			model.addAttribute("consigeneelist", consigeneelist);
+			//默认选中地址
+			model.addAttribute("selectaddress", OrderController.str_consigeneenumber);
 
 			return "frontend/cart";
 		}

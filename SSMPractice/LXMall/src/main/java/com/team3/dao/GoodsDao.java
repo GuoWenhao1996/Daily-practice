@@ -8,14 +8,7 @@ import com.team3.po.Goods;
  * @author 刘宇内
  *
  */
-public interface GoodsDao  {
-	
-	/**
-	 * 添加商品
-	 * @param goods
-	 */
-	public void addGoods(Goods goods);
-	
+public interface GoodsDao  {	
 	/**
 	 * 根据条件查询所有满足条件的商品信息 
 	 * @param goods

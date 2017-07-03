@@ -12,14 +12,14 @@
 <head>
 <meta charset="utf-8" />
 <title>乐鲜Mall后台丨添加商品</title>
-<meta name="author" content="DeathGhost" />
-<link rel="stylesheet" type="text/css" href="css/style.css">
-<!--[if lt IE 9]>
-<script src="js/html5.js"></script>
-<![endif]-->
-<script src="js/jquery.js"></script>
-<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script>
+ <meta charset="utf-8"/>
+<link rel="stylesheet" type="text/css" href="${basePath }backend/css/style.css">
+  <script src="${basePath }backend/js/jquery.js"></script>  
+ <script src="${basePath }backend/js/jquery.mCustomScrollbar.concat.min.js"></script> 
+<script src="${basePath}backend/ckeditor/ckeditor.js"></script>
+<script src="${basePath}backend/ckeditor/config.js"></script>
+<script src="${basePath}backend/res/jquery.form.js"></script>
+ <script>
 	(function($) {
 		$(window).load(
 				function() {
@@ -49,34 +49,46 @@
 </script>
 </head>
 <body>
-	<section class="rt_wrap content mCustomScrollbar">
+	
+<section class="rt_wrap content mCustomScrollbar">
 	<div class="rt_content">
-		<div class="page_title">
-			<h2 class="fl">商品详情</h2>
+	  <div class="page_title">
+			<h2 class="fl">商品添加</h2>
 			<a class="fr top_rt_btn" href="${basePath }goods/Adminlist.do">返回产品列表</a>
-		</div>
-		<section>
-		<form id="pgoodsupload" action="" method="post">
+	  </div>
+  <form id="pgoodsupload" action="${basePath}goods/add.do" method="post">
+	<section>
 		<ul class="ulColumn2">
+			 <li>
+				<span class="item_name" style="width: 200px;">商品编号：</span>
+				<input type="text" class="textbox" placeholder="商品货号..." name="gnumber"    />
+			</li> 
 			<li>
 				<span class="item_name" style="width: 200px;">商品名称：</span>
-				<input type="text" class="textbox textbox_295" placeholder="商品名称..." />
+				<input type="text" class="textbox textbox_295" placeholder="商品名称..." name="gname"  />
 			</li>
 			<li>
 				<span class="item_name" style="width: 200px;">商品数量：</span>
-				<input type="text" class="textbox textbox_295" placeholder="商品库存..." />
+				<input type="number" class="textbox textbox_295" placeholder="商品库存..."name="gstock"   />
 			</li>
 			<li>
-				<span class="item_name" style="width: 200px;">商品编号：</span>
-				<input type="text" class="textbox" placeholder="商品货号..." />
+				<span class="item_name" style="width: 200px;">商品价格：</span>
+				<input type="number" class="textbox textbox_295" placeholder="商品价格..."name="gprice"   />
 			</li>
 			<li>
 			 	<span class="item_name" style="width: 180px;">商品分类：</span>
-			 	<select class="select">
-					<option>牛 奶</option>
-					<option>酒 精</option>
-					<option>茶 叶</option>
-					<option>食 品</option>
+			 	<select class="select" name="gsort">
+					<option  value="牛奶">牛 奶</option>
+					<option value="酒类">酒 类</option>
+					<option value="茶类">茶 类</option>
+					<option value="食品">食 品</option>
+				</select>
+			</li>
+			<li>
+			 	<span class="item_name" style="width: 180px;">商品状态：</span>
+			 	<select class="select" name="gstatus">
+					<option  value="待上架">待上架</option>
+					<option value="在售">在售</option>
 				</select>
 			</li>
 			<li>
@@ -88,26 +100,22 @@
 			</li>
 			<li>
 				<span class="item_name" style="width: 120px;">图片预览：</span>
-				<input type="hidden" id="myurl" value="">
+				<input type="hidden" id="myurl" name="myurl" value="">
 				<img id="myimg" style="width: 30%; height: 320px;">
 			</li>
 			
-			<li>
+			 <li>
 				<span class="item_name" style="width: 80px;">产品详情：</span>
-				<textarea name="goodsDesc" class="ckeditor"></textarea>
-			<li>
-			<li>
-				<span class="item_name" style="width: 120px;"></span>
-				<input type="submit" class="link_btn" />
-			</li>
-		</ul>
-		</form>
-		</section>
-	</div>
-	</section>
-	<script src="${basePath}backend/ckeditor/ckeditor.js"></script>
-	<script src="${basePath}backend/res/jquery.form.js"></script>
-	<script type="text/javascript">
+				<textarea name="gdetail" class="ckeditor"></textarea>
+			</li> 
+		   </ul>
+	   </section>
+		       <button type="submit"  >提交</button>
+	 </form>
+  </div>
+</section>
+	
+	 <script type="text/javascript">
 		function changeVideo(str) {
 			try {
 				document.getElementById("myimg").src = str;
@@ -124,7 +132,6 @@
 				uploadImg();
 			}
 		}
-		
 		//图片的上传
 		function uploadImg() {
 			var options = {
@@ -137,9 +144,7 @@
 			};
 			$("#pgoodsupload").ajaxSubmit(options);
 		}
-	</script>
-	<script src="${basePath}backend/js/ueditor.config.js"></script>
-	<script src="${basePath}backend/js/ueditor.all.min.js">
-	</script>
+	</script> 
+
 </body>
 </html>

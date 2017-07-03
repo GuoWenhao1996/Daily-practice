@@ -52,4 +52,9 @@
 		</where>
 	</select>
 
+	<!-- 修改订单 -->
+	<update id="updateOrderStatus" parameterType="Order">
+		update t_order set t_Ostatus = #{orderStatus} where t_Onumber = #{orderId}
+	</update>
+
 </mapper>

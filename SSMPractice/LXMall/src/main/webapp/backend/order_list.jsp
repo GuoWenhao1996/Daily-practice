@@ -96,8 +96,7 @@
 						<th style="overflow:hidden">${o.orderTime}</th>
 						<th style="overflow:hidden">${o.orderStatus}</th>
 						<th style="overflow:hidden">${o.orderMoney}</th>
-						<td style="overflow:hidden" class="center"><a href="${basePath}pregoods/list.do?orderId=${o.orderId}" title="查看订单" class="link_icon"
-							>&#118;</a> <a href="${basePath}pregoods/list.do?orderId=${o.orderId}" title="修改订单"
+						<td style="overflow:hidden" class="center"><a href="${basePath}pregoods/list.do?orderId=${o.orderId}" title="修改订单"
 							class="link_icon">&#101;</a></td>
 					</tr>
 				</c:forEach>

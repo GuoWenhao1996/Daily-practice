@@ -33,5 +33,13 @@ public interface OrderDao {
 	 * @return 订单数量
 	 */
 	public Long getCount(Order order);
+	
+	/**
+	 * 修改订单状态
+	 * 
+	 * @param order
+	 */
+	public void updateOrderStatus(Order order);
+		
 
 }

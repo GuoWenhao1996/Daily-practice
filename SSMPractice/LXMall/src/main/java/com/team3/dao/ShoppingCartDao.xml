@@ -23,4 +23,8 @@
 		delete from t_shoppingcart where t_ID = #{user.id} and t_Gnumber = #{goods.gnumber}
 	</delete>
 	
+	<!-- 清空购物车商品 -->
+	<delete id="deleteAllShoppingCartGoods" parameterType="ShoppingCart">
+		delete from t_shoppingcart where t_ID = #{user.id}
+	</delete>
 </mapper>

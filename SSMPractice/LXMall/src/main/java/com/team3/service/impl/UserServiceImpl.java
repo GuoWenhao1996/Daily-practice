@@ -18,18 +18,36 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserDao userDao;
 	
+	/**
+	 * 增加用户
+	 * @param user
+	 */
 	public void addUser(User user){		
 		userDao.addUser(user);		
 	}
 
+	/**
+	 * 获取一定条件下的用户
+	 * @param user
+	 * @return
+	 */
 	public User getUser(User user) {
 		return userDao.getUser(user);
 	}
 	
+	/**
+	 * 更改特定用户的用户信息
+	 * @param user
+	 * @return
+	 */
 	public User updateUser(User user){
 		return userDao.updateUser(user);
 	}
 
+	/**
+	 * 更改特定用户的密码
+	 * @param user
+	 */
 	public void updatePassword(User user) {
 		userDao.updatePassword(user);
 		

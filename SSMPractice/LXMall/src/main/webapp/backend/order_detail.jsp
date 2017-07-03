@@ -67,9 +67,21 @@
 				<td>下单时间：${theOrder.orderTime}</td>
 			</tr>
 			<tr>
-				<td>订单状态：<a>${theOrder.orderStatus}</a></td>
-				<td colspan="3">订单总额： <mark>${theOrder.orderMoney} 元</mark>
+				<td>订单状态： <select id="statuses" class="select"
+					name="theOrder.orderStatus" onchange="changeA()">
+						<option value="-1">---${theOrder.orderStatus}---</option>
+						<option value="0">待付款</option>
+						<option value="1">配货中</option>
+						<option value="2">已出货</option>
+						<option value="3">已签收</option>
+						<option value="4">待评价</option>
+						<option value="5">已完成</option>
+						<option value="9">已取消</option>
+				</select> <a id="thisa" href="" style="display: none">提交修改</a>
 				</td>
+				<td colspan="2">订单总额： <mark>${theOrder.orderMoney} 元</mark>
+				</td>
+				<td><a href="${basePath}order/list.do">返回</a></td>
 			</tr>
 		</table>
 		<table class="table">
@@ -90,17 +102,32 @@
 					<td class="center">${p.goods.gnumber}</td>
 					<td class="center"><strong class="rmb_icon">${p.buyprice}</strong></td>
 					<td class="center"><strong>${p.buynumber}</strong></td>
-					<td class="center">
-						<strong class="rmb_icon">
-						<fmt:formatNumber type="number" value="${Float.parseFloat(p.buyprice)*p.buynumber}" pattern="0" maxFractionDigits="2"/>
-						</strong></td>
+					<td class="center"><strong class="rmb_icon"> <fmt:formatNumber
+								type="number"
+								value="${Float.parseFloat(p.buyprice)*p.buynumber}" pattern="0"
+								maxFractionDigits="2" />
+					</strong></td>
 					<td class="center">${p.goods.gsort}</td>
 				</tr>
 			</c:forEach>
 		</table>
-		<aside class="mtb" style="text-align:right;"> <label>管理员操作：</label>
-		<input type="button" value="取消订单" class="group_btn" />
 	</div>
 	</section>
+	<script type="text/javascript"
+		src="${basePath}backend/res/jquery.form.js"></script>
+	<script type="text/javascript">
+		function changeA() {
+			$("#statuses").val();
+			var url = "${basePath}order/update.do?orderId=${theOrder.orderId}&orderStatus="
+					+ $("#statuses").val();
+			$("#thisa").attr("href", url);
+			if($("#statuses").val()=="-1"){
+				document.getElementById("thisa").style.display = "none";
+			}else{
+				document.getElementById("thisa").style.display = "";
+			}
+				
+		}
+	</script>
 </body>
 </html>

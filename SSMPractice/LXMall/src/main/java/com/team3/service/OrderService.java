@@ -2,6 +2,7 @@ package com.team3.service;
 
 import java.util.List;
 
+import com.team3.po.Goods;
 import com.team3.po.Order;
 
 /**
@@ -32,5 +33,12 @@ public interface OrderService {
 	 * @return 订单数
 	 */
 	public Long getCount(Order order);
+	
+	/**
+	 * 修改订单状态
+	 * 
+	 * @param order
+	 */
+	public void updateOrderStatus(Order order);
 
 }

@@ -12,7 +12,6 @@
 		<result column="t_Gstatus" property="gstatus" />
 		<result column="t_sort" property="gsort" />
 	</resultMap>
-	
 	<!-- 根据商品名称或者类型查询商品 信息 -->
 	<select id="getGoodsList" parameterType="Goods" resultMap="goodsmap">
 		select * from t_goods
@@ -26,11 +25,9 @@
 			<if test="gsort != null and gsort != ''">
 				and t_sort like #{gsort}
 			</if>
-			
 		</where>
 		limit #{start}, #{length}
 	</select>
-	
 	<!-- 根据商品名称或者商品id查询商品的数量 --> 
 	<select id="getCount" parameterType="Goods" resultType="Long">
 		select count(*) from t_goods
@@ -46,29 +43,24 @@
 			</if>
 		</where>
 	</select>
-	
 	<!-- 根据id或者商品名称查询单个商品的信息 -->
 	 <select id="getGoodsById" parameterType="Goods" resultMap="goodsmap">
 	    select * from t_goods where t_Gnumber = #{gnumber}
 	</select>
-	
 	 <!-- 更新商品信息 -->
 	<update id="updateGoods" parameterType="Goods"  >
-	  update t_goods set  t_Gname=#{gname},t_Gstock=#{gstock},t_Gvolume=#{gvolume},
-	  t_Gdetail=#{gdetail},t_Gprice=#{gprice},t_Gstatus=#{gstatus},t_sort=#{gsort}
+	  update t_goods set  t_Gname=#{gname},t_Gstock=#{gstock},
+	 t_Gdetail=#{gdetail},t_Gprice=#{gprice},t_Gstatus=#{gstatus},t_sort=#{gsort}
 	  where t_Gnumber=#{gnumber}
 	 </update>
-	 
 	<!-- 根据id或者商品名称查询单个商品的信息 -->
 	<select id="getGoodsByid" parameterType="Goods" resultMap="goodsmap">
 		select * from t_goods where t_Gnumber =#{gnumber}
 	</select>
-	
 	<!-- 删除商品信息 -->
 	<delete id="deleteGoods" parameterType="Goods">
 	     delete from t_goods where t_Gnumber=#{gnumber}
 	</delete>
-	
 	<!-- 添加商品信息 -->
 	<insert id="AddGoods" parameterType="Goods" >
 	insert into t_goods 

@@ -18,7 +18,7 @@ public interface ShoppingCartDao {
 	public void addShoppingCartGoogs(ShoppingCart shoppingCart);
 	
 	/**
-	 * 删除购物车商品
+	 * 用户删除购物车商品
 	 * @param shoppingCart
 	 */
 	public void deleteShoppingCartGoods(ShoppingCart shoppingCart);
@@ -29,4 +29,10 @@ public interface ShoppingCartDao {
 	 * @return
 	 */
 	public List<ShoppingCart> getShoppingCartGoods(String userId);
+	
+	/**
+	 * 用户购买了商品清空购物车
+	 * @param shoppingCart
+	 */
+	public void deleteAllShoppingCartGoods(ShoppingCart shoppingCart);
 }

@@ -7,5 +7,5 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
-	config.filebrowserImageUploadUrl = '/shop/goods/uploadfile.do';//上传图片的保存路径
+	config.filebrowserImageUploadUrl = '/LXMall/goods/uploadfile.do';//上传图片的保存路径
 };

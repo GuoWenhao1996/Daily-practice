@@ -27,11 +27,12 @@ public class TestGoodsDao {
 		@Test
 		public void testGetStudentList(){
 			Goods good=new Goods();
+			good.setGsort("逼哥类型");
 			List<Goods> goods =goodsDao.getGoodsList(good);
 			 for(Goods s: goods){ 
 				 System.out.println(s.getGname()); 
 				 System.out.println(s.getGprice());
-				 System.out.println(s.getAdmin()); 
+				 System.out.println(s.getAdmin().getAccount()); 
 				 System.out.println(s.getGdetail()); 
 				 System.out.println(s.getGsort()); 
 				 System.out.println(s.getGstatus()); 
@@ -52,15 +53,15 @@ public class TestGoodsDao {
 		@Test
 		public void testupdateGoods(){
 			Goods goods=new Goods();
-			 goods.setGnumber("120");
-			 goods.setGname("莫水果");
-			 goods.setGdetail("莫水果");
-			 goods.setGprice(100.8);
-			 goods.setGstock(20000);
-			 goods.setGstatus("待上架");
-			 goods.setGsort("莫哥类型");
+			 goods.setGnumber("110");
+			 goods.setGname("莫水果110");
+			 goods.setGdetail("详情莫水果110");
+			 goods.setGprice(110.5);
+			 goods.setGstock(110);
+			 goods.setGstatus("110");
+			 goods.setGsort("110");
+			 
 			goodsDao.updateGoods(goods);
-			
 		}
 		/**
 		 * 根据商品的id删除商品的信息
@@ -68,7 +69,7 @@ public class TestGoodsDao {
 		@Test
 		public void Testdeletegoods(){
 			 Goods goods=new Goods();
-			 goods.setGnumber("2");
+			 goods.setGnumber("1");
 			 goodsDao.deleteGoods(goods);
 			 
 		}
@@ -79,7 +80,7 @@ public class TestGoodsDao {
 		public void testAddGoods(){
 			Goods goods=new Goods();
 			Admin admin=new Admin();
-			 goods.setGnumber("6666");
+			 goods.setGnumber("655666");
 			 goods.setGname("新疆水果");
 			 goods.setGdetail("莫比比在新疆的产业");
 			 goods.setGprice(100.8);
