@@ -48,7 +48,7 @@
             <div class="content_box">
             <a href="${basePath }goods/idlist.do?gnumber=${g.gnumber}">
                 <div class="left-grid-view grid-view-left">
-                    <img src="images/mihoutao.jpg" class="img-responsive watch-right" alt=""/>
+                    <img src="${g.url }" class="img-responsive watch-right" style="object-fit:contain;"/>
                     <div class="mask">
                         <div class="info">快速查看</div>
                     </div>
@@ -65,7 +65,7 @@
     <div class=" top-nav rsidebar span_1_of_left">
         <h3 class="cate">类别</h3>
         <ul class="menu">
-            <li class="item1"><a  >生鲜水果<img class="arrow-img" src="images/arrow1.png" alt=""/>
+            <li class="item1"><a  >生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;鲜<img class="arrow-img" src="${basePath }frontend/images/sun.png"/>
             </a>
                 <ul class="cute">
                     <li class="subitem1"><a href="${basePath }goods/list.do?gsort=蔬菜">新鲜蔬菜 </a></li>
@@ -75,16 +75,16 @@
                 </ul>
             </li>
             <li class="item2" ><a href="${basePath }goods/list.do?gsort=零食">零&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食<img class="arrow-img"
-                                                                                     src="images/arrow1.png"
+                                                                                     src="${basePath }frontend/images/snack.png"
                                                                                      alt=""/></a>
                 <ul class="cute">
-                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=食品">食品 </a></li>
-                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=零食">零食</a></li>
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=食品">休闲零食 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=零食">饼干糕点</a></li>
 
                 </ul>
             </li>
             <li class="item3"><a >茶&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;酒<img class="arrow-img"
-                                                                                     src="images/arrow1.png"
+                                                                                     src="${basePath }frontend/images/drinks.png"
                                                                                      alt=""/></a> 
                 <ul class="cute">
                     <li class="subitem1"><a href="${basePath }goods/list.do?gsort=酒类">酒类 </a></li>
@@ -117,6 +117,15 @@
 
         });
     </script>
+    <div class=" chain-grid menu-chain">
+        <a href="${basePath }frontend/single.jsp">
+        	<img class="img-responsive chain" src="images/chengzi.jpg" style="object-fit:contain;"/></a>
+        <div class="grid-chain-bottom chain-watch">
+            <span class="actual dolor-left-grid">${g.gprice}元</span>
+            <span class="reducedfrom">1${g.gprice}元</span>
+            <h6><a href="${basePath }frontend/single.jsp">${g.gname }</a></h6>
+        </div>
+    </div>
     <a class="view-all all-product" href="${basePath }goods/list.do">查看所有商品<span> </span></a>
 </div>
 <div class="clearfix"></div>

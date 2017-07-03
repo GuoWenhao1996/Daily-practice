@@ -1,10 +1,11 @@
 package com.team3.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.team3.dao.PictureDao;
-import com.team3.po.Goods;
 import com.team3.po.Picture;
 import com.team3.service.PictureService;
 
@@ -18,8 +19,8 @@ public class PictureServiceImpl implements PictureService {
 		pictureDao.addPicture(picture);
 	}
 
-	public void selectPictureByGoodsId(Goods goods) {
-		pictureDao.selectPictureByGoodsId(goods);
+	public List<Picture> selectPictureByGoodsId(String goodsId) {
+		return pictureDao.selectPictureByGoodsId(goodsId);
 	}
 	
 }

@@ -24,11 +24,7 @@
     function hideURLbar() {
         window.scrollTo(0, 1);
     } </script>
-    <!--fonts-->
-    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>-->
-    <!--//fonts-->
     <script src="${basePath }frontend/js/jquery.min.js"></script>
-    <!--script-->
 </head>
 <body>
 <div class="container">

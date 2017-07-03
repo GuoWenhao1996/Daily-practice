@@ -1,6 +1,7 @@
 package com.team3.service;
 
-import com.team3.po.Goods;
+import java.util.List;
+
 import com.team3.po.Picture;
 
 /**
@@ -19,5 +20,5 @@ public interface PictureService {
 	 * 根据商品id找到相应的图片
 	 * @param goods
 	 */
-	public void selectPictureByGoodsId(Goods goods);
+	public List<Picture> selectPictureByGoodsId(String goodsId);
 }

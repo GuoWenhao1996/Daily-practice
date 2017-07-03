@@ -101,7 +101,7 @@
 			<li>
 				<span class="item_name" style="width: 120px;">图片预览：</span>
 				<input type="hidden" id="myurl" name="myurl" value="">
-				<img id="myimg" style="width: 30%; height: 320px;">
+				<img id="myimg" style="width: 30%; height: 320px; object-fit:contain;">
 			</li>
 			
 			 <li>

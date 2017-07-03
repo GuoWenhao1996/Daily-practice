@@ -1,6 +1,5 @@
 package com.team3.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.team3.po.Order;
+import com.team3.po.Picture;
 import com.team3.po.Pregoods;
+import com.team3.service.PictureService;
 import com.team3.service.PregoodsService;
 import com.team3.service.gutil.BaseController;
 
@@ -28,7 +29,9 @@ import com.team3.service.gutil.BaseController;
 public class PregoodsController extends BaseController {
 	@Autowired
 	private PregoodsService pregoodsService;
-
+	@Autowired
+	private PictureService pictureService;
+	
 	@RequestMapping("list.do")
 	public String list(Order order, Model model, HttpServletRequest request) {
 		// this.initPage(request);
@@ -39,7 +42,12 @@ public class PregoodsController extends BaseController {
 			Order theOrder = pregoodses.get(0).getOrder();
 			model.addAttribute("theOrder", theOrder);
 			for(Pregoods p:pregoodses){
-				p.setBuyid("http://127.0.0.1:8080/LXMall/backend/upload/1499058892742-7067871712363847920.jpg");//将订单号拿来存储照片地址
+				List<Picture> pics=pictureService.selectPictureByGoodsId(p.getGoods().getGnumber());
+				if(pics.size()==0){
+					p.setBuyid("http://localhost:8080/LXMall/frontend/images/default.png");
+				}else{
+					p.setBuyid(pics.get(0).getPnumber());//将订单号拿来存储照片地址
+				}
 			}
 		}else{
 			Order theOrder = new Order();
@@ -59,8 +67,12 @@ public class PregoodsController extends BaseController {
 			Order theOrder = pregoodses.get(0).getOrder();
 			model.addAttribute("theOrder", theOrder);
 			for(Pregoods p:pregoodses){
-				p.setBuyid("http://127.0.0.1:8080/LXMall/backend/upload/1499058892742-7067871712363847920.jpg");//将订单号拿来存储照片地址
-			}
+				List<Picture> pics=pictureService.selectPictureByGoodsId(p.getGoods().getGnumber());
+				if(pics.size()==0){
+					p.setBuyid("http://localhost:8080/LXMall/frontend/images/default.png");
+				}else{
+					p.setBuyid(pics.get(0).getPnumber());//将订单号拿来存储照片地址
+				}			}
 		}else{
 			Order theOrder = new Order();
 			theOrder.setOrderId("这是一张空订单！");

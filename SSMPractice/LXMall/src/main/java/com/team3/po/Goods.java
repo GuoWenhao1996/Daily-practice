@@ -24,10 +24,17 @@ public class Goods extends BaseBean {
 	private String gstatus;
 	//商品类别
 	private String gsort;
+	//暂存图片的url
+	private String url;
 	//管理员实体
 	private Admin admin;
-
 	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	public String getGnumber() {
 		return gnumber;
 	}

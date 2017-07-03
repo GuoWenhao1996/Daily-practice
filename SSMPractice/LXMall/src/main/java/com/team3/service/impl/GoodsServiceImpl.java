@@ -37,12 +37,7 @@ public class GoodsServiceImpl implements GoodsService {
 			if (goods.getGsort() != null && !goods.getGsort().equals(" ")) {
 				goods.setGsort("%" + goods.getGsort() + "%");
 			}
-//			 根据商品编号为每天一个商品goods添加图片
-//			for (Goods g : goods) {
-//				int id = g.getClazz().getId();
-//				Goods clazz = clazzDao.getClazzById(id);
-//				s.setClazz(clazz);
-//			}
+
 			return  goodsDao.getGoodsList(goods);
 	}
 	

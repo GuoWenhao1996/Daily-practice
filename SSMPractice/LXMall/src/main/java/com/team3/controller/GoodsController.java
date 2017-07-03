@@ -88,6 +88,16 @@ public class GoodsController extends BaseController{
 		List<Goods> goods = goodsService.getGoodsList(good);
 		//向model中保存数据
 		model.addAttribute("goods", goods);
+		//List<Picture> pictures = pictureService.selectPictureByGoodsId(good);
+		
+		//根据商品的id找到图片的url
+		for(Goods g : goods) {
+			System.out.println(g.getGnumber());
+			List<Picture> str_onegoods = pictureService.selectPictureByGoodsId(g.getGnumber());
+			if(str_onegoods.size()!=0) {
+				g.setUrl(str_onegoods.get(0).getPnumber());
+			}
+		}
 		  return "frontend/product";
 		}	
 	 /**

@@ -13,10 +13,8 @@
 	</insert>
 	
 	<!-- 根据商品的id找到对应所有图片 -->
-	<select id="selectPictureByGoodsId" parameterType="Picture" resultMap="picturemap">
+	<select id="selectPictureByGoodsId" parameterType="String" resultMap="picturemap">
 		select * from t_picture where t_Gnumber = #{goods.gnumber}
 	</select>
-	
-	
 	
 </mapper>
