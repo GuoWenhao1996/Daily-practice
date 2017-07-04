@@ -53,4 +53,19 @@ public class ToolUtil {
 		}
 		return name;
 	}
+	
+	public static String getCookieaccount(HttpServletRequest request) throws UnsupportedEncodingException{
+		String name=null;
+		Cookie Cookies[] = request.getCookies();
+		if (Cookies != null) {
+			for (int n = 0; n < Cookies.length; n++) {
+				Cookie newCookie = Cookies[n];
+				if (newCookie.getName().equals("adminaccount")) {
+					name = newCookie.getValue();
+					name = java.net.URLDecoder.decode(name, "UTF-8");
+				}
+			}
+		}
+		return name;
+	}
 }

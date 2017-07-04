@@ -31,6 +31,7 @@ public class UserController {
 
 	/**
 	 * 注册用户
+	 * 
 	 * @param user
 	 * @return
 	 */
@@ -45,21 +46,22 @@ public class UserController {
 
 	/**
 	 * 用户登录
+	 * 
 	 * @param user
 	 * @param model
 	 * @param res
 	 * @return
 	 */
 	@RequestMapping("login.do")
-	public String login(User user, Model model,HttpServletResponse res) {
+	public String login(User user, Model model, HttpServletResponse res) {
 		User us = userService.getUser(user);
 		if (us == null) {
 			model.addAttribute("errormessage", "不存在该账号");
 			return "frontend/login";
 		} else if (ToolUtil.md5Password(user.getPassword()).equals(us.getPassword())) {
-			Cookie cookieNo = new Cookie("cookieNo", us.getId()); 
+			Cookie cookieNo = new Cookie("cookieNo", us.getId());
 			cookieNo.setPath("/");
-			cookieNo.setMaxAge(60*60);
+			cookieNo.setMaxAge(60 * 60);
 			res.addCookie(cookieNo);
 			return "frontend/index";
 		} else {
@@ -70,6 +72,7 @@ public class UserController {
 
 	/**
 	 * 用来判断用户名是否存在
+	 * 
 	 * @param user
 	 * @return
 	 */
@@ -89,23 +92,29 @@ public class UserController {
 
 	/**
 	 * 获得符合条件的用户信息
+	 * 
 	 * @param model
 	 * @param request
 	 * @return
 	 * @throws UnsupportedEncodingException
 	 */
 	@RequestMapping("getpersondata.do")
-	public String getpersondata(Model model,HttpServletRequest request) throws UnsupportedEncodingException {
-		User user = new User();
-		System.out.println("个人资料："+ToolUtil.getCookieno(request));
-		user.setId(ToolUtil.getCookieno(request));
-		user = userService.getUser(user);
-		model.addAttribute("user", user);
-		return "frontend/user_center";
+	public String getpersondata(Model model, HttpServletRequest request) throws UnsupportedEncodingException {
+		if (ToolUtil.getCookieno(request) == null) {
+			return "frontend/login";
+		} else {
+			User user = new User();
+			System.out.println("个人资料：" + ToolUtil.getCookieno(request));
+			user.setId(ToolUtil.getCookieno(request));
+			user = userService.getUser(user);
+			model.addAttribute("user", user);
+			return "frontend/user_center";
+		}
 	}
 
 	/**
 	 * 更改符合条件的用户信息
+	 * 
 	 * @param user
 	 * @param model
 	 * @param request
@@ -113,7 +122,7 @@ public class UserController {
 	 * @throws UnsupportedEncodingException
 	 */
 	@RequestMapping("updateuser.do")
-	public String updateuser(User user, Model model,HttpServletRequest request) throws UnsupportedEncodingException {
+	public String updateuser(User user, Model model, HttpServletRequest request) throws UnsupportedEncodingException {
 		user.setId(ToolUtil.getCookieno(request));
 		userService.updateUser(user);
 		this.getpersondata(model, request);
@@ -122,6 +131,7 @@ public class UserController {
 
 	/**
 	 * 更改指定学生的密码
+	 * 
 	 * @param req
 	 * @param model
 	 * @return
@@ -132,10 +142,10 @@ public class UserController {
 		String password1 = req.getParameter("password1");
 		String password2 = req.getParameter("password2");
 		String password = req.getParameter("password");
-		User user=new User();
+		User user = new User();
 		user.setId(ToolUtil.getCookieno(req));
-	    user=userService.getUser(user);
-	    System.out.println(user.getPassword());
+		user = userService.getUser(user);
+		System.out.println(user.getPassword());
 		if (!ToolUtil.md5Password(password1).equals(user.getPassword())) {
 			model.addAttribute("message", "当前密码错误");
 		} else if (password2.equals("")) {

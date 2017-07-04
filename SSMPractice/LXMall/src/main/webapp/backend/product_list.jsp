@@ -26,11 +26,15 @@
 				<input  type="text"  placeholder=" 请输入商品名称" name="gname" >
                 <select  name="gsort"  >
                 <option value="">商品类型</option>
-                <option value="水果">新鲜水果</option>
-                <option value="乳品冲饮" >乳品冲饮</option>
-                <option value="酒类" >酒类</option>
-                <option value="茶类" >茶类</option>
-                <option value="逼哥类型" >逼哥类型</option>
+               <option  value="新鲜水果">新鲜水果</option>
+					<option value="新鲜蔬菜">新鲜蔬菜</option>
+					<option value="新鲜水产">新鲜水产</option>
+					<option value="肉类">肉类</option>
+					<option value="休闲零食">休闲零食</option>
+					<option value="饼干糕点">饼干糕点</option>
+					<option value="酒类"> 酒 类 </option>
+					<option value="茶叶">茶 叶</option>
+					<option value="乳品冲饮">乳品冲饮</option>
            </select>
            <button type="submit">查询</button>
   </form>
@@ -53,7 +57,7 @@
             </tr>
             <c:forEach items= "${goods}" var="g">
             <tr>
-                <td class="center"><img src="${basePath }frontend/upload/goods01.jpg" width="50" height="50"/></td>
+                <td class="center"><img src="${g.url}" width="50" height="50"/></td>
                 <td>${g.gnumber }</td>
                 <td class="center">${g.gname }</td>
                 <td class="center"><strong class="rmb_icon">${g.gprice}</strong></td>
@@ -62,7 +66,7 @@
                 <td class="center">${g.gstatus}</td>
                 <td class="center">
                     <a href="${basePath }goods/loadupdate.do?gnumber=${g.gnumber}" title="编辑" class="link_icon">&#101;</a>
-                    <a href="${basePath }goods/delete.do?gnumber=${g.gnumber }" title="删除" class="link_icon">&#100;</a>
+                    <a href="${basePath }goods/delete.do?gnumber=${g.gnumber }" title="下架" class="link_icon">&#100;</a>
                 </td>
             </tr>
            </c:forEach>

@@ -17,4 +17,8 @@
 		select * from t_picture where t_Gnumber = #{goods.gnumber}
 	</select>
 	
+	<delete id="deleteByGoodsId" parameterType="String">
+		delete from t_picture where t_Gnumber = #{goods.gnumber}
+	</delete>
+	
 </mapper>

@@ -29,20 +29,20 @@
 <body>
 <div class="container">
     <div class="shoes-grid">
-        <a href="${basePath }frontend/single.jsp">
+        <a href="${basePath }goods/idlist.do?gnumber=${goodstype1[0].gnumber}">
             <div class="wrap-in">
                 <div class="wmuSlider example1 slide-grid">
                     <div class="wmuSliderWrapper">
                         <article style="position: absolute; width: 100%; opacity: 0;">
                             <div class="banner-matter">
                                 <div class="col-md-5 banner-bag">
-                                    <img class="img-responsive " src="images/chengzi.jpg" alt=" "/>
+                                    <img class="img-responsive " src="${goodstype1[0].url}"  alt=" "/>
                                 </div>
                                 <div class="col-md-7 banner-off">
                                     <h2>打5折！</h2>
-                                    <label>对所有购买者 <b>价格</b></label>
-                                    <p>这是橙子，打5折真是赚大了！ </p>
-                                    <span class="on-get">立即购买</span>
+                                    <label>限时特价<b>${goodstype1[0].gprice}</b></label>
+                                    <p>${goodstype1[0].gsort} </p>
+                                    <a class="on-get" href="${basePath }goods/idlist.do?gnumber=${goodstype1[0].gnumber}">立即抢购</a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -52,13 +52,13 @@
                         <article style="position: absolute; width: 100%; opacity: 0;">
                             <div class="banner-matter">
                                 <div class="col-md-5 banner-bag">
-                                    <img class="img-responsive " src="images/pingguo.jpg" alt=" "/>
+                                    <img class="img-responsive" src="${goodstype2[0].url}" alt=" "/>
                                 </div>
                                 <div class="col-md-7 banner-off">
                                     <h2>打5折！</h2>
-                                    <label>对所有购买者 <b>价格</b></label>
-                                    <p>这是苹果，打5折真是赚大了！ </p>
-                                    <span class="on-get">立即购买</span>
+                                    <label>限时特价 <b>${goodstype2[0].gprice}</b></label>
+                                    <p>${goodstype2[0].gsort}</p>
+                                    <a class="on-get" href="${basePath }goods/idlist.do?gnumber=${goodstype2[0].gnumber}">立即抢购</a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -68,13 +68,13 @@
                         <article style="position: absolute; width: 100%; opacity: 0;">
                             <div class="banner-matter">
                                 <div class="col-md-5 banner-bag">
-                                    <img class="img-responsive " src="images/ningmeng.jpg" alt=" "/>
+                                    <img class="img-responsive" src="${goodstype3[0].url}" alt=" "/>
                                 </div>
                                 <div class="col-md-7 banner-off">
                                     <h2>打5折！</h2>
-                                    <label>FOR ALL PURCHASE <b>VALUE</b></label>
-                                    <p>这是柠檬，打5折真是赚大了！ </p>
-                                    <span class="on-get">立即购买</span>
+                                    <label>限时特价<b>${goodstype3[0].gprice}</b></label>
+                                    <p>${goodstype3[0].gsort}</p>
+                                    <a class="on-get" href="${basePath }goods/idlist.do?gnumber=${goodstype3[0].gnumber}">立即抢购</a>
                                 </div>
 
                                 <div class="clearfix"></div>
@@ -97,32 +97,36 @@
 </div>
 </a>
 <!---->
+<div class="products">
+    <h5 class="latest-product">新鲜水果最新商品</h5>
+    <a class="view-all" href="${basePath }goods/list.do?gsort=新鲜水果">查看全部<span> </span></a>
+</div>
 <div class="shoes-grid-left">
-    <a href="${basePath }frontend/single.jsp">
+    <a href="${basePath }goods/idlist.do?gnumber=${goodstype1[0].gnumber}">
         <div class="col-md-6 con-sed-grid">
 
             <div class="clearfix">
-                <img class="img-responsive shoe-left" src="images/xia.jpg" alt=" "/>
+                <img class="img-responsive shoe-left" src="${goodstype1[0].url}" alt=" "/>
             </div>
             <div class="elit-grid">
-                <h4>虾</h4>
-                <label>大大大大大大大大大虾！</label>
-                <p>一盘大虾 </p>
+                <h4>${goodstype1[0].gname}</h4>
+                <label>${goodstype1[0].gstatus}</label>
+                <p>${goodstype1[0].gsort} </p>
                 <span class="on-get">立即购买</span>
             </div>
 
         </div>
     </a>
-    <a href="single.html">
+    <a href="${basePath }goods/idlist.do?gnumber=${goodstype1[1].gnumber}">
         <div class="col-md-6 con-sed-grid sed-left-top">
 
             <div class="clearfix">
-                <img class="img-responsive shoe-left" src="images/yangxiezi.jpg" alt=" "/>
+                <img class="img-responsive shoe-left" src="${goodstype1[1].url}" alt=" "/>
             </div>
             <div class="elit-grid">
-                <h4>羊蝎子</h4>
-                <label>打折真是赚大了！</label>
-                <p>一盘羊蝎子！</p>
+                <h4>${goodstype1[1].gname}</h4>
+                <label>${goodstype1[1].gstatus}</label>
+                <p>${goodstype1[1].gsort} </p>
                 <span class="on-get">立即购买</span>
             </div>
 
@@ -130,19 +134,20 @@
     </a>
 </div>
 <div class="products">
-    <h5 class="latest-product">最新商品</h5>
-    <a class="view-all" href="${basePath }frontend/product.jsp">查看全部<span> </span></a>
+    <h5 class="latest-product">休闲零食最新商品</h5>
+    <a class="view-all" href="${basePath }goods/list.do?gsort=休闲零食">查看全部<span> </span></a>
 </div>
 <div class="product-left">
     <div class="col-md-4 chain-grid">
-        <a href="${basePath }frontend/single.jsp"><img class="img-responsive chain" src="images/quechaokafei.jpg" alt=" "/></a>
+        <a href="${basePath }goods/idlist.do?gnumber=${goodstype2[0].gnumber}">
+        <img class="img-responsive chain" src="${goodstype2[0].url}" alt=" "/></a>
         <span class="star"> </span>
         <div class="grid-chain-bottom">
-            <h6><a href="${basePath }frontend/single.jsp">咖啡</a></h6>
+            <h6><a href="${basePath }goods/idlist.do?gnumber=${goodstype2[0].gnumber}">${goodstype2[0].gname}</a></h6>
             <div class="star-price">
                 <div class="dolor-grid">
-                    <span class="actual">300元</span>
-                    <span class="reducedfrom">400元</span>
+                    <span class="actual">${goodstype2[0].gprice}元</span>
+                    <span class="reducedfrom">1${goodstype2[0].gprice}元</span>
                     <span class="rating">
 									        <input type="radio" class="rating-input" id="rating-input-1-5"
                                                    name="rating-input-1">
@@ -161,20 +166,21 @@
 									        <label for="rating-input-1-1" class="rating-star"> </label>
 							    	   </span>
                 </div>
-                <a class="now-get get-cart" href="#">加入购物车</a>
+                <a class="now-get get-cart" href="${basePath }goods/idlist.do?gnumber=${goodstype2[0].gnumber}">立即抢购</a>
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
     <div class="col-md-4 chain-grid">
-        <a href="${basePath }single.jsp"><img class="img-responsive chain" src="images/82nianlafei.jpg" alt=" "/></a>
+        <a href="${basePath }goods/idlist.do?gnumber=${goodstype2[1].gnumber}">
+        <img class="img-responsive chain" src="${goodstype2[1].url}" alt=" "/></a>
         <span class="star"> </span>
         <div class="grid-chain-bottom">
-            <h6><a href="${basePath }single.jsp">82年拉菲</a></h6>
+            <h6><a href="${basePath }goods/idlist.do?gnumber=${goodstype2[1].gnumber}">${goodstype2[1].gname}</a></h6>
             <div class="star-price">
                 <div class="dolor-grid">
-                    <span class="actual">300元</span>
-                    <span class="reducedfrom">400元</span>
+                    <span class="actual">${goodstype2[1].gprice}元</span>
+                    <span class="reducedfrom">1${goodstype2[1].gprice}元</span>
                     <span class="rating">
 									        <input type="radio" class="rating-input" id="rating-input-1-5"
                                                    name="rating-input-1">
@@ -193,20 +199,21 @@
 									        <label for="rating-input-1-1" class="rating-star"> </label>
 							    	   </span>
                 </div>
-                <a class="now-get get-cart" href="#">加入购物车</a>
+                <a class="now-get get-cart" href="${basePath }goods/idlist.do?gnumber=${goodstype2[1].gnumber}">立即抢购</a>
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
     <div class="col-md-4 chain-grid grid-top-chain">
-        <a href="${basePath }single.jsp"><img class="img-responsive chain" src="images/defuqiaokeli.jpg" alt=" "/></a>
+        <a href="${basePath }goods/idlist.do?gnumber=${goodstype2[2].gnumber}">
+        <img class="img-responsive chain" src="${goodstype2[2].url}" alt=" "/></a>
         <span class="star"> </span>
         <div class="grid-chain-bottom">
-            <h6><a href="single.html">德芙巧克力</a></h6>
+            <h6><a href="${basePath }goods/idlist.do?gnumber=${goodstype2[2].gnumber}">${goodstype2[2].gname}</a></h6>
             <div class="star-price">
                 <div class="dolor-grid">
-                    <span class="actual">300元</span>
-                    <span class="reducedfrom">400元</span>
+                    <span class="actual">${goodstype2[1].gprice}元</span>
+                    <span class="reducedfrom">1${goodstype2[1].gprice}元</span>
                     <span class="rating">
 									        <input type="radio" class="rating-input" id="rating-input-1-5"
                                                    name="rating-input-1">
@@ -225,7 +232,7 @@
 									        <label for="rating-input-1-1" class="rating-star"> </label>
 							    	   </span>
                 </div>
-                <a class="now-get get-cart" href="#">加入购物车</a>
+                <a class="now-get get-cart" href="${basePath }goods/idlist.do?gnumber=${goodstype2[2].gnumber}">立即抢购</a>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -233,19 +240,20 @@
     <div class="clearfix"></div>
 </div>
 <div class="products">
-    <h5 class="latest-product">最新产品</h5>
-    <a class="view-all" href="product.html">查看全部<span> </span></a>
+    <h5 class="latest-product">乳品冲饮最新产品</h5>
+    <a class="view-all" href="${basePath }goods/list.do?gsort=乳品冲饮">查看全部<span> </span></a>
 </div>
 <div class="product-left">
     <div class="col-md-4 chain-grid">
-        <a href="single.html"><img class="img-responsive chain" src="images/xilanhua.jpg" alt=" "/></a>
+        <a href="${basePath }goods/idlist.do?gnumber=${goodstype3[0].gnumber}">
+        <img class="img-responsive chain" src="${goodstype3[0].url}" alt=" "/></a>
         <span class="star"> </span>
         <div class="grid-chain-bottom">
-            <h6><a href="single.html">西兰花</a></h6>
+            <h6><a href="${basePath }goods/idlist.do?gnumber=${goodstype3[0].gnumber}">${goodstype3[0].gname}</a></h6>
             <div class="star-price">
                 <div class="dolor-grid">
-                    <span class="actual">3000元</span>
-                    <span class="reducedfrom">4000元</span>
+                    <span class="actual">${goodstype3[0].gprice}元</span>
+                    <span class="reducedfrom">${goodstype3[0].gprice}元</span>
                     <span class="rating">
 									        <input type="radio" class="rating-input" id="rating-input-1-5"
                                                    name="rating-input-1">
@@ -264,20 +272,21 @@
 									        <label for="rating-input-1-1" class="rating-star"> </label>
 							    	   </span>
                 </div>
-                <a class="now-get get-cart" href="#">加入购物车</a>
+                <a class="now-get get-cart" href="${basePath }goods/idlist.do?gnumber=${goodstype3[0].gnumber}">立即抢购</a>
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
     <div class="col-md-4 chain-grid">
-        <a href="single.html"><img class="img-responsive chain" src="images/daiyu.jpg" alt=" "/></a>
+        <a href="${basePath }goods/idlist.do?gnumber=${goodstype3[1].gnumber}">
+        <img class="img-responsive chain" src="${goodstype3[1].url}" alt=" "/></a>
         <span class="star"> </span>
         <div class="grid-chain-bottom">
-            <h6><a href="single.html">带鱼</a></h6>
+            <h6><a href="${basePath }goods/idlist.do?gnumber=${goodstype3[1].gnumber}">${goodstype3[1].gname}</a></h6>
             <div class="star-price">
                 <div class="dolor-grid">
-                    <span class="actual">300元</span>
-                    <span class="reducedfrom">400元</span>
+                    <span class="actual">${goodstype3[1].gprice}元</span>
+                    <span class="reducedfrom">1${goodstype3[1].gprice}元</span>
                     <span class="rating">
 									        <input type="radio" class="rating-input" id="rating-input-1-5"
                                                    name="rating-input-1">
@@ -296,20 +305,21 @@
 									        <label for="rating-input-1-1" class="rating-star"> </label>
 							    	   </span>
                 </div>
-                <a class="now-get get-cart" href="#">加入购物车</a>
+                <a class="now-get get-cart" href="${basePath }goods/idlist.do?gnumber=${goodstype3[1].gnumber}">立即抢购</a>
                 <div class="clearfix"></div>
             </div>
         </div>
     </div>
     <div class="col-md-4 chain-grid grid-top-chain">
-        <a href="single.html"><img class="img-responsive chain" src="images/rousongbing.jpg" alt=" "/></a>
+        <a href="${basePath }goods/idlist.do?gnumber=${goodstype3[2].gnumber}">
+        <img class="img-responsive chain" src="${goodstype3[2].url}" alt=" "/></a>
         <span class="star"> </span>
         <div class="grid-chain-bottom">
-            <h6><a href="single.html">肉松饼</a></h6>
+            <h6><a href="${basePath }goods/idlist.do?gnumber=${goodstype3[2].gnumber}">${goodstype3[2].gname}</a></h6>
             <div class="star-price">
                 <div class="dolor-grid">
-                    <span class="actual">3500元</span>
-                    <span class="reducedfrom">5000元</span>
+                    <span class="actual">${goodstype3[2].gprice}元</span>
+                    <span class="reducedfrom">1${goodstype3[2].gprice}元</span>
                     <span class="rating">
 									        <input type="radio" class="rating-input" id="rating-input-1-5"
                                                    name="rating-input-1">
@@ -328,7 +338,7 @@
 									        <label for="rating-input-1-1" class="rating-star"> </label>
 							    	   </span>
                 </div>
-                <a class="now-get get-cart" href="#">加入购物车</a>
+                <a class="now-get get-cart" href="${basePath }goods/idlist.do?gnumber=${goodstype3[2].gnumber}">立即抢购</a>
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -339,41 +349,38 @@
 </div>
 <div class="sub-cate">
     <div class=" top-nav rsidebar span_1_of_left">
-        <h3 class="cate">类别</h3>
         <ul class="menu">
-            <li class="item1"><a href="#">生鲜水果<img class="arrow-img" src="images/arrow1.png" alt=""/>
+            <li class="item1"><a >生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;鲜<img class="arrow-img" src="${basePath }frontend/images/sun.png"/>
             </a>
                 <ul class="cute">
-                    <li class="subitem1"><a href="product.html">新鲜蔬菜 </a></li>
-                    <li class="subitem2"><a href="product.html">新鲜水果</a></li>
-                    <li class="subitem3"><a href="product.html">新鲜水产 </a></li>
-                    <li class="subitem4"><a href="product.html">肉类 </a></li>
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=新鲜蔬菜">新鲜蔬菜 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=新鲜水果">新鲜水果</a></li>
+                    <li class="subitem3"><a href="${basePath }goods/list.do?gsort=新鲜水产">新鲜水产 </a></li>
+                    <li class="subitem4"><a href="${basePath }goods/list.do?gsort=肉类">肉类 </a></li>
                 </ul>
             </li>
-            <li class="item2"><a href="#">零&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食<img class="arrow-img"
-                                                                                     src="images/arrow1.png"
+            <li class="item2" ><a href="${basePath }goods/list.do?gsort=零食">零&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食<img class="arrow-img"
+                                                                                     src="${basePath }frontend/images/snack.png"
                                                                                      alt=""/></a>
                 <ul class="cute">
-                    <li class="subitem1"><a href="product.html">进口食品 </a></li>
-                    <li class="subitem2"><a href="product.html">休闲零食</a></li>
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=休闲零食">休闲零食 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=饼干糕点">饼干糕点</a></li>
 
                 </ul>
             </li>
-            <li class="item3"><a href="#">茶&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;酒<img class="arrow-img"
-                                                                                     src="images/arrow1.png"
-                                                                                     alt=""/> </a>
+            <li class="item3"><a >茶&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;酒<img class="arrow-img"
+                                                                                     src="${basePath }frontend/images/drinks.png"
+                                                                                     alt=""/></a> 
                 <ul class="cute">
-                    <li class="subitem1"><a href="product.html">酒类 </a></li>
-                    <li class="subitem2"><a href="product.html">茶叶 </a></li>
-                    <li class="subitem3"><a href="product.html">乳品冲饮</a></li>
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=酒类">酒类 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=茶叶">茶叶 </a></li>
+                    <li class="subitem3"><a href="${basePath }goods/list.do?gsort=乳品冲饮">乳品冲饮</a></li>
                 </ul>
             </li>
 
             <ul class="kid-menu ">
-
                 <li class="menu-kid-left"><a href="${basePath }frontend/contact.jsp">联系我们</a></li>
             </ul>
-
         </ul>
     </div>
 
@@ -397,14 +404,15 @@
         });
     </script>
     <div class=" chain-grid menu-chain">
-        <a href="${basePath }frontend/single.jsp"><img class="img-responsive chain" src="images/chengzi.jpg" alt=" "/></a>
+        <a href="${basePath }goods/idlist.do?gnumber=${goods[0].gnumber}">
+        	<img class="img-responsive chain" src="${goods[0].url }"/></a>
         <div class="grid-chain-bottom chain-watch">
-            <span class="actual dolor-left-grid">30元</span>
-            <span class="reducedfrom">50元</span>
-            <h6><a href="${basePath }frontend/single.jsp">刘二橙子</a></h6>
+            <span class="actual dolor-left-grid">${goods[0].gprice}元</span>
+            <span class="reducedfrom">1${goods[0].gprice}元</span>
+            <h6><a href="${basePath }goods/idlist.do?gnumber=${goods[0].gnumber}">${goods[0].gname }</a></h6>
         </div>
     </div>
-    <a class="view-all all-product" href="${basePath }frontend/product.jsp">查看所有商品<span> </span></a>
+    <a class="view-all all-product" href="${basePath }goods/list.do">查看所有商品<span> </span></a>
 </div>
 
 </body>

@@ -57,6 +57,15 @@ public interface GoodsService {
      * @param goods
      */
     public void AddGoods(Goods goods);
-
-	 
+    /**
+     * 判断商品编号是否重复
+     * @param goods
+     * @return
+     */
+    public boolean validate(Goods goods);
+    /**
+	 * 根据销售情况更改销售数量和库存量
+	 * @param goods
+	 */
+	public void setgsockandgvolume(Goods goods);
 }

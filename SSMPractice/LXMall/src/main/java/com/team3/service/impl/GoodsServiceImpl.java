@@ -37,10 +37,8 @@ public class GoodsServiceImpl implements GoodsService {
 			if (goods.getGsort() != null && !goods.getGsort().equals(" ")) {
 				goods.setGsort("%" + goods.getGsort() + "%");
 			}
-
 			return  goodsDao.getGoodsList(goods);
 	}
-	
 	/**
      * 根据id删除对应商品信息
      */
@@ -51,7 +49,6 @@ public class GoodsServiceImpl implements GoodsService {
        * 根据查询出满足条件的商品信息
        */
 	public Goods getGoods(Goods goods) {
-		// TODO Auto-generated method stub
 		return null;
 	}
      /**
@@ -60,13 +57,17 @@ public class GoodsServiceImpl implements GoodsService {
 	public void updateGoods(Goods goods) {
 		goodsDao.updateGoods(goods);
 	}
-      /**
-       * 判断商品名是否唯一
+	/**
+       * 判断商品编号是否唯一
        */
 	public boolean validate(Goods goods) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		Goods pgoods =goodsDao.getGoodsById(goods.getGnumber());
+		if(pgoods==null){
+			 return true;//唯一
+		 } else {// 不唯一
+			 return false;
+		 }
+	 }
 /**
  * 获取所有商品记录的总条数
  */
@@ -83,7 +84,6 @@ public class GoodsServiceImpl implements GoodsService {
 
 		return goodsDao.getGoodsByid(goods);
 	}
-	
 	public Goods getGoodsById(String goodsId) {
 		return goodsDao.getGoodsById(goodsId);
 	}
@@ -92,5 +92,11 @@ public class GoodsServiceImpl implements GoodsService {
        */
 	public void AddGoods(Goods goods) {
 		goodsDao.AddGoods(goods);
+	}
+	/**
+	 * 根据gnumber修改库存和销量
+	 */
+	public void setgsockandgvolume(Goods goods) {
+		goodsDao.setgsockandgvolume(goods);
 	}
 }

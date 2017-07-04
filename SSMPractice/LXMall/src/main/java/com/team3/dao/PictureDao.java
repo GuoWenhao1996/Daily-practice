@@ -23,4 +23,10 @@ public interface PictureDao {
 	 * @param goods
 	 */
 	public List<Picture> selectPictureByGoodsId(String goodsId);
+	
+	/**
+	 * 根据商品id删除对应商品的图片
+	 * @param goodsId
+	 */
+	public void deleteByGoodsId(String goodsId);
 }

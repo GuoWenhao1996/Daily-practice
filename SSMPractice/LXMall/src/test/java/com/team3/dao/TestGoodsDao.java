@@ -91,4 +91,15 @@ public class TestGoodsDao {
 			 goods.setAdmin(admin);
 			 goodsDao.AddGoods(goods);
 		} 
+		/**
+		 * 测试修改库存和销量数据
+		 */
+		@Test
+		public void testsetgstockandgvolume(){
+			Goods goods=new Goods();
+			goods.setGnumber("100");
+			goods.setGstock(9999);
+			goods.setGvolume(30000);
+			goodsDao.setgsockandgvolume(goods);
+		}
 }

@@ -169,11 +169,16 @@
 				//验证是否点了收货地址
 				//发送AJAX请求
 				$.post("${basePath }order/isselect.do", {gnumber:$("#gnumber").attr("id")}, function (data) {
-					if(data=="0") {
-						alert("请先选择收货地址！");
-					} else if(data=="00") {
-						alert("您还没有购买任何商品！");
+					if(data.content=="您还没有选择收获地址~") {
+						alert(data.content);
+					} else if(data.content=="购物车还没有宝贝商品！") {
+						alert(data.content);
 						$("#totalMoney").attr("disabled", "disabled");
+					} else if(data.content==null) {
+						$("#totalMoney").removeAttr("disabled");
+					} else if(data.content!="您还没有选择收获地址~"&&data.content!="购物车还没有宝贝商品！"&&
+							data.content!=null){
+						alert(data.content);
 					}
 				}, "json"); //鼠标经过的时候
 			});
@@ -225,7 +230,7 @@
 				</tr>
 				<c:forEach items="${shoppingcartgoods }" var="scg">
 					<tr style="height: 50px">
-						<td><a><img src="images/2f1.jpg" /></a></td>
+						<td><a><img style="width: 50px;height: 50px;" src="${scg.goods.url }" /></a></td>
 						<td>
 						    <!-- 商品编号 -->
 							<input id="gnumber" type="hidden" name="gnumber" value="${scg.goods.gnumber }" />

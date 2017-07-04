@@ -55,13 +55,7 @@
     <dd class="pwd_icon">
         <input type="password" name ="apassword"placeholder="密码" class="login_txtbx" required class="input"/>
     </dd>
-    <dd class="val_icon">
-        <div class="checkcode">
-            <input type="text" id="J_codetext" placeholder="验证码" maxlength="4" class="login_txtbx" required class="input">
-            <canvas class="J_codeimg" id="myCanvas" onclick="createCode()">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
-        </div>
-        <input type="button" value="验证码核验" class="ver_btn" onClick="validate();">
-    </dd>
+    <br>
     <dd>
         <input type="submit" value="立即登录" class="submit_btn"/>
     </dd>

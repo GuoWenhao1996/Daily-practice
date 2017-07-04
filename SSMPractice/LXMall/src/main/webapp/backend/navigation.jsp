@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="com.team3.util.ToolUtil" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
@@ -25,7 +26,7 @@
             $(window).load(function () {
                 $("a[rel='load-content']").click(function (e) {
                     e.preventDefault();
-                    var url = $(this).attr("href");
+                    var url = $(this).attr("href");                    
                     $.get(url, function (data) {
                         $(".content .mCSB_container").append(data); //load new content inside .mCSB_container
                         //scroll-to appended content
@@ -51,14 +52,29 @@
 		}
 		e.className = "active";
 	}
+	//检查是否登录
+	function check(){
+		var account=getCookie();
+		if(account=="")
+			window.location.replace("${basePath}backend/login.jsp");
+	}
+	function getCookie() 
+    { 
+    	var arr,reg=new RegExp("(^| )"+"adminaccount"+"=([^;]*)(;|$)");
+    	if(arr=document.cookie.match(reg)) 
+    		return unescape(arr[2]); 
+    	else
+    		return null; 
+    }
 </script>
 </head>
-<body>
+<body onload="check()">
 <!--header-->
 <header>
+
     <h1><img src="${basePath}backend/images/admin_logo.png"/></h1>
     <ul class="rt_nav">
-        <li><a href="http://www.mycodes.net" target="_blank" class="website_icon">站点首页</a></li>
+        <li><a href="${basePath}backend/index.jsp" target="mainframe" class="website_icon">站点首页</a></li>
         <li><a href="#" class="clear_icon">清除缓存</a></li>
         <li><a href="#" class="admin_icon">DeathGhost</a></li>
         <li><a href="#" class="set_icon">账号设置</a></li>
@@ -69,6 +85,7 @@
 <!--aside nav-->
 <aside class="lt_aside_nav content mCustomScrollbar">
     <h2><a href="${basePath}backend/index.jsp" target="mainframe">首页</a></h2>
+	<h1 id="test" style="display:none">${userno }</h1>
     <ul>
         <li>
             <dl>
@@ -82,13 +99,6 @@
             <dl>
                 <dt>订单信息</dt>
                 <dd><a href="${basePath}order/list.do" name="lead" target="mainframe" onclick="javascript:changeClass(this)">订单管理</a></dd>
-            </dl>
-        </li>
-        <li>
-            <dl>
-                <dt>会员管理</dt>
-                <dd><a href="${basePath}backend/user_list.jsp" name="lead" target="mainframe" onclick="javascript:changeClass(this)">会员列表</a></dd>
-                <dd><a href="${basePath}backend/user_detail.jsp" name="lead" target="mainframe" onclick="javascript:changeClass(this)">添加会员</a></dd>
             </dl>
         </li>
         <li>

@@ -44,7 +44,7 @@
         </div>
     <div class="grid-product"> </div>
        <c:forEach items= "${goods}" var="g">
-        <div class="  product-grid">
+        <div class="product-grid">
             <div class="content_box">
             <a href="${basePath }goods/idlist.do?gnumber=${g.gnumber}">
                 <div class="left-grid-view grid-view-left">
@@ -55,8 +55,8 @@
                </div>
             </a>
             <h4><a href="${basePath }goods/idlist.do?gnumber=${g.gnumber}">${g.gname }</a></h4>
-            <p>${g.gdetail}</p>
-            RMB：${g.gprice}
+            <p>${g.gsort}</p>
+            	价格：${g.gprice}元
        </div>
         </div>
      </c:forEach>  
@@ -68,9 +68,9 @@
             <li class="item1"><a  >生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;鲜<img class="arrow-img" src="${basePath }frontend/images/sun.png"/>
             </a>
                 <ul class="cute">
-                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=蔬菜">新鲜蔬菜 </a></li>
-                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=水果">新鲜水果</a></li>
-                    <li class="subitem3"><a href="${basePath }goods/list.do?gsort=水产">新鲜水产 </a></li>
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=新鲜蔬菜">新鲜蔬菜 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=新鲜水果">新鲜水果</a></li>
+                    <li class="subitem3"><a href="${basePath }goods/list.do?gsort=新鲜水产">新鲜水产 </a></li>
                     <li class="subitem4"><a href="${basePath }goods/list.do?gsort=肉类">肉类 </a></li>
                 </ul>
             </li>
@@ -78,8 +78,8 @@
                                                                                      src="${basePath }frontend/images/snack.png"
                                                                                      alt=""/></a>
                 <ul class="cute">
-                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=食品">休闲零食 </a></li>
-                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=零食">饼干糕点</a></li>
+                    <li class="subitem1"><a href="${basePath }goods/list.do?gsort=休闲零食">休闲零食 </a></li>
+                    <li class="subitem2"><a href="${basePath }goods/list.do?gsort=饼干糕点">饼干糕点</a></li>
 
                 </ul>
             </li>
@@ -118,12 +118,12 @@
         });
     </script>
     <div class=" chain-grid menu-chain">
-        <a href="${basePath }frontend/single.jsp">
-        	<img class="img-responsive chain" src="images/chengzi.jpg" style="object-fit:contain;"/></a>
+        <a href="${basePath }goods/idlist.do?gnumber=${goods[0].gnumber}">
+        	<img class="img-responsive chain" src="${goods[0].url }" style="object-fit:contain;"/></a>
         <div class="grid-chain-bottom chain-watch">
-            <span class="actual dolor-left-grid">${g.gprice}元</span>
-            <span class="reducedfrom">1${g.gprice}元</span>
-            <h6><a href="${basePath }frontend/single.jsp">${g.gname }</a></h6>
+            <span class="actual dolor-left-grid">${goods[0].gprice}元</span>
+            <span class="reducedfrom">1${goods[0].gprice}元</span>
+            <h6><a href="${basePath }goods/idlist.do?gnumber=${firstGoods.gnumber}">${firstGoods.gname }</a></h6>
         </div>
     </div>
     <a class="view-all all-product" href="${basePath }goods/list.do">查看所有商品<span> </span></a>

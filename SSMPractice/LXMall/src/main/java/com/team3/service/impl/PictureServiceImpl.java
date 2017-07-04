@@ -22,5 +22,9 @@ public class PictureServiceImpl implements PictureService {
 	public List<Picture> selectPictureByGoodsId(String goodsId) {
 		return pictureDao.selectPictureByGoodsId(goodsId);
 	}
+
+	public void deleteByGoodsId(String goodsId) {
+		pictureDao.deleteByGoodsId(goodsId);
+	}
 	
 }

@@ -63,4 +63,15 @@ public class TestGoodsServiceimpl {
 			 doo.setAdmin(admin);
 			 goodsService.AddGoods(doo);
 		}
+		/**
+		 * 根据gnumber修改库存和销量
+		 */
+		@Test
+		public void testsetgstockandgvolume(){
+			Goods goods=new Goods();
+			goods.setGnumber("000");
+			goods.setGstock(56565656);
+			goods.setGvolume(2222222);
+			goodsService.setgsockandgvolume(goods);
+		}
 }

@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.team3.po.Consigenee;
 import com.team3.po.Goods;
 import com.team3.po.Message;
+import com.team3.po.Picture;
 import com.team3.po.ShoppingCart;
 import com.team3.po.User;
 import com.team3.service.ConsigeneeService;
+import com.team3.service.PictureService;
 import com.team3.service.ShoppingCartService;
 import com.team3.util.ToolUtil;
 import com.team3.util.UuidUtil;
@@ -37,6 +39,9 @@ public class ShoppingCartController {
 
 	@Autowired
 	private ConsigeneeService consigeneeService;
+	
+	@Autowired
+	private PictureService pictureService;
 
 	/**
 	 * 添加新的收获地址
@@ -179,6 +184,14 @@ public class ShoppingCartController {
 			//默认选中地址
 			model.addAttribute("selectaddress", OrderController.str_consigeneenumber);
 
+			//根据商品的id找到图片的url
+			for(ShoppingCart sc : shoppingCarts) {
+				List<Picture> str_onegoods = pictureService.selectPictureByGoodsId(sc.getGoods().getGnumber());
+				if(str_onegoods.size()!=0) {
+					sc.getGoods().setUrl(str_onegoods.get(0).getPnumber());
+				}
+			}
+			
 			return "frontend/cart";
 		}
 	}

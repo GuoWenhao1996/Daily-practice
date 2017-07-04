@@ -28,6 +28,15 @@
         window.onload = function () {
             setIframeHeight(document.getElementById('mainframe'));
         };
+        function getCookie() 
+        { 
+        	var arr,reg=new RegExp("(^| )"+"cookieNo"+"=([^;]*)(;|$)");
+        	if(arr=document.cookie.match(reg)) 
+        		return unescape(arr[2]); 
+        	else
+        		return null; 
+        }
+
     </script>
     
     <script>
@@ -44,7 +53,7 @@
     </script>
     
 </head>
-<body>
+<body onload="check()">
 
 <!--顶端头部-->
 <div id="top">
@@ -53,7 +62,6 @@
             <li>
                 <div class="xing">
                 </div>
-                <a href="#">待定。。。</a>
             </li>
         </ul>
         <div id="hello">
@@ -76,11 +84,7 @@
                                 <div class="downjian1">
                                 </div>
                                 <ul>
-                                    <li><a href="#">帮助中心</a></li>
-                                    <li><a href="#">售后服务</a></li>
-                                    <li><a href="#">在线客服</a></li>
-                                    <li><a href="#">投诉中心</a></li>
-                                    <li><a href="#">客服邮箱</a></li>
+                                    <li><a href="#">意见反馈</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -97,30 +101,9 @@
                             <span>特色栏目</span>
                         </div>
                         <div class="tesemain">
-                            <a href="#">商城通信</a>
-                            <a href="#">校园之星</a>
-                            <a href="#">视频购物</a>
-                            <a href="#">商城社区</a>
-                            <a href="#">在线读书</a>
-                            <a href="#">装机大师</a>
-                            <a href="#">商城E卡　</a>
-                            <a href="#">家装城</a>
-                            <a href="#">搭配购　</a>
-                            <a href="#">我喜欢　</a>
-                            <a href="#">游戏社区</a>
-                        </div>
-                        <div class="tese">
-                            <span>企业服务</span>
-                        </div>
-                        <div class="tesemain1">
-                            <a href="#">企业采购</a>
-                            <a href="#">办公直通车</a>
-                        </div>
-                        <div class="tese">
-                            <span>旗下网站</span>
-                        </div>
-                        <div class="tesemain2">
-                            <a href="#">English Site</a>
+                            <a href="${basePath }goods/index.do">首页</a>
+                            <a href="${basePath }shoppingcart/usercartlist.do">购物车</a>
+                            <a href="${basePath}order/oneuserlist.do">我的订单</a>
                         </div>
                     </div>
                 </li>
@@ -132,7 +115,7 @@
 <!-- 搜索区域开始 -->
 <div id="serach">
     <div class="logo">
-        <a href="${basePath }frontend/index.jsp" target="mainframe">
+        <a href="${basePath }goods/index.do" target="mainframe">
             <img src="${basePath }frontend/images/logo.png" alt=""/></a>
         <div class="dongtu">
         </div>
@@ -146,83 +129,38 @@
         </div>
         <div class="reci">
             <span>热门搜索:</span>
-            <a href="#" style="color:red">校园之星</a>
-            <a href="#">影院到家</a>
-            <a href="#">JD制暖节</a>
-            <a href="#">腕表领券</a>
-            <a href="#">自营满减</a>
-            <a href="#">N3抢购</a>
-            <a href="#">图书换购</a>
-            <a href="#">12.12</a>
+            <a href="${basePath }goods/list.do?gsort=新鲜水果" style="color:red">新鲜水果</a>
+            <a href="${basePath }goods/list.do?gsort=新鲜水产">新鲜水产</a>
+            <a href="${basePath }goods/list.do?gsort=新鲜蔬菜">新鲜蔬菜</a>
+            <a href="${basePath }goods/list.do?gsort=肉类">肉类</a>
+            <a href="${basePath }goods/list.do?gsort=休闲零食">休闲零食</a>
+            <a href="${basePath }goods/list.do?gsort=饼干糕点">饼干糕点</a>
+            <a href="${basePath }goods/list.do?gsort=茶叶">茶叶</a>
+            <a href="${basePath }goods/list.do?gsort=乳品冲饮">乳品冲饮</a>
         </div>
     </div>
     <div class="myjd">
         <div class="mytu">
         </div>
         <a href="${basePath }user/getpersondata.do" target="mainframe">我的商城</a>
-        <div class="jiantou">
-        </div>
-        <div class="myjdhide">
-            <div class="hello">
-                <span>您好，请</span>
-                <a href="${basePath }frontend/login.jsp" target="mainframe">登录</a>
-            </div>
-            <div class="hey">
-                <div class="heyleft">
-                    <ul>
-                        <li><a href="#">待处理订单</a></li>
-                        <li><a href="#">咨询回复</a></li>
-                        <li><a href="#">降价商品</a></li>
-                        <li><a href="#">返修退换货</a></li>
-                        <li><a href="#">优惠券</a></li>
-                    </ul>
-                </div>
-                <div class="heyright">
-                    <ul>
-                        <li><a href="#">我的关注></a></li>
-                        <li><a href="#">我的京豆></a></li>
-                        <li><a href="#">我的理财></a></li>
-                        <li><a href="#">我的白条></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="hidebot">
-                <div class="bottop">
-                    <span>最近浏览的商品:</span>
-                    <a href="#">查看浏览历史></a>
-                </div>
-                <div class="botdown">
-                    <span>「暂无数据」</span>
-                </div>
-            </div>
-        </div>
+        <div class="jiantou"></div>
     </div>
     <div class="gouwuche">
-        <div class="chetu">
-        </div>
+        <div class="chetu"></div>
         	<a id="mycart" name="mycart" href="${basePath }shoppingcart/usercartlist.do" target="mainframe">去购物车结算</a>
-        	<div class="jianleft">
-        	</div>
+        	<div class="jianleft"></div>
         <div class="num">
-            <div class="numright">
-            </div>
+            <div class="numright"></div>
             <div class="numzi">
                 <span>0</span>
             </div>
-        </div>
-        <div class="hideche">
-            <div class="kongche">
-            </div>
-            <c:forEach items="shoppingcartgoods" var="sg">
-            	<%-- <span>${sg.goods.gname }&nbsp;&nbsp;${sg.goods.gprice }&nbsp;&nbsp;${sg.number }</span> --%>
-            </c:forEach>
         </div>
     </div>
     <div class="jubao">
     </div>
 </div>
 
-<iframe src="${basePath }frontend/index.jsp" width="100%" height="1200px" id="mainframe" name="mainframe"></iframe>
+<iframe src="${basePath }goods/index.do" width="100%" height="1200px" id="mainframe" name="mainframe"></iframe>
 
 <!-- 底部开始 -->
 <div id="down">

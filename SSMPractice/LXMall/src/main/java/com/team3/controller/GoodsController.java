@@ -1,6 +1,7 @@
 package com.team3.controller;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 /**
  * 商品的核心控制器
  * @author 刘宇内
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,13 +25,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.WebResource;
 import com.team3.po.Admin;
 import com.team3.po.Goods;
+import com.team3.po.Message;
 import com.team3.po.Picture;
 import com.team3.service.AdminService;
 import com.team3.service.GoodsService;
 import com.team3.service.PictureService;
 import com.team3.service.gutil.BaseController;
+import com.team3.util.ToolUtil;
 @Controller
 @RequestMapping("/goods/")
 public class GoodsController extends BaseController{
@@ -88,7 +94,6 @@ public class GoodsController extends BaseController{
 		List<Goods> goods = goodsService.getGoodsList(good);
 		//向model中保存数据
 		model.addAttribute("goods", goods);
-		//List<Picture> pictures = pictureService.selectPictureByGoodsId(good);
 		
 		//根据商品的id找到图片的url
 		for(Goods g : goods) {
@@ -112,6 +117,10 @@ public class GoodsController extends BaseController{
 		List<Goods> goods = goodsService.getGoodsByid(good);
 		//向model中保存数据
 		model.addAttribute("goods", goods);
+		
+		List<Picture> gpictures = pictureService.selectPictureByGoodsId(good.getGnumber());
+		model.addAttribute("gpictures", gpictures);
+		
 		  return "frontend/single";
 		}
 	/**
@@ -160,6 +169,16 @@ public class GoodsController extends BaseController{
 			List<Goods> goods = goodsService.getGoodsList(good);
 			//向model中保存数据
 			model.addAttribute("goods", goods);
+			
+			//根据商品的id找到图片的url
+			for(Goods g : goods) {
+				System.out.println(g.getGnumber());
+				List<Picture> str_onegoods = pictureService.selectPictureByGoodsId(g.getGnumber());
+				if(str_onegoods.size()!=0) {
+					g.setUrl(str_onegoods.get(0).getPnumber());
+				}
+			}
+			
 			  return "backend/product_list";
 			}
 	/**
@@ -196,6 +215,7 @@ public class GoodsController extends BaseController{
 	 */
 	@RequestMapping("delete.do")
 	public String delete(Goods goods,Model model ,HttpServletRequest request) throws UnsupportedEncodingException{
+		goods.setGstatus("已下架");
 		goodsService.deleteGoods(goods);
 		return AdminList(new Goods(),model, request);
 	}
@@ -212,8 +232,9 @@ public class GoodsController extends BaseController{
   	public String addgoods(Goods goods,Model model,HttpServletRequest request) throws UnsupportedEncodingException{
 		goods.setGvolume(0);//新添加商品的时候默认的销量是0
 		Admin admin=new Admin();
-		admin.getAccount();
+		admin.setAccount(ToolUtil.getCookieaccount(request));
 		goods.setAdmin(admin);
+		System.out.println("admin.account ="+goods.getAdmin().getAccount());
 		//调用业务层方法添加商品
 		goodsService.AddGoods(goods);
 		//添加图片
@@ -225,10 +246,30 @@ public class GoodsController extends BaseController{
 		pgoods.setGnumber(goods.getGnumber());
 		picture.setGoods(pgoods);
 		pictureService.addPicture(picture);
-
 		return AdminList(new Goods(),model, request);//无条件查询
 	}
-	
+	/**
+	 * 
+	 * @param goods
+	 * @return
+	 */
+	@RequestMapping("validate.do")
+	public @ResponseBody Message validate(Goods goods){
+		boolean flag = goodsService.validate(goods);
+		if(flag==true){
+			//唯一
+			Message message=new Message();
+			message.setContent("编号可用");
+			message.setDate(new Date());
+			return message;
+		}else{
+			//不唯一，账号已存在
+			Message message=new Message();
+			message.setContent("编号不可用");
+			message.setDate(new Date());
+			return message;
+		}
+	}
 	/**
 	 * 根据商品id添加图片
 	 * @file 上传的文件
@@ -237,19 +278,16 @@ public class GoodsController extends BaseController{
 	 */
 	@RequestMapping("uploadpicture.do")
 	public @ResponseBody String addPicture(@RequestParam(required=false) MultipartFile myimgupload, HttpServletRequest request) throws IOException {
-		System.out.println(myimgupload);
 		String fileName = String.valueOf(new Date().getTime());
 		fileName += new Random().nextLong();
 		String url = "/backend/upload/"+fileName+".jpg"; //图片报讯的地址
 		String httpurl = "http://127.0.0.1:8080/LXMall" + url;
 		url = request.getServletContext().getRealPath(url);
-		System.out.println(url);
 		FileOutputStream fos = new FileOutputStream(url);
 		fos.write(myimgupload.getBytes()); //图片存到硬盘上
 		fos.close();
 		return httpurl;
 	}
-	
 	/**
 	 * 处理ckeditor文件上传的方法
 	 * @param myimgupload
@@ -258,18 +296,75 @@ public class GoodsController extends BaseController{
 	 * @throws IOException
 	 */
 	@RequestMapping("uploadfile.do")
-	public @ResponseBody String addfile(@RequestParam(required=false) MultipartFile upload, HttpServletRequest request) throws IOException {
-		System.out.println("upload ="+upload);
-		
+	public @ResponseBody void addfile(@RequestParam(required=false) MultipartFile upload, HttpServletRequest request,HttpServletResponse response) throws IOException {
 		String fileName = String.valueOf(new Date().getTime());
 		fileName += new Random().nextLong();
-		String url = "/backend/upload/"+fileName+".jpg"; //图片报讯的地址
-		String httpurl = "http://127.0.0.1:8080/LXMall" + url;
-		url = request.getServletContext().getRealPath(url);
-		System.out.println(url);
-		FileOutputStream fos = new FileOutputStream(url);
-		fos.write(upload.getBytes()); //图片存到硬盘上
-		fos.close();
-		return httpurl;
+		String url="/upload/"+fileName+".jpg";
+		String httpurl="http://localhost:9000/LXMall_filer"+url;
+		//向另一台服务器上的upload文件夹发送文件
+		Client client= new Client();//创建一个客户端
+		WebResource resourse=client.resource(httpurl);
+		resourse.put(String.class,upload.getBytes());//以put方式向后面的httpurlfasongfile
+		//响应
+		PrintWriter out = response.getWriter();
+		//获取路径
+		String callback = request.getParameter("CKEditorFuncNum");
+		out.print("<script>window.parent.CKEDITOR.tools.callFunction("+callback+",'"+httpurl+"') </script>");
 	}
+	/**
+	 * 加载首页
+	 * @param good
+	 * @param model
+	 * @param request
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
+	@RequestMapping("index.do")
+	public String indexList(Goods good, Model model) throws UnsupportedEncodingException {
+		//查出需要的商品数据
+		List<Goods> goods = goodsService.getGoodsList(good);
+		//向model中保存数据
+		model.addAttribute("goods", goods);
+		//按分类查询出商品
+		Goods sgoods = new Goods();
+		//新鲜水果的
+		sgoods.setGsort("%新鲜水果%");
+		List<Goods> goodstype1 = goodsService.getGoodsList(sgoods);
+		//向model中保存数据
+		model.addAttribute("goodstype1", goodstype1);
+		//根据商品的id找到图片的url
+		for(Goods g : goodstype1) {
+			List<Picture> str_onegoods = pictureService.selectPictureByGoodsId(g.getGnumber());
+			if(str_onegoods.size()!=0) {
+				g.setUrl(str_onegoods.get(0).getPnumber());
+			}
+		}
+		
+		//休闲零食的
+		sgoods.setGsort("%休闲零食%");
+		List<Goods> goodstype2 = goodsService.getGoodsList(sgoods);
+		//向model中保存数据
+		model.addAttribute("goodstype2", goodstype2);
+		//根据商品的id找到图片的url
+		for(Goods g : goodstype2) {
+			List<Picture> str_onegoods = pictureService.selectPictureByGoodsId(g.getGnumber());
+			if(str_onegoods.size()!=0) {
+				g.setUrl(str_onegoods.get(0).getPnumber());
+			}
+		}
+				
+		//乳品冲饮的
+		sgoods.setGsort("%乳品冲饮%");
+		List<Goods> goodstype3 = goodsService.getGoodsList(sgoods);
+		//向model中保存数据
+		model.addAttribute("goodstype3", goodstype3);
+		//根据商品的id找到图片的url
+		for(Goods g : goodstype3) {
+			List<Picture> str_onegoods = pictureService.selectPictureByGoodsId(g.getGnumber());
+			if(str_onegoods.size()!=0) {
+				g.setUrl(str_onegoods.get(0).getPnumber());
+			}
+		}
+		  return "frontend/index";
+		}
 }
