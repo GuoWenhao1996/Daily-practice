@@ -94,10 +94,8 @@ public class GoodsController extends BaseController{
 		List<Goods> goods = goodsService.getGoodsList(good);
 		//向model中保存数据
 		model.addAttribute("goods", goods);
-		
 		//根据商品的id找到图片的url
 		for(Goods g : goods) {
-			System.out.println(g.getGnumber());
 			List<Picture> str_onegoods = pictureService.selectPictureByGoodsId(g.getGnumber());
 			if(str_onegoods.size()!=0) {
 				g.setUrl(str_onegoods.get(0).getPnumber());
@@ -117,10 +115,8 @@ public class GoodsController extends BaseController{
 		List<Goods> goods = goodsService.getGoodsByid(good);
 		//向model中保存数据
 		model.addAttribute("goods", goods);
-		
 		List<Picture> gpictures = pictureService.selectPictureByGoodsId(good.getGnumber());
 		model.addAttribute("gpictures", gpictures);
-		
 		  return "frontend/single";
 		}
 	/**
@@ -169,10 +165,8 @@ public class GoodsController extends BaseController{
 			List<Goods> goods = goodsService.getGoodsList(good);
 			//向model中保存数据
 			model.addAttribute("goods", goods);
-			
 			//根据商品的id找到图片的url
 			for(Goods g : goods) {
-				System.out.println(g.getGnumber());
 				List<Picture> str_onegoods = pictureService.selectPictureByGoodsId(g.getGnumber());
 				if(str_onegoods.size()!=0) {
 					g.setUrl(str_onegoods.get(0).getPnumber());
@@ -192,6 +186,14 @@ public class GoodsController extends BaseController{
 		List<Goods> pgoods=goodsService.getGoodsByid(good);
 			//封装数据进入model里面
 			model.addAttribute("pgoods",pgoods);
+			
+			//根据商品的id找到图片的url
+			for(Goods g : pgoods) {
+				List<Picture> str_onegoods = pictureService.selectPictureByGoodsId(g.getGnumber());
+				if(str_onegoods.size()!=0) {
+					g.setUrl(str_onegoods.get(0).getPnumber());
+				}
+			}
 			//返回到对应的页面
 			return "backend/product_update";
 		}
@@ -202,7 +204,17 @@ public class GoodsController extends BaseController{
 	 */
 	@RequestMapping("update.do")
 	 public String updateGoods(Goods good,Model model,HttpServletRequest request) throws UnsupportedEncodingException{
+		//添加图片
+		String pic_url = request.getParameter("myurl");
+		System.out.println("myurl："+pic_url);
+		Picture picture = new Picture();
+		picture.setPnumber(pic_url);
+		Goods pgoods = new Goods();
+		pgoods.setGnumber(good.getGnumber());
+		picture.setGoods(pgoods);
+		pictureService.addPicture(picture);
 		goodsService.updateGoods(good);
+		
 		return AdminList(new Goods(),model,request);
 	}
 	/**
@@ -234,18 +246,17 @@ public class GoodsController extends BaseController{
 		Admin admin=new Admin();
 		admin.setAccount(ToolUtil.getCookieaccount(request));
 		goods.setAdmin(admin);
-		System.out.println("admin.account ="+goods.getAdmin().getAccount());
 		//调用业务层方法添加商品
 		goodsService.AddGoods(goods);
 		//添加图片
 		String pic_url = request.getParameter("myurl");
-		System.out.println("myurl："+pic_url);
 		Picture picture = new Picture();
 		picture.setPnumber(pic_url);
 		Goods pgoods = new Goods();
 		pgoods.setGnumber(goods.getGnumber());
 		picture.setGoods(pgoods);
 		pictureService.addPicture(picture);
+		
 		return AdminList(new Goods(),model, request);//无条件查询
 	}
 	/**

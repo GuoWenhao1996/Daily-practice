@@ -13,6 +13,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>乐鲜Mall后台丨商品列表</title>
+    <link rel="shortcut icon" href="${basePath}backend/images/30-30.ico"/>
     <meta name="author" content="DeathGhost"/>
     <link rel="stylesheet" type="text/css" href="${basePath }backend/css/style.css"> 
    <script src="${basePath }backend/js/jquery.js"></script> 

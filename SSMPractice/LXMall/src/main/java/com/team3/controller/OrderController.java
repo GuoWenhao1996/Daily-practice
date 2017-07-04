@@ -140,18 +140,12 @@ public class OrderController extends BaseController {
 		order.setOrderStatus("1");
 
 		// 已购商品
-		System.out.println("购买单号");
-		System.out.println("订单编号：" + order.getOrderId());
 		String[] gnumbers = request.getParameterValues("gnumber");
 		String[] gprices = request.getParameterValues("gprice");
 		String[] numbers = request.getParameterValues("number");
-		for (int i = 0; i < gnumbers.length; i++) {
-			System.out.println("商品编号：" + gnumbers[i]);
-			System.out.println("购买单价：" + gprices[i]);
-			System.out.println("购买数量：" + numbers[i]);
-		}
 		// 生成订单
 		orderService.addOrder(order);
+		
 		// 生成订单详情
 		Goods goods = new Goods();
 		ShoppingCart shoppingCart = new ShoppingCart();
@@ -165,6 +159,16 @@ public class OrderController extends BaseController {
 			pregoods.setBuyprice(gprices[i]); // 购买时价格
 			pregoods.setBuynumber(Integer.parseInt(numbers[i]));
 			pregoodsService.addPregoods(pregoods);
+			
+			//改库存和销量
+			Goods sale_goods = goodsService.getGoodsById(gnumbers[i]);
+			int str_volume = sale_goods.getGvolume(); //销量
+			int str_sock = sale_goods.getGstock(); //库存
+			Goods newgoods = new Goods();
+			newgoods.setGnumber(sale_goods.getGnumber());
+			newgoods.setGvolume(str_volume+Integer.parseInt(numbers[i]));
+			newgoods.setGstock(str_sock-Integer.parseInt(numbers[i]));
+			goodsService.setgsockandgvolume(newgoods);
 		}
 		// 删除购物车
 		shoppingCart.setUser(user);

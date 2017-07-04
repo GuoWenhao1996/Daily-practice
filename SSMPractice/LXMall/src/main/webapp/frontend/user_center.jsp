@@ -15,6 +15,7 @@
     <!--[if IE]>
     <!--[if IE 7]><link rel="stylesheet" type="text/css" href="css/ie7.css">
     <![endif]-->
+    <link rel="shortcut icon" href="${basePath}frontend/images/30-30.ico"/>
     <link rel="stylesheet" type="text/css" href="${basePath }frontend/css/jiazaitoubu.css">
     <link rel="stylesheet" type="text/css" href="${basePath }frontend/css/css.css">
     <script src="${basePath }frontend/js/jquery-1.8.3.min.js"></script>
@@ -53,7 +54,7 @@
 </script>
 <!--当前位置-->
 <div class="now_positionm">
-    <span>当前位置：</span><a href="index.html">首页></a><a href="#">个人账户</a>
+    <span>当前位置：</span><a href="${basePath }goods/index.do">首页></a><a href="#">个人账户</a>
 </div>
 <!--centers-->
 <div class="centers_m">
@@ -63,7 +64,7 @@
     <div class="centers_ml">
         <!--头像-->
         <div class="center_header">
-            <a href="#"><img src="${basePath }frontend/images/66f625e1ecfd7ad8244efabaa744aa73.png"/></a>
+            <a href="#"><img src="${basePath }frontend/images/default.png"/></a>
             <em>您好，<font>user</font></em>
         </div>
         <!--列表go-->

@@ -52,13 +52,7 @@
 			<h2 class="fl">商品添加</h2>
 			<a class="fr top_rt_btn" href="${basePath }goods/Adminlist.do">返回产品列表</a>
 	  </div>
-  <form id="baseForm" action="${basePath}goods/add.do" method="post"  onkeydown="javascript: if (event.keyCode == 13){return check();}">
-  <!-- <form id="baseForm" name="baseForm" 
-         action="xxx.action" method="post"
-         onkeydown="javascript: if (event.keyCode == 13){return check();}">
-        <input id="gname" name="name" type="text" />
-       <input type="button" value="提交" onclick="check();"/>
-     </form> -->
+  <form id="baseForm"  name="baseForm" action="${basePath}goods/add.do" method="post"  >
 	<section>
 		<ul class="ulColumn2">
 			 <li>
@@ -67,18 +61,15 @@
 			</li> 
 			<li>
 				<span class="item_name" style="width: 200px;">商品名称：</span>
-				<input  id="gname" type="text" class="textbox textbox_295" placeholder="商品名称..." name="gname"  />
+				<input  id="gname" name="gname" type="text" class="textbox textbox_295" placeholder="商品名称..." />
 			</li>
 			<li>
 				<span  class="item_name" style="width: 200px;">商品数量：</span>
-				<input id="gvolume" type="text" class="textbox textbox_295" placeholder="商品库存..."name="gstock"   />
-			<script type="text/javascript">
-
-</script>
+				<input id="gstock" name="gstock"  type="number" class="textbox textbox_295" placeholder="商品库存..." />
 			</li>
 			<li>
 				<span class="item_name" style="width: 200px;">商品价格：</span>
-				<input type = "number" name= "gprice" id = "gprice" class="textbox textbox_295" placeholder="商品价格..." onkeyup="clearNoNum(this);"/>  
+				<input type = "text" name="gprice" id="gprice" class="textbox textbox_295" placeholder="商品价格..."/>  
 			</li>
 			<li>
 			 	<span class="item_name" style="width: 180px;">商品分类：</span>
@@ -119,14 +110,39 @@
 			</li> 
 		   </ul>
 	   </section>
-		       <!-- <button type="submit"  onclick="check();">提交</button> -->
-		       <input type="button" value="提交" onclick="check();"/>
+		     <input type="button" value="提交" onclick="check();"/> 
 	 </form>
   </div>
 </section>
 	 <script type="text/javascript">
+		//验证商品编号是否唯一
+	 $(function () {
+			$("#gnumber").blur(function() {
+				console.log("blur");
+				//验证姓名是否唯一
+				//发送ajax请求
+				 $.post("${basePath}goods/validate.do",{gnumber:$(this).val()},function(data){
+					$("#gnumberr").html(data.content);
+				},"json") 
+			});//失去焦点是执行本函数 
+		})	
+	 //检查表单内容不能为空
+	function check(){
+		var gnumber=document.getElementById('gnumber').value;//商品编号验证
+		var gname=document.getElementById('gname').value;//商品名称验证
+		var gstock=document.getElementById('gstock').value;//商品数量验证
+		var gprice=document.getElementById('gprice').value;//商品价格为空验证 
+		var myimg=document.getElementById('myimg').value;//图片是一个表的主键为空验证
+		var myimgupload=document.getElementById('myimgupload').value;//图片是一个表的主键为空验证
+		if(gnumber==""||gname==""||gstock==""||gprice==""||myimg==""||myimgupload==""){
+             alert('添加的有内容为空,请继续输出');
+			document.baseForm.gnumber.focus(); 
+             }else{
+                  document.getElementById("baseForm").submit();
+              }
+		}
 	//判断输入数量的范围
-	  var text = document.getElementById("gvolume");
+	  var text = document.getElementById("gstock");
 	  text.onkeyup = function(){
           this.value=this.value.replace(/\D/g,'');
               if(text.value<0){
@@ -137,35 +153,12 @@
 	  //判断输入的单价大于0
 	  var text = document.getElementById("gprice");
 	  text.onkeyup = function(){
-          this.value=this.value.replace(/\D/g,'');
           if(text.value<0){
               alert("请填写大于0的数字")
         		return false;
               }
               } 
-	  //检查表单内容不能为空
-		function check(){
-		var gnumber=document.getElementById('gnumber').value;//商品编号验证
-		var gname=document.getElementById('gname').value;//商品名称验证
-		var gstock=document.getElementById('gstock').value;//商品数量验证
-		var gprice=document.getElementById('gprice').value;//商品价格为空验证
-		if(gnumber==""||gname==""||gvolume==""||gprice==""||myurl==""||gdetail==""){
-                alert('添加的所有内容均不能为空');
-				document.baseForm.gnumber.focus(); 
-                }else{
-                     document.baseForm.submit();
-                 }
-			}
-		//验证商品编号是否唯一
-	 $(function () {
-			$("#gnumber").blur(function() {
-				//验证姓名是否唯一
-				//发送ajax请求
-				 $.post("${basePath}goods/validate.do",{gnumber:$("#gnumber").val()},function(data){
-					$("#gnumberr").html(data.content);
-				},"json") 
-			});//失去焦点是执行本函数 
-		})	
+	
 	   //加载图片预览
 	 function changeVideo(str) {
 			try {
@@ -195,16 +188,6 @@
 			};
 			$("#baseForm").ajaxSubmit(options);
 		}
-		
-		/* 输入单价两位小数 */
-		function clearNoNum(obj) {  
-    		obj.value = obj.value.replace(/[^\d.]/g,""); //清除"数字"和"."以外的字符  
-        	obj.value = obj.value.replace(/^\./g,""); //验证第一个字符是数字而不是  
-        	obj.value = obj.value.replace(/\.{2,}/g,"."); //只保留第一个. 清除多余的  
-        	obj.value = obj.value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");  
-        	obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'); //只能输入两个小数  
-
-		} 
 	</script> 
 </body>
 </html>

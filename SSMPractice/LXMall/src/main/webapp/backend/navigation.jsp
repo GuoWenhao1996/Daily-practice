@@ -55,7 +55,7 @@
 	//检查是否登录
 	function check(){
 		var account=getCookie();
-		if(account=="")
+		if(account==null)
 			window.location.replace("${basePath}backend/login.jsp");
 	}
 	function getCookie() 

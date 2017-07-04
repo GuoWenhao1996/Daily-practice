@@ -58,7 +58,7 @@
 		 select * from t_goods where t_Gnumber = #{gnumber}
 	</select>
 	
-	<!-- 删除商品信息 -->
+	<!-- 下架商品信息 -->
 	<update id="deleteGoods" parameterType="Goods">
 	     update t_goods set t_Gstatus=#{gstatus} where t_Gnumber=#{gnumber}
 	</update>
@@ -70,6 +70,6 @@
 	</insert>
 	<!-- 更改商品的库存和销量 -->
 	  <update id="setgsockandgvolume" parameterType="Goods" >
-	     update t_goods set  t_Gstock=#{gstock},t_Gvolume=#{gvolume}  where  t_Gnumber=#{gnumber}
+	     update t_goods set t_Gstock=#{gstock}, t_Gvolume=#{gvolume} where t_Gnumber=#{gnumber}
 	  </update>
 </mapper>

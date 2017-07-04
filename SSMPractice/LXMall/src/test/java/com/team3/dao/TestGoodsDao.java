@@ -25,81 +25,83 @@ public class TestGoodsDao {
 		 * 测试无条件获取商品列表记录方法
 		 */
 		@Test
-		public void testGetStudentList(){
+		public void testGetGoodsList(){
 			Goods good=new Goods();
-			good.setGsort("逼哥类型");
-			List<Goods> goods =goodsDao.getGoodsList(good);
-			 for(Goods s: goods){ 
-				 System.out.println(s.getGname()); 
-				 System.out.println(s.getGprice());
-				 System.out.println(s.getAdmin().getAccount()); 
-				 System.out.println(s.getGdetail()); 
-				 System.out.println(s.getGsort()); 
-				 System.out.println(s.getGstatus()); 
-				 System.out.println(s.getGvolume()); 
-			 }	 
+			   List<Goods> goods =goodsDao.getGoodsList(good);
+			    for(Goods s: goods){ 
+			      System.out.println("商品名："+s.getGname()+" 价格："+s.getGprice()+" 商品类别： "+s.getGsort());  
+			    }	 
 		}
-		/**
-		 * 测试获取单个学生的信息,测试成功
-		 */
+		
 		@Test
-		public  void testgetGoodsById(){
+		public  void testGetGoodsById(){
+			Goods goods = goodsDao.getGoodsById("sp001");
+		      System.out.println(goods.getGname());			
+		}
+		
+		@Test
+		public  void testGetGoodsByid(){
 			Goods goods=new Goods();
-			goodsDao.getGoodsByid(goods);			
+		    goods.setGnumber("312");
+		   List<Goods> good=goodsDao.getGoodsByid(goods);
+		     for(Goods s:good)
+		     {
+		     System.out.println(s.getGprice());
+		     
+		     System.out.println(s.getGdetail()); 
+		     System.out.println(s.getGsort()); 
+		     System.out.println(s.getGstatus()); 
+		     System.out.println(s.getGvolume());
+		    // System.out.println(s.getAdmin().getAccount());
+		     }			
 		}
 		/**
-		 * 测试更新学生信息
+		 * 测试更新商品信息
 		 */
 		@Test
-		public void testupdateGoods(){
-			Goods goods=new Goods();
-			 goods.setGnumber("110");
-			 goods.setGname("莫水果110");
-			 goods.setGdetail("详情莫水果110");
-			 goods.setGprice(110.5);
-			 goods.setGstock(110);
-			 goods.setGstatus("110");
-			 goods.setGsort("110");
-			 
-			goodsDao.updateGoods(goods);
+		public void testUpdategoods(){
+			Goods goods=new Goods();   
+		    goods.setGnumber("312");
+		    goods.setGname("苹果");
+		    goods.setGdetail("新鲜的水果");  
+		    goods.setGstatus("已经上架");
+		    goods.setGsort("进口");
+		   goodsDao.updateGoods(goods);
 		}
-		/**
-		 * 根据商品的id删除商品的信息
-		 */
-		@Test
-		public void Testdeletegoods(){
-			 Goods goods=new Goods();
-			 goods.setGnumber("1");
-			 goodsDao.deleteGoods(goods);
-			 
-		}
+	
 		/**
 		 * 测试商品信息添加的方法
 		 */
 		@Test
 		public void testAddGoods(){
 			Goods goods=new Goods();
-			Admin admin=new Admin();
-			 goods.setGnumber("655666");
-			 goods.setGname("新疆水果");
-			 goods.setGdetail("莫比比在新疆的产业");
-			 goods.setGprice(100.8);
-			 goods.setGstock(20000);
-			 goods.setGstatus("待上架");
-			 goods.setGsort("逼哥类型");
-			 admin.setAccount("1");
-			 goods.setAdmin(admin);
-			 goodsDao.AddGoods(goods);
+			  // Admin admin=new Admin();
+			    goods.setGnumber("32");
+			    goods.setGname("新疆水果");
+			    goods.setGdetail("来自新疆的新产业");
+			    goods.setGprice(100.8);
+			    goods.setGstock(20000);
+			    goods.setGstatus("待上架");
+			    goods.setGvolume(0);
+			    goods.setGsort("新产类型");
+			   
+			    goodsDao.AddGoods(goods);
 		} 
-		/**
-		 * 测试修改库存和销量数据
-		 */
+		
 		@Test
-		public void testsetgstockandgvolume(){
+		public void testDeletegoods(){
 			Goods goods=new Goods();
-			goods.setGnumber("100");
-			goods.setGstock(9999);
-			goods.setGvolume(30000);
-			goodsDao.setgsockandgvolume(goods);
+		    goods.setGnumber("332");
+		    goodsDao.deleteGoods(goods);
 		}
+		
+		@Test
+		public void testGetCount(){
+			Goods goods=new Goods();
+			   //goods.setGname("新疆水果"); 
+			   //goods.setGnumber("sp007");
+			   goods.setGsort("1");    
+			   System.out.println(goodsDao.getCount(goods));
+		}
+		
 }

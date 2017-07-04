@@ -14,7 +14,7 @@
     <base href="<%=basePath%>">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>乐鲜Mall商城 | 商品详情</title>
-    <link rel="shortcut icon" href="${basePath }images/web_title.png">
+    <link rel="shortcut icon" href="${basePath}frontend/images/30-30.ico"/>
     <link href="${basePath }frontend/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="${basePath }frontend/css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link rel="stylesheet" href="${basePath }frontend/css/etalage.css" type="text/css" media="all"/>
@@ -89,10 +89,10 @@
                 <div class="share">
                     <h5>商品分享 :</h5>
                     <ul class="share_nav">
-                        <li><a href="#"><img src="frontend/images/facebook.png" title="facebook"></a></li>
-                        <li><a href="#"><img src="frontend/images/twitter.png" title="Twiiter"></a></li>
-                        <li><a href="#"><img src="frontend/images/rss.png" title="Rss"></a></li>
-                        <li><a href="#"><img src="frontend/images/gpluse.png" title="Google+"></a></li>
+                        <li><a href="#"><img src="${basePath}frontend/images/qq.png" title="facebook"></a></li>
+                        <li><a href="#"><img src="${basePath}frontend/images/weixin.jpg" title="Twiiter"></a></li>
+                        <li><a href="#"><img src="${basePath}frontend/images/wb.jpg" title="Rss"></a></li>
+                        <li><a href="#"><img src="${basePath}frontend/images/tb.jpg" title="Google+"></a></li>
                     </ul>
                 </div>
           

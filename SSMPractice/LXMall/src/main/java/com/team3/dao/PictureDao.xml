@@ -14,7 +14,7 @@
 	
 	<!-- 根据商品的id找到对应所有图片 -->
 	<select id="selectPictureByGoodsId" parameterType="String" resultMap="picturemap">
-		select * from t_picture where t_Gnumber = #{goods.gnumber}
+		select * from t_picture where t_Gnumber = #{goods.gnumber} order by t_Pnumber desc
 	</select>
 	
 	<delete id="deleteByGoodsId" parameterType="String">

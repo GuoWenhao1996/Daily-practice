@@ -14,6 +14,7 @@
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>乐鲜Mall商城 | 我的订单</title>
+<link rel="shortcut icon" href="${basePath}frontend/images/30-30.ico"/>
 <!--[if IE]>
     <!--[if IE 7]><link rel="stylesheet" type="text/css" href="css/ie7.css">
 <![endif]-->

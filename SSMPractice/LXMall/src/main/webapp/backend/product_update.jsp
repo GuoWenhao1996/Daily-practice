@@ -55,25 +55,25 @@
       <h2 class="fl">商品详情</h2>
       <a href="${basePath }goods/Adminlist.do"  class="fr top_rt_btn" >返回产品列表</a>
      </div>
-     <form id="baseForm" action="${basePath }goods/update.do">
-   <c:forEach items= "${pgoods}" var="g"> 
+    <form id="baseForm" action="${basePath }goods/update.do" name="baseForm" method="post" >
+   	<c:forEach items= "${pgoods}" var="g"> 
     <section>
      <ul class="ulColumn2">
        <li>
        <span class="item_name" style="width:200px;">商品编号：</span>
-       <input type="text" class="textbox"  readonly="readonly" name="gnumber" value="${g.gnumber}"/>
+       <input type="text" class="textbox"  readonly="readonly"  name="gnumber" value="${g.gnumber}"/>
       </li>
       <li>
        <span class="item_name" style="width:200px;">商品名称： </span>
-       <input type="text" class="textbox textbox_295" value="${g.gname}" name="gname" />
+       <input type="text" class="textbox textbox_295" value="${g.gname}" id="gname" name="gname" />
       </li>
       <li>
        <span class="item_name" style="width:200px;">商品单价：</span>
-       <input type="number" class="textbox textbox_295" value="${g.gprice}" name="gprice"/>
+       <input type="text" class="textbox textbox_295" value="${g.gprice}" name="gprice"id="gprice" />
       </li>
        <li>
        <span class="item_name" style="width:200px;">商品库存数量：</span>
-       <input type="number" class="textbox textbox_295" value="${g.gstock}" name="gstock"/>
+       <input type="number" class="textbox textbox_295" value="${g.gstock}" name="gstock" id="gstock"/>
       </li>
       <li>
        <span class="item_name" style="width: 180px;">商品状态：</span>
@@ -110,8 +110,8 @@
 		</li>
 		<li>
 			<span class="item_name" style="width: 120px;">图片预览：</span>
-			<input type="hidden" id="myurl" name="myurl" value="">
-			<img id="myimg" style="width: 30%; height: 320px; object-fit:contain;">
+			<input type="hidden" id="myurl" name="myurl" value="${g.url}">
+			<img id="myimg" style="width:30%; height:320px; object-fit:contain;" src="${g.url}">
 		</li>
       <li>
 		<span class="item_name" style="width: 80px;">产品详情：</span>
@@ -119,17 +119,52 @@
 	 <li>
       <li>
        <span class="item_name" style="width:120px;"></span>
-      <!--  <input type="submit" class="link_btn"/> -->
       </li>
      </ul>
     </section>
     </c:forEach>
-    <button type="submit" >提交</button>
+      <input type="button" value="提交" onclick="check();"/> 
     </form>
 </div>
 </section>
 <script type="text/javascript">
-//加载图片预览
+//检查表单内容不能为空
+	function check(){
+		var gname=document.getElementById('gname').value;//商品名称验证
+		var gstock=document.getElementById('gstock').value;//商品数量验证
+		var gprice=document.getElementById('gprice').value;//商品价格为空验证
+		var myimgupload=document.getElementById('myimgupload').value;//图片
+		if(myimgupload=="") {
+			alert('请重新选择图片！');
+			document.baseForm.myimgupload.focus();
+		}
+		if(gname==""||gstock==""||gprice==""||myimgupload==""){
+             alert('修改的有内容为空,请继续输入');
+			document.baseForm.gnumber.focus(); 
+             }else{
+                  document.getElementById("baseForm").submit();
+              }
+		}
+		
+	//判断输入数量的范围
+	  var text = document.getElementById("gstock");
+	  text.onkeyup = function(){
+        this.value=this.value.replace(/\D/g,'');
+            if(text.value<0){
+            alert("请填写大于0的数字")
+      		return false;
+            }
+            } 
+	  //判断输入的单价大于0
+	  var text = document.getElementById("gprice");
+	  text.onkeyup = function(){
+        this.value=this.value.replace(/\D/g,'');
+        if(text.value<0){
+            alert("请填写大于0的数字")
+      		return false;
+            }
+            } 
+//预览图片
 function changeVideo(str) {
 		try {
 			document.getElementById("myimg").src = str;
@@ -160,7 +195,7 @@ function changeVideo(str) {
 	}
 </script>
 <script src="${basePath }backend/js/ueditor.config.js"></script>
-<!-- 自己加的富文本编辑器 -->
 <script src="${basePath}backend/ckeditor/ckeditor.js"></script>
+<script src="${basePath}backend/res/jquery.form.js"></script>
 </body>
 </html>

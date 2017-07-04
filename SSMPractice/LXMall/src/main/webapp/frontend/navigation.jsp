@@ -13,6 +13,7 @@
     <base href="<%=basePath%>">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>乐鲜Mall商城 | 首页</title>
+    <link rel="shortcut icon" href="${basePath}frontend/images/30-30.ico"/>
     <link rel="stylesheet" type="text/css" href="${basePath }frontend/css/style-cart.css">
     <link rel="stylesheet" type="text/css" href="${basePath }frontend/css/css-cart.css"/>
     <script type="text/javascript" src="${basePath }frontend/js/jquery-1.7.2.min.js"></script>

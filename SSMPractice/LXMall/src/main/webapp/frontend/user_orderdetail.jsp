@@ -18,6 +18,7 @@
 <!--[if IE]>
     <!--[if IE 7]><link rel="stylesheet" type="text/css" href="css/ie7.css">
 <![endif]-->
+<link rel="shortcut icon" href="${basePath}frontend/images/30-30.ico"/>
 <link rel="stylesheet" type="text/css"
 	href="${basePath }frontend/css/jiazaitoubu.css">
 <link rel="stylesheet" type="text/css"
