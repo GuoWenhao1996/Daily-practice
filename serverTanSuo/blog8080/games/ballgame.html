@@ -1,7 +1,7 @@
 ﻿<canvas id="gamecanvas" width="640" height="480"></canvas>
 <script>
   fps = 60;
-  p1y = p2y = 300;
+  p1y = p2y = 280;
   pw = 10;
   ph = 100;
   bx = by = 50;
@@ -59,7 +59,10 @@
       p2y -= ais;
     }
 
-    cc.fillStyle = 'rgb(162, 160, 175)';
+    var gradient = cc.createLinearGradient(0, 0, c.width, 0);
+    gradient.addColorStop("0", "rgb(108, 206, 242)");
+    gradient.addColorStop("1.0", "magenta");
+    cc.fillStyle = gradient;
     cc.fillRect(0, 0, c.width, c.height);
     cc.fillStyle = 'rgb(62, 60, 75)';
     cc.fillRect(0, p1y, pw, ph);
@@ -73,7 +76,7 @@
     gradient.addColorStop("0.5", "blue");
     gradient.addColorStop("1.0", "red");
     cc.fillStyle = gradient;
-    cc.fillText("player:  " + score1, 100, 100);
-    cc.fillText("AI:  " + score2, c.width - 200, 100);
+    cc.fillText("player:" + score1, 100, 100);
+    cc.fillText("AI:" + score2, c.width - 200, 100);
   }
 </script>
