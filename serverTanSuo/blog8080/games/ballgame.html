@@ -1,0 +1,79 @@
+﻿<canvas id="gamecanvas" width="640" height="480"></canvas>
+<script>
+  fps = 60;
+  p1y = p2y = 300;
+  pw = 10;
+  ph = 100;
+  bx = by = 50;
+  bd = 6;
+  xMove = yMove = 120 / fps;
+  score1 = score2 = 0;
+  ais = 0;
+  window.onload = function() {
+    c = document.getElementById('gamecanvas');
+    cc = c.getContext('2d');
+    setInterval(update, 1000 / fps);
+    c.addEventListener('mousemove', function(e) {
+      p1y = e.clientY - ph / 2;
+    });
+  }
+
+  function reset() {
+    bx = c.width / 2;
+    by = c.height / 2;
+    xMove = -xMove;
+    yMove = 120 / fps;
+    ais = score1;
+  }
+
+  function update() {
+    bx += xMove;
+    by += yMove;
+    if (by - bd / 2 < 0 && yMove < 0) {
+      yMove = -yMove;
+    }
+    if (by + bd / 2 > c.height && yMove > 0) {
+      yMove = -yMove;
+    }
+    if (bx - bd / 2 < pw && bx - bd / 2 > 0 && by + bd / 2 > p1y && by - bd / 2 < p1y + ph) {
+      xMove = -xMove;
+      dy = by - (p1y + ph / 2);
+      yMove = dy * 0.3;
+    }
+    if (bx + bd / 2 < c.width && bx + bd / 2 > c.width - pw && by + bd / 2 > p2y && by - bd / 2 < p2y + ph) {
+      xMove = -xMove;
+      dy = by - (p2y + ph / 2);
+      yMove = dy * 0.3;
+    }
+    if (bx + bd / 2 < 0) {
+      score2++;
+      reset();
+    }
+    if (bx - bd / 2 > c.width) {
+      score1++;
+      reset();
+    }
+    if (p2y + ph / 2 < by) {
+      p2y += ais;
+    } else {
+      p2y -= ais;
+    }
+
+    cc.fillStyle = 'rgb(162, 160, 175)';
+    cc.fillRect(0, 0, c.width, c.height);
+    cc.fillStyle = 'rgb(62, 60, 75)';
+    cc.fillRect(0, p1y, pw, ph);
+    cc.fillRect(c.width - pw, p2y, pw, ph);
+    cc.fillRect(bx - bd / 2, by - bd / 2, bd, bd);
+    cc.fillStyle = 'rgb(236, 45, 45)';
+
+    cc.font = "30px Verdana";
+    var gradient = cc.createLinearGradient(0, 0, c.width, 0);
+    gradient.addColorStop("0", "magenta");
+    gradient.addColorStop("0.5", "blue");
+    gradient.addColorStop("1.0", "red");
+    cc.fillStyle = gradient;
+    cc.fillText("player:  " + score1, 100, 100);
+    cc.fillText("AI:  " + score2, c.width - 200, 100);
+  }
+</script>
