@@ -1,14 +1,14 @@
 ﻿<canvas id="gamecanvas" width="640" height="480"></canvas>
 <script>
   fps = 60;
-  p1y = p2y = 280;
+  p1y = p2y = 190;
   pw = 10;
   ph = 100;
   bx = by = 50;
   bd = 6;
   xMove = yMove = 120 / fps;
   score1 = score2 = 0;
-  ais = 0;
+  ais = 1;
   window.onload = function() {
     c = document.getElementById('gamecanvas');
     cc = c.getContext('2d');
@@ -23,7 +23,7 @@
     by = c.height / 2;
     xMove = -xMove;
     yMove = 120 / fps;
-    ais = score1;
+    ais = score1 + 1;
   }
 
   function update() {
