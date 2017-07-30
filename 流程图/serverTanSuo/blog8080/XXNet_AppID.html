@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>XX-Net AppID</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+    <a href="index.html" class="logo"><strong>gwhcool</strong></a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="win_r.html">win+r</a></li>
+        <li><a href="monitor.html">monitor</a></li>
+        <li><a href="XXNet_AppID.html">XX-Net AppID</a></li>
+        <li><a href="elements.html">Elements</a></li>
+    </ul>
+</nav>
+
+<!-- Main -->
+<section id="main">
+    <div class="inner">
+        <div class="image fit">
+            <img src="images/pic11.jpg" alt=""/>
+        </div>
+        <header>
+            <h1>XX-Net 私有站点部署</h1>
+            <p class="info">2017-3-30 13:41:55 by <a href="index.html">郭某某</a></p>
+        </header>
+        <p>
+        <h3>1、登录Google帐户</h3>
+        ①、<a href="https://www.google.com/ncr">https://www.google.com/ncr</a> (若无帐户，需注册，若注册失败，可能需要更换线路或梯子)</p>
+        <p>
+        <h3>2、创建AppID</h3>
+        ①、打开<a href="https://console.developers.google.com">https://console.developers.google.com</a>，左击顶部
+        Project，然后左击创建项目<br>
+        <div class="image fit">
+            <img src="images/xxnet1.png" alt=""/><br>
+        </div>
+        ②、输入项目名称后，会自动帮你匹配可用ID，然后左击创建(请细读此教程底部说明)<br>
+        <div class="image fit">
+            <img src="images/xxnet2.png" alt=""/><br>
+        </div>
+        ③、2016年12月后新注册用户部署AppID出现404错误的请转至设置AppID的App引擎解决相应问题
+        </p>
+        <p>
+        <h3>3、设置AppID的App引擎</h3>
+        ①、进入 <a href="https://console.cloud.google.com/start">https://console.cloud.google.com/start</a>，点击 Project
+        、创建项目，记下您的项目id，点击创建。<br>
+        <div class="image fit">
+            <img src="images/xxnet3.png" alt=""/><br>
+        </div>
+        ②、点击搜索框右边的按钮激活云端shell，页面底部会出现黑底白字，输入 【gcloud config set project YOURID】，将前面的YOURID替换为您的项目id ，按下键盘的enter键，然后输入
+        【gcloud beta app create --region us-central】 ，再按一次enter。<br>
+        ③、当底部出现 Success! The app is now created. Please use 'gcloud app deploy' to deploy your first app.
+        时，创建appid成功。此时可以重复前面两步，创建更多的appid
+        </p>
+        <p>
+        <h3>4、部署服务端</h3>
+        ①、打开XX-Net的<a href="http://127.0.0.1:8085">设置页</a>：，切换到部署服务端<br>
+        ②、输入AppID后，左击开始部署，会弹出授权窗口<br>
+        <div class="image fit">
+            <img src="images/xxnet4.png" alt=""/><br>
+        </div>
+        ③、左击Allow，然后就会进行服务端的部署<br>
+        <div class="image fit">
+            <img src="images/xxnet5.png" alt=""/><br>
+        </div>
+        ④、部署完成后，切换到配置，输入部署好的AppID后左击保存<br>
+        <div class="image fit">
+            <img src="images/xxnet6.png" alt=""/><br>
+        </div>
+        ⑤、切换到状态来确认状态<br>
+        <div class="image fit">
+            <img src="images/xxnet7.png" alt=""/><br>
+        </div>
+        </p>
+        <h3>说明</h3>
+        ①、每个AppID每天1G流量，一般每个Google帐户最多12个AppID<br>
+        ②、AppID的数量只影响流量，不影响速度
+        </p>
+        <p>以上内容参考<a target="_blank" href="https://github.com/XX-net/XX-Net/wiki/how-to-create-my-appids">XX-Net</a>鸣谢！
+        <p>附：XX-Net<a target="_blank"
+                      href="https://wiki.archlinux.org/index.php/XX-Net_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">下载地址</a>
+        </p>
+    </div>
+</section>
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="https://github.com/GuoWenhao1996" class="icon fa-github"><span class="label">Github</span></a></li>
+    </ul>
+    <div class="copyright">Template reference from <a target="_blank" href="http://sc.chinaz.com/moban/">ChinaZ</a>
+        extremely grateful!<br>
+        Copyright &copy; 2017.<a target="_blank" href="http://gwhcool.cn:8080">gwhcool</a> All rights reserved.
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

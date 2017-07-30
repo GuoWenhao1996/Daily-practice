@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--引入外部CSS  注意相对路径-->
+    <!--使用min版-->
+    <link rel="stylesheet" href="../../dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../css/listcss.css"/>
+    <!--引入外部JS-->
+    <script src="../../js/listjs.js"></script>
+</head>
+<body>
+<header>
+    <ul class="nav nav-tabs">
+        <!--javascript:void(0)让超链接失效-->
+        <li class="active"><a href="javascript:void(0);">用户管理</a></li>
+    </ul>
+</header>
+<section>
+    <article>
+        <form id="form1" name="form1" method="post" action=""
+              class="form-inline form-group form-align">
+            <input type="input" id="suserName" name="suserName"
+                   placeholder="请输入用户名!" class="form-control input-sm input-size"/>
+            <input type="submit" value="查 询" class="btn btn-warning"/>
+        </form>
+    </article>
+    <form id="form2" name="form2" method="post" action="">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th><input type="checkbox" id="idAll" onclick="checkedOrUnchecked(this)"/></th>
+                <th>序号</th>
+                <th>用户名</th>
+                <th>性别</th>
+                <th>职位</th>
+                <th>入职时间</th>
+                <th>操作时间</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="ids" value=""/></td>
+                <td>1</td>
+                <td>Tom</td>
+                <td>男</td>
+                <td>普通员工</td>
+                <td>2016-07-08</td>
+                <td>2016-07-09</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="ids" value=""/></td>
+                <td>2</td>
+                <td>张生</td>
+                <td>男</td>
+                <td>普通员工</td>
+                <td>2016-07-01</td>
+                <td>2016-07-09</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="ids" value=""/></td>
+                <td>3</td>
+                <td>李丽</td>
+                <td>女</td>
+                <td>财务主管</td>
+                <td>2016-06-30</td>
+                <td>2016-07-01</td>
+            </tr>
+        </table>
+        <p class="btn-container">
+            <input type="button" value="添 加" class="btn btn-primary btn-sm"
+                    onclick="useradd()"/>
+            <input type="button" value="修 改" class="btn btn-success btn-sm"
+                    onclick="userupdate()"/>
+            <input type="button" value="删 除" class="btn btn-danger btn-sm"
+                    onclick="deleted()"/>
+        </p>
+    </form>
+</section>
+</body>
+</html>

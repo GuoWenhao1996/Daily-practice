@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>语法分析器Part2</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+    <a href="index.html" class="logo"><strong>gwhcool</strong></a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="yfAnalyzer.html">语法分析器Part1</a></li>
+        <li><a href="yfAnalyzer2.html">语法分析器Part2</a></li>
+        <li><a href="cfAnalyzer.html">词法分析器Part1</a></li>
+        <li><a href="cfAnalyzer2.html">词法分析器Part2</a></li>
+        <li><a href="elements.html">Elements</a></li>
+    </ul>
+</nav>
+
+<!-- Main -->
+<section id="main">
+    <div class="inner">
+        <div class="image fit">
+            <img src="images/pic11.jpg" alt=""/>
+        </div>
+        <header>
+            <h1>语法分析器Part2</h1>
+            <p class="info">2017-4-11 21:28:38 by <a href="index.html">郭某某</a></p>
+        </header>
+        <p><strong>※第一讲：LL(1)分析算法※</strong>
+            记号流->语法分析器（语言的语法规则）->语法树<br>
+            记号流在需要时调用<br>
+            语法分析器回答（Y/N-ERROR）<br>
+            自动生成技术：声明式规范（上下文无关文法）->工具->语法分析器<br>
+            减轻程序员工作，因为语法分析器这个工作量太庞大<br>
+            目前流行的工具：ANTLR[LL(1)]、YACC、bison、CVP<br>
+        <div class="image fit">
+            <img src="images/byyl45.png" alt=""/>
+        </div>
+        <br>
+        LL(1)分析算法<br>
+        #从左(L)向右读入程序，最左(L)推导，采用一个(1)前看符号（判断）<br>
+        ##分析高效（线性时间）<br>
+        ##错误定位和诊断信息准确<br>
+        ##有很多开源或商业的生成工具<br>
+        ###ANTLR,...<br>
+        #算法基本思想<br>
+        ##表驱动的分析算法<br>
+        <br>
+        表驱动的LL分析器架构<br>
+        <div class="image fit">
+            <img src="images/byyl46.png" alt=""/>
+        </div>
+        <br>
+        回顾自顶向下分析算法<br>
+        <div class="image fit">
+            <img src="images/byyl47.png" alt=""/>
+        </div>
+        <br>
+        LL(1)分析表<br>
+        <div class="image fit">
+            <img src="images/byyl48.png" alt=""/>
+        </div>
+
+        </p>
+        <p><strong>※第二讲：LL(1)分析的冲突处理※</strong>
+
+        </p>
+        <p><strong>※第三讲：LR(0)分析算法※</strong>
+
+        </p>
+        <p><strong>※第四讲：SLR分析算法※</strong>
+
+        </p>
+        <p><strong>※第五讲：LR(1)分析算法※</strong>
+
+        </p>
+        <p><strong>※第六讲：LR(1)分析工具※</strong>
+
+        </p>
+        <p>以上内容学习自<a target="_blank"
+                     href="http://mooc.study.163.com/learn/USTC-1000002001?tid=2001332001#/learn/announce">网易云课堂</a>鸣谢！
+        </p>
+    </div>
+</section>
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="https://github.com/GuoWenhao1996" class="icon fa-github"><span class="label">Github</span></a></li>
+    </ul>
+    <div class="copyright">Template reference from <a target="_blank" href="http://sc.chinaz.com/moban/">ChinaZ</a>
+        extremely grateful!<br>
+        Copyright &copy; 2017.<a target="_blank" href="http://gwhcool.cn:8080">gwhcool</a> All rights reserved.
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

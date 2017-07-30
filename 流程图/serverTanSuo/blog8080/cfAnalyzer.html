@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>词法分析器Part1</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+    <a href="index.html" class="logo"><strong>gwhcool</strong></a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cfAnalyzer.html">词法分析器Part1</a></li>
+        <li><a href="cfAnalyzer2.html">词法分析器Part2</a></li>
+        <li><a href="yfAnalyzer.html">语法分析器Part1</a></li>
+        <li><a href="yfAnalyzer2.html">语法分析器Part2</a></li>
+        <li><a href="elements.html">Elements</a></li>
+    </ul>
+</nav>
+
+<!-- Main -->
+<section id="main">
+    <div class="inner">
+        <div class="image fit">
+            <img src="images/pic11.jpg" alt=""/>
+        </div>
+        <header>
+            <h1>词法分析器Part1</h1>
+            <p class="info">2017-3-14 21:58:14 by <a href="index.html">郭某某</a></p>
+        </header>
+        <p><strong>※第一讲：词法分析的任务※</strong><br>
+            源程序->前端->中间表示<br>
+            中间表示->后端->目标机<br>
+            前端->源程序 词法分析器 记号流 语法分析器 抽象语法树 语义分析器 中间表示<br>
+            词法分析器任务：<br>
+            读入程序员写的程序，然后对字符流切分，转化为记号流。<br>
+            字符流到记号流<br>
+            字符流：和被编译的语言相关（ASCII,Unicode）<br>
+            ASCII:C<br>
+            Unicode:Java<br>
+            记号流：编译器内部定义的数据结构，编码所识别出的词法单元。<br>
+            关键字 字符流 回车符\n \r\n ASCII码是10 输入流 结束 EOF<br>
+            字母 单词 引号给整体一起<br>
+            记号 IDENT<br>
+            ·1数据结构定义<br>
+            enum kind { IF,LPAREN,ID,INTLIT, ...};<br>
+            struct token{<br>
+            enum kind k;<br>
+            char *lexeme;<br>
+            }<br>
+            ·2算法实现<br>
+            下一讲中讲
+        </p>
+        <p><strong>※第二讲：词法分析器的手工构造※</strong><br>
+            源程序->词法分析器->记号流->语法分析器->抽象语法树->语义分析器->中间表示<br>
+            词法分析器的任务：将字符流变成记号流<br>
+            词法分析器的实现方法，目前两种实现方案：<br>
+            1、手工编码实现法<br>
+            是目前比较流行的实现方法，但相对复杂容易出错<br>
+            目前成功例子：GCC、LLVM、......<br>
+            2、词法分析器的生成器<br>
+            可快速原型、代码量较少，但较难控制细节不便于优化<br>
+        <div class="image fit">
+            <img src="images/byyl1.png" alt=""/><br>
+            <img src="images/byyl2.png" alt=""/>
+        </div>
+        标识图<br>
+        a-zA-Z<br>
+        a-zA-Z0-9<br>
+        标识符与关键字<br>
+        从词法分析器的角度看，关键字是标识符的一部分<br>
+        以C语言为例：<br>
+        标识符：以字母或下划线开头，后面跟零个或多个字母、下划线、或数字<br>
+        关键字：if,while,else,...<br>
+        关键字表<br>
+        将关键字构建关键字哈希表H<br>
+        对所有的标识符和关键字，先统一按标识符的转移图进行识别<br>
+        识别完成后，进一步查看表H看是否是关键字<br>
+        哈希表H作用：完美哈希<br>
+        可以再O(1)时间内完成<br>
+        </p>
+        <p><strong>※第三讲：正则表达式※</strong>
+            字符流->词法分析器->记号流<br>
+            声明式的规范：指出目标规则<br>
+            工具：lex,flex,jlex<br>
+            声明式的规范（百行）<br>
+            词法分析器（千行）<br>
+            写声明式的规范，减少工作量<br>
+            所以写声明式的规范，然后利用工具生成词法分析器<br>
+            正则表达式 算数表达式<br>
+            对给定的字符集∑={c1,c2,c3,c4,...,cn}<br>
+            归纳定义：<br>
+            1、空串""是正则表达式<br>
+            2、对于任意c∈∑，c是正则表达式<br>
+            3、如果M和N都是正则表达式，则以下都是正则表达式<br>
+            选择 M|N={M,N}<br>
+            连接 MN={mn|m∈M,n∈N}<br>
+            闭包 M*={"",M,MM,MMM,...}<br>
+        <div class="image fit">
+            <img src="images/byyl3.png" alt=""/>
+        </div>
+        C语言中的关键字，例如if,while等<br>
+        如何用珍珠铬表达式表示？<br>
+        ∑=ASCII<br>
+        if：i∈∑,f∈∑<br>
+        while 同理<br><br>
+
+        C语言中的标识符，例如i0,num1等<br>
+        如何用珍珠铬表达式表示？<br>
+        ①开头26+26+1（小写字母，大写字母，下划线）<br>
+        ②后面26+26+1+10（小写字母，大写字母，下划线,0-9）<br>
+        (①)(②)*<br>
+
+        语法糖<br>
+        赋值 转移<br>
+        <div class="image fit">
+            <img src="images/byyl4.png" alt=""/>
+        </div>
+        </p>
+        <p><strong>※第四讲：有限状态自动机※</strong>
+            自动式<br>
+            输入的字符串->有限状态自动机FA->{yes,no}<br>
+        <div class="image fit">
+            <img src="images/byyl5.png" alt=""/>
+            <img src="images/byyl6.png" alt=""/>
+            <img src="images/byyl7.png" alt=""/>
+        </div>
+        确定有限状态自动机DFA<br>
+        对任意的字符，最多有一个状态可以转移<br>
+        非确定有限状态自动机NFA<br>
+        对任意的字符，有多于一个状态可以转移<br>
+        有向图：<br>
+        ①信息<br>
+        ②带点<br>
+        </p>
+        <p>以上内容学习自<a target="_blank"
+                     href="http://mooc.study.163.com/learn/USTC-1000002001?tid=2001332001#/learn/announce">网易云课堂</a>鸣谢！
+        </p>
+    </div>
+</section>
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="https://github.com/GuoWenhao1996" class="icon fa-github"><span class="label">Github</span></a></li>
+    </ul>
+    <div class="copyright">Template reference from <a target="_blank" href="http://sc.chinaz.com/moban/">ChinaZ</a>
+        extremely grateful!<br>
+        Copyright &copy; 2017.<a target="_blank" href="http://gwhcool.cn:8080">gwhcool</a> All rights reserved.
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

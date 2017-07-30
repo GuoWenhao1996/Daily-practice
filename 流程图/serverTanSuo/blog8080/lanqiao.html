@@ -1,0 +1,872 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>蓝桥杯</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="assets/css/main.css"/>
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+    <a href="index.html" class="logo"><strong>gwhcool</strong></a>
+    <nav>
+        <a href="#menu">Menu</a>
+    </nav>
+</header>
+
+<!-- Nav -->
+<nav id="menu">
+    <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="split.html">split()</a></li>
+        <li><a href="win_r.html">win+r</a></li>
+        <li><a href="lanqiao.html">蓝桥杯</a></li>
+        <li><a href="elements.html">Elements</a></li>
+    </ul>
+</nav>
+
+<!-- Main -->
+<section id="main">
+    <div class="inner">
+        <div class="image fit">
+            <img src="images/pic11.jpg" alt=""/>
+        </div>
+        <header>
+            <h1>蓝桥杯模拟赛</h1>
+            <p class="info">2017-3-20 21:33:55 by <a href="index.html">郭某某</a></p>
+        </header>
+        <p><strong>※任务1 -> 算年龄※</strong><br>
+            题目：
+            <textarea rows="10" cols="20" readonly="readonly">
+标题：算年龄
+
+英国数学家德摩根出生于19世纪初叶（即18xx年）。
+他年少时便很有才华。一次有人问他的年龄，他回答说：
+“到了x的平方那年，我刚好是x岁”。
+
+请你计算一下，德摩根到底出生在哪一年。
+题中的年龄指的是周岁。
+
+请填写表示他出生年份的四位数字，不要填写任何多余内容。</textarea>
+            <br>实现代码：<br>
+            <textarea rows="14" cols="20" readonly="readonly">
+public class Main {
+	public static void main(String[] args) {
+		int age = 0;
+		for (int i = 40; i < 50; i++) {
+			if (i * i / 100 == 18) {
+				age = i;
+				break;
+			}
+		}
+		System.out.println(age * age - age);
+	}
+}
+------------------------------------------------------------------------------------------------------------------------
+执行结果：1806</textarea>
+            <br>参考答案：<br>
+            <textarea rows="1" cols="20" readonly="readonly">
+1806</textarea>
+        </p>
+        <p><strong>※任务2 -> 猜算式※</strong><br>
+            题目：
+            <textarea rows="30" cols="20" readonly="readonly">
+题目：猜算式
+
+你一定还记得小学学习过的乘法计算过程，比如：
+
+   273
+x   15
+------
+  1365
+  273
+------
+  4095
+
+请你观察如下的乘法算式
+
+    ***
+x   ***
+--------
+    ***
+   ***
+  ***
+--------
+  *****
+
+星号代表某位数字，注意这些星号中，
+0~9中的每个数字都恰好用了2次。
+(如因字体而产生对齐问题，请参看图p1.jpg)
+
+请写出这个式子最终计算的结果，就是那个5位数是多少？
+
+注意：只需要填写一个整数，不要填写任何多余的内容。比如说明文字。</textarea>
+        <div class="image fit">
+            <img src="images/lqb1.jpg" alt=""/>
+        </div>
+        <br>实现代码：<br>
+            <textarea rows="60" cols="20" readonly="readonly">
+import java.util.Arrays;
+
+public class Main {
+	public static void main(String[] args) {
+		int[] array = new int[20];
+		boolean keneng = false;
+		for (int i = 100; i < 999; i++) {
+			for (int j = 100; j < 999; j++) {
+				keneng = true;
+				int num = i * j;
+				if (num > 99999)
+					break;
+				array[0] = i / 100;
+				array[1] = i % 100 / 10;
+				array[2] = i % 10;
+
+				array[3] = j / 100;
+				array[4] = j % 100 / 10;
+				array[5] = j % 10;
+
+				int num1 = i * array[5];
+				if (num1 > 999)
+					continue;
+				int num2 = i * array[4];
+				if (num2 > 999)
+					continue;
+				int num3 = i * array[3];
+				if (num3 > 999)
+					continue;
+				array[6] = num / 10000;
+				array[7] = num % 10000 / 1000;
+				array[8] = num % 1000 / 100;
+				array[9] = num % 100 / 10;
+				array[10] = num % 10;
+
+				array[11] = num1 / 100;
+				array[12] = num1 % 100 / 10;
+				array[13] = num1 % 10;
+				array[14] = num2 / 100;
+				array[15] = num2 % 100 / 10;
+				array[16] = num2 % 10;
+				array[17] = num3 / 100;
+				array[18] = num3 % 100 / 10;
+				array[19] = num3 % 10;
+				Arrays.sort(array);
+				for (int k = 2; k < 20; k++) {
+					if (array[k] == array[k - 1] && array[k] == array[k - 2]) {
+						keneng = false;
+						break;
+					}
+				}
+				if (keneng) {
+					System.out.println(num);
+				}
+			}
+		}
+	}
+}
+------------------------------------------------------------------------------------------------------------------------
+执行结果：40096</textarea>
+        <br>参考答案：<br>
+            <textarea rows="33" cols="20" readonly="readonly">
+40096
+
+#include <bits/stdc++.h>
+using namespace std;
+int n;
+int a[6];
+int pd(){
+	int p[20]={0};
+	for(int i=0;i<6;i++){
+		int k=0;
+		while(a[i]){
+			p[a[i]%10]++;
+			if(p[a[i]%10]>2)return 0;
+			a[i]/=10;
+			k++;
+		}
+		if(k<3) return 0;
+	}
+	return 1;
+}
+int main()
+{
+	for(int i=100;i<=999;i++)
+		for(int j=100;j<=999;j++){
+			a[0]=(j%10)*i;a[1]=(j/10%10)*i;  //a保存每一个状态的信息
+			a[2]=(j/100)*i;a[3]=i*j;
+			a[4]=i;a[5]=j;
+			if(pd()){  //判断是否满足条件
+				cout<<i*j<<" ";
+			}
+		}
+	return 0;
+}</textarea>
+        </p>
+        <p><strong>※任务3 -> 排列序数※</strong><br>
+            题目：
+            <textarea rows="22" cols="20" readonly="readonly">
+标题： 排列序数
+
+X星系的某次考古活动发现了史前智能痕迹。
+这是一些用来计数的符号，经过分析它的计数规律如下：
+（为了表示方便，我们把这些奇怪的符号用a~q代替）
+
+abcdefghijklmnopq 表示0
+abcdefghijklmnoqp 表示1
+abcdefghijklmnpoq 表示2
+abcdefghijklmnpqo 表示3
+abcdefghijklmnqop 表示4
+abcdefghijklmnqpo 表示5
+abcdefghijklmonpq 表示6
+abcdefghijklmonqp 表示7
+.....
+
+在一处石头上刻的符号是：
+bckfqlajhemgiodnp
+
+请你计算出它表示的数字是多少？
+
+请提交该整数，不要填写任何多余的内容，比如说明或注释。</textarea>
+            <br>实现代码：<br>
+            <textarea rows="31" cols="20" readonly="readonly">
+public class Main {
+	static String ss = "abcdefghijklmnopq";
+	static char s[] = ss.toCharArray();
+	static long[] fc = new long[18];
+	static int[] flag = new int[115];
+
+	static int f(int b) {
+		int sum = 0;
+		for (int i = 'a'; i < b; i++) {
+			if (flag[i] == 0)
+				sum++;
+		}
+		flag[b] = 1;
+		return sum;
+	}
+
+	public static void main(String[] args) {
+		String pp = "bckfqlajhemgiodnp";
+		char[] p = pp.toCharArray();
+		fc[1] = 1;
+		for (int i = 2; i < 18; i++) // 求阶乘
+			fc[i] = fc[i - 1] * i;
+		long sum = 0;
+		for (int i = 0; i < s.length - 1; i++) { // 求每一位对应的值
+			sum += fc[s.length - 1 - i] * (f(p[i]));
+		}
+		System.out.println(sum);
+	}
+}
+------------------------------------------------------------------------------------------------------------------------
+执行结果：22952601027516</textarea>
+            <br>参考答案：<br>
+            <textarea rows="28" cols="20" readonly="readonly">
+22952601027516
+
+#include <bits/stdc++.h>
+using namespace std;
+char s[]="abcdefghijklmnopq";
+long long fc[18];
+int flag[105];
+int f(int b){
+	int sum=0;
+	for(int i='a';i<b;i++)
+		if(flag[i]==0)sum++;
+	flag[b]=1;
+	return sum;
+}
+int main()
+{
+	char p[]="bckfqlajhemgiodnp";
+	fc[1]=1;
+	for(long long i=2;i<18;i++)  //求阶层
+		fc[i]=fc[i-1]*i;
+	int len=strlen(s);
+	long long sum=0;
+	for(int i=0;i<len-1;i++){   //求每一位对应的值
+		sum+=fc[len-1-i]*(f(p[i]));
+	}
+	cout<<sum<<endl;
+	return 0;
+} </textarea>
+        </p>
+        <p><strong>※任务4 -> 字符串比较※</strong><br>
+            题目：
+            <textarea rows="82" cols="20" readonly="readonly">
+标题：字符串比较
+
+我们需要一个新的字符串比较函数compare(s1, s2).
+对这个函数要求是：
+1. 它返回一个整数，表示比较的结果。
+2. 结果为正值，则前一个串大，为负值，后一个串大，否则，相同。
+3. 结果的绝对值表示：在第几个字母处发现了两个串不等。
+
+下面是代码实现。对题面的数据，结果为：
+-3
+2
+5
+
+仔细阅读源程序，填写划线位置缺少的代码。
+
+-------------------------------------------------
+Java语言代码：
+
+static int compare(String s1, String s2)
+{
+	if(s1==null && s2==null) return 0;
+	if(s1==null) return -1;
+	if(s2==null) return 1;
+
+	if(s1.isEmpty() && s2.isEmpty()) return 0;
+	if(s1.isEmpty()) return -1;
+	if(s2.isEmpty()) return 1;
+
+	char x = s1.charAt(0);
+	char y = s2.charAt(0);
+
+	if(x<y) return -1;
+	if(x>y) return 1;
+
+	int t = compare(s1.substring(1),s2.substring(1));
+	if(t==0) return 0;
+
+	return ____________________ ; //填空位置
+}
+
+public static void main(String[] args)
+{
+	System.out.println(compare("abc", "abk"));
+	System.out.println(compare("abc", "a"));
+	System.out.println(compare("abcde", "abcda"));
+}
+
+---------------------------
+C/C++ 语言代码：
+int compare(const char* s1, const char* s2)
+{
+	if(s1==NULL && s2==NULL) return 0;
+	if(s1==NULL) return -1;
+	if(s2==NULL) return 1;
+
+	if(*s1 == 0 && *s2== 0) return 0;
+	if(*s1 == 0) return -1;
+	if(*s2 == 0) return 1;
+
+	if(*s1<*s2) return -1;
+	if(*s1>*s2) return 1;
+
+	int t = compare(s1+1,s2+1);
+	if(t==0) return 0;
+
+	return __________________________; //填空位置
+}
+
+
+int main()
+{
+	printf("%d\n", compare("abc","abk"));
+	printf("%d\n", compare("abc","a"));
+	printf("%d\n", compare("abcde","abcda"));
+	return 0;
+}
+
+注意：
+只提交划线部分缺少的代码，不要包含已经存在的代码或符号。
+也不要画蛇添足地写出任何注释或说明性文字。
+
+注意选择你所使用的语言。</textarea>
+            <br>实现代码：<br>
+            <textarea rows="42" cols="20" readonly="readonly">
+public class Main {
+	static int compare(String s1, String s2) {
+		if (s1 == null && s2 == null)
+			return 0;
+		if (s1 == null)
+			return -1;
+		if (s2 == null)
+			return 1;
+
+		if (s1.isEmpty() && s2.isEmpty())
+			return 0;
+		if (s1.isEmpty())
+			return -1;
+		if (s2.isEmpty())
+			return 1;
+
+		char x = s1.charAt(0);
+		char y = s2.charAt(0);
+
+		if (x < y)
+			return -1;
+		if (x > y)
+			return 1;
+
+		int t = compare(s1.substring(1), s2.substring(1));
+		if (t == 0)
+			return 0;
+
+		return t > 0 ? ++t : --t; // 填空位置
+	}
+
+	public static void main(String[] args) {
+		System.out.println(compare("abc", "abk"));
+		System.out.println(compare("abc", "a"));
+		System.out.println(compare("abcde", "abcda"));
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------
+执行结果：-3
+          2
+          5</textarea>
+            <br>参考答案：<br>
+            <textarea rows="1" cols="20" readonly="readonly">
+t>0?t+1:t-1</textarea>
+        </p>
+        <p><strong>※任务5 -> 还款计算※</strong><br>
+            题目：
+            <textarea rows="70" cols="20" readonly="readonly">
+标题： 还款计算
+
+银行贷款的等额本息还款方法是：
+每月还固定的金额，在约定的期数内正好还完（最后一个月可能会有微小的零头出入）。
+
+比如说小明在银行贷款1万元。贷款年化利率为5%，贷款期限为24个月。
+则银行会在每个月进行结算：
+结算方法是：计算本金在本月产生的利息： 本金 x (年利率/12)
+则本月本金结余为：本金 + 利息 - 每月固定还款额
+计算结果会四舍五入到“分”。
+
+经计算，此种情况下，固定还款额应为：438.71
+
+这样，第一月结算时的本金余额是：
+9602.96
+第二个月结算：
+9204.26
+第三个月结算：
+8803.9
+....
+最后一个月如果仍按固定额还款，则最后仍有0.11元的本金余额，
+但如果调整固定还款额为438.72, 则最后一个月会多还了银行0.14元。
+银行会选择最后本金结算绝对值最小的情况来设定 每月的固定还款额度。
+如果有两种情况最后本金绝对值相同，则选择还款较少的那个方案。
+
+本题的任务是已知年化利率，还款期数，求每月的固定还款额度。
+
+假设小明贷款为1万元，即：初始本金=1万元。
+年化利率的单位是百分之多少。
+期数的单位为多少个月。
+
+输入为2行，
+第一行为一个小数r，表示年率是百分之几。(0<r<30)
+第二行为一个整数n，表示还款期限。 (6<=n<=120)
+
+要求输出为一个整数，表示每月还款额（单位是：分）
+
+例如：
+输入：
+4.01
+24
+
+程序应该输出：
+43429
+
+再比如：
+输入：
+6.85
+36
+
+程序应该输出：
+30809
+
+资源约定：
+峰值内存消耗（含虚拟机） < 256M
+CPU消耗  < 1000ms
+
+
+请严格按要求输出，不要画蛇添足地打印类似：“请您输入...” 的多余内容。
+
+所有代码放在同一个源文件中，调试通过后，拷贝提交该源码。
+java选手注意：不要使用package语句。不要使用jdk1.7及以上版本的特性。
+java选手注意：主类的名字必须是：Main，否则按无效代码处理。
+
+c/c++选手注意: main函数需要返回0
+c/c++选手注意: 只使用ANSI C/ANSI C++ 标准，不要调用依赖于编译环境或操作系统的特殊函数。
+c/c++选手注意: 所有依赖的函数必须明确地在源文件中 #include <xxx>， 不能通过工程设置而省略常用头文件。
+
+提交程序时，注意选择所期望的语言类型和编译器类型。
+</textarea>
+            <br>实现代码：<br>
+            <textarea rows="49" cols="20" readonly="readonly">
+import java.math.BigDecimal;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		double r = sc.nextDouble();
+		int n = sc.nextInt();
+		double sum = 10000;
+		double money = sum / n;
+		double min = 0;
+		double temp = 1;
+		money = siSheWuRu(money);
+		boolean flag = true;
+		while (flag) {
+			money = money + 0.01;
+			money = siSheWuRu(money);
+			sum = 10000;
+			for (int i = 0; i < n; i++) {
+				sum = sum + sum * (r / 1200) - money;
+				sum = siSheWuRu(sum);
+				if (Math.abs(sum) < temp) {
+					min = money;
+					temp = Math.abs(sum);
+					break;
+				}
+				if (sum < 0) {
+					flag = false;
+					break;
+				}
+			}
+		}
+		System.out.println((int)(min*100+0.5));
+	}
+
+	private static double siSheWuRu(double money) {
+		BigDecimal bd = new BigDecimal(money);
+		bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+		return bd.doubleValue();
+	}
+}
+------------------------------------------------------------------------------------------------------------------------
+输入：4.01
+24
+执行结果：43429
+································································
+输入：6.85
+36
+执行结果：30809</textarea>
+            <br>参考答案：<br>
+            <textarea rows="31" cols="20" readonly="readonly">
+#include <bits/stdc++.h>
+using namespace std;
+double r;
+int n;
+double sol(double x){
+	int a=(x+0.005)*100;
+	return a/100.0;
+}
+int main()
+{
+	cin>>r>>n;
+	double money=10000.0/n;     //从最小开始枚举
+	money=sol(money);           //精确到分 四舍五入
+	double ans,minn=10000000;     //ans 答案  minn保存最近答案的数
+	for(;1;money+=0.01){        //每次递增0.01
+		double total=10000;     //初始化金钱
+		for(int i=0;i<n;i++){     //算n个月过后还剩多少钱
+			double lx=total*(0.01*r/12);
+			total+=-money+lx;
+			total=sol(total);
+		}
+		if(total<0){   //小于就退出
+			if(fabs(total)<minn)
+				ans=money;
+			break;
+		}
+		ans=money;
+	}
+	cout<<(int)(ans*100)<<endl;
+	return 0;
+}</textarea>
+        </p>
+        <p><strong>※任务6 -> 滑动解锁※</strong><br>
+            题目：
+            <textarea rows="77" cols="20" readonly="readonly">
+题目：滑动解锁
+
+滑动解锁是智能手机一项常用的功能。你需要在3x3的点阵上，从任意一个点开始，反复移动到一个尚未经过的"相邻"的点。这些划过的点所组成的有向折线，如果与预设的折线在图案、方向上都一致，那么手机将解锁。
+
+所谓两个点“相邻”：当且仅当以这两个点为端点的线段上不存在尚未经过的点。
+
+此外，许多手机都约定：这条折线还需要至少经过4个点。
+
+为了描述方便，我们给这9个点从上到下、从左到右依次编号1-9。即如下排列：
+
+1 2 3
+4 5 6
+7 8 9
+
+那么1->2->3是非法的，因为长度不足。
+1->3->2->4也是非法的，因为1->3穿过了尚未经过的点2。
+2->4->1->3->6是合法的，因为1->3时点2已经被划过了。
+
+某大神已经算出：一共有389112种不同的解锁方案。没有任何线索时，要想暴力解锁确实很难。
+不过小Hi很好奇，他希望知道，当已经瞥视到一部分折线的情况下，有多少种不同的方案。
+遗憾的是，小Hi看到的部分折线既不一定是连续的，也不知道方向。
+
+例如看到1-2-3和4-5-6，
+那么1->2->3->4->5->6，1->2->3->6->5->4, 3->2->1->6->5->4->8->9等都是可能的方案。
+
+
+你的任务是编写程序，根据已经瞥到的零碎线段，求可能解锁方案的数目。
+
+输入：
+每个测试数据第一行是一个整数N(0 <= N <= 8)，代表小Hi看到的折线段数目。
+以下N行每行包含两个整数 X 和 Y (1 <= X, Y <= 9)，代表小Hi看到点X和点Y是直接相连的。
+
+输出：
+对于每组数据输出合法的解锁方案数目。
+
+
+例如：
+输入：
+8
+1 2 2 3
+3 4 4 5
+5 6 6 7
+7 8 8 9
+
+程序应该输出：
+2
+
+再例如：
+输入：
+4
+2 4
+2 5
+8 5
+8 6
+
+程序应该输出：
+258
+
+
+资源约定：
+峰值内存消耗（含虚拟机） < 256M
+CPU消耗  < 1000ms
+
+
+请严格按要求输出，不要画蛇添足地打印类似：“请您输入...” 的多余内容。
+
+所有代码放在同一个源文件中，调试通过后，拷贝提交该源码。
+java选手注意：不要使用package语句。不要使用jdk1.7及以上版本的特性。
+java选手注意：主类的名字必须是：Main，否则按无效代码处理。
+
+c/c++选手注意: main函数需要返回0
+c/c++选手注意: 只使用ANSI C/ANSI C++ 标准，不要调用依赖于编译环境或操作系统的特殊函数。
+c/c++选手注意: 所有依赖的函数必须明确地在源文件中 #include <xxx>， 不能通过工程设置而省略常用头文件。
+
+提交程序时，注意选择所期望的语言类型和编译器类型。
+</textarea>
+            <br>参考答案：<br>
+            <textarea rows="86" cols="20" readonly="readonly">
+#include <bits/stdc++.h>
+using namespace std;
+int fx[16][2]={{-1,0},{1,0},{0,-1},{0,1},
+				{-1,-1},{-1,1},{1,-1},{1,1},
+				{-1,-2},{-1,2},{1,-2},{1,2},
+				{-2,-1},{-2,1},{2,-1},{2,1}};  //16个方向
+int fx2[8][4]={          //8个方向 要往上上 下下 左左 右右走 (保存上 然后走上上的时候好判断)
+	{-1,0,-2,0},{1,0,2,0},{0,-1,0,-2},{0,1,0,2},
+	{-1,-1,-2,-2},{-1,1,-2,2},{1,-1,2,-2},{1,1,2,2}};
+int n;
+vector<int> vec[10];     //每个点的联通
+                int flag[10][10];       //标记走过的点
+                int sum=0;              //总数
+                class Pion{              //保存每个点的坐标
+                public :
+                int x,y;
+                };
+                Pion p[10];          //有9个点
+                int pd(int x,int y){             //判断符合条件
+                if(x>0 && x<=3 && y>0 && y<=3 && flag[x][y]==0)
+                return 1;
+                return 0;
+                }
+                int pd2(int x,int y){
+                if(x>0 && x<=3 && y>0 && y<=3 && flag[x][y]==1)
+                return 1;
+                return 0;
+                }
+                void dfs(int k,int u,int s,int last){ //u表示 前一个属于连通点 s表示用了多少个连通点 last上一个点的标号
+                if(s==n)        //符合条件
+                sum++;
+                if(u==0 && vec[k].size()>1) return ;
+                if(vec[k].size()>u){         // 该点是连通点只有一个方向
+                for(int i=0;i<vec[k].size();i++)
+                if(vec[k][i]!=last){
+                int kk=vec[k][i];
+                flag[p[kk].x][p[kk].y]=1;
+                dfs(kk,1,s+1,k);
+                flag[p[kk].x][p[kk].y]=0;
+                }
+
+                }
+                else{  //枚举每个方向  16+8个方向
+                for(int i=0;i<16;i++){  /
+                int x=p[k].x+fx[i][0],y=p[k].y+fx[i][1];
+                if(pd(x,y)){
+                flag[x][y]=1;
+                dfs(3*(x-1)+y,0,s,k);
+                flag[x][y]=0;
+                }
+                }
+                for(int i=0;i<8;i++){
+                int x=p[k].x+fx2[i][0],y=p[k].y+fx2[i][1];
+                int x2=p[k].x+fx2[i][2],y2=p[k].y+fx2[i][3];
+                if(pd2(x,y) && pd(x2,y2)){
+                flag[x2][y2]=1;
+                dfs(3*(x2-1)+y2,0,s,k);
+                flag[x2][y2]=0;
+                }
+                }
+                }
+                }
+                int main()
+                {
+                cin>>n;
+                int a,b;
+                for(int i=0;i<n;i++){    //保存联通点
+                cin>>a>>b;
+                vec[a].push_back(b);
+                vec[b].push_back(a);
+                }
+                for(int i=1,k=1;i<=3;i++)
+                for(int j=1;j<=3;j++,k++)   //保存点的坐标
+                p[k].x=i,p[k].y=j;
+                for(int i=1;i<=3;i++)
+                for(int j=1;j<=3;j++){    //每个点入口枚举
+                int k=3*(i-1)+j;      //坐标判断点
+                flag[p[k].x][p[k].y]=1;
+                dfs(k,0,0,0);
+                flag[p[k].x][p[k].y]=0;
+                }
+
+                cout<<sum<<endl;
+                return 0;
+                }
+</textarea>
+        </p>
+        <p><strong>※任务7 -> 风险度量※</strong><br>
+            题目：
+            <textarea rows="50" cols="20" readonly="readonly">
+标题：风险度量
+
+X星系的的防卫体系包含 n 个空间站。这 n 个空间站间有 m 条通信链路，构成通信网。
+两个空间站间可能直接通信，也可能通过其它空间站中转。
+
+对于两个站点x和y (x != y), 如果能找到一个站点z，使得：
+当z被破坏后，x和y无法通信，则称z为关于x,y的关键站点。
+
+显然，对于给定的两个站点，关于它们的关键点的个数越多，通信风险越大。
+
+
+你的任务是：已知网络结构，求两站点之间的通信风险度，即：它们之间的关键点的个数。
+
+
+输入数据第一行包含2个整数n(2 <= n <= 1000), m(0 <= m <= 2000),分别代表站点数，链路数。
+空间站的编号从1到n。通信链路用其两端的站点编号表示。
+接下来m行，每行两个整数 u,v (1 <= u, v <= n; u != v)代表一条链路。
+最后1行，两个数u,v，代表被询问通信风险度的两个站点。
+
+输出：一个整数，如果询问的两点不连通则输出-1.
+
+
+例如：
+用户输入：
+7 6
+1 3 2 3
+3 4 3 5
+4 5 5 6
+1 6
+则程序应该输出：
+2
+
+
+资源约定：
+峰值内存消耗（含虚拟机） < 256M
+CPU消耗  < 2000ms
+
+
+请严格按要求输出，不要画蛇添足地打印类似：“请您输入...” 的多余内容。
+
+所有代码放在同一个源文件中，调试通过后，拷贝提交该源码。
+java选手注意：不要使用package语句。不要使用jdk1.7及以上版本的特性。
+java选手注意：主类的名字必须是：Main，否则按无效代码处理。
+
+c/c++选手注意: main函数需要返回0
+c/c++选手注意: 只使用ANSI C/ANSI C++ 标准，不要调用依赖于编译环境或操作系统的特殊函数。
+c/c++选手注意: 所有依赖的函数必须明确地在源文件中 #include <xxx>， 不能通过工程设置而省略常用头文件。
+
+提交程序时，注意选择所期望的语言类型和编译器类型。
+</textarea>
+            <br>参考答案：<br>
+            <textarea rows="34" cols="20" readonly="readonly">
+#include <bits/stdc++.h>
+using namespace std;
+int n,m;
+int s[2005][2];
+int sum=0;
+int fd[1005];
+int find(int x){   //并查集
+	if(fd[x]==x) return x;
+	return fd[x]=find(fd[x]);
+}
+int main()
+{
+	cin>>n>>m;
+	for(int i=0;i<m;i++)
+		cin>>s[i][0]>>s[i][1];
+	int k1,k2;
+	cin>>k1>>k2;
+	for(int i=0;i<m;i++){   //枚举每一条边  然后去掉  然如果连通 就不是关键点
+		for(int ii=1;ii<=n;ii++)fd[ii]=ii;
+		for(int j=0;j<m;j++){
+			if(i!=j){
+				int a=find(s[j][0]); //并查集
+				int b=find(s[j][1]);
+				if(a!=b)
+					fd[a]=b;
+			}
+		}
+		int a=find(k1);
+		int b=find(k2);   //查看两个端点是否连通
+		if(a!=b) sum++;
+	}
+	cout<<sum<<endl;
+	return 0;
+}</textarea>
+        </p>
+        <p>感谢<a target="_blank"
+                href="http://lx.lanqiao.cn/">蓝桥杯</a>提供的练习平台！鸣谢！
+        </p>
+    </div>
+</section>
+<!-- Footer -->
+<footer id="footer">
+    <ul class="icons">
+        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="https://github.com/GuoWenhao1996" class="icon fa-github"><span class="label">Github</span></a></li>
+    </ul>
+	<div class="copyright">Template reference from <a target="_blank" href="http://sc.chinaz.com/moban/">ChinaZ</a>
+		extremely grateful!<br>
+		Copyright &copy; 2017.<a target="_blank" href="http://gwhcool.cn:8080">gwhcool</a> All rights reserved.
+	</div>
+</footer>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>

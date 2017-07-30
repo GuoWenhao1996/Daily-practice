@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>第六日学习笔记</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/nprogress.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+    <link rel="apple-touch-icon-precomposed" href="images/icon.png">
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/nprogress.js"></script>
+    <script src="js/jquery.lazyload.min.js"></script>
+    <!--[if gte IE 9]>
+    <script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="js/html5shiv.min.js" type="text/javascript"></script>
+    <script src="js/respond.min.js" type="text/javascript"></script>
+    <script src="js/selectivizr-min.js" type="text/javascript"></script>
+    <![endif]-->
+    <!--[if lt IE 9]>
+    <script>window.location.href = 'upgrade-browser.html';</script>
+    <![endif]-->
+</head>
+<body class="user-select single" onload="getNowFormatDate()">
+<header class="header">
+    <nav class="navbar navbar-default" id="navbar">
+        <div class="container">
+            <div class="header-topbar hidden-xs link-border">
+                <ul class="site-nav topmenu">
+                    <li><a href="#">标签云</a></li>
+                    <li><a href="#" rel="nofollow">读者墙</a></li>
+                    <li><a href="#" title="RSS订阅">
+                        <i class="fa fa-rss">
+                        </i> RSS订阅
+                    </a></li>
+                </ul>
+                勤记录 懂分享
+            </div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#header-navbar" aria-expanded="false"><span class="sr-only"></span> <span
+                        class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button>
+                <h1 class="logo hvr-bounce-in"><a href="index.html" title="酬勤学习笔记"><img
+                        src="images/201610171329086541.png"
+                        alt="酬勤学习笔记"></a></h1>
+            </div>
+            <div class="collapse navbar-collapse" id="header-navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a data-cont="酬勤学习笔记" title="酬勤学习笔记" href="index.html">首页</a></li>
+                    <li><a data-cont="列表页" title="列表页" href="list.html">列表页</a></li>
+                    <li><a data-cont="IT技术笔记" title="IT技术笔记" href="http://gwhcool.cn:8080">IT技术笔记</a></li>
+                    <li><a data-cont="源码分享" title="源码分享" href="https://github.com/GuoWenhao1996">源码分享</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<section class="container">
+    <div class="content-wrap">
+        <div class="content">
+            <header class="article-header">
+                <h1 class="article-title"><a href="#" title="java培训学习路线">java初级学习-第6日：自定义数据类型排序+异常机制</a></h1>
+                <div class="article-meta"> <span class="item article-meta-time">
+	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2017-05-18"><i
+              class="glyphicon glyphicon-time"></i> 2017-05-18
+      </time>
+	  </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title=""
+                    data-original-title="来源：酬勤学习笔记"><i class="glyphicon glyphicon-globe"></i> 酬勤学习笔记</span> <span
+                        class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title=""
+                        data-original-title="java初级学习-第6日：自定义数据类型排序+异常机制"><i class="glyphicon glyphicon-list"></i> <a
+                        href="#"
+                        title="java初级学习-第6日：自定义数据类型排序+异常机制">java初级学习-第6日：自定义数据类型排序+异常机制</a></span>
+                    <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title=""
+                          data-original-title="浏览量：127"><i class="glyphicon glyphicon-eye-open"></i> 127</span></div>
+            </header>
+            <article class="article-content">
+                <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
+                <p>
+                    时间：2017-05-18 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：语音大楼206<br>
+                    ===============================================<br>
+                    下午：<br>
+                    ===============================================<br>
+                    --------------对自定义对象排序-----------------<br>
+                    Arrays 位置 java.util包<br>
+                    .sort 对指定数据进行升序的方式排序<br>
+                    1.第一种方式：<br>
+                    对自定义对象 必需 要实现 Comparable 接口 并且重写里面 compareTo 方法<br>
+                <pre class="prettyprint lang-cs">
+	@Override
+	public int compareTo(Student o) {
+		if (this.getAge() > o.getAge()) {
+			return 1;
+		} else if (this.getAge() < o.getAge()) {
+			return -1;
+		} else {
+			return 0;
+		}
+	}</pre>
+                简化写法<br>
+                <pre class="prettyprint lang-cs">
+	@Override
+	public int compareTo(Object o) {
+		Student s = (Student) o;
+		return s.age - this.age;
+	}                </pre>
+                通过 返回 0 1 -1 来决定顺序 比较： 2个之间比较<br>
+                <br>
+                2.第二种方式： 策略模式基础上<br>
+                对自定义对象建立不同的策略，也就建立不同策略对象 ，策略需要实现 Comparator 接口 重写 compare 的方法<br>
+                体重策略<br>
+                <pre class="prettyprint lang-cs">
+import java.util.Comparator;
+import com.zr.model.Student;
+
+/**
+ * 自定义WeightStrage策略类，重写compare方法，按体重排序。
+ *
+ * @author guowh
+ *
+ */
+public class WeightStrage implements Comparator{
+
+	@Override
+	public int compare(Object o1, Object o2) {
+		Student s1 = (Student) o1;
+		Student s2 = (Student) o2;
+		return s1.getWeight() - s2.getWeight();
+	}
+
+}       </pre>
+                //年龄策略<br>
+                <pre class="prettyprint lang-cs">
+package com.zr.strage;
+
+import java.util.Comparator;
+import com.zr.model.Student;
+
+/**
+ * 自定义AgeStrage策略类，重写compare方法，按年龄排序。
+ *
+ * @author guowh
+ *
+ */
+public class AgeStrage implements Comparator{
+
+	@Override
+	public int compare(Object o1, Object o2) {
+		Student s1 = (Student) o1;
+		Student s2 = (Student) o2;
+		return s1.getAge() - s2.getAge();
+	}
+}                </pre>
+                数组工具类为我们提供sort排序的方法 可以传入不同的策略 的到不同的结果<br>
+                <pre class="prettyprint lang-cs">
+		/**
+		 * 自定义数据类型排序
+		 *
+		 * 提供了在Student类里实现Comparable接口重写compareTo()方法
+		 * 提供了AgeStrage策略类实现Comparator接口重写compare()方法
+		 * 提供了WeightStrage策略类实现Comparator接口重写compare()方法
+		 */
+		Student s1 = new Student(11, 100);
+		Student s2 = new Student(22, 150);
+		Student s3 = new Student(5, 90);
+		Student s4 = new Student(10, 200);
+
+		Student[] students = new Student[] { s1, s2, s3, s4 };
+		// error:Student cannot be cast to java.lang.Comparable
+		//// 按 年龄 自定义排序（写在Student类里不好维护）
+		// Arrays.sort(students);
+
+		//// 按 年龄 自定义排序（添加AgeStrage策略类 好维护）
+		Arrays.sort(students, new AgeStrage());
+
+		//// 按 体重 自定义排序（添加WeightStrage策略类 好维护）
+		Arrays.sort(students, new WeightStrage());
+		for (Student student : students) {
+			System.out.println(student.getAge() + "\t" + student.getWeight());
+		}                </pre>
+                --------------异常机制Exception----------------<br>
+                任何程序都应该具有的 保证可移值性 ，安全，健壮<br>
+                通过 try catch 来进行捕获异常 当然异常是可以捕获多个的 由小到大<br>
+                <pre class="prettyprint lang-cs">
+		/**
+		 * 异常捕获 从小到大
+		 */
+		// public static void main(String[] args) throws
+		// FileNotFoundException
+		// 不建议使用上面那种，建议下面这个
+		try {
+			InputStream in = new FileInputStream("/11/11/das");
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			Integer.parseInt("aaaaa");
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			System.out.println(e);
+			System.out.println(1000);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(1111);
+		} finally {
+			System.out.println(2222);
+		}                </pre>
+                在使用finally的时候，建立捕获异常的时候，代码不管是否能发生异常，都会最终去执行finally里面的代码<br>
+                final 和 finally 的区别<br>
+                ----------------异常的种类区别-----------------<br>
+                异常是来自于 Throwable 下面分为了 2 个类 一个Error， Exception<br>
+                Error 记录的系统产生的错误。（JVM）<br>
+                Exception：（核心）<br>
+                分为了2种类型的异常:<br>
+                一种是 checkedException 检查异常 其它异常<br>
+                一种是 运行异常 runtimeException<br>
+                除开 runtimeException 其它的就是检查异常<br>
+                checkedException： 相当于在编写代码的时候就必需要进行捕获<br>
+                runtimeException： 运行时异常 ，可以选择捕获或者不捕获<br>
+                -----------------throws和throw-----------------<br>
+                throws 可以抛出多个异常 跟在我们方法的后面 可以定义抛出多个异常。<br>
+                <pre class="prettyprint lang-cs">
+		public  void eat() throws FileNotFoundException,Exception{
+
+		}       </pre>
+                throw 只能是单个异常<br>
+                <pre class="prettyprint lang-cs">
+          	public  void eat(int a) {
+			  if(a==1){
+				  throw  new RuntimeException();
+			  }
+			  System.out.println(1111);
+		}       </pre>
+                -------------------自定义异常------------------<br>
+                （项目分得特别细的，自定义一套异常体系）<br>
+                1 .继承Exception 或者 runtimeException<br>
+                2.定义有参的构造方法<br>
+                <pre class="prettyprint lang-cs">
+/**
+ * 自定义电话号码异常类
+ *
+ * @author guowh
+ *
+ */
+public class PhoneNumException extends Exception {
+	public PhoneNumException(String msg) {
+		super(msg);
+	}
+}</pre>
+                3.如何去使用<br>
+                <pre class="prettyprint lang-cs">
+/**
+ * 自定义UserService类，用于测试PhoneNumException
+ *
+ * @author guowh
+ *
+ */
+public class UserService {
+	private String phone;
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) throws PhoneNumException {
+		if ("1".equals(phone))
+			throw new PhoneNumException("对不起！号码不能为 1");
+		else if ("11".equals(phone))
+			throw new PhoneNumException("对不起！号码不能为 11");
+		else
+			System.out.println("成功！");
+	}
+}         </pre>
+                4.演示<br>
+                <pre class="prettyprint lang-cs">
+		/**
+		 * 自定义异常
+		 */
+		UserService us = new UserService();
+		try {
+			us.setPhone("111");
+		} catch (PhoneNumException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println(e);
+		}             </pre>
+                ===============================================<br>
+                晚上：<br>
+                ===============================================<br>
+                学习思维 学习思想是最重要的<br>
+                概念性的东西要烂熟于心<br>
+                但要运用自如<br>
+                <br>
+                如何达到Java初级开发工程师的要求？<br>
+                多写代码，只要有时间就能解决。<br>
+                而以后的要求是如何考虑的足够全面，而不是只是写代码<br>
+                ===============================================<br>
+                下节课内容：<br>
+                ===============================================<br>
+                无<br><br>
+                ===============================================<br>
+                任务：<br>
+                ===============================================<br>
+                无<br><br>
+                </p>
+            </article>
+            <div class="relates">
+                <div class="title">
+                    <h3>相关推荐</h3>
+                </div>
+                <ul>
+                    <li><a href="show20170413.html" title="">java初级学习-第1日：java培训学习路线+java基础+eclipse</a></li>
+                    <li><a href="show20170420.html" title="">java初级学习-第2日：java数据类型+循环+数组</a></li>
+                    <li><a href="show20170427.html" title="">java初级学习-第3日：属性-方法-重载-递归-内部类-静态代码块</a></li>
+                    <li><a href="show20170504.html" title="">java初级学习-第4日：String+API+继承</a></li>
+                    <li><a href="show20170511.html" title="">java初级学习-第5日：接口+多态+匿名内部类+单例模式</a></li>
+                    <li><a href="show20170518.html" title="">java初级学习-第6日：自定义数据类型排序+异常机制</a></li>
+                    <li><a href="show20170525.html" title="">java初级学习-第7日：泛型+反射+I/O流</a></li>
+                    <li><a href="show20170601.html" title="">java初级学习-第8日：框架很浅很浅的引入</a></li>
+                    <li><a href="show20170608.html" title="">java初级学习-第9日：加油</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <aside class="sidebar">
+        <div class="fixed">
+            <div class="widget widget-tabs">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#notice" aria-controls="notice" role="tab"
+                                                              data-toggle="tab" draggable="false">统计信息</a></li>
+                    <li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab"
+                                               draggable="false">联系站长</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane contact active" id="notice">
+                        <h2>日志总数:
+                            <span id="articlecount">allarticle</span> 篇</h2>
+                        <h2>网站运行:
+                            <span id="sitetime">alldate</span> 天</h2>
+                    </div>
+                    <div role="tabpanel" class="tab-pane contact" id="contact">
+                        <h2>QQ:
+                            <a href="/#" target="_blank" rel="nofollow" data-toggle="tooltip" data-placement="bottom"
+                               title="" data-original-title="QQ:1842297753">1842297753</a></h2>
+                        <h2>Email:
+                            <a href="mailto:1842297753@qq.com" target="_blank" data-toggle="tooltip" rel="nofollow"
+                               data-placement="bottom"
+                               title="" data-original-title="Email:1842297753@qq.com">1842297753@qq.com</a></h2>
+                    </div>
+                </div>
+            </div>
+            <div class="widget widget_sentence">
+                <h3>友情链接</h3>
+                <div class="widget-sentence-link">
+                    <a href="http://gwhcool.cn:8080/" title="个人主页" target="_blank">个人主页</a>&nbsp;&nbsp;&nbsp;
+                </div>
+                <div class="widget-sentence-link">
+                    <a href="https://github.com/GuoWenhao1996" title="follow me" target="_blank">GitHub</a>&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+    </aside>
+</section>
+<footer class="footer">
+    <ul class="icons">
+        <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+        <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+        <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+        <li><a href="https://github.com/GuoWenhao1996" class="icon fa-github"><span class="label">Github</span></a></li>
+    </ul>
+    <br>
+    <div class="container">Template reference from <a target="_blank" href="http://sc.chinaz.com/moban/">ChinaZ</a>
+        extremely grateful!<br>
+        Copyright &copy; 2017.<a target="_blank" href="http://gwhcool.cn:8080">gwhcool</a> All rights reserved.
+    </div>
+    <div id="gotop"><a class="gotop"></a></div>
+</footer>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.ias.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>

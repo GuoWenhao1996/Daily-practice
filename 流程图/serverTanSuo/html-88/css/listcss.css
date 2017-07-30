@@ -1,0 +1,41 @@
+@charset "UTF-8";
+body{
+    font-size: 12px;
+}
+header{
+    position: relative;
+    width: 100%;
+    min-width: 600px;
+    background-color: rgba(186, 230, 244, 0.76); /*背景颜色*/
+}
+header ul li{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+header ul li a{
+    cursor: pointer !important;
+}
+section{
+    position: relative;
+    width: 90%;
+    min-width: 600px;
+    top: 50px;
+    margin: 0px auto;
+}
+section form table tr th,td{
+    text-align: center;
+}
+.input-size{
+    width: 200px !important;
+    height: 35px !important;
+}
+.btn-container{
+    text-align: center;
+}
+.btn-container input{
+     margin: 10px;
+ }
+
+.form-align{
+    text-align: right;
+}
