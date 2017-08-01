@@ -65,7 +65,7 @@
     <div class="content-wrap">
         <div class="content">
             <header class="article-header">
-                <h1 class="article-title"><a href="#" title="java培训学习路线">java初级学习-第2日：xxxxxxxxxxx</a></h1>
+                <h1 class="article-title"><a href="#" title="java培训学习路线">java初级学习-第2日：Java文化与流程控制</a></h1>
                 <div class="article-meta"> <span class="item article-meta-time">
 	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2017-08-01"><i
               class="glyphicon glyphicon-time"></i> 2017-08-01
@@ -73,9 +73,9 @@
 	  </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title=""
                     data-original-title="来源：酬勤学习笔记"><i class="glyphicon glyphicon-globe"></i> 酬勤学习笔记</span> <span
                         class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title=""
-                        data-original-title="java初级学习-第2日：xxxxxxxxxxx"><i class="glyphicon glyphicon-list"></i> <a
+                        data-original-title="java初级学习-第2日：Java文化与流程控制"><i class="glyphicon glyphicon-list"></i> <a
                         href="#"
-                        title="java初级学习-第2日：xxxxxxxxxxx">java初级学习-第2日：xxxxxxxxxxx</a></span>
+                        title="java初级学习-第2日：Java文化与流程控制">java初级学习-第2日：Java文化与流程控制</a></span>
                     <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title=""
                           data-original-title="浏览量：127"><i class="glyphicon glyphicon-eye-open"></i> 127</span></div>
             </header>
@@ -83,15 +83,222 @@
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
                     时间：2017-08-01 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
-                    
+                    ===============================================<br>
+                    上午：<br>
+                    ===============================================<br>
+                    第一节：程序开发常见概念<br>
+                        知识点1：计算机结构与基础运行原理<br>
+                        	运算器、存储器、控制器(CPU)、输入设备输出设备<br>
+                        知识点2：程序与编程语言<br>
+                    	软件分为系统软件和应用软件<br>
+                    	软件=程序+文档<br>
+                    	    程序说白了就是指令<br>
+                    	机器语言101011001010010100100100100<br>
+                    	汇编语言MOV ADD <br>
+                    	高级语言 C语言 c++ c# java Python 	<br>
+                        <br>
+                        知识点3：不同类型语言的编译与运行<br>
+                    	高级语言分类<br>
+                    	    面向对象 面向过程<br>
+                    	    编译型   解释型<br>
+                    	Java半编译半解释<br>
+                        <br>
+                        知识点4：进制与编码<br>
+                    	二、八、十、十六 表示与转换<br>
+                    	原码、反码、补码<br>
+                    	给一个负数能写出其补码<br>
+                    	    正数原码、反码、补码一样<br>
+                                负数的反码是原码符号位不变，其余各位取反<br>
+                    	    负数的补码是原码符号位不变，其余各位取反+1<br>
+                    	计算机系统中整数都用补码表示	    <br>
+                    <br>
+                        知识点5：字符集<br>
+                    	ASCII字符集最早<br>
+                    	GB2312字符集支持中文<br>
+                    	Unicode万国码支持各国语言<br>
+                    	    Unicode分为三套编码方式：UTF-8,UTF-16,UTF-32<br>
+                    	乱码的原因是编码和解码用的不是同一套字符集<br>
+                    <br>
+                    第二节：java语言概述<br>
+                        SUN公司的 1995年<br>
+                        1999年 java被分为了J2SE J2EE J2ME<br>
+                        现在叫做JavaSE JavaEE JavaME<br>
+                        被Oracle收购了    <br>
+                        目前 我们用Java 1.8（2014年）<br>
+                        1、桌面应用程序 被.net平台 C#挤占了市场<br>
+                        2、手机App JavaME<br>
+                        3、Web应用程序 JavaEE<br>
+                        Java开发服务器<br>
+                        大数据 BigData Hadoop Python-数据分析<br>
+                    <br>
+                        Java主要的技术特点：<br>
+                    	a、简单性：由c++衍生而来，但是比c++简单，抛弃了指针、头文件	<br>
+                    	b、面向对象(OO)：OOAD OOA OOD OOP<br>
+                    	c、跨平台（一种与平台无关的语言）!!!!!<br>
+                    	    一次编译，处处运行。<br>
+                    	    如何实现？————Java虚拟机 JVM<br>
+                    	    JDK—Java开发工具（开发人员）	—javac<br>
+                    	    JRE—运行编译后的class文件		—java<br>
+                    	    JVM—翻译<br>
+                    		对于不同的操作系统有不同的翻译<br>
+                    	    	在不同的操作系统上有不同的虚拟机<br>
+                    		JVM是JRE的一部分<br>
+                    	d、健壮性和安全性：垃圾回收机制<br>
+                    	e、多线程：Java对多线程的支持非常强大，很短的代码就可以完成很强大的功能<br>
+                    <br>
+                        背诵Java文件的执行过程：<br>
+                    	Java文件---javac--->.class文件(字节码文件)<br>
+                    		---java --->类装载器(装载类)---------\<br>
+                    		------>字节码校验器--------------------JVM<br>
+                    		------>解释器------------------------/<br>
+                    		------>操作系统<br>
+                    <br>
+                    第三节：java开发运行平台<br>
+                        jdk安装路径不要有中文、特殊符号、空格<br>
+                        JAVA_HOME 	jdk安装根目录<br>
+                        PATH 	%JAVA_H0ME%\bin<br>
+                        CLASSPATH	JDK1.5以后不需要配置该环境变量<br>
+                    <br>
+                    第四节：第一个java程序<br>
+                        执行java文件只能执行有main方法的java文件。<br>
+                        一个项目至少有一个main方法，其他所有类的方法都是直接或间接的通过main方法调用。<br>
+                        1、一个java文件中可以写一到多个类。<br>
+                        2、编译后的class文件个数和java文件中类的个数一致，而且class的文件名和类名相同。<br>
+                        3、一个java文件中最多有1个public修饰的类，而且java的文件名必须和public修饰的类名一致<br>
+                        4、建议一个java文件中只写一个类。<br>
+                    <br>
+                    ===============================================<br>
+                    下午：<br>
+                    ===============================================<br>
+                    第五节：java语法基本元素<br>
+                        1、java标识符：<br>
+                    	可以起名字的地方<br>
+                    	命名规范：<br>
+                    	    由字母、数字、美元符号$、下划线组成<br>
+                    	    不能由数字开头<br>
+                    	    严格区分大小写，没有长度限制<br>
+                    	    不能和关键字重复<br>
+                    	约定俗成：<br>
+                    	    见名知意 getUserByUserName<br>
+                    	    驼峰命名法：如果一个标识符有多个单词醉成，则从第二个单词开始，每个单词的首字母大写<br>
+                    	    类名首字母大写 class Student<br>
+                    	    包名全部小写<br>
+                    	    常量名全大写<br>
+                    	关键字：<br>
+                    	    40多个，被系统赋予了特殊含义，由全小写组成<br>
+                    	变量：存储数据的位置<br>
+                    	java数据类型：（Java是强数据类型语言）<br>
+                    	四类八种基本数据类型和三种引用数据类型<br>
+                    	    四类基本数据类型：<br>
+                    		整型：byte short int long<br>
+                    		浮点型：float(单精度 4字节) double(双精度 8字节) 默认double<br>
+                    		字符型：char<br>
+                    		布尔型：boolean<br>
+                    	    三种引用数据类型：<br>
+                    		类<br>
+                    		接口<br>
+                    		数组<br>
+                    	int num = 10;<br>
+                    	byte	1字节	-128  ~ 127<br>
+                    	short	2字节	-2^7  ~ 2^7-1<br>
+                    	int	4字节	-2^15 ~ 2^15-1<br>
+                    	long	8字节	-2^31 ~ 2^31-1<br>
+                    <br>
+                    	整型的默认数据类型是int，但是如果这个int类型的数值比较小的时候，会自动转换为byte或者short为其变量赋值<br>
+                    	小类型的值向大类型赋值，会自动转化数据类型<br>
+                    	大类型的值向小类型赋值，要报错，需要强制转换，会存在溢出<br>
+                    	如果声明一个long类型的整数，在其后面加l或L，建议大写<br>
+                    	<br>
+                    	字符型：<br>
+                    	    char值使用单引号包裹<br>
+                    	    char和整形可以相互转化 <br>
+                    	    char可以自动转换成int类型直接参与运算<br>
+                    	布尔型<br>
+                    	    boolean true false;<br>
+                    	String是引用数据类型，引用数据类型变量内存储的是地址！<br>
+                    	<br>
+                    	变量分为成员变量(方法外)和局部变量(方法内、块内、形参)<br>
+                    	变量的作用范围：最近的一组大括号<br>
+                    	变量必须先声明后赋值再使用<br>
+                    	在变量的作用范围内不能重名<br>
+                    <br>
+                    	常量：常量的值一旦确定不能修改，由final修饰<br>
+                    	final int CONSTANTEST = 10;<br>
+                    <br>
+                    	字面量 用于表达源代码中一个固定值的表示法<br>
+                    	<br>
+                    	字符串常量、逻辑常量、字符常量... --->常量池<br>
+                    <br>
+                        2、java运算符和表达式：<br>
+                    	算数运算符（+ - * / % ++ --）<br>
+                    	    不同的数据类型进行算数运算，则结果的数据类型以数据类型较大的为准<br>
+                    	    byte和short做运算会自动转化为int型<br>
+                    	    整数除以0，编译通过，运行抛异常。<br>
+                    	    浮点数除以0，编译通过，运行结果Infinity(无穷大)<br>
+                    	    Java中没有四舍五入，10/3=3;11/3=3;12/3=4;<br>
+                    	    取模（取余）<br>
+                    	    自增自减<br>
+                    		a++先赋值后运算<br>
+                    		--a先运算后赋值<br>
+                    	关系运算符（> < >= <= == !=）<br>
+                    	    true false<br>
+                    	逻辑运算符（& | && || !）<br>
+                    	    逻辑运算符链接的两侧必须为true或者false或者经过关系运算符运算后得到的结果。<br>
+                    	    && ||的短路原理<br>
+                    	位运算符（<< >> >>> & | ^ ~）<br>
+                    	    5>>2   0000000000000101>>2=1<br>
+                    	    看代码<br>
+                    	赋值运算符（= += -+ *= /= %=）<br>
+                    	    a+=10;如果使用+=运算，如果数据超长，不会抛出异常，正常赋值，但是会有数据溢出。<br>
+                    	三目运算符<br>
+                    	    (表达式1)?(表达式2):(表达式3)<br>
+                    		true 执行表达式2<br>
+                    		false执行表达式3<br>
+                    <br>
+                        3、流程控制：<br>
+                    	顺序结构<br>
+                    	条件结构 if switch<br>
+                    	    单分支<br>
+                    	    双分支<br>
+                    	    多分支<br>
+                    	    case分支语句具有穿透性<br>
+                    	    byte short char int 枚举 字符串<br>
+                    	    if嵌套判断<br>
+                    	循环结构<br>
+                    	    do while 	先做再判断<br>
+                    	    while	先判断再做<br>
+                    		初始化一个计数变量 int count=1;<br>
+                    		将该变量作为循环判断的依据<br>
+                    		循环体语句<br>
+                    		循环体执行后一定要修改计数变量的值<br>
+                    	    for<br>
+                    	    foreach<br>
+                    		最灵活的循环<br>
+                    	    嵌套循环：循环里面有循环<br>
+                    <br>
+                    ===============================================<br>
+                    晚上：<br>
+                    ===============================================<br>
+                    完成11道题<br>
+                    <br>
+                    ===============================================<br>
+                    下节课内容：<br>
+                    ===============================================<br>
+                    null<br>
+                    <br>
+                    ===============================================<br>
+                    任务：<br>
+                    ===============================================<br>
+                    完成11道题<br>
+
             </article>
             <div class="relates">
                 <div class="title">
                     <h3>相关推荐</h3>
                 </div>
                 <ul>
-				    <li><a href="show20170731.html" title="">java初级学习-第1日：课程安排</a></li>
-                    <li><a href="show20170801.html" title="">java初级学习-第2日：xxxxxxxxxxx</a></li>
+				            <li><a href="show20170731.html" title="">java初级学习-第1日：课程安排</a></li>
+                    <li><a href="show20170801.html" title="">java初级学习-第2日：Java文化与流程控制</a></li>
                 </ul>
             </div>
         </div>
