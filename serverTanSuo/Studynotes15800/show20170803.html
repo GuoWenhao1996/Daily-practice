@@ -5,7 +5,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>第三日学习笔记</title>
+    <title>第四日学习笔记</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -65,7 +65,7 @@
     <div class="content-wrap">
         <div class="content">
             <header class="article-header">
-                <h1 class="article-title"><a href="#" title="java培训学习路线">java初级学习-第3日：数组 排序 面向对象</a></h1>
+                <h1 class="article-title"><a href="#" title="java培训学习路线">java初级学习-第4日：xxxxxxxxxxxxxx</a></h1>
                 <div class="article-meta"> <span class="item article-meta-time">
 	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2017-08-02"><i
               class="glyphicon glyphicon-time"></i> 2017-08-02
@@ -73,9 +73,9 @@
 	  </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title=""
                     data-original-title="来源：酬勤学习笔记"><i class="glyphicon glyphicon-globe"></i> 酬勤学习笔记</span> <span
                         class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title=""
-                        data-original-title="java初级学习-第3日：数组 排序 面向对象"><i class="glyphicon glyphicon-list"></i> <a
+                        data-original-title="java初级学习-第4日：xxxxxxxxxxxxxx"><i class="glyphicon glyphicon-list"></i> <a
                         href="#"
-                        title="java初级学习-第3日：数组 排序 面向对象">java初级学习-第3日：数组 排序 面向对象</a></span>
+                        title="java初级学习-第4日：xxxxxxxxxxxxxx">java初级学习-第4日：xxxxxxxxxxxxxx</a></span>
                     <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title=""
                           data-original-title="浏览量：127"><i class="glyphicon glyphicon-eye-open"></i> 127</span></div>
             </header>
@@ -83,131 +83,7 @@
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
                     时间：2017-08-02 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
-                    ===============================================<br>
-                    上午：<br>
-                    ===============================================<br>
-                    0、补充：<br>
-                    	a）注释<br>
-                    		i、单行注释	//<br>
-                    		ii、多行注释	/*.....*/<br>
-                    		iii、文档注释	/**......*/ 类、成员变量、方法 <br>
-                    			javadoc<br>
-                    	b）break与continue语句<br>
-                    		i、循环语句中，结束整个循环（最近的整个循环）<br>
-                    		ii、switch阻止case的穿透现象<br>
-                    		iii、用在循环语句中，执行到continue语句时，结束本次循环，继续执行下一次循环，并没有结束整个循环。<br><br>
-                    <br>
-                    1、数组<br>
-                    	a）数组的概念<br>
-                    		i、可以存放相同类型的多个数据<br>
-                    	b）数组的声明语法！！！<br>
-                    		i、 int[] array;<br>
-                    		ii、int array[];<br>
-                    	c）数组对象的创建！！！<br>
-                    		数组的长度一旦确定不能更改<br>
-                    		i、  int[] array=new int[10];<br>
-                    		ii、 int[] array=new int[]{1,1,1,1,1};<br>
-                    		iii、int[] array={1,1,1,1,1};//只能在数组的初始化阶段<br>
-                    		<br>
-                    		byte、short、int、long默认为0<br>
-                    		double、float默认为0.0<br>
-                    		char默认为''<br>
-                    		boolean默认为false<br>
-                    		string默认为null<br>
-                    	d）数组的访问！！！<br>
-                    		i、数组变量【索引】<br>
-                    			索引取值范围0~length-1<br>
-                    			数组对象有一个属性length表示数组的长度<br>
-                    			如果访问不在取值范围内，编译会通过，运行后会抛出：java.lang.ArrayIndexOutOfBoundsException<br>
-                    	e）值传递<br>
-                    	f）多维数组<br>
-                    		数组的数组，可以不等长<br>
-                    ===============================================<br>
-                    下午：<br>
-                    ===============================================<br>
-                    2、数组排序的意义以及排序方式 ！！！！<br>
-                    	易读、计算机处理起来执行效率高。<br>
-                    	代码练习（选择、插入、冒泡）<br>
-                    <br>
-                    3、面向对象 ！！！！<br>
-                    	面向过程：吃(猪八戒,西瓜);<br>
-                    	面向对象：猪八戒.吃(西瓜);<br>
-                    	<br>
-                    	找对象(共同的行为和属性)--->写类<br>
-                    	<br>
-                    	类：<br>
-                    	1、类的语法<br>
-                    		a) [public] class 类名[extends 类名][implements 接口1,接口2,...接口n]{}<br>
-                    			i、访问修饰符 public protected private 缺省<br>
-                    			ii、可选修饰符 abstract(抽象类) final(最终类)<br>
-                    			iii、外部类只能由 public 或者 缺省 作为访问修饰符<br>
-                    			iiii、内部类可以由以上4个访问修饰符修饰<br>
-                    			iiiii、extends用于继承<br>
-                    			iiiiii、implements用于实现接口<br>
-                    	2、类里面可以书写些什么<br>
-                    		a)成员变量<br>
-                    			i、[访问修饰符] [可选修饰符] 数据类型 变量名称<br>
-                    			ii、四个访问修饰符均可以修饰成员变量<br>
-                    			iii、可选修饰符：static final<br>
-                    		b)方法<br>
-                    			i、[访问修饰符] [可选修饰符] 返回类型 方法名(参数) [throws Exception1,Exception2,...,Exceptionn]{方法体;}<br>
-                    			ii、四个访问修饰符均可以修饰方法<br>
-                    			iii、对于abstract方法不允许有{方法体;}<br>
-                    			iiii、形式参数，规定方法的执行所必须的值的类型<br>
-                    			iiiii、实际参数，方法调用时实际传入方法的值<br>
-                    			iiiiii、返回类型规定了方法会输出一个什么类型的值 return关键字<br>
-                    			iiiiiii、void和return可以灵活配合使用<br>
-                    			iiiiiiii、方法重载<br>
-                    					在同一个类中，出现了相同方法名，不同参数列表的现象叫做方法的重载。<br>
-                    					参数列表(个数、对应位置参数类型)<br>
-                    		c)构造器(构造方法)<br>
-                    			[访问修饰符] 类名(参数) [throws Exception1,Exception2,...,Exceptionn]{}<br>
-                    			如果没有写构造器，会默认一个无参的空的构造器<br>
-                    			如果写了构造器，那默认那个无参的空的构造器就没了<br>
-                    			书写构造器的目的：初始化成员变量的值<br>
-                    			构造器可以重载<br>
-                    			构造器内可以有return语句<br>
-                    			构造器不能被继承<br>
-                    			在构造器中使用this调用其他构造器，语法是this(实际参数)<br>
-                    			this()语句必须为该构造器中的第一个语句<br>
-                    			构造器不能调用自己<br>
-                    			普通方法不能调用构造器<br>
-                    		d)this关键字<br>
-                    			i、this指代当前对象<br>
-                    		e)对象，访问对象的属性和方法<br>
-                    			i、类名 变量名 = new 类名(实际参数);<br>
-                    	包：<br>
-                    	1、包的作用<br>
-                    		分门别类的管理类<br>
-                    		增大了类的命名空间<br>
-                    		同一个包名下类名不能重复<br>
-                    		但是不同包下的类名互不影响<br>
-                    	2、如何使用package打包<br>
-                    		类的声明的上方<br>
-                    	3、如何通过import导包<br>
-                    		类的声明的上方<br>
-                    	4、类全名<br>
-                    		包名+类名<br>
-                    <br>
-                    <br>
-                    ===============================================<br>
-                    晚上：<br>
-                    ===============================================<br>
-                    完成西游记<br>
-                    测试返回值不同时是否构成重载<br>
-                    乱码<br>
-                    导包<br>
-                    类 属性 方法没有定义访问修饰符默认是什么<br>
-                    <br>
-                    ===============================================<br>
-                    下节课内容：<br>
-                    ===============================================<br>
-                    null<br>
-                    <br>
-                    ===============================================<br>
-                    任务：<br>
-                    ===============================================<br>
-                    完成14道题<br>
+
             </article>
             <div class="relates">
                 <div class="title">
