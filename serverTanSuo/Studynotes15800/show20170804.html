@@ -5,7 +5,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>第四日学习笔记</title>
+    <title>第五日学习笔记</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -65,135 +65,26 @@
     <div class="content-wrap">
         <div class="content">
             <header class="article-header">
-                <h1 class="article-title"><a href="#" title="java培训学习路线">java初级学习-第4日：堆、栈、继承、类的高级概念</a></h1>
+                <h1 class="article-title"><a href="#" title="java培训学习路线">java初级学习-第5日：xxxxxxxxxxxxxx</a></h1>
                 <div class="article-meta"> <span class="item article-meta-time">
-	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2017-08-03"><i
-              class="glyphicon glyphicon-time"></i> 2017-08-03
+	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2017-08-04"><i
+              class="glyphicon glyphicon-time"></i> 2017-08-04
       </time>
 	  </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title=""
                     data-original-title="来源：酬勤学习笔记"><i class="glyphicon glyphicon-globe"></i> 酬勤学习笔记</span> <span
                         class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title=""
-                        data-original-title="java初级学习-第4日：堆、栈、继承、类的高级概念"><i class="glyphicon glyphicon-list"></i> <a
+                        data-original-title="java初级学习-第5日：xxxxxxxxxxxxxx"><i class="glyphicon glyphicon-list"></i> <a
                         href="#"
-                        title="java初级学习-第4日：堆、栈、继承、类的高级概念">java初级学习-第4日：堆、栈、继承、类的高级概念</a></span>
+                        title="java初级学习-第5日：xxxxxxxxxxxxxx">java初级学习-第5日：xxxxxxxxxxxxxx</a></span>
                     <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title=""
                           data-original-title="浏览量：127"><i class="glyphicon glyphicon-eye-open"></i> 127</span></div>
             </header>
             <article class="article-content">
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
-                    时间：2017-08-03 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
-===============================================<br>
-上午：<br>
-===============================================<br>
-1、补充<br>
-	可变参数<br>
-		public void test(int a,String... strs){}<br>
-		strs在test中当数组使用<br>
-		String... strs只能是最后一个参数<br>
-		test(1,"a","b","c");<br>
-		test(1,"a","b");<br>
-		test(1,"a");<br>
-		test(1);<br>
-	方法递归<br>
-		递归必须有明确的方向<br>
-		已知f(0)=1,f(1)=4,f(n+2) = 2*f(n+1)+f(n);求f(10)是多少<br>
-		f(n) = 2*f(n-1)+f(n-2);<br>
-		f(10) = 2*f(9)+f(8);<br>
-<br>
-2、堆和栈<br>
-	栈中存放声明的变量<br>
-	堆中存放对象<br>
-	值传递（基本数据类型，引用数据类型）<br>
-	栈中引用数据类型变量存储的是对象的地址<br>
-	对象的复制（克隆）<br>
-		浅度克隆->实现Cloneable接口<br>
-		深克隆->序列化和反序列化<br>
-<br>
-===============================================<br>
-下午：<br>
-===============================================<br>
-3、继承<br>
-	权限<br>
-		private		只能在当前类访问<br>
-		缺省		只能在同包下访问<br>
-		protected	同包或者同子类可以访问<br>
-		public		所有类均可访问<br>
-	对象与对象之间的关系<br>
-		has a<br>
-		is a<br>
-		Java用继承来表示这种关系<br>
-	为什么使用继承<br>
-		实现代码重用<br>
-		继承是面向对象语言的一大特征(继承 封装 多态)<br>
-	继承的特点<br>
-		一个类继承父类，那么这个类会获得福利日指定的(访问权限)属性和方法<br>
-		构造器不能被继承<br>
-		Java是单继承，一个类只能直接继承一个父类<br>
-		Java中所有的类都继承自Object类，所有的类都有Object类的方法<br>
-		父类不能访问子类自己的方法<br>
-	继承的语法<br>
-		类 extends 另一个类<br>
-	继承的理解和应用<br>
-		子类会有父类指定的属性和方法<br>
-		可以使用this和super区别调用到底是谁的成员变量或者方法<br>
-		如果子类重写了父类的某个方法，那么调用子类方法时，只会调用重写后的方法。<br>
-	方法的重写Override<br>
-		在继承或实现关系中<br>
-		子类中出现和父类相同的方法(方法名、参数列表)<br>
-		访问修饰符不能小于父类该方法的访问修饰符<br>
-		抛出的异常不能多于父类抛出的异常<br>
-		返回类型若为引用数据类型，子类方法返回类型不能大于父类返回类型<br>
-		返回类型若为基本数据类型，子类方法返回类型必须和父类返回类型相同<br>
-		返回类型若为void，则重写的该方法也不能有返回值<br>
-	super关键字<br>
-		super用在类中指代的是父类<br>
-		使用super可以在方法或构造器中调用直接父类的方法或构造器或属性<br>
-	final关键字<br>
-		被final修饰的类，不能被继承<br>
-		被final修饰的变量，变为常量，值不能修改<br>
-		被final修饰的方法，不能被重写<br>
-4、类的高级概念<br>
-	封装<br>
-		隐藏属性、方法或者实现细节的这种处理方式统称为封装<br>
-		将要封装的属性或者方法限定访问修饰符，不一定要是private<br>
-		提供公开的接口或方法来访问属性或者调用其他封装的方法<br>
-	成员变量封装<br>
-		将成员变量为private，<br>
-		然后提供public的访问器(getter)修改器(setter)来访问或修改属性<br>
-		好处：权限、安全性、处理数据<br>
-	方法的封装<br>
-		封装细节<br>
-		代码重用<br>
-		当使用ctrl+c ctrl+v时，要考虑是否可以进行封装<br>
-	构造器封装<br>
-<br>
-	static关键字<br>
-		不可以修饰外部类，只能修饰内部类<br>
-		可以修饰方法，同成员变量，且静态方法不能调用非静态方法，非静态方法可以调用静态方法<br>
-		可以修饰成员变量，变为类变量，供类中的所有对象共享，在类加载的时候，对象还没创建，类成员变量就加载了，并赋予初始值<br>
-		可以修饰块<br>
-	内部类<br>
-	块<br>
-<br>
-===============================================<br>
-晚上：<br>
-===============================================<br>
-了解浅度克隆 深度克隆<br>
-尝试模拟垃圾回收机制<br>
-Override与Overload<br>
-克隆模式、单例模式<br>
-<br>
-===============================================<br>
-下节课内容：<br>
-===============================================<br>
-null<br>
-<br>
-===============================================<br>
-任务：<br>
-===============================================<br>
-完成5道作业题<br>
-            </article><br>
+                    时间：2017-08-04 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
+
+            </article>
             <div class="relates">
                 <div class="title">
                     <h3>相关推荐</h3>
@@ -202,7 +93,6 @@ null<br>
                   <li><a href="show20170731.html" title="">java初级学习-第1日：课程安排</a></li>
                   <li><a href="show20170801.html" title="">java初级学习-第2日：Java文化与流程控制</a></li>
                   <li><a href="show20170802.html" title="">java初级学习-第3日：数组 排序 面向对象</a></li>
-                  <li><a href="show20170803.html" title="">java初级学习-第4日：堆、栈、继承、类的高级概念</a></li>
               </ul>
             </div>
         </div>
