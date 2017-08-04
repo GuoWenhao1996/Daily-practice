@@ -5,7 +5,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>第五日学习笔记</title>
+    <title>第六日学习笔记</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -65,130 +65,25 @@
     <div class="content-wrap">
         <div class="content">
             <header class="article-header">
-                <h1 class="article-title"><a href="#" title="java培训学习路线">java初级学习-第5日：接口、抽象类、多态</a></h1>
+                <h1 class="article-title"><a href="#" title="java培训学习路线">java初级学习-第6日：xxxxxxxxxxxxxx</a></h1>
                 <div class="article-meta"> <span class="item article-meta-time">
-	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2017-08-04"><i
-              class="glyphicon glyphicon-time"></i> 2017-08-04
+	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2017-08-0x"><i
+              class="glyphicon glyphicon-time"></i> 2017-08-0x
       </time>
 	  </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title=""
                     data-original-title="来源：酬勤学习笔记"><i class="glyphicon glyphicon-globe"></i> 酬勤学习笔记</span> <span
                         class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title=""
-                        data-original-title="java初级学习-第5日：接口、抽象类、多态"><i class="glyphicon glyphicon-list"></i> <a
+                        data-original-title="java初级学习-第6日：xxxxxxxxxxxxxx"><i class="glyphicon glyphicon-list"></i> <a
                         href="#"
-                        title="java初级学习-第5日：接口、抽象类、多态">java初级学习-第5日：接口、抽象类、多态</a></span>
+                        title="java初级学习-第6日：xxxxxxxxxxxxxx">java初级学习-第6日：xxxxxxxxxxxxxx</a></span>
                     <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title=""
                           data-original-title="浏览量：127"><i class="glyphicon glyphicon-eye-open"></i> 127</span></div>
             </header>
             <article class="article-content">
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
-                    时间：2017-08-04 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
-                    ===============================================<br>
-                    上午：<br>
-                    ===============================================<br>
-                    0、补充<br>
-                    	块<br>
-                    		静态块：类加载时被调用<br>
-                    			用来初始化静态成员变量的值<br>
-                    			在程序加载时做一些初始化工作<br>
-                    		实例化块<br>
-                    			静态块>>>>实例化块>>>>构造方法<br>
-                    	内部类<br>
-                    		成员内部类 <br>
-                    			创建内部类对象必须先创建外部类对象，由外部类对象创建内部类对象<br>
-                    			内部类能够直接调用外部类的方法<br>
-                    			而外部类不能直接调用内部类的方法<br>
-                    		静态内部类<br>
-                    			public static class<br>
-                    			可以直接创建对象<br>
-                    			只能调用外部类静态的方法和静态成员变量<br>
-                    		局部内部类<br>
-                    			写在方法里的<br>
-                    			不能加访问修饰符<br>
-                    			只能在方法里用<br>
-                    		匿名内部类<br>
-                    			就是没有名字的内部类<br>
-                    			常做方法的实际参数<br>
-                    			通常用来简化代码的编写<br>
-                    			必须继承一个父类或实现一个接口<br>
-                    <br>
-                    1、信息类编写<br>
-                    	属性私有化<br>
-                    	提供访问器修改器<br>
-                    	提供无参构造方法<br>
-                    2、接口<br>
-                    	[public][abstract] interface 接口名称 [extends 接口1,接口2,...]{}<br>
-                    	接口就是用来制定规范的<br>
-                    	抽象的方法（抽象类）<br>
-                    	接口的特点：<br>
-                    		接口中的抽象方法都是public abstract 修饰的，即使省略了这两个单词，也是默认有这两个词的。<br>
-                    		接口中的成员变量都是public static final 的公共静态常量<br>
-                    		接口中可写静态方法 (jdk1.8)<br>
-                    		默认方法用default修饰 (jdk1.8)<br>
-                    		接口中可以写实例方法，必须用default修饰<br>
-                    		一个接口可以继承多个接口，一个类可以实现多个接口<br>
-                    <br>
-                    3、抽象类<br>
-                    	使用abstract可选修饰符修饰类<br>
-                    	不能被final修饰(final和abstract只能用一个)<br>
-                    	抽象类和普通类的特点<br>
-                    		抽象类不能创建对象，而普通类可以<br>
-                    		抽象类里可能有抽象方法，而普通类里一定不能有抽象方法<br>
-                    		抽象方法所在的类一定是抽象类<br>
-                    		抽象类存在的目的就是为了被继承<br>
-                    	抽象方法不能有方法体，要被子类重写<br>
-                    <br>
-                    ===============================================<br>
-                    下午：<br>
-                    ===============================================<br>
-                    4、多态<br>
-                    	同一种事物的不同展现形式<br>
-                    	静态多态<br>
-                    		在编译时确定<br>
-                    		方法的重载<br>
-                    	动态多态<br>
-                    		只有在程序运行时确定<br>
-                    		方法的重写<br>
-                    	如何实现多态<br>
-                    		类的继承或者接口的实现<br>
-                    		方法的重写<br>
-                    		父类的引用指向子类的对象<br>
-                    	向上转型(上塑造性)<br>
-                    		凡是父类类型的引用均可以接收子类型的实例(里氏替换原则)<br>
-                    		向上转型后，子类新增的方法、属性都是不可见的<br>
-                    		如果有方法的重写，调用的方法是子类重写后的方法，其他情<br>况都是基于父类
-                    		向上转型后调用的静态方法都是基于父类的<br>
-                    	向下转型<br>
-                    		Fruit f=new Banana();<br>
-                    		Banana b=(Banana)f;<br>
-                    <br>
-                    	instanceof 左边是对象，右边是类型<br>
-                    		Fruit f=new Banana();<br>
-                    		Fruit f1=new Fruit();<br>
-                    		f instanceof Banana	--->true<br>
-                    		f1 instanceof Banana	--->false<br>
-                    <br>
-                    	多态的应用<br>
-                    		异构集合(Fruit[] fruits=new Fruit();)<br>
-                    		多态参数(方法需要父类类型，那么子类对象也可以传入)<br>
-                    	方发表和方法的调用<br>
-                    <br>
-                    5、通讯录项目(控制台)<br>
-                    <br>
-                    ===============================================<br>
-                    晚上：<br>
-                    ===============================================<br>
-                    无<br>
-                    <br>
-                    ===============================================<br>
-                    下节课内容：<br>
-                    ===============================================<br>
-                    无<br>
-                    <br>
-                    ===============================================<br>
-                    任务：<br>
-                    ===============================================<br>
-                    完成通讯录<br>
+                    时间：2017-08-0x &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
+
             </article>
             <div class="relates">
                 <div class="title">
@@ -198,8 +93,6 @@
                   <li><a href="show20170731.html" title="">java初级学习-第1日：课程安排</a></li>
                   <li><a href="show20170801.html" title="">java初级学习-第2日：Java文化与流程控制</a></li>
                   <li><a href="show20170802.html" title="">java初级学习-第3日：数组 排序 面向对象</a></li>
-                  <li><a href="show20170803.html" title="">java初级学习-第4日：堆、栈、继承、类的高级概念</a></li>
-                  <li><a href="show20170804.html" title="">java初级学习-第5日：接口、抽象类、多态</a></li>
               </ul>
             </div>
         </div>
