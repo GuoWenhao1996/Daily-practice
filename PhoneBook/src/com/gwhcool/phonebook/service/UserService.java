@@ -28,4 +28,12 @@ public interface UserService {
 	 * @return 是否注册成功
 	 */
 	abstract boolean resister(String name, String pwd);
+
+	/**
+	 * 判断用户名是否存在
+	 * 
+	 * @param name
+	 * @return 是否存在
+	 */
+	boolean isExist(String name);
 }

@@ -45,16 +45,20 @@ public class MainWindow extends Window {
 		if ("1".equals(choose)) {
 			Friend friend = new Friend();
 			System.out.println(">>>请输入联系人姓名：");
+			System.out.print("<<<");
 			friend.setName(sc.next());
 			System.out.println(">>>请输入联系人电话号码：");
+			System.out.print("<<<");
 			friend.setPhoneNumber(sc.next());
 			System.out.println(">>>请输入联系人地址：");
+			System.out.print("<<<");
 			friend.setAddress(sc.next());
 			friend.setUsername(DBUtil.getUsername());
 			friendService.addFriend(friend);
 			show(sc);
 		} else if ("2".equals(choose)) {
 			System.out.println(">>>请输入要查找的联系人的姓名：");
+			System.out.print("<<<");
 			String name = sc.next();
 			friendService.findFriendByName(DBUtil.getUsername(), name);
 			System.out.println(">>>返回主菜单请按回车键！");
@@ -63,20 +67,24 @@ public class MainWindow extends Window {
 			show(sc);
 		} else if ("3".equals(choose)) {
 			System.out.println(">>>请输入要查找的联系人的电话号码：");
+			System.out.print("<<<");
 			String phoneNumber = sc.next();
 			friendService.findFriendByPhoneNumber(DBUtil.getUsername(), phoneNumber);
 			System.out.println(">>>返回主菜单请按回车键！");
+			System.out.print("<<<");
 			sc.nextLine();
 			sc.nextLine();
 			show(sc);
 		} else if ("4".equals(choose)) {
 			friendService.showAllFriends(DBUtil.getUsername());
 			System.out.println(">>>返回主菜单请按回车键！");
+			System.out.print("<<<");
 			sc.nextLine();
 			sc.nextLine();
 			show(sc);
 		} else if ("5".equals(choose)) {
 			System.out.println(">>>请输入要删除的联系人姓名：");
+			System.out.print("<<<");
 			String name = sc.next();
 			friendService.deleteFriendByName(DBUtil.getUsername(), name);
 			show(sc);

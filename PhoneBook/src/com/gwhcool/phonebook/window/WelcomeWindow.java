@@ -61,7 +61,38 @@ public class WelcomeWindow extends Window {
 			}
 			WindowUtil.byebye(sc);
 		} else if ("2".equals(choose)) {
-			System.out.println(">>>注册功能暂未开放！");
+			while (true) {
+				System.out.println(">>>请输入用户名：");
+				System.out.print("<<<");
+				String username = sc.next();
+				if (userService.isExist(username)) {
+					System.out.println(">>>用户名【" + username + "】已存在，请重新输入！");
+					continue;
+				} else {
+					System.out.println(">>>恭喜你，用户名【" + username + "】可用！");
+					while (true) {
+						System.out.println(">>>请输入密码：");
+						System.out.print("<<<");
+						String pwd1 = sc.next();
+						System.out.println(">>>请输入确认密码：");
+						System.out.print("<<<");
+						String pwd2 = sc.next();
+						if (pwd1.equals(pwd2)) {
+							if (userService.resister(username, pwd1)) {
+								System.out.println(">>>注册成功！");
+							} else {
+								System.out.println(">>>内存已满，注册失败！");
+							}
+							break;
+						} else {
+							System.out.println(">>>两次密码不一致，请重新输入！");
+							continue;
+						}
+					}
+					break;
+				}
+			}
+			show(sc);
 		} else if ("0".equals(choose)) {
 			WindowUtil.byebye(sc);
 		} else {
