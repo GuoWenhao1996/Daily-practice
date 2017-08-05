@@ -2,6 +2,10 @@ package com.gwhcool.phonebook.window;
 
 import java.util.Scanner;
 
+import com.gwhcool.phonebook.db.DBUtil;
+import com.gwhcool.phonebook.service.UserService;
+import com.gwhcool.phonebook.service.UserServiceImpl;
+
 /**
  * 欢迎页窗口<br>
  * 界面功能:
@@ -14,6 +18,8 @@ import java.util.Scanner;
  *
  */
 public class WelcomeWindow extends Window {
+
+	private UserService userService = new UserServiceImpl();
 
 	@Override
 	public void show(Scanner sc) {
@@ -38,7 +44,8 @@ public class WelcomeWindow extends Window {
 				System.out.println(">>>请输入密码：");
 				System.out.print("<<<");
 				String password = sc.next();
-				if (username.equals("admin") && password.equals("admin")) {
+				if (userService.login(username, password)) {
+					DBUtil.setUsername(username);
 					System.out.println(">>>登录成功！");
 					Window window = new MainWindow();
 					window.show(sc);
@@ -54,7 +61,7 @@ public class WelcomeWindow extends Window {
 			}
 			WindowUtil.byebye(sc);
 		} else if ("2".equals(choose)) {
-
+			System.out.println(">>>注册功能暂未开放！");
 		} else if ("0".equals(choose)) {
 			WindowUtil.byebye(sc);
 		} else {
