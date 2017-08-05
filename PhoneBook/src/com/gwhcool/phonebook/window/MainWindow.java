@@ -47,14 +47,19 @@ public class MainWindow extends Window {
 			System.out.println(">>>请输入联系人姓名：");
 			System.out.print("<<<");
 			friend.setName(sc.next());
-			System.out.println(">>>请输入联系人电话号码：");
-			System.out.print("<<<");
-			friend.setPhoneNumber(sc.next());
-			System.out.println(">>>请输入联系人地址：");
-			System.out.print("<<<");
-			friend.setAddress(sc.next());
-			friend.setUsername(DBUtil.getUsername());
-			friendService.addFriend(friend);
+			FriendServiceImpl friendServiceImpl = (FriendServiceImpl) friendService;
+			if(friendServiceImpl.findByName(DBUtil.getUsername(), friend.getName())==-1) {
+				System.out.println(">>>请输入联系人电话号码：");
+				System.out.print("<<<");
+				friend.setPhoneNumber(sc.next());
+				System.out.println(">>>请输入联系人地址：");
+				System.out.print("<<<");
+				friend.setAddress(sc.next());
+				friend.setUsername(DBUtil.getUsername());
+				friendService.addFriend(friend);
+			}else {
+				System.out.println(">>>联系人【" + friend.getName() + "】已存在！");
+			}
 			show(sc);
 		} else if ("2".equals(choose)) {
 			System.out.println(">>>请输入要查找的联系人的姓名：");

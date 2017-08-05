@@ -109,17 +109,13 @@ public class FriendServiceImpl implements FriendService {
 
 	@Override
 	public void addFriend(Friend friend) {
-		if (findByName(friend.getUsername(), friend.getName()) != -1) {
-			System.out.println(">>>联系人【" + friend.getName() + "】已存在！");
-		} else {
-			for (int i = 0; i < friends.length; i++) {
-				if (friends[i] == null) {
-					friends[i] = friend;
-					System.out.println(">>>联系人【" + friend.getName() + "】添加成功！");
-					return;
-				}
+		for (int i = 0; i < friends.length; i++) {
+			if (friends[i] == null) {
+				friends[i] = friend;
+				System.out.println(">>>联系人【" + friend.getName() + "】添加成功！");
+				return;
 			}
-			System.out.println(">>>内存已满，联系人【" + friend.getName() + "】添加失败");
 		}
+		System.out.println(">>>内存已满，联系人【" + friend.getName() + "】添加失败");
 	}
 }
