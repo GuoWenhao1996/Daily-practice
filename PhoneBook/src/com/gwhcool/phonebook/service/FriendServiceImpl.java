@@ -1,5 +1,7 @@
 package com.gwhcool.phonebook.service;
 
+import java.util.Scanner;
+
 import com.gwhcool.phonebook.db.DBUtil;
 import com.gwhcool.phonebook.entity.Friend;
 
@@ -29,6 +31,12 @@ public class FriendServiceImpl implements FriendService {
 		System.out.println(">>>=====================================================");
 	}
 
+	@Override
+	public void findFriendByName(String username, String name) {
+		int index = findByName(username, name);
+		findByIndex(index, name);
+	}
+
 	/**
 	 * 根据联系人姓名查找联系人
 	 * 
@@ -47,12 +55,6 @@ public class FriendServiceImpl implements FriendService {
 		return -1;
 	}
 
-	@Override
-	public void findFriendByName(String username, String name) {
-		int index = findByName(username, name);
-		findByIndex(index, name);
-	}
-
 	/**
 	 * 根据下标输出联系人信息
 	 * 
@@ -69,6 +71,12 @@ public class FriendServiceImpl implements FriendService {
 			System.out.println(">>>电话号码：" + friends[index].getPhoneNumber());
 			System.out.println(">>>地        址：" + friends[index].getAddress());
 		}
+	}
+
+	@Override
+	public void findFriendByPhoneNumber(String username, String phoneNumber) {
+		int index = findByPhoneNumber(username, phoneNumber);
+		findByIndex(index, phoneNumber);
 	}
 
 	/**
@@ -91,12 +99,6 @@ public class FriendServiceImpl implements FriendService {
 	}
 
 	@Override
-	public void findFriendByPhoneNumber(String username, String phoneNumber) {
-		int index = findByPhoneNumber(username, phoneNumber);
-		findByIndex(index, phoneNumber);
-	}
-
-	@Override
 	public void deleteFriendByName(String username, String name) {
 		int index = findByName(username, name);
 		if (index == -1) {
@@ -104,6 +106,45 @@ public class FriendServiceImpl implements FriendService {
 		} else {
 			friends[index] = null;
 			System.out.println(">>>联系人【" + name + "】删除成功！");
+		}
+	}
+
+	@Override
+	public void updateFriendByName(String username, String name) {
+		int index = findByName(username, name);
+		if (index == -1) {
+			System.out.println(">>>联系人【" + name + "】不存在！");
+		} else {
+
+			Friend friend = new Friend();
+			while (true) {
+				System.out.println(">>>原姓名：" + friends[index].getName());
+				System.out.println(">>>姓名修改为？请输入！");
+				System.out.print("<<<");
+				Scanner sc = new Scanner(System.in);
+				friend.setName(sc.next());
+				if (findByName(DBUtil.getUsername(), friend.getName()) == -1) {
+					System.out.println(">>>原电话号码：" + friends[index].getPhoneNumber());
+					System.out.println(">>>电话号码修改为？请输入！");
+					System.out.print("<<<");
+					friend.setPhoneNumber(sc.next());
+					System.out.println(">>>原地址：" + friends[index].getAddress());
+					System.out.println(">>>地址修改为？请输入！");
+					System.out.print("<<<");
+					friend.setAddress(sc.next());
+					friend.setUsername(DBUtil.getUsername());
+					System.out.println(">>>联系人修改成功！");
+					System.out.println(">>>姓        名：" + friends[index].getName() + "\t\t->\t" + friend.getName());
+					System.out.println(
+							">>>电话号码：" + friends[index].getPhoneNumber() + "\t->\t" + friend.getPhoneNumber());
+					System.out
+							.println(">>>地        址：" + friends[index].getAddress() + "\t\t->\t" + friend.getAddress());
+					friends[index] = friend;
+					break;
+				} else {
+					System.out.println(">>>联系人【" + friend.getName() + "】已存在！");
+				}
+			}
 		}
 	}
 

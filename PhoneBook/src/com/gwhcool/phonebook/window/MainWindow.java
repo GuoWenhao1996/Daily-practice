@@ -14,6 +14,7 @@ import com.gwhcool.phonebook.service.FriendServiceImpl;
  * <li>增加好友</li>
  * <li>删除好友</li>
  * <li>查询好友</li>
+ * <li>修改好友信息</li>
  * <li>展示所有好友</li>
  * <li>注销</li>
  * <li>退出系统</li>
@@ -33,7 +34,8 @@ public class MainWindow extends Window {
 		System.out.println("| 2、按姓名查询好友                                     |");
 		System.out.println("| 3、按手机号查询好友                                 |");
 		System.out.println("| 4、展示所有好友                                         |");
-		System.out.println("| 5、删除好友                                                 |");
+		System.out.println("| 5、修改好友信息                                         |");
+		System.out.println("| 6、删除好友                                                 |");
 		System.out.println("| 9、注销                                                         |");
 		System.out.println("| 0、退出系统                                                 |");
 		System.out.println("|                         |");
@@ -87,7 +89,13 @@ public class MainWindow extends Window {
 			sc.nextLine();
 			sc.nextLine();
 			show(sc);
-		} else if ("5".equals(choose)) {
+		}else if ("5".equals(choose)) {
+			System.out.println(">>>请输入要修改的联系人的姓名：");
+			System.out.print("<<<");
+			String name = sc.next();
+			friendService.updateFriendByName(DBUtil.getUsername(), name);
+			show(sc);
+		} else if ("6".equals(choose)) {
 			System.out.println(">>>请输入要删除的联系人姓名：");
 			System.out.print("<<<");
 			String name = sc.next();

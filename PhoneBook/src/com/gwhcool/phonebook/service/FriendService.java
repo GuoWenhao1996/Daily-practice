@@ -48,6 +48,17 @@ public interface FriendService {
 	abstract void deleteFriendByName(String username, String name);
 
 	/**
+	 * 通过姓名修改联系人信息
+	 * 
+	 * @param username
+	 *            用户名
+	 * @param name
+	 *            联系人姓名
+	 */
+	abstract void updateFriendByName(String username, String name);
+
+	
+	/**
 	 * 添加联系人
 	 * 
 	 * @param friend
