@@ -83,7 +83,214 @@
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
                     时间：2017-08-07 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
+                    ===============================================<br>
+                    上午：<br>
+                    ===============================================<br>
+                    1、Java基础类库<br>
+                    	a)与控制台互动<br>
+                    		运行Java程序的参数<br>
+                    			JVM调用main()方法<br>
+                    			如何为main()方法传入实际参数<br>
+                    				Java命令运行main方法所在的类的时候，在类名后紧跟一个或者多个字符串<br>
+                    				字符串用空格隔开，JVM会把这些字符串依次赋值给args数组<br>
+                    				如果字符串参数本身包含空格，则应该用""将该字符串包裹起来<br>
+<br>
+                    		使用Scanner获取键盘输入<br>
+                    			基于正则表达式的文本扫描器，可以从输入流、接收的文件、字符串中解析出基本数据类型的值和字符串的值<br>
+                    			Scanner类提供了多个构造器，不同的构造器可以接收文件、输入流、字符串作为数据源<br>
+                    			Scanner主要提供了hasNextXxx()、nextXxx()两个方法来扫描输入<br>
+                    			默认使用空白（空格、tab、回车）作为多个输入项之间的分隔附<br>
+<br>
+                    	b)系统相关类<br>
+                    		System<br>
+                    			代表当前Java程序的运行平台,程序不能创建System对象<br>
+                    			运行平台配置、环境变量、系统属性的查看<br>
+<br>
+                    		RunTime<br>
+                    			运行环境，JVM相关信息<br>
+                    			如处理器数量、内存信息<br>
+                    			Runtime类代表Java程序的运行时环境，每个Java程序都有一个与之对应的Runtime实例<br>
+                    			Runtime类代表Java程序的运行时环境，可以访问JVM的相关信息，如处理器数量、内存信息等。<br>
+                    			Runtime的exec方法可以单独启动一个进程来运行操作系统的命令<br>
+                    			rt.exec(“notepad.exe”);<br>
+                          <br>
+                    	c)常用类☆☆☆☆☆<br>
+                    		Object<br>
+                    			equals方法比较对象的地址是否相等(通常情况下会重写equals方法自定义相等的比较规则，object的equals没有实际意义)<br>
+                    			native 本地代码实现，一般为c、c++<br>
+                    			Object类是所有类的父类，也就是说，Java允许把任何类型的对象赋值给Object类型的变量。<br>
+                    			任何Java类的对象都可以调用Object类的方法。<br>
+                    			equals(Object obj)<br>
+                    			finalise()<br>
+                    			getClass()<br>
+                    			hashCode()<br>
+                    			toString()<br>
+                    			clone()<br>
+<br>
+                    		Objects类<br>
+                    			Java 7 新增<br>
+<br>
+                    		String<br>
+                    			（String str1="...";方法区常量池）<br>
+                    			（String str1=new String("...");堆）<br>
+                    			String的值一旦确定不可更改，只能新建一个<br>
+                    			==与equals的区别<br>
+                    			a)split() 字符串分割<br>
+                    			b)substring() 字符串截取 前包括、后不包括<br>
+                    			c)toUpperCase() 全大写<br>
+                    			d)toLowerCase() 全大写<br>
+<br>
+                    		StringBuffer<br>
+                    			线程安全的可变字符序列<br>
+<br>
+                    		StringBuilder<br>
+                    			线程不安全的可变字符序列，效率高于StringBuffer<br>
+<br>
+                    		Math<br>
+                    			重点掌握随机数Random();<br>
+<br>
+                    		ThreadLocalRandom()和Random()的区别：<br>
+                    			种子相同运算规则相同（伪随机）<br>
+                    			推荐选择当前时间的毫秒值作为种子<br>
+                    			前者线程安全，后者线程不安全<br>
+<br>
+                    		BigDecimal<br>
+                    			两个基本类型的浮点数运算容易引起精度丢失。如：(0.05+0.01)、(1.0-0.42)<br>
+                    			建议使用基于String的构造器<br>
+                    			如果必须使用double类型作为构造器的参数，则通过BigDecimal.valueOf(double value)静态方法来创建BigDecimal对象<br>
+                    			可以以BigDecimal为基础定义一个工具类进行运算<br>
+<br>
+                    ===============================================<br>
+                    下午：<br>
+                    ===============================================<br>
+                    	d)日期相关类☆☆☆☆☆<br>
+                    		Date<br>
+                    			创建Date对象的两种方式new Date()或new Date(Long long)<br>
+                    			getTime()方法<br>
+                    			after、before<br>
+<br>
+                    		Calendar<br>
+                    			获取Calendar对象<br>
+                    			获取年月日<br>
+                    			设置年月日<br>
+                    			日期的加减运算<br>
+                    			Date与Calendar的相互转换<br>
+<br>
+                    		Java 8新增的日期、时间包(java.time)<br>
+                    			Clock<br>
+                    			LocalDate<br>
+                    			LocalTime<br>
+                    			LocalDateTime<br>
+                    			Year<br>
+                    			YeraMonth<br>
+                    			Month<br>
+                    			MonthDay<br>
+                    			DayOfWeek<br>
+<br>
+                    		格式化日期，日期与字符串相互转换<br>
+                        <pre class="prettyprint lang-cs">代码示例：
+  /*String->Date*/
+  // 设置时间字符串
+  String datestr = "2017-05-06";
+  // 设置日期格式
+  SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+  // 把字符串日期变为date日期
+  Date date = sdf.parse(datestr);
 
+  /*Date->String*/
+  // 设置日期格式
+  sdf = new SimpleDateFormat("yyyy年MM月dd日");
+  // 为Date设格式
+  datestr = sdf.format(date);
+
+  /* 第二种方式 */
+  /*String->Date*/
+  LocalDate localDate=LocalDate.parse("2017-05-06");
+  DateTimeFormatter dtf=DateTimeFormatter.ofPattern("yyyy年MM月dd日");
+  /*Date->String*/
+  System.out.println(localDate.format(dtf));
+                        </pre>
+<br>
+                    	正则表达式<br>
+                    		String reg="^1[3|5|7|8][0-9]{9}$";<br>
+                    		String phoneNum="18822223333";<br>
+                    		boolean result = phoneNum.matches(reg);<br>
+<br>
+                    2、Java 异常机制<br>
+                    	a)异常的概述<br>
+                    		try catch finally throw throws<br>
+                    		异常处理已经成为衡量一门语言是否成熟的标准之一，除了传统的像C语言没有提供异常处理机制之外，目前主流的编程语言都提供了异常处理机制。<br>
+                    		对于一个程序设计人员，要尽可能地预知所有可能发生的情况，尽可能地保证程序在所有糟糕的情形下都可以运行。<br>
+                    		国内的程序员做开发时，往往只做了“对”的事<br>
+                    		使用if语句错误处理机制，有如下缺点：<br>
+                    		无法穷举所有的异常情况<br>
+                    		错误处理代码和业务实现代码混杂<br>
+<br>
+                    	b)Java中异常处理机制<br>
+                    		捕获并处理 try catch finally<br>
+                    		跑出 throw throws<br>
+<br>
+                    	c)Checked异常和Runtime异常体系<br>
+                    		Checked异常：编译异常，编译时必须处理1、try-catch；2、throws<br>
+                    		Runtime异常：运行时异常，利用修改业务逻辑来避免，不建议处理<br>
+<br>
+                    	d)try-catch语句块<br>
+                    		所有父类异常的catch块都应该排在子类异常的后面，先处理小异常，再处理大异常<br>
+                    		如果try内的语句块被执行一次就有异常抛出，则try后的catch分支做多有一个分支内的语句会被执行<br>
+<br>
+                    	e)jdk1.7提供多异常捕获<br>
+                    		异常类型用|隔开<br>
+                    		异常变量是一个隐式的final修饰的常量<br>
+<br>
+                    	f)自定义异常(继承Exception)<br>
+                    		自定义一个类继承Exception或者RuntimeException<br>
+                    		在方法的指定位置跑出该异常对象throw<br>
+                    		在方法签名后抛出异常类型throws<br>
+                    		throw抛出异常对象，用在方法体中<br>
+                    		throws抛出异常类型，用在方法签名后<br>
+                    		catch和throw的配合使用<br>
+<br>
+                    	g)finally<br>
+                    		用在try-catch后，不管抛不抛异常都会执行<br>
+                    		通常用来回收try中打开的物理资源(数据库连接、网络连接、磁盘文件读写)<br>
+                    		这些物理资源一定要显性回收<br>
+                    		将资源回收的代码写入finally中，一定会被执行(除非调用exit终止虚拟机)<br>
+                    		尽量避免在finally语句块中使用return和throw语句<br>
+<br>
+                    	h)Java的异常跟踪栈<br>
+                    		getMessage()：返回该异常的详细描述字符串<br>
+                    		printStackTrace():将该异常的跟踪栈信息输出到标准错误输出<br>
+                    		printStackTrace(PrintStream s):将该异常的跟踪栈信息输出到指定输出流<br>
+                    		getStackTrace():返回该异常的跟踪栈信息<br>
+<br>
+                    	i)异常处理的规则<br>
+                    		不要过度使用异常<br>
+                    		不要使用过于庞大的try块<br>
+                    		避免使用catch all语句<br>
+                    		不要忽略捕获到的异常<br>
+<br>
+                    	j)使用throw抛出异常<br>
+                    		catch和throw配合使用<br>
+                    		后台需要通过日志来记录异常发生的详细情况<br>
+                    		应用还需要根据异常向应用使用者传达某种提示<br>
+<br>
+                    ===============================================<br>
+                    晚上：<br>
+                    ===============================================<br>
+                    看object.java<br>
+                    看scanner.java<br>
+                    看System.java<br>
+                    native<br>
+                    StringBuffer和StringBuilder的区别<br>
+                    ThreadLocalRandom()和Random()的区别：<br>
+                    历元 1970<br>
+                    CST<br>
+<br>
+                    ===============================================<br>
+                    任务：<br>
+                    ===============================================<br>
+                    String每个方法写个例子<br>
+                    练习题<br>
             </article>
             <div class="relates">
                 <div class="title">
