@@ -83,7 +83,111 @@
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
                     时间：2017-08-09 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
-
+                    ===============================================<br>
+                    上午：<br>
+                    ===============================================<br>
+                    1、Map<br>
+                    	键不能重复(hashCode和equals)<br>
+                    	元素是以键值对的形式存在的，一个键有唯一的一个值与之对应<br>
+                    	键的数据类型可以是Object，值的数据类型也是Object<br>
+                    	使用Map通过键获取值<br>
+<br>
+                    2、HashMap和Hashtable的区别<br>
+                    	HashMap允许有null键或者null值，Hashtable不允许<br>
+                    	HashMap非同步，Hashtable同步<br>
+<br>
+                    3、HashMap和TreeMap的区别：<a href="http://www.jb51.net/article/32652.htm">一篇好文章</a><br>
+<br>
+                    	HashMap和TreeMap 非线程安全<br>
+                    	Hashtable线程安全<br>
+<br>
+                    	HashMap：基于哈希表实现，可以调优初始容量和负载因子。<br>
+                    	TreeMap：基于红黑树实现。TreeMap没有调优选项，因为该树总处于平衡状态。<br>
+<br>
+                    	HashMap：适用于在Map中插入、删除和定位元素。<br>
+                    	Treemap：适用于按自然顺序或自定义顺序遍历键(key)。<br>
+<br>
+                    	HashMap通常比TreeMap快一点(树和哈希表的数据结构使然)，建议多使用HashMap。<br>
+                    	在需要排序的Map时候才用TreeMap。<br>
+<br>
+                    4、重点掌握ArrayList和HashMap的使用！！！！！！！！<br>
+<br>
+                    ===============================================<br>
+                    下午：<br>
+                    ===============================================<br>
+                    5、Object		String<br>
+                       List<Object>		List<String><br>
+<br>
+                    	List<? extends Object>	最大泛型<br>
+                    	List<? super Object>	最小泛型<br>
+<br>
+                    	会基础运用<br>
+                    	public class Test<T>{}<br>
+                    	创建对象时候用泛型为参数设置类型<br>
+<br>
+                    6、自动装箱 自动拆箱<br>
+                    	byte	short	int	long	float	double	char		boolean<br>
+                    	Byte	Short	Integer	Long	Float	Double	Character	Boolean<br>
+<br>
+                    	包装类和对应的基本数据类型之间可以自动的转换<br>
+                    		自动装箱	基本数据类型-->包装类<br>
+                    		自动拆箱	包装类-->基本数据类型<br>
+<br>
+                    	使用包装类的好处：<br>
+                    		可以像操纵对象一样操纵基本数据类型的值<br>
+                    		可以使用包装类的方法进行数据操作<br>
+                    			如：字符串转基本数据类型<br>
+<br>
+                    7、多线程<br>
+                    	理解线程的基本概念，理解线程和进程的区别<br>
+                    		进程是一个静态概念<br>
+                    		一个进程是由多个线程组成的<br>
+                    		运行一个进程的时候其实是运行进程中的主线程<br>
+                    		War、jar、jvm<br>
+                    		多个线程可以共享进程的资源<br>
+                    		线程对系统资源的开销很小<br>
+                    		早期的操作系统是不支持多进程的<br>
+                    		CPU在同一时间只能处理一个问题<br>
+                    		CPU在线程之间的切换成本较低<br>
+<br>
+                    	掌握Java中实现线程的方式<br>
+                    		(第1种)继承Thread类，重写run方法，在其他线程中创建此类的对象，调用start方法开启一个新的线程，这个新线程会自动调用执行run方法<br>
+<br>
+                    		(第2种)写一个类实现Runnable接口，重写run方法，在其他线程中创建Thread对象，并把此类的实例作为构造参数传入Thread，调用Thread对象的start方法启动线程，这个新线程会自动调用执行run方法<br>
+<br>
+                    		建议：建议使用第二种创建线程的方式，因为java中是单继承，一个类如果继承了Thread就没办法继承其他类了<br>
+<br>
+                    		不能重复开启一个线程，只能start1次<br>
+                    		一定注意启动线程用strat方法<br>
+<br>
+                    	掌握如何管理线程<br>
+                    		线程的优先级(1-10)，默认为5<br>
+                    		当程序的非守护线程结束的时候，程序结束<br>
+                    		程序结束的时候守护线程会自动结束，垃圾回收器就是守护线程<br>
+<br>
+                    	理解线程的生命周期<br>
+                    		线程的状态<br>
+<br>
+                    	掌握线程同步<br>
+                    	线程之间的通信<br>
+<br>
+                    ===============================================<br>
+                    晚上：<br>
+                    ===============================================<br>
+                    预习线程同步<br>
+                    预习线程通信<br>
+<br>
+                    ===============================================<br>
+                    下节课内容：<br>
+                    ===============================================<br>
+                    线程同步<br>
+                    线程通信<br>
+                    I/O流<br>
+<br>
+                    ===============================================<br>
+                    任务：<br>
+                    ===============================================<br>
+                    守护线程<br>
             </article>
             <div class="relates">
                 <div class="title">
