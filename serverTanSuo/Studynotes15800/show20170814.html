@@ -5,7 +5,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>第十日学习笔记</title>
+    <title>第十一日学习笔记</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -65,101 +65,25 @@
     <div class="content-wrap">
         <div class="content">
             <header class="article-header">
-                <h1 class="article-title"><a href="#" title="java培训学习路线">java初级学习-第10日：处理流和反射</a></h1>
+                <h1 class="article-title"><a href="#" title="java培训学习路线">java初级学习-第x日：xxxxxxxxxxxxxx</a></h1>
                 <div class="article-meta"> <span class="item article-meta-time">
-	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2017-08-11"><i
-              class="glyphicon glyphicon-time"></i> 2017-08-11
+	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2017-08-14"><i
+              class="glyphicon glyphicon-time"></i> 2017-08-14
       </time>
 	  </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title=""
                     data-original-title="来源：酬勤学习笔记"><i class="glyphicon glyphicon-globe"></i> 酬勤学习笔记</span> <span
                         class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title=""
-                        data-original-title="java初级学习-第10日：处理流和反射"><i class="glyphicon glyphicon-list"></i> <a
+                        data-original-title="java初级学习-第x日：xxxxxxxxxxxxxx"><i class="glyphicon glyphicon-list"></i> <a
                         href="#"
-                        title="java初级学习-第10日：处理流和反射">java初级学习-第10日：处理流和反射</a></span>
+                        title="java初级学习-第x日：xxxxxxxxxxxxxx">java初级学习-第x日：xxxxxxxxxxxxxx</a></span>
                     <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title=""
                           data-original-title="浏览量：127"><i class="glyphicon glyphicon-eye-open"></i> 127</span></div>
             </header>
             <article class="article-content">
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
-                    时间：2017-08-11 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
-                    ===============================================<br>
-                    上午：<br>
-                    ===============================================<br>
-                    1、I/O流<br>
-                    	节点流<br>
-                    		昨天重点讲的<br>
-                    		InputStream<br>
-                    		OutputStream<br>
-                    		Writer<br>
-                    		Reader<br>
-                    <br>
-                    	处理流<br>
-                    		缓冲流<br>
-                    			BufferedInputStream<br>
-                    			BufferedOutputStream<br>
-                    			BufferedReader<br>
-                    				String readLine() 读一行<br>
-                    			BufferedWriter<br>
-                    				newLine() 可实现跨平台换行符<br>
-                    <br>
-                    		转换流<br>
-                    			InputStreamReader	字节输入流向字符输入流转换<br>
-                    			OutputStreamWriter	字节输出流向字符输出流转换<br>
-                    <br>
-                    		数据流<br>
-                    			DataOutputStream<br>
-                    			DataInputStream<br>
-                    			先存先取，后存后取<br>
-                    <br>
-                    		打印流<br>
-                    			PrintStream<br>
-                    <br>
-                    		对象流<br>
-                    			Java对象保存为文件-->序列化<br>
-                    			文件转化为Java对象-->反序列化<br>
-                    			一个对象如果能够被序列化，那么必须实现序列化接口 Serializable<br>
-                    			ObjectInputStream  ObjectOutputStream<br>
-                    <br>
-                    2、Serializable<br>
-                    	Serializable接口是启用其序列化功能的接口。实现java.io.Serializable 接口的类是可序列化的。没有实现此接口的类将不能使它们的任一状态被序列化或逆序列化。 <br>
-                    <br>
-                    3、transient<br>
-                    	java语言的关键字，变量修饰符，如果用transient声明一个实例变量，当对象存储时，它的值不需要维持。换句话来说就是，用transient关键字标记的成员变量不参与序列化过程。<br>
-                    <br>
-                    <br>
-                    ===============================================<br>
-                    下午：<br>
-                    ===============================================<br>
-                    4、反射 reflet<br>
-                    	目的：<br>
-                    		在运行中得到一个对象的类型，得到类中的属性，类中的方法<br>
-                    		动态调用对象的方法或属性<br>
-                    <br>
-                    	java.lang.Class<br>
-                    	java.lang.reflect.Method<br>
-                    	java.lang.reflect.Constructor<br>
-                    	java.lang.reflect.Field<br>
-                    <br>
-                    <br>
-                    	获得Class对象的几种方式：<br>
-                    		对象.getClass();<br>
-                    		类名.class;<br>
-                    		Class.forName("类全名");<br>
-                    <br>
-                    	对于基本数据类型获取class对象：<br>
-                    		类型.class--->int.class<br>
-                    		包装类.TYPE-->Integer.TYPE<br>
-                    <br>
-                    5、类名.class和Class.forName("类全名")的区别：<br>
-                    	类名.class---->不会加载类<br>
-                    	Class.forName("类全名")---->会加载类,执行静态块内的语句<br>
-                    ===============================================<br>
-                    晚上：<br>
-                    ===============================================<br>
-                    注解<br>
-                    类加载器<br>
-<br>
+                    时间：2017-08-14 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
+
             </article>
             <div class="relates">
                 <div class="title">
@@ -176,6 +100,7 @@
                   <li><a href="show20170809.html" title="">java初级学习-第8日：Map、装箱、拆箱、泛型、多线程</a></li>
                   <li><a href="show20170810.html" title="">java初级学习-第9日：线程同步、通信，文件读写</a></li>
                   <li><a href="show20170811.html" title="">java初级学习-第10日：处理流和反射</a></li>
+                  <li><a href="show20170814.html" title="">java初级学习-第x日：xxxxxxxxxxxxxx</a></li>
               </ul>
             </div>
         </div>
