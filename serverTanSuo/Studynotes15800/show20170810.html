@@ -83,7 +83,112 @@
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
                     时间：2017-08-10 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
-
+                    ===============================================<br>
+                    上午：<br>
+                    ===============================================<br>
+                    1、线程同步：<br>
+                    	线程同步的意义：<br>
+                    		保证一个线程访问某一资源时，其他线程不允许访问<br>
+                    <br>
+                    	如何实现线程同步：<br>
+                    		在访问的相同资源上加同步锁<br>
+                    		同步块 synchronized(同一个对象){}<br>
+                    			锁为：同一个对象<br>
+                    		同步方法 方法声明处使用synchronized修饰<br>
+                    			锁为：this 同步方法所在的当前对象<br>
+                    			让不同线程的run方法调用的是同一对象的同步方法<br>
+                    <br>
+                    	死锁：<br>
+                    		a等待b释放锁<br>
+                    		b等待a释放锁<br>
+                    		尽量少使用锁<br>
+                    	<br>
+                    	练习：<br>
+                    		五个人过山洞<br>
+                    <br>
+                    2、线程通信<br>
+                    	wait---notify机制：<br>
+                    		是Object类中final方法<br>
+                    		必须在synchronized方法中被调用	<br>
+                    		wait()告知被调用的线程退出监视器进入等待状态，直到其他线程进入相同的监视器并调用notify()方法<br>
+                    		notify()方法唤醒同一个对象第一个调用wait()进入等待的线程<br>
+                    		notifyAll()唤醒同一对象上所有调用wait()进入等待的线程<br>
+                    	<br>
+                    	练习：<br>
+                    		生产者与消费者<br>
+                    <br>
+                    	管道流：<br>
+                    		xxxxxxxxxxxxxx<br>
+                    <br>
+                    3、守护线程<br>
+                    	非守护线程结束时，守护线程自动结束<br>
+                    	void setDaemon(boolean on) 必须在start之前调用<br>
+                    	线程对象.setDaemon(true);<br>
+                    	线程对象.start();<br>
+                    <br>
+                    4、线程池 API-Executors API-ExecutorService<br>
+                    	池子，有很多线程<br>
+                    	先开启若干数量的线程，让这些线程处于wait状态<br>
+                    	当有请求时就会唤醒一个线程，让这个线程来处理业务请求<br>
+                    	当这个业务请求完成后，继续让这个线程处于wait状态<br>
+                    <br>
+                    5、回顾单例模式<br>
+                    	预计加载<br>
+                    	延迟加载<br>
+                    	双锁机制<br>
+                    <br>
+                    ===============================================<br>
+                    下午：<br>
+                    ===============================================<br>
+                    6、I/O流<br>
+                    	为什么叫流<br>
+                    	<br>
+                    	流的分类：<br>
+                    		按流向分为【输入流】和【输出流】 <br>
+                    		按照操作的数据的最小单位分为【字节流(InputStream、OutputStream) 处理二进制文件】和【字符流(Reader、Writer) 处理文本文件】（一个中文字符=2字节）<br>
+                    		按流的功能分为【节点流 InputStream、OutputStream、Writer、Reader】和【处理流】 节点流是直接操作文件或元数据的，处理流是操纵结点流的（装饰模式）<br>
+                    		<br>
+                    	输入流、输出流<br>
+                    		以内存为基准<br>
+                    		往内存中去的叫输入流 InputStream、Reader<br>
+                    		从内存中出来的叫输出流 OutputStream、Writer<br>
+                    	<br>
+                    7、File 一个File对象对应一个文件或者文件夹<br>
+                    	文件和目录路径名的抽象表示形式。 <br>
+                    	只是路径名<br>
+                    	windows可用'\'和'/'表示路径，在Java中建议'/'<br>
+                    	<br>
+                    	绝对路径 C:/XXX/XXX.txt<br>
+                    	相对路径 当前项目 io/test.txt<br>
+                    <br>
+                    	file.createNewFile()//当文件夹不存在的时候，抛出java.io.IOException<br>
+                    	file2.delete()//真删除，删了就删了，不在回收站里<br>
+                    	删除文件夹，要先删除文件夹里的文件，然后再删除文件夹（递归）<br>
+                    <br>
+                    	mkdir()和mkdirs()<br>
+                    <br>
+                    8、流<br>
+                    	InputStream<br>
+                    	OutputStream<br>
+                    	Writer<br>
+                    	Reader<br>
+                    ===============================================<br>
+                    晚上：<br>
+                    ===============================================<br>
+                    管道流<br>
+                    API-Executors<br>
+                    API-ExecutorService<br>
+                    最小连接数<br>
+                    最大连接数<br>
+                    <br>
+                    ===============================================<br>
+                    下节课内容：<br>
+                    ===============================================<br>
+                    <br>
+                    ===============================================<br>
+                    任务：<br>
+                    ===============================================<br>
+<br>
             </article>
             <div class="relates">
                 <div class="title">
