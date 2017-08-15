@@ -83,7 +83,287 @@
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
                     时间：2017-08-15 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
-
+                    ===============================================<br>
+                    上午：<br>
+                    ===============================================<br>
+                    MySQL数据库：<br>
+                    1、关系型数据库的概述<br>
+                    	为什么使用数据库？<br>
+                    		减少数据冗余度<br>
+                    		提高数据的一致性、准确性、安全性<br>
+                    		对数据进行统一的管理<br>
+<br>
+                    	数据库的发展经历了哪些阶段？<br>
+                    		☆层次模型<br>
+                    		☆网状模型<br>
+                    		☆关系模型(实体、关系)<br>
+                    			当前主流的数据库模型<br>
+                    			在关系型数据库中，数据是存储在表内的<br>
+                    			表与表之间的关系<br>
+                    				一对一<br>
+                    				一对多<br>
+                    				多对多 必须有一个中间表<br>
+                    				表述关系 用外键<br>
+                    		☆对象模型<br>
+                    			no-sql<br>
+<br>
+                    	数据库、数据库管理系统、数据库系统，MySQL是什么定位？<br>
+                    		计算机中按照一定规则集中存储数据的一个空间的抽象-->数据库(DB)<br>
+                    		按照某种规则操作数据库中的数据-->数据库管理系统(DBMS  RDBMS)<br>
+                    		安装了数据库的计算机(硬件和软件的总称)-->数据库系统(DBS)<br>
+<br>
+                    	安装MySQL<br>
+                    		安装版<br>
+                    			不解释了<br>
+                    		解压版<br>
+                    			解压<br>
+                    			在根目录下新建my.ini<br>
+                    			在my.ini中添加【[mysqld]】【basedir=安装根目录】【datadir=安装根目录/data】<br>
+                    			以管理员身份运行cmd<br>
+                    			cd到根目录下<br>
+                    			运行...<br>
+<br>
+                    	卸载MySQL<br>
+                    		停止服务 【net stop mysql】<br>
+                    		控制面板 卸载<br>
+                    		删除根目录<br>
+                    		删除c:/ProgramData/MySQL文件夹<br>
+<br>
+                    2、管理数据库和表<br>
+                    	操作数据库：<br>
+                    		☆展示MySQL所管理的数据库：<br>
+                    			show databases;<br>
+                    			show databases \g<br>
+                    			show databases \G<br>
+<br>
+                    		☆创建数据库：<br>
+                    			create database day01;<br>
+<br>
+                    		☆删除数据库：<br>
+                    			 drop database day01;<br>
+<br>
+                    		☆连接数据库(打开进入指定数据库)：<br>
+                    			use day01;<br>
+<br>
+                    	操作表：<br>
+                    		☆创建表：<br>
+                    			create table studentinfo(<br>
+                    				sid int,<br>
+                    				sname varchar(20),<br>
+                    				sex char(2),<br>
+                    				age tinyint,<br>
+                    				phonenum varchar(11)<br>
+                    			);<br>
+<br>
+                    		☆查看数据库中的表：<br>
+                    			show tables;//看所有表名<br>
+                    			show create table studentinfo;//看建表语句<br>
+                    			describe studentinfo;//看表结构<br>
+                    			desc studentinfo;//看表结构简写<br>
+<br>
+                    		☆删除表：<br>
+                    			drop table studentinfo;<br>
+<br>
+                    		☆向表中插入数据：<br>
+                    			insert into studentinfo values(1,'张三','男',20,18812341234);<br>
+<br>
+                    		☆查询表中所有数据：<br>
+                    			select * from studentinfo;<br>
+<br>
+                    		☆删除表中所有数据：<br>
+                    			delete from studentinfo;<br>
+<br>
+                    		☆复制表：<br>
+                    			create table studentcopy_1 as select * from studentinfo where 1=0;//只复制表结构<br>
+                    			create table studentcopy_2 as select * from studentinfo;//复制表结构和内容<br>
+<br>
+                    	数据类型：<br>
+                    		☆整型<br>
+                    			tinyint		1B<br>
+                    			smallint	2B<br>
+                    			int/integer	4B<br>
+                    			bigint		8B<br>
+                    			注：int(3)<br>
+<br>
+                    		☆浮点型<br>
+                    			float		4B<br>
+                    			double		8B<br>
+                    			decimal		17B--->金钱、金额--->底层以字符串存储<br>
+                    			numeric<br>
+                    			注：decimal(3,2)总共3位，小数2位<br>
+                    			    numeric用法与decimal相同<br>
+<br>
+                    		☆字符串<br>
+                    			char		0-255<br>
+                    			varchar<br>
+                    			binary<br>
+                    			varbinary<br>
+                    			注：char和varchar必须注明长度<br>
+                    			    char长度不可变<br>
+                    			    varchar长度可变<br>
+                    			    char效率高于varchar<br>
+                    			    varchar更节省内存<br>
+<br>
+                    		☆日期<br>
+                    			date		年月日<br>
+                    			datatime	年月日时分秒<br>
+                    			year		年(1901年以后的)<br>
+                    			timestamp	表述系统时间(1970年以后的)<br>
+<br>
+                    		☆大文本<br>
+                    			text<br>
+<br>
+                    		☆二进制<br>
+                    			tinyblob	255B<br>
+                    			blob		65KB<br>
+                    			mediumblob	16MB<br>
+                    			longblob	4GB<br>
+<br>
+                    ===============================================<br>
+                    下午：<br>
+                    ===============================================<br>
+                    3、保证数据完整性<br>
+                    	理解数据完整性定义<br>
+                    		数据准确+可靠<br>
+                    		需要在建表时规定字段的数据完整性约束<br>
+<br>
+                    	实现各种完整性的方法+语法<br>
+                    		☆域完整性<br>
+                    			数据类型<br>
+<br>
+                    			外键约束<br>
+                    				foreign key (cid) references class(cid)<br>
+                    				一张表中可以有多个外键，外键列一般关联到另一张表的主键列<br>
+<br>
+                    			非空约束<br>
+                    				not null<br>
+<br>
+                    			默认值<br>
+                    				default 值<br>
+                    				注意数据类型<br>
+                    				让默认值生效<br>
+                    				insert into user(username,password) values ('admin',default);<br>
+                    				insert into user(username) values ('admin1');<br>
+<br>
+                    		☆实体完整性<br>
+                    			唯一约束	unique<br>
+                    			主键约束	primary key 唯一,非空，索引列<br>
+                    				注：同一个表中只能由一个主键<br>
+                    				    一个主键可以加在多个列上，由多个列组成的主键叫做复合主键<br>
+                    				    复合主键的每一列的值都不能为空<br>
+                    				    复合主键的值组合起来判断是否唯一<br>
+                    				    primary key(username,password)<br>
+<br>
+                    			标识列		auto_increment 整数的自动递增<br>
+                    				注：可在建表时设置自增长的初始值<br>
+<br>
+                    		☆引用完整性<br>
+                    			外键约束<br>
+<br>
+                    		☆自定义完整性<br>
+                    			触发器...<br>
+<br>
+                    	最终的建表语句<br>
+                    		create table user(<br>
+                    			id int primary key auto_increment,<br>
+                    			username varchar(20) unique not null,<br>
+                    			password varchar(20) default '000000'<br>
+                    		)auto_increment=1000;<br>
+<br>
+                    	修改表的结构<br>
+                    		☆增加列：<br>
+                    			alter table 表名 add column 列名 类型 约束;<br>
+                    			例：alter table user add column status int default 1;<br>
+<br>
+                    		☆修改列:<br>
+                    			修改数据类型、约束<br>
+                    			alter table 表名 modify 列名 新数据类型 新约束;<br>
+                    			例：alter table user modify username varchar(30) unique not null;<br>
+<br>
+                    			修改列名、数据类型、约束<br>
+                    			alter table 表名 change 旧列名 新列名 新数据类型 新约束;<br>
+                    			例：alter table user change username uname varchar(30) unique not null;<br>
+<br>
+                    		☆删除列<br>
+                    			alter table 表名 drop 列名;<br>
+                    			例：alter table user drop status;<br>
+<br>
+                    		☆修改主键、外键<br>
+                    			alter table 表名 add [constraint 主键名] primary key (列1,列2);<br>
+                    			alter table 表名 add [constraint 外键名] foreign key (列1) references 表(列);<br>
+<br>
+                    4、使用DML语句更改数据<br>
+                    	SQL(结构化查询语言)语句<br>
+                    		☆DCL(数据控制语言)<br>
+                    			控制数据库的语句<br>
+                    			创建用户、修改权限<br>
+                    		☆DDL(数据定义语言)<br>
+                    			操作数据库和表的语句<br>
+                    		☆DML(数据操作语言)<br>
+                    			数据的增删改操作的语句<br>
+                    		☆DQL(数据查询语言)<br>
+                    			数据的查询语句<br>
+                    	增<br>
+                    		insert into 表名 values(值1,值2,值3,...);<br>
+                    		日期和字符串需要使用单引号<br>
+                    		如果一个字段的值没有输入项，则可以使用null或者default代替<br>
+                    		insert ignore into 表名 values(...)<br>
+                    		replace into 替换<br>
+<br>
+                    	删<br>
+                    		delete from 表名 [where 条件];<br>
+                    		truncate [table] 表名;		（确切的说叫重置表，它不是DML语句，是DDL语句）<br>
+                    		mysql的比较运算符和逻辑运算符<br>
+                    			比较运算符<br>
+                    				=<br>
+                    				>、>=<br>
+                    				<、<=<br>
+                    				!=、<><br>
+                    				is null、<=>null<br>
+                    				between 值A and 值B  （表示在值A和值B之间的包括值A和值B）<br>
+                    				in(值A,值B,值C,...)  （表示指定的值A值B值C）<br>
+                    				like 模糊匹配 字符串匹配 _ % ^ []<br>
+                    				regexp 正则匹配 ^ $ * + . []<br>
+<br>
+                    			比较运算符<br>
+                    				and	（id>=值A and id<=值B）<br>
+                    				or	（id==值A or id==值B）<br>
+                    				not<br>
+                    				xor<br>
+<br>
+                    	改<br>
+                    		update 表名 set 列名1=值1,列名2=值2,列名3=值3,...,列名n=值n [where 条件];<br>
+<br>
+                    	查（明天讲）<br>
+<br>
+                    ===============================================<br>
+                    晚上：<br>
+                    ===============================================<br>
+                    触发器<br>
+                    ☆DCL(数据控制语言)<br>
+                    ☆DDL(数据定义语言)<br>
+                    ☆DML(数据操作语言)<br>
+                    ☆DQL(数据查询语言)<br>
+                    like 模糊匹配 字符串匹配 _ % ^ []<br>
+                    regexp 正则匹配 ^ $ * + . []<br>
+                    总结：mysql常用函数<br>
+<br>
+                    ===============================================<br>
+                    下节课内容：<br>
+                    ===============================================<br>
+                    查<br>
+                    5、简单查询<br>
+<br>
+                    6、聚合函数与分组<br>
+<br>
+                    7、组合查询！！！！！<br>
+<br>
+                    8、连接<br>
+<br>
+                    9、视图、存储过程、触发器<br>
+<br>
+                    10、JDBC操作数据库！！！！！<br>
+<br>
             </article>
             <div class="relates">
                 <div class="title">
