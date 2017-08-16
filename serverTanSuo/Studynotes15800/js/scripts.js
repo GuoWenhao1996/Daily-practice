@@ -180,5 +180,5 @@ function getNowFormatDate() {
     var allarticle = Math.ceil(alldate / 7);
     if (alldate % 7 == 0)
         allarticle = allarticle + 1;
-    document.getElementById("articlecount").innerHTML = 22;
+    document.getElementById("articlecount").innerHTML = 23;
 }
