@@ -83,7 +83,95 @@
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
                     时间：2017-08-16 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
-
+                    ===============================================<br>
+                    上午：<br>
+                    ===============================================<br>
+                    0、回顾<br>
+                    	MySQL 起初是由瑞典MySQL AB 公司开发，后来AB被SUN收购，后来SUN被Oracle收购<br>
+                    	DDL和DML<br>
+                    	auto_increment(MySQL的方言)<br>
+                    	limit(MySQL的方言)<br>
+                    <br>
+                    1、简单查询<br>
+                    	查询只是个投影<br>
+                    	查询产生一个虚拟表，结果并不是真正存储的数据而是数据的投影			<br>
+                    	<br>
+                    	(limit a,b;  a表示从第几行开始显示，b表示共显示几行，行数从0开始)		<br>
+                    	(limit a;  表示显示a行)<br>
+                    <br>
+                    	 例如：select * from student<br>
+                    	       select ename,salary from employee<br>
+                    <br>
+                    2、分组查询<br>
+                    	☆聚合函数：<br>
+                    		sum(列名) 求和<br>
+                    		max(列名) 最大<br>
+                    		min(列名) 最小<br>
+                    		avg(列名) 平均<br>
+                    		count(列名/*) 计数  count([distinct|all] 列名)<br>
+                    		null值不参与统计<br>
+                    <br>
+                    	☆语法：<br>
+                    		select<列名> <br>
+                    		from<表名> <br>
+                    		where<筛选条件> <br>
+                    		group by<列名><br>
+                    		having<组筛选条件><br>
+                    		order by<排序的列名>[asc 或 desc]		(默认asc 升序)<br>
+                    		limit<行数>	<br>
+                    	<br>
+                    	☆执行顺序：<br>
+                    		from->where->group by->select->having->order by->limit<br>
+                    <br>
+                    ===============================================<br>
+                    下午：<br>
+                    ===============================================<br>
+                    3、组合查询(子查询)<br>
+                    	☆相关子查询<br>
+                    		必须依赖外层查询结果执行<br>
+                    		外层查询每返回一行，子查询执行一次<br>
+                    <br>
+                    	☆非相关子查询<br>
+                    		可以独立执行<br>
+                    		只执行一次<br>
+                    		在外层查询执行前返回一个结果共外层查询使用<br>
+                    	<br>
+                    	☆子查询出现的位置：<br>
+                    		在select语句中：<br>
+                    			必须返回单行单列值<br>
+                    <br>
+                    		在where语句中：<br>
+                    			出现在比较运算符(>、<)中的必须返回单行单列值；<br>
+                    			出现在集合运算符(in)中，返回多行单列值；<br>
+                    			出现在子查询运算符(exists)后，子查询有行返回，则exists语句返回true，没有行返回的话exists语句返回false；<br>
+                    			出现在子查询运算符(any)后，只要有一个就返回true，多行单列；<br>
+                    			出现在子查询运算符(all)后，满足所有的返回true，多行单列。<br>
+                    <br>
+                    		在group by语句中：<br>
+                    			不允许使用子查询<br>
+                    		<br>
+                    		在having语句中：<br>
+                    			同where<br>
+                    		<br>
+                    		在order by语句中：<br>
+                    			同select<br>
+                    		<br>
+                    4、联接查询<br>
+                    	☆内联接<br>
+                    		select * from 表1 [inner] join 表2 on 联接条件1 join 表3 on 联接条件2 ......<br>
+                    		select * from 表1,表2,表3 where 联接条件1 and 联接条件2<br>
+                    	<br>
+                    	☆外联接<br>
+                    		左外联接<br>
+                    			left outer join<br>
+                    		右外联接<br>
+                    			right outer join<br>
+                    	<br>
+                    	内联接和外联接的区别：<br>
+                    		内联接左右同时有才显示<br>
+                    		左外联接左侧全都显示，右侧有就显示，没有就显示null<br>
+                    		右外联接右侧全都显示，左侧有就显示，没有就显示null<br>
+<br>
             </article>
             <div class="relates">
                 <div class="title">
