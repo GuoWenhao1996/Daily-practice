@@ -83,7 +83,138 @@
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
                     时间：2017-08-17 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
-
+                    ===============================================<br>
+                    上午：<br>
+                    ===============================================<br>
+                    1、子查询在DML语句中的应用<br>
+                    	where子句里不能使用聚合函数<br>
+                    	聚合函数要用在having子句里<br>
+                    	delete from score where grade >(select grade from score where name='张三');<br>
+                    	update employee set salary =salary +100 where salary<(select avg(salart) from emloyee);//不能在一个子句里边查边改<br>
+                    	insert into student_1 (stname) select sname from student where sid>=2;<br>
+                    	语法：insert into 表2 (列1,列2,...) select (列1,列2,...) from 表1 where 条件;<br>
+<br>
+                    2、索引<br>
+                    	☆什么是索引？<br>
+                    		类似于查字典，查偏旁，找到页数。<br>
+                    		可以极大的提高查询效率。<br>
+<br>
+                    	☆创建索引：<br>
+                    		primary key 和 unique约束会自动创建索引<br>
+                    		建表时：<br>
+                    			index(address)	普通索引<br>
+                    			unique index(address)<br>
+                    		建表后：<br>
+                    			alert table test add index(address);<br>
+                    			alert table test add unique ndex(address);<br>
+                    	☆删除索引：<br>
+                    		alter table test drop index 索引名;//索引名默认为列名<br>
+<br>
+                    	☆复合索引<br>
+                    		index(address,telephone)<br>
+<br>
+                    	☆为什么使用索引？<br>
+                    		加快查询效率，但是会降低增删改的效率。<br>
+                    		所以索引并不是越多越好。<br>
+                    		一般在需要经常查询，很少修改的列上添加索引。<br>
+<br>
+                    	☆是不是所有的条件筛选都会用到索引？<br>
+                    		=、>、<、>=、<=、!=都会;<br>
+                    		is null、 is not null都会;<br>
+                    		between and会使用；<br>
+                    		like 里只有字符开头的模糊匹配才会使用到索引：如'a__'、'a%';<br>
+                    		in 或者not in不会用到索引;<br>
+<br>
+                    ===============================================<br>
+                    下午：<br>
+                    ===============================================<br>
+                    3、视图、触发器、存储过程、函数<br>
+                    	☆什么是视图(view)？<br>
+                    		保存的是查询语句的定义<br>
+                    		保存的是一条sql语句而不是查出来的数据<br>
+                    		create view 视图名 as 查询语句<br>
+                    		视图的使用可以当做表的使用（可以增删改查，会对原表造成影响）<br>
+<br>
+                    	☆什么是存储过程：<br>
+                    		存储过程是一个完整的语句块<br>
+                    		里面可以同时执行多条sql语句<br>
+                    		或者使用存储过程执行一个完整的业务逻辑<br>
+<br>
+                    	☆存储过程的优势：<br>
+                    		sql语句		先编译后执行<br>
+                    		存储过程	只需要编译一次，以后执行就不需要编译了<br>
+                    		减少了频繁连接数据库的开销<br>
+                    		封装了sql<br>
+                    		便于操纵表，对表进行业务逻辑处理<br>
+<br>
+                    	☆存储过程语法：<br>
+                    		create procedure 过程名称(参数)<br>
+                    		begin<br>
+                    			语句1;<br>
+                    			语句2;<br>
+                    			语句3;<br>
+                    			...;<br>
+                    		end;<br>
+<br>
+                    		参数的声明：[in|out|inout] 参数名称1 数据类型,[in|out|inout] 参数名称2 数据类型,[in|out|inout] 参数名称3 数据类型<br>
+<br>
+                    	☆MySQL 变量：<br>
+                    		用户变量：<br>
+                    			set @变量名 = 值;	定义<br>
+                    			select @变量名;		显示<br>
+<br>
+                    		局部变量：<br>
+                    			存储过程中的变量<br>
+                    			declare 变量名 数据类型 default 初始值;	定义赋初值<br>
+                    			set 变量名 = 值;			改值<br>
+                    			select 变量名;				显示<br>
+<br>
+                    	☆Delimiter：<br>
+                    		Delimiter !!    表示以!!为结束符，此时;不会再结束语句了<br>
+<br>
+                    	☆循环：<br>
+                    		loop<br>
+                    		while<br>
+                    		repeat<br>
+<br>
+                    	☆函数定义：<br>
+                    		create function 函数名称(参数) returns 类型<br>
+                    		begin<br>
+                    			一定要有return语句<br>
+                    		end;<br>
+<br>
+                    	☆函数使用：<br>
+                    		作为表达式的一部分调用<br>
+                    		在select语句中调用，作为一列<br>
+<br>
+                    	☆触发器定义：<br>
+                    		行级触发器：<br>
+                    		create trigger 触发器名称<br>
+                    		before|after insert|delete|update<br>
+                    		on 表名<br>
+                    		for each row<br>
+                    		begin<br>
+                    			new.<br>
+                    			old.<br>
+                    		end;<br>
+<br>
+                    	☆对象的查询：<br>
+                    		查看存储过程：<br>
+                    			show procedure status where db='数据库名';<br>
+                    		查看函数：<br>
+                    			show function status where db='数据库名';<br>
+                    		查看触发器：<br>
+                    			show triggers;<br>
+<br>
+                    ===============================================<br>
+                    晚上：<br>
+                    ===============================================<br>
+                    explain<br>
+                    索引<br>
+                    视图<br>
+                    存储过程和事务<br>
+                    delimiter<br>
+<br>
             </article>
             <div class="relates">
                 <div class="title">
