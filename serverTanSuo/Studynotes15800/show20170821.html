@@ -5,7 +5,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>第十五日学习笔记</title>
+    <title>第十六日学习笔记</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -65,62 +65,83 @@
     <div class="content-wrap">
         <div class="content">
             <header class="article-header">
-                <h1 class="article-title"><a href="#" title="java培训学习路线">java初级学习-第15日：原生JDBC、自封装JDBC、Apache的dbutils、数据库设计应遵循的范式</a></h1>
+                <h1 class="article-title"><a href="#" title="java培训学习路线">java初级学习-第16日：Blob、事务、jdbc操作事务、jdbc操作存储过程</a></h1>
                 <div class="article-meta"> <span class="item article-meta-time">
-	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2017-08-18"><i
-              class="glyphicon glyphicon-time"></i> 2017-08-18
+	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2017-08-21"><i
+              class="glyphicon glyphicon-time"></i> 2017-08-21
       </time>
 	  </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title=""
                     data-original-title="来源：酬勤学习笔记"><i class="glyphicon glyphicon-globe"></i> 酬勤学习笔记</span> <span
                         class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title=""
-                        data-original-title="java初级学习-第15日：原生JDBC、自封装JDBC、Apache的dbutils、数据库设计应遵循的范式"><i class="glyphicon glyphicon-list"></i> <a
+                        data-original-title="java初级学习-第16日：Blob、事务、jdbc操作事务、jdbc操作存储过程"><i class="glyphicon glyphicon-list"></i> <a
                         href="#"
-                        title="java初级学习-第15日：原生JDBC、自封装JDBC、Apache的dbutils、数据库设计应遵循的范式">java初级学习-第15日：原生JDBC、自封装JDBC、Apache的dbutils、数据库设计应遵循的范式</a></span>
+                        title="java初级学习-第16日：Blob、事务、jdbc操作事务、jdbc操作存储过程">java初级学习-第16日：Blob、事务、jdbc操作事务、jdbc操作存储过程</a></span>
                     <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title=""
                           data-original-title="浏览量：127"><i class="glyphicon glyphicon-eye-open"></i> 127</span></div>
             </header>
             <article class="article-content">
                 <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt=""/></p>
                 <p>
-                    时间：2017-08-18 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
-===============================================<br>
-上午：<br>
-===============================================<br>
-1、☆☆☆JDBC☆☆☆<br>
-	JDBC 是一系列的接口，一组JavaAPI<br>
-	在java.sql包下<br>
-	数据的增删改查<br>
-	调用存储过程<br>
-	BLOB<br>
+                    时间：2017-08-21 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;地点：中软开发室<br>
+                    ===============================================<br>
+                    上午：<br>
+                    ===============================================<br>
+                    1、创建一张表blob_test    id自动增长        content  mediumblob<br>
+                    2、通过JDBC向表中插入一条数据，并打印刚刚插入的主键值<br>
+                    3、然后再通过JDBC获取表中存入的数据，写入到磁盘文件中，能够正常打开<br>
 <br>
-2、常用接口和类<br>
-	Connection<br>
-	Statement<br>
-	PreparedStatement<br>
-	CallableStatement<br>
-	ResultSet<br>
-	DriverManager<br>
+                    ===============================================<br>
+                    下午：<br>
+                    ===============================================<br>
+                    1、什么是事务？<br>
+                    	A给B转账<br>
+                    	学生表、班级表，删除cid=1的班<br>
 <br>
-	执行顺序：<br>
-		DriverManager>Connection>Statement/PreparedStatement/CallableStatement>execute()->executeQuery()->ResultSet<br>
+                    2、事务的属性ACID<br>
+                    	原子性：事务是不可分割的最小单位<br>
+                    	一致性：要么全部成功，要么全部失败-->事务的回滚rollback<br>
+                    	隔离性：事务之间是相对独立，互不影响<br>
+                    	持久性：一旦事务提交成功，那么对数据的修改时永久性的<br>
 <br>
-3、原生JDBC<br>
-	代码<br>
+                    3、开启事务 start transaction;<br>
+                       提交事务 commit;<br>
+                       回滚事务 rollback;<br>
 <br>
-===============================================<br>
-下午：<br>
-===============================================<br>
-4、封装<br>
-	代码<br>
-5、dbutils->开源JDBC框架<br>
-	代码<br>
-周末任务 GUI+JDBC  实现DVD<br>
+                    4、jdbc中默认事务自动开启、自动提交<br>
+                    	con.setAutoCommit(false);//设置自动提交开启关闭<br>
+                    	con.commit();//提交<br>
+                    	con.rollback();//回滚<br>
+                    	Savepoint sp=con.setSavepoint();//标记要回滚的位置<br>
+                    	con.rollback(sp);//回滚到指定位置<br>
 <br>
-6、数据库设计应遵循的范式：<br>
-	第一范式：所有字段都是不可分割的最小字段。（各属性不可分割）<br>
-	第二范式：在满足第一范式的基础上，确保表中的每列都是和主键相关的。（确定一个主键列）<br>
-	第三范式：在满足第二范式的基础上，确保每一列和主键是直接相关的，而不是间接相关。（确定外键）<br>
-        </article>
+                       mysql中没有开启事务时默认一条语句为一个事务<br>
+<br>
+                    5、事务的隔离级别：<br>
+                    	select @@tx_isolation<br>
+                    	开启事务--->提交事务<br>
+                    	未提交读	read-uncommitted			<br>脏读
+                    	提交读		read-committed(oracle默认的隔离级别)	解决了脏读，但是不能解决不可重复读(不能读同一版本)<br>
+                    	可重复读	repeatable-read(mysql默认的隔离级别)	解决了不可重复读，但出现了幻读<br>
+                    	可串行读	serializable				解决了幻读，但是影响到效率<br>
+<br>
+                    	满足需求的情况下，越低越好。<br>
+<br>
+                    6、修改mysql事务的隔离级别:<br>
+                    	第一种：set tx_isolation='隔离级别';<br>
+                    	第一种：修改mysql配置文件 my.ini<br>
+                    		添加transaction_isolation='隔离级别'<br>
+<br>
+                    ===============================================<br>
+                    晚上：<br>
+                    ===============================================<br>
+                    总结mysql<br>
+<br>
+                    ===============================================<br>
+                    下节课内容：<br>
+                    ===============================================<br>
+                    前端web<br>
+<br>
+            </article>
             <div class="relates">
                 <div class="title">
                     <h3>相关推荐</h3>
